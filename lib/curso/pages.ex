@@ -1,5 +1,7 @@
 defmodule MarkdownConverter do
+  alias CursoWeb.CoreComponents
   import Phoenix.Component
+  # import CursoWeb.CoreComponents, only: [callout: 1]
 
   def convert(filepath, body, _attrs, opts) do
     convert_body(Path.extname(filepath), body, opts)
@@ -9,16 +11,24 @@ defmodule MarkdownConverter do
     html =
       Earmark.as_ast!(body, annotations: "%%")
       |> Earmark.Restructure.walk_and_modify_ast(nil, fn
-        {"p", [], [raw_elixir], meta} = item, nil ->
+        {_, [], bits, meta} = item, nil ->
           case Map.get(meta, :annotation) do
             "%% ." <> component ->
-              {assigns, []} =
-                raw_elixir
+              {assigns, _rest} =
+                bits
+                |> flatten_ast()
+                |> Enum.join("")
                 |> String.trim()
-                |> Code.eval_string()
+                |> Code.eval_string([assigns: %{}], __ENV__)
+
+              func = Function.capture(CoreComponents, String.to_atom(component), 1)
 
               code =
-                apply(__MODULE__, String.to_atom(component), [assigns])
+                Phoenix.LiveView.TagEngine.component(
+                  func,
+                  Map.to_list(assigns),
+                  {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
+                )
 
               html =
                 code
@@ -26,6 +36,7 @@ defmodule MarkdownConverter do
                 |> to_string()
                 |> Floki.parse_document!()
                 |> Floki.traverse_and_update(fn el -> Tuple.append(el, %{}) end)
+                |> dbg
                 |> Enum.at(1)
 
               {html, nil}
@@ -33,6 +44,9 @@ defmodule MarkdownConverter do
             _ ->
               {item, nil}
           end
+
+        {:comment, _, _}, acc ->
+          {"", acc}
 
         item, acc ->
           {item, acc}
@@ -43,6 +57,20 @@ defmodule MarkdownConverter do
     html |> NimblePublisher.highlight(highlighters)
   end
 
+  def flatten_ast(str) when is_binary(str), do: [str]
+
+  def flatten_ast(items) when is_list(items) do
+    Enum.flat_map(items, &flatten_ast/1)
+  end
+
+  def flatten_ast({:comment, _, _parts, _meta}) do
+    []
+  end
+
+  def flatten_ast({_tag, _, parts, _meta}) when is_list(parts) do
+    Enum.flat_map(parts, &flatten_ast/1)
+  end
+
   def tip(assigns) do
     ~H"""
     <div>
@@ -51,6 +79,8 @@ defmodule MarkdownConverter do
     </div>
     """
   end
+
+  defdelegate callout(assigns), to: CursoWeb.CoreComponents
 end
 
 defmodule Curso.Pages do
