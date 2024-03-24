@@ -58,6 +58,8 @@ defmodule Curso.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:nimble_publisher, "~> 1.0"},
+      {:earmark, "~> 1.4.46"},
+      {:earmark_parser, "~> 1.4.22"},
       {:makeup_elixir, ">= 0.0.0"},
       {:makeup_erlang, ">= 0.0.0"},
       {:bandit, "~> 1.2"}
