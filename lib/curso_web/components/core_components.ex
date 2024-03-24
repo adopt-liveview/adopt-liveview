@@ -575,9 +575,11 @@ defmodule CursoWeb.CoreComponents do
   def navigation(assigns) do
     items = [
       %{
-        title: "Introduction",
+        title: "Instalação",
         links: [
-          %{title: "Getting started", href: ~p"/"}
+          %{title: "Instalando Erlang e Elixir", href: ~p"/"},
+          %{title: "Criando sua primeira LiveView", href: ~p"/guides/first-liveview"},
+          %{title: "Anatomia de uma LiveView", href: ~p"/guides/explain-playground"}
         ]
       }
     ]
@@ -647,9 +649,47 @@ defmodule CursoWeb.CoreComponents do
         <.docs_header title={@title} section={@section} />
         <.prose><%= render_slot(@inner_block) %></.prose>
       </article>
-      PrevNextLinks
+      <div :if={false}>PrevNextLinks</div>
     </div>
-    TableOfContents tableOfContents={tableOfContents}
+
+    <div :if={false}>TableOfContents tableOfContents={tableOfContents}</div>
+    """
+  end
+
+  attr :type, :atom, default: :note
+
+  def callout(assigns) do
+    assigns =
+      assign_new(assigns, :styles, fn ->
+        mapper = %{
+          note: %{
+            container: "bg-sky-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
+            title: "text-sky-900 dark:text-sky-400",
+            body:
+              "text-sky-800 [--tw-prose-background:theme(colors.sky.50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-slate-300 dark:prose-code:text-slate-300"
+          },
+          warning: %{
+            container: "bg-amber-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
+            title: "text-amber-900 dark:text-amber-500",
+            body:
+              "text-amber-800 [--tw-prose-underline:theme(colors.amber.400)] [--tw-prose-background:theme(colors.amber.50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-slate-300 dark:[--tw-prose-underline:theme(colors.sky.700)] dark:prose-code:text-slate-300"
+          }
+        }
+
+        mapper[assigns.type]
+      end)
+
+    ~H"""
+    <div class={["my-8 flex rounded-3xl p-6", @styles.container]}>
+      <div class="ml-4 flex-auto">
+        <p class={["m-0 font-display text-xl", @styles.title]}>
+          <%= @title %>
+        </p>
+        <div class={["prose mt-2.5", @styles.body]}>
+          <%= @description %>
+        </div>
+      </div>
+    </div>
     """
   end
 
