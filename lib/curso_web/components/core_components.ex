@@ -15,6 +15,7 @@ defmodule CursoWeb.CoreComponents do
   Icons are provided by [heroicons](https://heroicons.com). See `icon/1` for usage.
   """
   use Phoenix.Component
+  use CursoWeb, :verified_routes
 
   alias Phoenix.LiveView.JS
   import CursoWeb.Gettext
@@ -570,6 +571,111 @@ defmodule CursoWeb.CoreComponents do
     </div>
     """
   end
+
+  def navigation(assigns) do
+    items = [
+      %{
+        title: "Introduction",
+        links: [
+          %{title: "Getting started", href: ~p"/"}
+        ]
+      }
+    ]
+
+    assigns = assign_new(assigns, :pathname, fn -> "/" end)
+
+    ~H"""
+    <nav class={"text-base lg:text-sm #{@class}"}>
+      <ul role="list" class="space-y-9">
+        <%= for section <- items do %>
+          <li>
+            <h2 class="font-display font-medium text-slate-900 dark:text-white">
+              <%= section.title %>
+            </h2>
+            <ul
+              role="list"
+              class="mt-2 space-y-2 border-l-2 border-slate-100 lg:mt-4 lg:space-y-4 lg:border-slate-200 dark:border-slate-800"
+            >
+              <%= for link <- section.links do %>
+                <li class="relative">
+                  <.link navigate={link.href} class={link_class(link, @pathname)}>
+                    <%= link.title %>
+                  </.link>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+    """
+  end
+
+  def prose(assigns) do
+    assigns =
+      assign_new(assigns, :total_classes, fn ->
+        [
+          assigns[:class] || "",
+          "prose prose-slate max-w-none dark:prose-invert dark:text-slate-400",
+          # headings
+          "prose-headings:scroll-mt-28 prose-headings:font-display prose-headings:font-normal lg:prose-headings:scroll-mt-[8.5rem]",
+          # lead
+          "prose-lead:text-slate-500 dark:prose-lead:text-slate-400",
+          # links
+          "prose-a:font-semibold dark:prose-a:text-sky-400",
+          # link underline
+          "prose-a:no-underline prose-a:shadow-[inset_0_-2px_0_0_var(--tw-prose-background,#fff),inset_0_calc(-1*(var(--tw-prose-underline-size,4px)+2px))_0_0_var(--tw-prose-underline,theme(colors.sky.300))] hover:prose-a:[--tw-prose-underline-size:6px] dark:[--tw-prose-background:theme(colors.slate.900)] dark:prose-a:shadow-[inset_0_calc(-1*var(--tw-prose-underline-size,2px))_0_0_var(--tw-prose-underline,theme(colors.sky.800))] dark:hover:prose-a:[--tw-prose-underline-size:6px]",
+          # pre
+          "prose-pre:rounded-xl prose-pre:bg-slate-900 prose-pre:shadow-lg dark:prose-pre:bg-slate-800/60 dark:prose-pre:shadow-none dark:prose-pre:ring-1 dark:prose-pre:ring-slate-300/10",
+          # hr
+          "dark:prose-hr:border-slate-800"
+        ]
+        |> Enum.join(" ")
+      end)
+
+    ~H"""
+    <div class={@total_classes}>
+      <%= render_slot(@inner_block) %>
+    </div>
+    """
+  end
+
+  def docs_layout(assigns) do
+    ~H"""
+    <div class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16">
+      <article>
+        <.docs_header title={@title} section={@section} />
+        <.prose><%= render_slot(@inner_block) %></.prose>
+      </article>
+      PrevNextLinks
+    </div>
+    TableOfContents tableOfContents={tableOfContents}
+    """
+  end
+
+  attr :title, :string, default: nil
+  attr :section, :string, default: nil
+
+  def docs_header(assigns) do
+    ~H"""
+    <header class="mb-9 space-y-1">
+      <p if={@section} class="font-display text-sm font-medium text-sky-500">
+        <%= @section %>
+      </p>
+      <h1 if={@title} class="font-display text-3xl tracking-tight text-slate-900 dark:text-white">
+        <%= @title %>
+      </h1>
+    </header>
+    """
+  end
+
+  defp link_class(%{"href" => href}, pathname) when href == pathname,
+    do:
+      "block w-full pl-3.5 font-semibold text-sky-500 before:bg-sky-500 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full"
+
+  defp link_class(_, _),
+    do:
+      "block w-full pl-3.5 text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300"
 
   @doc """
   Renders a [Heroicon](https://heroicons.com).
