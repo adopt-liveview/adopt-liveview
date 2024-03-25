@@ -18,8 +18,7 @@ defmodule CursoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/guides/first-liveview", PageController, :first_liveview
-    get "/guides/explain-playground", PageController, :explain_playground
+    get "/guides/:id", PageController, :guide
   end
 
   # Other scopes may use custom stacks.
