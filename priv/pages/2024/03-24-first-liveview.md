@@ -49,6 +49,10 @@ A extensão dos arquivos de projetos reais em elixir é <code>.ex</code>, já a 
 
 Em seguida basta executar no seu terminal `elixir hello_liveview.exs` e o servidor irá ligar em http://localhost:4000
 
+## Experimente
+
+Tente colocar um pouco de HTML na sua função `render/1`. Para poder ver as modificações você irá precisar desligar o servidor com `Control+c` duas vezes e rodar novamente o projeto.
+
 ## Sucesso!
 
 Agorá que você possui em mãos um playground de LiveView, nos próximos passos iremos entender o que cada pedaço desse código representa.

@@ -581,6 +581,12 @@ defmodule CursoWeb.CoreComponents do
           %{title: "Criando sua primeira LiveView", href: ~p"/guides/first-liveview"},
           %{title: "Anatomia de uma LiveView", href: ~p"/guides/explain-playground"}
         ]
+      },
+      %{
+        title: "Fundamentos",
+        links: [
+          %{title: "Assigns de uma LiveView", href: ~p"/guides/mount-and-assigns"}
+        ]
       }
     ]
 
