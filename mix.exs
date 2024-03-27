@@ -62,6 +62,7 @@ defmodule Curso.MixProject do
       {:earmark_parser, "~> 1.4.22"},
       {:makeup_elixir, ">= 0.0.0"},
       {:makeup_erlang, ">= 0.0.0"},
+      {:makeup_diff, "~> 0.1.0"},
       {:bandit, "~> 1.2"}
     ]
   end

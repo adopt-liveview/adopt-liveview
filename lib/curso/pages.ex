@@ -91,7 +91,7 @@ defmodule Curso.Pages do
     from: Application.app_dir(:curso, "priv/pages/**/*.md"),
     as: :pages,
     html_converter: MarkdownConverter,
-    highlighters: [:makeup_elixir, :makeup_erlang]
+    highlighters: [:makeup_elixir, :makeup_erlang, :makeup_diff]
 
   # The @posts variable is first defined by NimblePublisher.
   # Let's further modify it by sorting all posts by descending date.
