@@ -60,7 +60,7 @@ asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 ```
 
 %{
-title: "O erlang pode ser muito chato de instalar",
+title: "O erlang pode ser muito chato de instalar projetos",
 type: :warning,
 description: ~H"""
 Dependendo do seu sistema operacional você pode ter dores de cabeça diferentes. Recomendo dar uma breve lida <.link navigate="https://github.com/asdf-vm/asdf-erlang#before-asdf-install" target="\_blank">nesta área</.link> caso você passe problemas no próximo passo.
@@ -96,3 +96,10 @@ Elixir 1.16.1 (compiled with Erlang/OTP 26)
 ```
 
 Parabéns, você está pronto para começar a mexer com LiveView!
+
+%{
+previousPage: "",
+previousText: "Previous page",
+nextPage: "/next",
+nextText: "Next page"
+} %% .prev_next_links

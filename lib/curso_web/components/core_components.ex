@@ -657,13 +657,15 @@ defmodule CursoWeb.CoreComponents do
             container: "bg-sky-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
             title: "text-sky-900 dark:text-sky-400",
             body:
-              "text-sky-800 [--tw-prose-background:theme(colors.sky.50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-slate-300 dark:prose-code:text-slate-300"
+              "text-sky-800 [--tw-prose-background:theme(colors.sky.50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-slate-300 dark:prose-code:text-slate-300",
+            icon: "hero-light-bulb-solid"
           },
           warning: %{
             container: "bg-amber-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
             title: "text-amber-900 dark:text-amber-500",
             body:
-              "text-amber-800 [--tw-prose-underline:theme(colors.amber.400)] [--tw-prose-background:theme(colors.amber.50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-slate-300 dark:[--tw-prose-underline:theme(colors.sky.700)] dark:prose-code:text-slate-300"
+              "text-amber-800 [--tw-prose-underline:theme(colors.amber.400)] [--tw-prose-background:theme(colors.amber.50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-slate-300 dark:[--tw-prose-underline:theme(colors.sky.700)] dark:prose-code:text-slate-300",
+            icon: "hero-exclamation-triangle-solid"
           }
         }
 
@@ -672,6 +674,7 @@ defmodule CursoWeb.CoreComponents do
 
     ~H"""
     <div class={["my-8 flex rounded-3xl p-6", @styles.container]}>
+      <.icon name={@styles.icon} class={["h-6 w-6 my-1", @styles.title]} />
       <div class="ml-4 flex-auto">
         <p class={["m-0 font-display text-xl", @styles.title]}>
           <%= @title %>
@@ -681,6 +684,38 @@ defmodule CursoWeb.CoreComponents do
         </div>
       </div>
     </div>
+    """
+  end
+
+
+  def page_link(assigns) do
+    ~H"""
+    <div class={if @dir === "next" do
+      "ml-auto text-right"
+    end}>
+      <dt class="font-display text-sm font-medium text-slate-900 dark:text-white">
+        <span :if={@dir === "previous"}> Anterior </span>
+        <span :if={@dir === "next"}> Próximo </span>
+      </dt>
+      <dd class="mt-1">
+        <a href={@url} class="flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+          <.icon :if={@dir === "previous"} name={"hero-arrow-right-solid"} class="h-4 w-4 flex-none fill-current -scale-x-100"/>
+
+          <%= @text %>
+
+          <.icon :if={@dir === "next"} name={"hero-arrow-right-solid"} class={"h-4 w-4 flex-none fill-current"}/>
+        </a>
+      </dd>
+    </div>
+    """
+  end
+
+  def prev_next_links(assigns) do
+    ~H"""
+      <div class="mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+        <.page_link :if={@previousPage !== ""} dir='previous' url="/" text={@previousText}/>
+        <.page_link :if={@nextPage !== ""} dir='next' url="/" text={@nextText}/>
+      </div>
     """
   end
 

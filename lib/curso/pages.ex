@@ -105,6 +105,8 @@ defmodule MarkdownConverter do
   end
 
   defdelegate callout(assigns), to: CursoWeb.CoreComponents
+  defdelegate page_link(assigns), to: CursoWeb.CoreComponents
+  defdelegate prev_next_links(assigns), to: CursoWeb.CoreComponents
 end
 
 defmodule Curso.Pages do
