@@ -586,7 +586,8 @@ defmodule CursoWeb.CoreComponents do
         title: "Fundamentos",
         links: [
           %{title: "Assigns de uma LiveView", href: ~p"/guides/mount-and-assigns"},
-          %{title: "Seus primeiros erros", href: ~p"/guides/your-first-mistakes"}
+          %{title: "Seus primeiros erros", href: ~p"/guides/your-first-mistakes"},
+          %{title: "Modificando estado com eventos", href: ~p"/guides/events"}
         ]
       }
     ]
