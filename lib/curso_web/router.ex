@@ -8,6 +8,7 @@ defmodule CursoWeb.Router do
     plug :put_root_layout, html: {CursoWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BasicAuth, use_config: {:curso, :basic_auth}
   end
 
   pipeline :api do

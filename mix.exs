@@ -63,7 +63,8 @@ defmodule Curso.MixProject do
       {:makeup_elixir, ">= 0.0.0"},
       {:makeup_erlang, ">= 0.0.0"},
       {:makeup_diff, "~> 0.1.0"},
-      {:bandit, "~> 1.2"}
+      {:bandit, "~> 1.2"},
+      {:basic_auth, "~> 2.2"}
     ]
   end
 

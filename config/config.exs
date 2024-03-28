@@ -61,6 +61,12 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :curso, basic_auth: [
+  username: "lubien",
+  password: "*{0ta:MGe8FAx'QTAZNT,Uy.;CH=igwF1/P>+H?%y/YO$;7)qssimple_password",
+  realm: "Wild Area"
+]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
