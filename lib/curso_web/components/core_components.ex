@@ -719,6 +719,52 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  def table_of_contents(assigns) do
+    ~H"""
+    <div class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
+      <nav aria-labelledby="on-this-page-title" class="w-56">
+        <h2
+          id="on-this-page-title"
+          className="font-display text-sm font-medium text-slate-900 dark:text-white"
+        >
+          Nesta página
+        </h2>
+        <ol role="list" className="mt-4 space-y-3 text-sm">
+          <%!-- <li :for={{id, heading} <- @streams.headings} id={id}>
+            <h3>
+              <a href={heading.url} class={["font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300", @active === "#ROTA" && "text-sky-500"]}>
+                <%= heading.title %>
+              </a>
+            </h3>
+            <ol :if={ length(heading.children)  } role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+              <li :for={{id, subheading} <- heading.children} class="">
+                <a href={subheading.url} class={["hover:text-slate-600 dark:hover:text-slate-300", @active === "#ROTA" && "text-sky-500"]}>
+                  <%= subheading.title %>
+                </a>
+              </li>
+            </ol>
+          </li> --%>
+
+          <li>
+            <h3>
+              <a href={"/"} class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
+                Section
+              </a>
+            </h3>
+            <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+              <li class="">
+                <a href={"/"} class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    """
+  end
+
   attr :title, :string, default: nil
   attr :section, :string, default: nil
 
