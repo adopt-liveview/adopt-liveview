@@ -573,33 +573,34 @@ defmodule CursoWeb.CoreComponents do
   end
 
   def navigation(assigns) do
-    items = [
-      %{
-        title: "Instalação",
-        links: [
-          %{title: "Instalando Erlang e Elixir", href: ~p"/"},
-          %{title: "Criando sua primeira LiveView", href: ~p"/guides/first-liveview"},
-          %{title: "Anatomia de uma LiveView", href: ~p"/guides/explain-playground"}
-        ]
-      },
-      %{
-        title: "Fundamentos",
-        links: [
-          %{title: "Assigns de uma LiveView", href: ~p"/guides/mount-and-assigns"},
-          %{title: "Seus primeiros erros", href: ~p"/guides/your-first-mistakes"},
-          %{title: "Modificando estado com eventos", href: ~p"/guides/events"},
-          %{title: "Eventos problemáticos", href: ~p"/guides/event-errors"},
-          %{title: "HEEx não é HTML", href: ~p"/guides/heex-is-not-html"}
-        ]
-      }
-    ]
-
-    assigns = assign_new(assigns, :pathname, fn -> "/" end)
+    assigns =
+      assign_new(assigns, :pathname, fn -> "/" end)
+      |> assign(:items, [
+        %{
+          title: "Instalação",
+          links: [
+            %{title: "Instalando Erlang e Elixir", href: ~p"/"},
+            %{title: "Criando sua primeira LiveView", href: ~p"/guides/first-liveview"},
+            %{title: "Anatomia de uma LiveView", href: ~p"/guides/explain-playground"}
+          ]
+        },
+        %{
+          title: "Fundamentos",
+          links: [
+            %{title: "Assigns de uma LiveView", href: ~p"/guides/mount-and-assigns"},
+            %{title: "Seus primeiros erros", href: ~p"/guides/your-first-mistakes"},
+            %{title: "Modificando estado com eventos", href: ~p"/guides/events"},
+            %{title: "Eventos problemáticos", href: ~p"/guides/event-errors"},
+            %{title: "HEEx não é HTML", href: ~p"/guides/heex-is-not-html"},
+            %{title: "Básico de HEEx", href: ~p"/guides/basics-of-heex"}
+          ]
+        }
+      ])
 
     ~H"""
     <nav class={"text-base lg:text-sm #{@class}"}>
       <ul role="list" class="space-y-9">
-        <%= for section <- items do %>
+        <%= for section <- @items do %>
           <li>
             <h2 class="font-display font-medium text-slate-900 dark:text-white">
               <%= section.title %>
