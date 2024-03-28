@@ -698,7 +698,7 @@ defmodule CursoWeb.CoreComponents do
         <span :if={@dir === "next"}> Próximo </span>
       </dt>
       <dd class="mt-1">
-        <a href={@url} class="flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+        <a href={@url} class=" flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
           <.icon :if={@dir === "previous"} name={"hero-arrow-right-solid"} class="h-4 w-4 flex-none fill-current -scale-x-100"/>
 
           <%= @text %>
@@ -712,7 +712,7 @@ defmodule CursoWeb.CoreComponents do
 
   def prev_next_links(assigns) do
     ~H"""
-      <div class="mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+      <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
         <.page_link :if={@previousPage !== ""} dir='previous' url="/" text={@previousText}/>
         <.page_link :if={@nextPage !== ""} dir='next' url="/" text={@nextText}/>
       </div>

@@ -7,6 +7,7 @@ const path = require("path");
 
 module.exports = {
   content: ["./js/**/*.js", "../lib/curso_web.ex", "../lib/curso_web/**/*.*ex"],
+  darkMode: ['class'], //Newer version use 'selector' instead
   theme: {
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -31,6 +32,15 @@ module.exports = {
       maxWidth: {
         "8xl": "88rem",
       },
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            pre: {
+              whiteSpace: "pre-wrap",
+            }
+          }
+        }
+      })
     },
   },
   plugins: [
