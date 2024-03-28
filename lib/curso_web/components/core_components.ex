@@ -592,7 +592,14 @@ defmodule CursoWeb.CoreComponents do
             %{title: "Modificando estado com eventos", href: ~p"/guides/events"},
             %{title: "Eventos problemáticos", href: ~p"/guides/event-errors"},
             %{title: "HEEx não é HTML", href: ~p"/guides/heex-is-not-html"},
+            # %{title: "Atributos", href: ~p"/guides/assign-attributes"},
             %{title: "Básico de HEEx", href: ~p"/guides/basics-of-heex"}
+          ]
+        },
+        %{
+          title: "Estruturas de Controle",
+          links: [
+            %{title: "Renderização condicional", href: ~p"/guides/conditional-rendering"}
           ]
         }
       ])
