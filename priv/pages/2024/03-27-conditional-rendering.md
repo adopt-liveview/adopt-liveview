@@ -341,3 +341,5 @@ Cada cláusula do `cond` segue o formato de predicado (uma expressão que retorn
 - Para situações de apenas `if` voce pode usar o formato de bloco `<%= if condição do %>` ou o atributo HEEx especial `:if={condição}` em uma tag HTML.
 - Para múltiplas comparações de um valor você pode usar o `<%= case valor do %>`.
 - Para múltiplas condições em que não envolvem apenas comparar se um valor é igual você pode usar `<%= cond do %>`.
+- Em todos os casos a tag com `=` sempre será a primeira e as demais não precisam. Se você adicionar `=` nas demais tags o LiveView irá gerar warnings mas tudo funcionará normalmente.
+- Se na primeira tag você não adicionar `=` o código HTML não será renderizado.

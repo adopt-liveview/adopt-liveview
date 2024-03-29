@@ -599,7 +599,8 @@ defmodule CursoWeb.CoreComponents do
         %{
           title: "Estruturas de Controle",
           links: [
-            %{title: "Renderização condicional", href: ~p"/guides/conditional-rendering"}
+            %{title: "Renderização condicional", href: ~p"/guides/conditional-rendering"},
+            %{title: "Renderização de listas", href: ~p"/guides/list-rendering"}
           ]
         }
       ])
