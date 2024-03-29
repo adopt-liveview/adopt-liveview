@@ -2,7 +2,7 @@
 title: "Básico de HEEx",
 author: "Lubien",
 tags: ~w(getting-started),
-section: "Fundamentos",
+section: "HEEx",
 description: "Aprenda como HEEx entende HTML de uma forma diferente"
 }
 

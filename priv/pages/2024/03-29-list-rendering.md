@@ -2,7 +2,7 @@
 title: "Renderização de listas",
 author: "Lubien",
 tags: ~w(getting-started),
-section: "Estruturas de Controle",
+section: "HEEx",
 description: "Vamos por um pouco de escala no HTML"
 }
 

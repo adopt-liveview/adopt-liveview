@@ -2,7 +2,7 @@
 title: "HEEx não é HTML",
 author: "Lubien",
 tags: ~w(getting-started),
-section: "Fundamentos",
+section: "HEEx",
 description: "O que diabos é HEEx?"
 }
 

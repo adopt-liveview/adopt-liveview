@@ -2,7 +2,7 @@
 title: "Renderização condicional",
 author: "Lubien",
 tags: ~w(getting-started),
-section: "Estruturas de Controle",
+section: "HEEx",
 description: "Renderizar ou não renderizar, eis a questão"
 }
 
