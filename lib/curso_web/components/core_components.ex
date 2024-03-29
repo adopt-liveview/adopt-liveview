@@ -602,6 +602,20 @@ defmodule CursoWeb.CoreComponents do
             %{title: "Renderização condicional", href: ~p"/guides/conditional-rendering"},
             %{title: "Renderização de listas", href: ~p"/guides/list-rendering"}
           ]
+        },
+        %{
+          title: "Eventos",
+          links: [
+            %{title: ~H"<code>`phx-value`</code>", href: ~p"/guides/phx-value"},
+            %{title: ~H"<code>`JS.push`</code>", href: ~p"/guides/js-push"},
+            %{title: "Mais de um evento disparado", href: ~p"/guides/multiple-pushes"}
+          ]
+        },
+        %{
+          title: "Navegação",
+          links: [
+            %{title: "Sua segunda LiveView", href: ~p"/guides/your-second-liveview"}
+          ]
         }
       ])
 
