@@ -614,7 +614,10 @@ defmodule CursoWeb.CoreComponents do
         %{
           title: "Navegação",
           links: [
-            %{title: "Sua segunda LiveView", href: ~p"/guides/your-second-liveview"}
+            %{title: "Sua segunda LiveView", href: ~p"/guides/your-second-liveview"},
+            %{title: "Parâmetros de rotas", href: ~p"/guides/route-params"},
+            %{title: "Parâmetros genéricos com query string", href: ~p"/guides/query-string"},
+            %{title: "Navegando para a mesma rota", href: ~p"/guides/navigate-to-the-same-route"}
           ]
         }
       ])
