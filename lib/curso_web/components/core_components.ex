@@ -619,6 +619,13 @@ defmodule CursoWeb.CoreComponents do
             %{title: "Parâmetros genéricos com query string", href: ~p"/guides/query-string"},
             %{title: "Navegando para a mesma rota", href: ~p"/guides/navigate-to-the-same-route"}
           ]
+        },
+        %{
+          title: "Componentes",
+          links: [
+            %{title: "Componentes funcionais", href: ~p"/guides/function-component"},
+            %{title: "Documentando componentes", href: ~p"/guides/documenting-components"}
+          ]
         }
       ])
 
