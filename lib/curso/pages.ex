@@ -162,6 +162,18 @@ defmodule Curso.Pages do
           %{
             title: "Componentes de outros módulos",
             href: ~p"/guides/components-from-other-modules"
+          },
+          %{
+            title: "Múltiplos slots",
+            href: ~p"/guides/multiple-slots"
+          },
+          %{
+            title: "Slots com atributos",
+            href: ~p"/guides/slots-with-attributes"
+          },
+          %{
+            title: "Renderizando listas com slots",
+            href: ~p"/guides/lists-with-slots"
           }
         ]
       }
