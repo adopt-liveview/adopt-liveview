@@ -575,59 +575,7 @@ defmodule CursoWeb.CoreComponents do
   def navigation(assigns) do
     assigns =
       assign_new(assigns, :pathname, fn -> "/" end)
-      |> assign(:items, [
-        %{
-          title: "Instalação",
-          links: [
-            %{title: "Instalando Erlang e Elixir", href: ~p"/"},
-            %{title: "Criando sua primeira LiveView", href: ~p"/guides/first-liveview"},
-            %{title: "Anatomia de uma LiveView", href: ~p"/guides/explain-playground"}
-          ]
-        },
-        %{
-          title: "Fundamentos",
-          links: [
-            %{title: "Assigns de uma LiveView", href: ~p"/guides/mount-and-assigns"},
-            %{title: "Seus primeiros erros", href: ~p"/guides/your-first-mistakes"},
-            %{title: "Modificando estado com eventos", href: ~p"/guides/events"},
-            %{title: "Eventos problemáticos", href: ~p"/guides/event-errors"}
-          ]
-        },
-        %{
-          title: "HEEx",
-          links: [
-            %{title: "HEEx não é HTML", href: ~p"/guides/heex-is-not-html"},
-            # %{title: "Atributos", href: ~p"/guides/assign-attributes"},
-            %{title: "Básico de HEEx", href: ~p"/guides/basics-of-heex"},
-            %{title: "Renderização condicional", href: ~p"/guides/conditional-rendering"},
-            %{title: "Renderização de listas", href: ~p"/guides/list-rendering"}
-          ]
-        },
-        %{
-          title: "Eventos",
-          links: [
-            %{title: ~H"<code>`phx-value`</code>", href: ~p"/guides/phx-value"},
-            %{title: ~H"<code>`JS.push`</code>", href: ~p"/guides/js-push"},
-            %{title: "Mais de um evento disparado", href: ~p"/guides/multiple-pushes"}
-          ]
-        },
-        %{
-          title: "Navegação",
-          links: [
-            %{title: "Sua segunda LiveView", href: ~p"/guides/your-second-liveview"},
-            %{title: "Parâmetros de rotas", href: ~p"/guides/route-params"},
-            %{title: "Parâmetros genéricos com query string", href: ~p"/guides/query-string"},
-            %{title: "Navegando para a mesma rota", href: ~p"/guides/navigate-to-the-same-route"}
-          ]
-        },
-        %{
-          title: "Componentes",
-          links: [
-            %{title: "Componentes funcionais", href: ~p"/guides/function-component"},
-            %{title: "Documentando componentes", href: ~p"/guides/documenting-components"}
-          ]
-        }
-      ])
+      |> assign(:items, Curso.Pages.content_map())
 
     ~H"""
     <nav class={"text-base lg:text-sm #{@class}"}>
