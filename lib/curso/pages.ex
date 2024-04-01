@@ -11,6 +11,9 @@ defmodule MarkdownConverter do
     html =
       Earmark.as_ast!(body, annotations: "%%")
       |> Earmark.Restructure.walk_and_modify_ast(nil, fn
+        {"h2", _inner, [text], meta}, nil ->
+          {{"h2", [{"id", anchor_id(text)}], [text], meta}, nil}
+
         {_, [], bits, meta} = item, nil ->
           case Map.get(meta, :annotation) do
             "%% ." <> component ->
@@ -54,6 +57,13 @@ defmodule MarkdownConverter do
 
     highlighters = Keyword.get(opts, :highlighters, [])
     html |> NimblePublisher.highlight(highlighters)
+  end
+
+  defp anchor_id(str) do
+    str
+    |> String.downcase()
+    |> String.replace(~r/[^a-z]+/, "-")
+    |> String.trim("-")
   end
 
   def flatten_ast(str) when is_binary(str), do: [str]
