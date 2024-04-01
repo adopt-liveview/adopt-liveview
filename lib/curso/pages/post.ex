@@ -19,7 +19,9 @@ defmodule Curso.Pages.Post do
     :tags,
     :date,
     :section,
-    :table_of_contents
+    :table_of_contents,
+    :previous_page_id,
+    :next_page_id
   ]
 
   def build(filename, attrs, body) do

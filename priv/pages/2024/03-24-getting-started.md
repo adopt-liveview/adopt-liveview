@@ -3,7 +3,9 @@ title: "Instalando o setup!",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Introdução",
-description: "Vamos aprender como fazer uma LiveView rodar no seu computador"
+description: "Vamos aprender como fazer uma LiveView rodar no seu computador",
+previous_page_id: "",
+next_page_id: "getting-started"
 }
 
 ---
@@ -60,7 +62,7 @@ asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 ```
 
 %{
-title: "O erlang pode ser muito chato de instalars",
+title: "O erlang pode ser muito chato de instalar",
 type: :warning,
 description: ~H"""
 Dependendo do seu sistema operacional você pode ter dores de cabeça diferentes. Recomendo dar uma breve lida <.link navigate="https://github.com/asdf-vm/asdf-erlang#before-asdf-install" target="\_blank">nesta área</.link> caso você passe problemas no próximo passo.
@@ -96,10 +98,3 @@ Elixir 1.16.1 (compiled with Erlang/OTP 26)
 ```
 
 Parabéns, você está pronto para começar a mexer com LiveView!
-
-%{
-previousUrl: "",
-previousText: "Previous page",
-nextUrl: "/guides/first-liveview",
-nextText: "Criando sua primeira LiveView"
-} %% .prev_next_links

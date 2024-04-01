@@ -3,7 +3,9 @@ title: "Sua primeira LiveVew",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Introdução",
-description: "Como iniciar programando com LiveView?"
+description: "Como iniciar programando com LiveView?",
+previous_page_id: "getting-started",
+next_page_id: "explain-playground"
 }
 
 ---
@@ -56,10 +58,3 @@ Tente colocar um pouco de HTML na sua função `render/1`. Para poder ver as mod
 ## Sucesso!
 
 Agorá que você possui em mãos um playground de LiveView, nos próximos passos iremos entender o que cada pedaço desse código representa.
-
-%{
-previousUrl: "/guides/first-liveview",
-previousText: "Criando sua primeira LiveView",
-nextUrl: "/guides/explain-playground",
-nextText: "Anatomia de uma LiveView"
-} %% .prev_next_links
