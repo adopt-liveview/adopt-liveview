@@ -591,7 +591,7 @@ defmodule CursoWeb.CoreComponents do
             >
               <%= for link <- section.links do %>
                 <li class="relative">
-                  <.link navigate={link.href} class={link_class(link, @pathname)}>
+                  <.link navigate={link.href} class={link_class(link.href, assigns.pathname)}>
                     <%= link.title %>
                   </.link>
                 </li>
@@ -687,23 +687,35 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
-
   def page_link(assigns) do
     ~H"""
-    <div class={if @dir === "next" do
-      "ml-auto text-right"
-    end}>
+    <div class={
+      if @dir === "next" do
+        "ml-auto text-right"
+      end
+    }>
       <dt class="font-display text-sm font-medium text-slate-900 dark:text-white">
         <span :if={@dir === "previous"}> Anterior </span>
         <span :if={@dir === "next"}> Próximo </span>
       </dt>
       <dd class="mt-1">
-        <a href={@url} class=" flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
-          <.icon :if={@dir === "previous"} name={"hero-arrow-right-solid"} class="h-4 w-4 flex-none fill-current -scale-x-100"/>
+        <a
+          href={@url}
+          class=" flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+        >
+          <.icon
+            :if={@dir === "previous"}
+            name="hero-arrow-right-solid"
+            class="h-4 w-4 flex-none fill-current -scale-x-100"
+          />
 
           <%= @text %>
 
-          <.icon :if={@dir === "next"} name={"hero-arrow-right-solid"} class={"h-4 w-4 flex-none fill-current"}/>
+          <.icon
+            :if={@dir === "next"}
+            name="hero-arrow-right-solid"
+            class="h-4 w-4 flex-none fill-current"
+          />
         </a>
       </dd>
     </div>
@@ -712,10 +724,10 @@ defmodule CursoWeb.CoreComponents do
 
   def prev_next_links(assigns) do
     ~H"""
-      <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
-        <.page_link :if={@previousPage !== ""} dir='previous' url="/" text={@previousText}/>
-        <.page_link :if={@nextPage !== ""} dir='next' url="/" text={@nextText}/>
-      </div>
+    <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+      <.page_link :if={@previousUrl !== ""} dir="previous" url={@previousUrl} text={@previousText} />
+      <.page_link :if={@nextUrl !== ""} dir="next" url={@nextUrl} text={@nextText} />
+    </div>
     """
   end
 
@@ -725,11 +737,11 @@ defmodule CursoWeb.CoreComponents do
       <nav aria-labelledby="on-this-page-title" class="w-56">
         <h2
           id="on-this-page-title"
-          className="font-display text-sm font-medium text-slate-900 dark:text-white"
+          class="font-display text-sm font-medium text-slate-900 dark:text-white"
         >
           Nesta página
         </h2>
-        <ol role="list" className="mt-4 space-y-3 text-sm">
+        <ol role="list" class="mt-4 space-y-3 text-sm">
           <%!-- <li :for={{id, heading} <- @streams.headings} id={id}>
             <h3>
               <a href={heading.url} class={["font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300", @active === "#ROTA" && "text-sky-500"]}>
@@ -747,13 +759,48 @@ defmodule CursoWeb.CoreComponents do
 
           <li>
             <h3>
-              <a href={"/"} class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">
+              <a
+                href="/"
+                class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 !text-sky-500"
+              >
                 Section
               </a>
             </h3>
             <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
               <li class="">
-                <a href={"/"} class="hover:text-slate-600 dark:hover:text-slate-300">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <h3>
+              <a
+                href="/"
+                class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 text-sky-500"
+              >
+                Section
+              </a>
+            </h3>
+            <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
                   SubSection
                 </a>
               </li>
@@ -781,9 +828,9 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
-  defp link_class(%{"href" => href}, pathname) when href == pathname,
+  defp link_class(href, pathname) when href == pathname,
     do:
-      "block w-full pl-3.5 font-semibold text-sky-500 before:bg-sky-500 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full"
+      "block w-full pl-3.5 font-semibold !text-sky-500 before:bg-sky-500 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full"
 
   defp link_class(_, _),
     do:

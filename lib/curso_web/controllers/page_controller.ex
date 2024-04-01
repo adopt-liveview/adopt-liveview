@@ -3,10 +3,11 @@ defmodule CursoWeb.PageController do
   use CursoWeb, :controller
 
   def home(conn, _params) do
-    render(conn, :home, page: Pages.by_id("getting-started"))
+    conn |> dbg
+    render(conn, :home, page: Pages.by_id("getting-started"), pathname: conn.request_path)
   end
 
   def guide(conn, %{"id" => id}) do
-    render(conn, :home, page: Pages.by_id(id))
+    render(conn, :home, page: Pages.by_id(id), pathname: conn.request_path)
   end
 end
