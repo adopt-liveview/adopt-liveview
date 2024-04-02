@@ -11,8 +11,8 @@ defmodule MarkdownConverter do
     html =
       Earmark.as_ast!(body, annotations: "%%")
       |> Earmark.Restructure.walk_and_modify_ast(nil, fn
-        {"h2", _inner, [text], meta}, nil ->
-          {{"h2", [{"id", anchor_id(text)}], [text], meta}, nil}
+        {"h" <> x, _inner, [text], meta}, nil when x in ~w(1 2 3 4 5 6) ->
+          {{"h#{x}", [{"id", anchor_id(text)}], [text], meta}, nil}
 
         {_, [], bits, meta} = item, nil ->
           case Map.get(meta, :annotation) do
