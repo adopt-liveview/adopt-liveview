@@ -186,6 +186,14 @@ defmodule Curso.Pages do
             href: ~p"/guides/lists-with-slots"
           }
         ]
+      },
+      %{
+        title: "Formulários",
+        links: [
+          %{title: "Componente de formulário", href: ~p"/guides/forms"},
+          %{title: "Validações", href: ~p"/guides/form-validation"},
+          %{title: "Simplificando tudo com Ecto", href: ~p"/guides/simple-forms-with-ecto"}
+        ]
       }
     ]
   end
