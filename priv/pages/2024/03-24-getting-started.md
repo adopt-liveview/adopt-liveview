@@ -4,8 +4,7 @@ author: "Lubien",
 tags: ~w(getting-started),
 section: "Introdução",
 description: "Vamos aprender como fazer uma LiveView rodar no seu computador",
-previous_page_id: "",
-next_page_id: "getting-started"
+next_page_id: "first-liveview"
 }
 
 ---

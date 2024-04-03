@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = {
-  content: ["./js/**/*.js", "../lib/curso_web.ex", "../lib/curso_web/**/*.*ex"],
+  content: ["./js/**/*.js", "../lib/curso_web.ex", "../lib/curso_web/**/*.*ex", "../priv/pages/**/*.*md"],
   darkMode: ['class'], //Newer version use 'selector' instead
   theme: {
     fontSize: {

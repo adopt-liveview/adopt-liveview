@@ -3,7 +3,9 @@ title: "Anatomia de uma LiveView",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Introdução",
-description: "O que siginifica cada pedaço deste código aqui?"
+description: "O que siginifica cada pedaço deste código aqui?",
+previous_page_id: "first-liveview",
+next_page_id: ""
 }
 
 ---
@@ -37,7 +39,7 @@ Mix é a ferramente que gerencia e compila projetos em Elixir. Para scripts em E
 %{
 title: ~H"Ei, o que foi esse <code>/2</code> que você disse no <code>Mix.install/2</code>?",
 description: ~H"""
-Em Elixir as funções são diferentes dependendo do número de argumentos. Então assim como existe a função <.link navigate="https://hexdocs.pm/elixir/Enum.html#count/1" target="\_blank"><code>Enum.count/1</code></.link> também existe a <.link navigate="https://hexdocs.pm/elixir/Enum.html#count/1" target="\_blank"><code>Enum.count/2</code></.link> que recebe dois argumentos e são funções diferentes. Vale mencionar que esse número de argumentos representa a <strong class="text-white">aridade da função</strong>. Uma função que aceita um argumento é uma função unária Uma função que aceita dois argumentos é uma função binária Uma função que aceita três argumentos é uma função ternária.
+Em Elixir as funções são diferentes dependendo do número de argumentos. Então assim como existe a função <.link navigate="https://hexdocs.pm/elixir/Enum.html#count/1" target="\_blank"><code>Enum.count/1</code></.link> também existe a <.link navigate="https://hexdocs.pm/elixir/Enum.html#count/1" target="\_blank"><code>Enum.count/2</code></.link> que recebe dois argumentos e são funções diferentes. Vale mencionar que esse número de argumentos representa a <strong class="text-black dark:text-white">aridade da função</strong>. Uma função que aceita um argumento é uma função unária Uma função que aceita dois argumentos é uma função binária Uma função que aceita três argumentos é uma função ternária.
 """
 } %% .callout
 
@@ -60,7 +62,7 @@ Por fim, o mínimo para você ter uma LiveView é, pasme, a View. Isto é, uma f
 %{
 title: ~H"<code>sigil_H/2</code>?",
 description: ~H"""
-Em Elixir, as <code>sigils</code> são funções binárias (recebem 2 argumentos) que servem pra transformar texto em outra coisa. A <code>sigil_H/2</code> transforma HTML válido em uma estrutura de dados otimizada para enviar HTML para seu usuário. <strong class="text-white">Precisamos saber como ela funciona?</strong> Não! Mas iremos ver no futuro apenas a nível de curiosidade nos tópicos avançados.
+Em Elixir, as <code>sigils</code> são funções binárias (recebem 2 argumentos) que servem pra transformar texto em outra coisa. A <code>sigil_H/2</code> transforma HTML válido em uma estrutura de dados otimizada para enviar HTML para seu usuário. <strong class="text-black dark:text-white">Precisamos saber como ela funciona?</strong> Não! Mas iremos ver no futuro apenas a nível de curiosidade nos tópicos avançados.
 """
 } %% .callout
 

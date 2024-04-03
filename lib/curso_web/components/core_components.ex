@@ -687,6 +687,10 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  attr :dir, :string, default: "next", examples: ~w(previous next)
+  attr :url, :string, default: nil
+  slot :inner_block
+
   def page_link(assigns) do
     ~H"""
     <div class={
@@ -709,7 +713,7 @@ defmodule CursoWeb.CoreComponents do
             class="h-4 w-4 flex-none fill-current -scale-x-100"
           />
 
-          <%= @text %>
+          <%= render_slot(@inner_block) %>
 
           <.icon
             :if={@dir === "next"}
@@ -722,12 +726,29 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  attr :previous_page, Curso.Pages.Post, default: nil
+  attr :next_page, Curso.Pages.Post, default: nil
+
   def prev_next_links(assigns) do
     ~H"""
-    <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+    <<<<<<<
+      HEAD
+      <div
+      class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800"
+    >
       <.page_link :if={@previousUrl !== ""} dir="previous" url={@previousUrl} text={@previousText} />
       <.page_link :if={@nextUrl !== ""} dir="next" url={@nextUrl} text={@nextText} />
+    </<<<<<<>
+    =======
+    <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+      <.page_link :if={@previous_page} dir="previous" url={~p"/guides/#{@previous_page.id}"}>
+        <%= @previous_page.title %>
+      </.page_link>
+      <.page_link :if={@next_page} dir="next" url={~p"/guides/#{@next_page.id}"}>
+        <%= @next_page.title %>
+      </.page_link>
     </div>
+    >>>>>>> 0935cd3 (Fix prev next links)
     """
   end
 
