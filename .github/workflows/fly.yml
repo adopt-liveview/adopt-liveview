@@ -2,7 +2,7 @@ name: Fly Deploy
 on:
   push:
     branches:
-      - master    # change to main if needed
+      - main    # change to main if needed
 jobs:
   deploy:
     name: Deploy app
