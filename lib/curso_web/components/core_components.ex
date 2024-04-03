@@ -224,12 +224,13 @@ defmodule CursoWeb.CoreComponents do
   attr :type, :string, default: nil
   attr :class, :string, default: nil
   attr :rest, :global, include: ~w(disabled form name value)
-
+  attr :href, :string, default: nil
   slot :inner_block, required: true
 
   def button(assigns) do
     ~H"""
     <button
+      :if={@href == nil}
       type={@type}
       class={[
         "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
@@ -240,6 +241,16 @@ defmodule CursoWeb.CoreComponents do
     >
       <%= render_slot(@inner_block) %>
     </button>
+    <a
+      :if={@href}
+      href={@href}
+      class={[
+        @class
+      ]}
+      {@rest}
+    >
+      <%= render_slot(@inner_block) %>
+    </a>
     """
   end
 
@@ -835,8 +846,7 @@ defmodule CursoWeb.CoreComponents do
 
   attr :title, :string
   attr :description, :string
-  attr :image, :string
-
+  # attr :image, :string
 
   # WIP
   def hero(assigns) do
@@ -845,22 +855,22 @@ defmodule CursoWeb.CoreComponents do
       <div class="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
         <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
           <div class="relative z-10 md:text-center lg:text-left">
-            <img src={@image}/>
-            <div className="relative">
-              <p className="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
+            <%!-- <img src={@image} class="absolute bottom-full right-full -mb-56 -mr-72 opacity-50"/> --%>
+            <div class="relative">
+              <p class="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
                 <%= @title %>
               </p>
-              <p className="mt-3 text-2xl tracking-tight text-slate-400">
+              <p class="mt-3 text-2xl tracking-tight text-slate-400">
                 <%= @description %>
               </p>
-              <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <a href="/" class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500">
+              <div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
+                <.button href={"/"} class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500">
                   Get Started
-                </a>
+                </.button>
 
-                <a href="/" class="rounded-full bg-slate-800 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-slate-400">
+                <.button href={"/"} class="rounded-full bg-slate-800 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-slate-400">
                   View Github
-                </a>
+                </.button>
               </div>
             </div>
           </div>
