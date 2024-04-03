@@ -8,52 +8,67 @@ defmodule MarkdownConverter do
   end
 
   defp convert_body(extname, body, opts) when extname in [".md", ".markdown", ".livemd"] do
+    handler = fn
+      {"h" <> x, _inner, [text], meta}, nil when x in ~w(1 2 3 4 5 6) ->
+        {{"h#{x}", [{"id", anchor_id(text)}], [text], meta}, nil}
+
+      {_, [], bits, meta} = item, nil ->
+        case Map.get(meta, :annotation) do
+          "%% ." <> component ->
+            {assigns, _rest} =
+              bits
+              |> flatten_ast()
+              |> Enum.join("")
+              |> String.trim()
+              |> Code.eval_string([assigns: %{}], __ENV__)
+
+            func =
+              Function.capture(CoreComponents, String.to_atom(component), 1)
+
+            code =
+              Phoenix.LiveView.TagEngine.component(
+                func,
+                Map.to_list(assigns),
+                {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
+              )
+
+            html =
+              code
+              |> Phoenix.HTML.Safe.to_iodata()
+              |> to_string()
+              |> Floki.parse_document!()
+              |> Floki.traverse_and_update(fn el -> Tuple.append(el, %{}) end)
+              |> Enum.find(fn
+                {:comment, _, _} -> false
+                _ -> true
+              end)
+
+            {html, nil}
+
+          _ ->
+            {item, nil}
+        end
+
+      {:comment, _, _}, acc ->
+        {"", acc}
+
+      item, acc ->
+        {item, acc}
+    end
+
     html =
       Earmark.as_ast!(body, annotations: "%%")
-      |> Earmark.Restructure.walk_and_modify_ast(nil, fn
-        {"h" <> x, _inner, [text], meta}, nil when x in ~w(1 2 3 4 5 6) ->
-          {{"h#{x}", [{"id", anchor_id(text)}], [text], meta}, nil}
+      |> case do
+        list when is_list(list) ->
+          list
+          |> Earmark.Restructure.walk_and_modify_ast(nil, fn a, b ->
+            handler.(a, b)
+          end)
+          |> Earmark.transform()
 
-        {_, [], bits, meta} = item, nil ->
-          case Map.get(meta, :annotation) do
-            "%% ." <> component ->
-              {assigns, _rest} =
-                bits
-                |> flatten_ast()
-                |> Enum.join("")
-                |> String.trim()
-                |> Code.eval_string([assigns: %{}], __ENV__)
-
-              func = Function.capture(CoreComponents, String.to_atom(component), 1)
-
-              code =
-                Phoenix.LiveView.TagEngine.component(
-                  func,
-                  Map.to_list(assigns),
-                  {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-                )
-
-              html =
-                code
-                |> Phoenix.HTML.Safe.to_iodata()
-                |> to_string()
-                |> Floki.parse_document!()
-                |> Floki.traverse_and_update(fn el -> Tuple.append(el, %{}) end)
-                |> Enum.at(1)
-
-              {html, nil}
-
-            _ ->
-              {item, nil}
-          end
-
-        {:comment, _, _}, acc ->
-          {"", acc}
-
-        item, acc ->
-          {item, acc}
-      end)
-      |> Earmark.transform()
+        _ ->
+          ""
+      end
 
     highlighters = Keyword.get(opts, :highlighters, [])
     html |> NimblePublisher.highlight(highlighters)
