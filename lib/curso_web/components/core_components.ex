@@ -224,13 +224,11 @@ defmodule CursoWeb.CoreComponents do
   attr :type, :string, default: nil
   attr :class, :string, default: nil
   attr :rest, :global, include: ~w(disabled form name value)
-  attr :href, :string, default: nil
   slot :inner_block, required: true
 
   def button(assigns) do
     ~H"""
     <button
-      :if={@href == nil}
       type={@type}
       class={[
         "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
@@ -241,14 +239,30 @@ defmodule CursoWeb.CoreComponents do
     >
       <%= render_slot(@inner_block) %>
     </button>
-    <a
-      :if={@href}
-      href={@href}
-      class={[
-        @class
-      ]}
-      {@rest}
+    """
+  end
+
+  @doc """
+  Renders a link button.
+
+  ## Examples
+
+    <.link_button
+      href={"https://www.github.com"}
+      class="text-sky-500"
+      target="_blank"
+      rel="noopener noreferrer"
     >
+      View Github
+    </.link_button>
+  """
+  attr :class, :string, default: nil
+  attr :rest, :global, include: ~w(href target rel)
+  slot :inner_block, required: true
+
+  def link_button(assigns) do
+    ~H"""
+    <a class={@class} {@rest}>
       <%= render_slot(@inner_block) %>
     </a>
     """
@@ -602,7 +616,7 @@ defmodule CursoWeb.CoreComponents do
             >
               <%= for link <- section.links do %>
                 <li class="relative">
-                  <.link navigate={link.href} class={link_class(link.href, assigns.pathname)}>
+                  <.link navigate={link.href} class={link_class(link.href, @pathname)}>
                     <%= link.title %>
                   </.link>
                 </li>
@@ -698,17 +712,13 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
-  attr :dir, :string, default: "next", examples: ~w(previous next)
+  attr :dir, :string, default: "next", values: ~w(previous next)
   attr :url, :string, default: nil
   slot :inner_block
 
   def page_link(assigns) do
     ~H"""
-    <div class={
-      if @dir === "next" do
-        "ml-auto text-right"
-      end
-    }>
+    <div class={@dir === "next" && "ml-auto text-right"}>
       <dt class="font-display text-sm font-medium text-slate-900 dark:text-white">
         <span :if={@dir === "previous"}> Anterior </span>
         <span :if={@dir === "next"}> Próximo </span>
@@ -744,6 +754,8 @@ defmodule CursoWeb.CoreComponents do
     ~H"""
     <<<<<<<
       HEAD
+      <<<<<<<
+      HEAD
       <div
       class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800"
     >
@@ -760,6 +772,16 @@ defmodule CursoWeb.CoreComponents do
       </.page_link>
     </div>
     >>>>>>> 0935cd3 (Fix prev next links)
+    =======
+    <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+      <.page_link :if={@previous_page} dir="previous" url={~p"/guides/#{@previous_page.id}"}>
+        <%= @previous_page.title %>
+      </.page_link>
+      <.page_link :if={@next_page} dir="next" url={~p"/guides/#{@next_page.id}"}>
+        <%= @next_page.title %>
+      </.page_link>
+    </div>
+    >>>>>>> 649f1b8 (Fix components)
     """
   end
 
@@ -844,6 +866,17 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  @doc """
+  Renders a Hero component.
+
+  ## Examples
+    <.hero
+      title={"Road to Elixir"}
+      description={"lorem ipsum dolor"}
+      image={"https://i.imgur.com/2St7UBs.jpg"}
+    />
+  """
+
   attr :title, :string
   attr :description, :string
   # attr :image, :string
@@ -855,7 +888,6 @@ defmodule CursoWeb.CoreComponents do
       <div class="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
         <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
           <div class="relative z-10 md:text-center lg:text-left">
-            <%!-- <img src={@image} class="absolute bottom-full right-full -mb-56 -mr-72 opacity-50"/> --%>
             <div class="relative">
               <p class="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
                 <%= @title %>
@@ -864,13 +896,19 @@ defmodule CursoWeb.CoreComponents do
                 <%= @description %>
               </p>
               <div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <.button href={"/"} class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500">
+                <.link_button
+                  href="/"
+                  class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500"
+                >
                   Get Started
-                </.button>
+                </.link_button>
 
-                <.button href={"/"} class="rounded-full bg-slate-800 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-slate-400">
+                <.link_button
+                  href="/"
+                  class="rounded-full bg-slate-800 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-slate-400"
+                >
                   View Github
-                </.button>
+                </.link_button>
               </div>
             </div>
           </div>
@@ -898,7 +936,7 @@ defmodule CursoWeb.CoreComponents do
 
   defp link_class(href, pathname) when href == pathname,
     do:
-      "block w-full pl-3.5 font-semibold !text-sky-500 before:bg-sky-500 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full"
+      "block w-full pl-3.5 font-semibold text-sky-500 before:bg-sky-500 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full"
 
   defp link_class(_, _),
     do:
