@@ -752,17 +752,6 @@ defmodule CursoWeb.CoreComponents do
 
   def prev_next_links(assigns) do
     ~H"""
-    <<<<<<<
-      HEAD
-      <<<<<<<
-      HEAD
-      <div
-      class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800"
-    >
-      <.page_link :if={@previousUrl !== ""} dir="previous" url={@previousUrl} text={@previousText} />
-      <.page_link :if={@nextUrl !== ""} dir="next" url={@nextUrl} text={@nextText} />
-    </<<<<<<>
-    =======
     <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
       <.page_link :if={@previous_page} dir="previous" url={~p"/guides/#{@previous_page.id}"}>
         <%= @previous_page.title %>
@@ -771,17 +760,6 @@ defmodule CursoWeb.CoreComponents do
         <%= @next_page.title %>
       </.page_link>
     </div>
-    >>>>>>> 0935cd3 (Fix prev next links)
-    =======
-    <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
-      <.page_link :if={@previous_page} dir="previous" url={~p"/guides/#{@previous_page.id}"}>
-        <%= @previous_page.title %>
-      </.page_link>
-      <.page_link :if={@next_page} dir="next" url={~p"/guides/#{@next_page.id}"}>
-        <%= @next_page.title %>
-      </.page_link>
-    </div>
-    >>>>>>> 649f1b8 (Fix components)
     """
   end
 
