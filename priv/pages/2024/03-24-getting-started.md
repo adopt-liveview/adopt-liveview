@@ -3,7 +3,8 @@ title: "Instalando o setup!",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Introdução",
-description: "Vamos aprender como fazer uma LiveView rodar no seu computador"
+description: "Vamos aprender como fazer uma LiveView rodar no seu computador",
+next_page_id: "first-liveview"
 }
 
 ---

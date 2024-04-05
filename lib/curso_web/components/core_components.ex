@@ -224,7 +224,6 @@ defmodule CursoWeb.CoreComponents do
   attr :type, :string, default: nil
   attr :class, :string, default: nil
   attr :rest, :global, include: ~w(disabled form name value)
-
   slot :inner_block, required: true
 
   def button(assigns) do
@@ -240,6 +239,32 @@ defmodule CursoWeb.CoreComponents do
     >
       <%= render_slot(@inner_block) %>
     </button>
+    """
+  end
+
+  @doc """
+  Renders a link button.
+
+  ## Examples
+
+    <.link_button
+      href={"https://www.github.com"}
+      class="text-sky-500"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View Github
+    </.link_button>
+  """
+  attr :class, :string, default: nil
+  attr :rest, :global, include: ~w(href target rel)
+  slot :inner_block, required: true
+
+  def link_button(assigns) do
+    ~H"""
+    <a class={@class} {@rest}>
+      <%= render_slot(@inner_block) %>
+    </a>
     """
   end
 
@@ -591,7 +616,7 @@ defmodule CursoWeb.CoreComponents do
             >
               <%= for link <- section.links do %>
                 <li class="relative">
-                  <.link navigate={link.href} class={link_class(link, @pathname)}>
+                  <.link navigate={link.href} class={link_class(link.href, @pathname)}>
                     <%= link.title %>
                   </.link>
                 </li>
@@ -657,13 +682,15 @@ defmodule CursoWeb.CoreComponents do
             container: "bg-sky-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
             title: "text-sky-900 dark:text-sky-400",
             body:
-              "text-sky-800 [--tw-prose-background:theme(colors.sky.50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-slate-300 dark:prose-code:text-slate-300"
+              "text-sky-800 [--tw-prose-background:theme(colors.sky.50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-slate-300 dark:prose-code:text-slate-300",
+            icon: "hero-light-bulb-solid"
           },
           warning: %{
             container: "bg-amber-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10",
             title: "text-amber-900 dark:text-amber-500",
             body:
-              "text-amber-800 [--tw-prose-underline:theme(colors.amber.400)] [--tw-prose-background:theme(colors.amber.50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-slate-300 dark:[--tw-prose-underline:theme(colors.sky.700)] dark:prose-code:text-slate-300"
+              "text-amber-800 [--tw-prose-underline:theme(colors.amber.400)] [--tw-prose-background:theme(colors.amber.50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-slate-300 dark:[--tw-prose-underline:theme(colors.sky.700)] dark:prose-code:text-slate-300",
+            icon: "hero-exclamation-triangle-solid"
           }
         }
 
@@ -672,12 +699,197 @@ defmodule CursoWeb.CoreComponents do
 
     ~H"""
     <div class={["my-8 flex rounded-3xl p-6", @styles.container]}>
+      <.icon name={@styles.icon} class={["h-6 w-6 my-1", @styles.title]} />
       <div class="ml-4 flex-auto">
         <p class={["m-0 font-display text-xl", @styles.title]}>
           <%= @title %>
         </p>
         <div class={["prose mt-2.5", @styles.body]}>
           <%= @description %>
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  attr :dir, :string, default: "next", values: ~w(previous next)
+  attr :url, :string, default: nil
+  slot :inner_block
+
+  def page_link(assigns) do
+    ~H"""
+    <div class={@dir === "next" && "ml-auto text-right"}>
+      <dt class="font-display text-sm font-medium text-slate-900 dark:text-white">
+        <span :if={@dir === "previous"}> Anterior </span>
+        <span :if={@dir === "next"}> Próximo </span>
+      </dt>
+      <dd class="mt-1">
+        <a
+          href={@url}
+          class=" flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+        >
+          <.icon
+            :if={@dir === "previous"}
+            name="hero-arrow-right-solid"
+            class="h-4 w-4 flex-none fill-current -scale-x-100"
+          />
+
+          <%= render_slot(@inner_block) %>
+
+          <.icon
+            :if={@dir === "next"}
+            name="hero-arrow-right-solid"
+            class="h-4 w-4 flex-none fill-current"
+          />
+        </a>
+      </dd>
+    </div>
+    """
+  end
+
+  attr :previous_page, Curso.Pages.Post, default: nil
+  attr :next_page, Curso.Pages.Post, default: nil
+
+  def prev_next_links(assigns) do
+    ~H"""
+    <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+      <.page_link :if={@previous_page} dir="previous" url={~p"/guides/#{@previous_page.id}"}>
+        <%= @previous_page.title %>
+      </.page_link>
+      <.page_link :if={@next_page} dir="next" url={~p"/guides/#{@next_page.id}"}>
+        <%= @next_page.title %>
+      </.page_link>
+    </div>
+    """
+  end
+
+  def table_of_contents(assigns) do
+    ~H"""
+    <div class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
+      <nav aria-labelledby="on-this-page-title" class="w-56">
+        <h2
+          id="on-this-page-title"
+          class="font-display text-sm font-medium text-slate-900 dark:text-white"
+        >
+          Nesta página
+        </h2>
+        <ol role="list" class="mt-4 space-y-3 text-sm">
+          <%!-- <li :for={{id, heading} <- @streams.headings} id={id}>
+            <h3>
+              <a href={heading.url} class={["font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300", @active === "#ROTA" && "text-sky-500"]}>
+                <%= heading.title %>
+              </a>
+            </h3>
+            <ol :if={ length(heading.children)  } role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+              <li :for={{id, subheading} <- heading.children} class="">
+                <a href={subheading.url} class={["hover:text-slate-600 dark:hover:text-slate-300", @active === "#ROTA" && "text-sky-500"]}>
+                  <%= subheading.title %>
+                </a>
+              </li>
+            </ol>
+          </li> --%>
+
+          <li>
+            <h3>
+              <a
+                href="/"
+                class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 !text-sky-500"
+              >
+                Section
+              </a>
+            </h3>
+            <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <h3>
+              <a
+                href="/"
+                class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 text-sky-500"
+              >
+                Section
+              </a>
+            </h3>
+            <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+              <li class="">
+                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
+                  SubSection
+                </a>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </nav>
+    </div>
+    """
+  end
+
+  @doc """
+  Renders a Hero component.
+
+  ## Examples
+    <.hero
+      title={"Road to Elixir"}
+      description={"lorem ipsum dolor"}
+      image={"https://i.imgur.com/2St7UBs.jpg"}
+    />
+  """
+
+  attr :title, :string
+  attr :description, :string
+  # attr :image, :string
+
+  # WIP
+  def hero(assigns) do
+    ~H"""
+    <div class="overflow-hidden bg-slate-900 dark:-mb-32 dark:mt-[-4.75rem] dark:pb-32 dark:pt-[4.75rem]">
+      <div class="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
+        <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
+          <div class="relative z-10 md:text-center lg:text-left">
+            <div class="relative">
+              <p class="inline bg-gradient-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
+                <%= @title %>
+              </p>
+              <p class="mt-3 text-2xl tracking-tight text-slate-400">
+                <%= @description %>
+              </p>
+              <div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
+                <.link_button
+                  href="/"
+                  class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500"
+                >
+                  Get Started
+                </.link_button>
+
+                <.link_button
+                  href="/"
+                  class="rounded-full bg-slate-800 py-2 px-4 text-sm font-medium text-white hover:bg-slate-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-slate-400"
+                >
+                  View Github
+                </.link_button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -700,7 +912,7 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
-  defp link_class(%{"href" => href}, pathname) when href == pathname,
+  defp link_class(href, pathname) when href == pathname,
     do:
       "block w-full pl-3.5 font-semibold text-sky-500 before:bg-sky-500 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full"
 

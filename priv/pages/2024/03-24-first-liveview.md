@@ -3,7 +3,9 @@ title: "Sua primeira LiveVew",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Introdução",
-description: "Como iniciar programando com LiveView?"
+description: "Como iniciar programando com LiveView?",
+previous_page_id: "getting-started",
+next_page_id: "explain-playground"
 }
 
 ---
