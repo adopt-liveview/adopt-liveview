@@ -262,9 +262,9 @@ defmodule CursoWeb.CoreComponents do
 
   def link_button(assigns) do
     ~H"""
-    <a class={@class} {@rest}>
+    <.link class={@class} {@rest}>
       <%= render_slot(@inner_block) %>
-    </a>
+    </.link>
     """
   end
 
@@ -724,7 +724,7 @@ defmodule CursoWeb.CoreComponents do
         <span :if={@dir === "next"}> Próximo </span>
       </dt>
       <dd class="mt-1">
-        <a
+        <.link
           href={@url}
           class=" flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
         >
@@ -741,7 +741,7 @@ defmodule CursoWeb.CoreComponents do
             name="hero-arrow-right-solid"
             class="h-4 w-4 flex-none fill-current"
           />
-        </a>
+        </.link>
       </dd>
     </div>
     """
@@ -801,18 +801,18 @@ defmodule CursoWeb.CoreComponents do
         <ol role="list" class="mt-4 space-y-3 text-sm">
           <li :for={{href, title, items} <- @toc}>
             <h3>
-              <a
+              <.link
                 href={href}
                 class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 !text-sky-500"
               >
                 <%= title %>
-              </a>
+              </.link>
             </h3>
             <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
               <li :for={{href, title} <- items} class="">
-                <a href={href} class="hover:text-slate-600 dark:hover:text-slate-300">
+                <.link href={href} class="hover:text-slate-600 dark:hover:text-slate-300">
                   <%= title %>
-                </a>
+                </.link>
               </li>
             </ol>
           </li>
