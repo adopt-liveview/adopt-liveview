@@ -22,7 +22,9 @@ defmodule CursoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/:language", PageController, :home
     get "/guides/:id", PageController, :guide
+    get "/guides/:id/:language", PageController, :guide
   end
 
   # Other scopes may use custom stacks.

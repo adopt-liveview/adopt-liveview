@@ -9,7 +9,7 @@ defmodule MarkdownConverter do
 
   defp convert_body(extname, body, opts) when extname in [".md", ".markdown", ".livemd"] do
     handler = fn
-      {"h" <> x, _inner, texts, meta} = ast, nil when x in ~w(1 2 3 4 5 6) ->
+      {"h" <> x, _inner, texts, meta}, nil when x in ~w(1 2 3 4 5 6) ->
         {{"h#{x}", [{"id", anchor_id(texts)}], texts, meta}, nil}
 
       {_, [], bits, meta} = item, nil ->
@@ -142,7 +142,14 @@ defmodule Curso.Pages do
   # And finally export them
   def all_pages, do: @pages
   def all_tags, do: @tags
-  def by_id(id), do: Enum.find(@pages, &(&1.id == id))
+
+  def by_id(id, language \\ "pt_BR") do
+    Enum.find(@pages, &(&1.id == id && &1.language == language))
+  end
+
+  def get_languages_for_post(id) do
+    Enum.filter(@pages, &String.starts_with?(&1.id, id))
+  end
 
   def content_map do
     assigns = %{}

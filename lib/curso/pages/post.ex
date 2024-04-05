@@ -8,7 +8,8 @@ defmodule Curso.Pages.Post do
     :tags,
     :date,
     :section,
-    :table_of_contents
+    :table_of_contents,
+    :language
   ]
   defstruct [
     :id,
@@ -21,7 +22,8 @@ defmodule Curso.Pages.Post do
     :section,
     :table_of_contents,
     :previous_page_id,
-    :next_page_id
+    :next_page_id,
+    :language
   ]
 
   def build(filename, attrs, body) do
@@ -40,9 +42,20 @@ defmodule Curso.Pages.Post do
     [month, day, id] = String.split(month_day_id, "-", parts: 3)
     date = Date.from_iso8601!("#{year}-#{month}-#{day}")
 
+    {id, language} =
+      cond do
+        String.ends_with?(id, "-en_US") ->
+          id = String.replace(id, "-en_US", "")
+          {id, "en_US"}
+
+        true ->
+          {id, "pt_BR"}
+      end
+
     struct!(
       __MODULE__,
-      [id: id, date: date, body: body, table_of_contents: table_of_contents] ++ Map.to_list(attrs)
+      [id: id, date: date, body: body, table_of_contents: table_of_contents, language: language] ++
+        Map.to_list(attrs)
     )
   end
 end
