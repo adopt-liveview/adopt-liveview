@@ -107,6 +107,13 @@ defmodule Curso.Pages do
           %{title: "Validações", href: ~p"/guides/form-validation"},
           %{title: "Simplificando tudo com Ecto", href: ~p"/guides/simple-forms-with-ecto"}
         ]
+      },
+      %{
+        title: "CRUD",
+        links: [
+          %{title: "Meu primeiro projeto LiveView", href: ~p"/guides/my-first-liveview-project"},
+          %{title: "Armazenando dados", href: ~p"/guides/saving-data"}
+        ]
       }
     ]
   end

@@ -3,7 +3,8 @@ title: "Simplificando tudo com Ecto",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Formulários",
-description: "Agora as coisas ficam sérias"
+description: "Agora as coisas ficam sérias",
+next_page_id: "my-first-liveview-project"
 }
 
 ---
