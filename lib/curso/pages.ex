@@ -9,8 +9,8 @@ defmodule MarkdownConverter do
 
   defp convert_body(extname, body, opts) when extname in [".md", ".markdown", ".livemd"] do
     handler = fn
-      {"h" <> x, _inner, [text], meta}, nil when x in ~w(1 2 3 4 5 6) ->
-        {{"h#{x}", [{"id", anchor_id(text)}], [text], meta}, nil}
+      {"h" <> x, _inner, texts, meta} = ast, nil when x in ~w(1 2 3 4 5 6) ->
+        {{"h#{x}", [{"id", anchor_id(texts)}], texts, meta}, nil}
 
       {_, [], bits, meta} = item, nil ->
         case Map.get(meta, :annotation) do
@@ -74,7 +74,20 @@ defmodule MarkdownConverter do
     html |> NimblePublisher.highlight(highlighters)
   end
 
-  defp anchor_id(str) do
+  defp anchor_id(items) when is_list(items) do
+    Enum.map(items, fn
+      {"code", _attrs, texts, _meta} ->
+        [texts]
+
+      str when is_binary(str) ->
+        [str]
+    end)
+    |> List.flatten()
+    |> Floki.text()
+    |> anchor_id()
+  end
+
+  defp anchor_id(str) when is_binary(str) do
     str
     |> String.downcase()
     |> String.replace(~r/[^a-z]+/, "-")

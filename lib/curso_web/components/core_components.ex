@@ -763,7 +763,32 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  attr :table_of_contents, :list, required: true
+
   def table_of_contents(assigns) do
+    assigns =
+      assign_new(assigns, :main, fn ->
+        {_, href, title} = List.first(assigns.table_of_contents)
+        %{href: href, title: title}
+      end)
+
+    assigns =
+      assign_new(assigns, :toc, fn ->
+        assigns.table_of_contents
+        |> Enum.drop(1)
+        |> Enum.reduce([], fn
+          {2, href, title}, items ->
+            [{href, title, []} | items]
+
+          {_, href, title}, [{parent_href, parent_title, items} | rest] ->
+            [{parent_href, parent_title, [{href, title} | items]} | rest]
+        end)
+        |> Enum.map(fn {href, title, items} ->
+          {href, title, Enum.reverse(items)}
+        end)
+        |> Enum.reverse()
+      end)
+
     ~H"""
     <div class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
       <nav aria-labelledby="on-this-page-title" class="w-56">
@@ -771,69 +796,22 @@ defmodule CursoWeb.CoreComponents do
           id="on-this-page-title"
           class="font-display text-sm font-medium text-slate-900 dark:text-white"
         >
-          Nesta página
+          <%= @main.title %>
         </h2>
         <ol role="list" class="mt-4 space-y-3 text-sm">
-          <%!-- <li :for={{id, heading} <- @streams.headings} id={id}>
-            <h3>
-              <a href={heading.url} class={["font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300", @active === "#ROTA" && "text-sky-500"]}>
-                <%= heading.title %>
-              </a>
-            </h3>
-            <ol :if={ length(heading.children)  } role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
-              <li :for={{id, subheading} <- heading.children} class="">
-                <a href={subheading.url} class={["hover:text-slate-600 dark:hover:text-slate-300", @active === "#ROTA" && "text-sky-500"]}>
-                  <%= subheading.title %>
-                </a>
-              </li>
-            </ol>
-          </li> --%>
-
-          <li>
+          <li :for={{href, title, items} <- @toc}>
             <h3>
               <a
-                href="/"
+                href={href}
                 class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 !text-sky-500"
               >
-                Section
+                <%= title %>
               </a>
             </h3>
             <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
-              <li class="">
-                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
-                  SubSection
-                </a>
-              </li>
-              <li class="">
-                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
-                  SubSection
-                </a>
-              </li>
-              <li class="">
-                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
-                  SubSection
-                </a>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <h3>
-              <a
-                href="/"
-                class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 text-sky-500"
-              >
-                Section
-              </a>
-            </h3>
-            <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
-              <li class="">
-                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
-                  SubSection
-                </a>
-              </li>
-              <li class="">
-                <a href="/" class="hover:text-slate-600 dark:hover:text-slate-300">
-                  SubSection
+              <li :for={{href, title} <- items} class="">
+                <a href={href} class="hover:text-slate-600 dark:hover:text-slate-300">
+                  <%= title %>
                 </a>
               </li>
             </ol>
