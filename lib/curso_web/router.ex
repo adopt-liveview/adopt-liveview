@@ -21,10 +21,10 @@ defmodule CursoWeb.Router do
   scope "/", CursoWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    get "/:language", PageController, :home
-    get "/guides/:id", PageController, :guide
-    get "/guides/:id/:language", PageController, :guide
+    live "/", GuideLive, :home
+    live "/:language", GuideLive, :home
+    live "/guides/:id", GuideLive, :guide
+    live "/guides/:id/:language", GuideLive, :guide
   end
 
   # Other scopes may use custom stacks.
