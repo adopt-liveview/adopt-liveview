@@ -4,7 +4,8 @@ author: "Lubien",
 tags: ~w(getting-started),
 section: "CRUD",
 description: "Finalmente!",
-previous_page_id: "simple-forms-with-ecto"
+previous_page_id: "simple-forms-with-ecto",
+next_page_id: "saving-data"
 }
 
 ---
