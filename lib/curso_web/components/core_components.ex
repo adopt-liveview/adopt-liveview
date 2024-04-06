@@ -629,11 +629,14 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  attr :class, :string, default: nil
+  attr :rest, :global
+
   def prose(assigns) do
     assigns =
       assign_new(assigns, :total_classes, fn ->
         [
-          assigns[:class] || "",
+          assigns.class || "",
           "prose prose-slate max-w-none dark:prose-invert dark:text-slate-400",
           # headings
           "prose-headings:scroll-mt-28 prose-headings:font-display prose-headings:font-normal lg:prose-headings:scroll-mt-[8.5rem]",
@@ -652,23 +655,33 @@ defmodule CursoWeb.CoreComponents do
       end)
 
     ~H"""
-    <div class={@total_classes}>
+    <div class={@total_classes} {@rest}>
       <%= render_slot(@inner_block) %>
     </div>
     """
   end
 
+  attr :title, :string
+  attr :section, :string
+  attr :class, :string
+  attr :rest, :global, include: ~w(phx-mounted)
+
   def docs_layout(assigns) do
     ~H"""
-    <div class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16">
+    <div class={[
+      "min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16",
+      @class
+    ]}>
       <article>
         <.docs_header title={@title} section={@section} />
-        <.prose><%= render_slot(@inner_block) %></.prose>
+        <.prose
+          class="opacity-0 transition-all duration-500"
+          phx-mounted={JS.remove_class("opacity-0")}
+        >
+          <%= render_slot(@inner_block) %>
+        </.prose>
       </article>
-      <div :if={false}>PrevNextLinks</div>
     </div>
-
-    <div :if={false}>TableOfContents tableOfContents={tableOfContents}</div>
     """
   end
 
@@ -791,7 +804,7 @@ defmodule CursoWeb.CoreComponents do
 
     ~H"""
     <div class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
-      <nav aria-labelledby="on-this-page-title" class="w-56">
+      <nav class="w-56">
         <h2
           id="on-this-page-title"
           class="font-display text-sm font-medium text-slate-900 dark:text-white"

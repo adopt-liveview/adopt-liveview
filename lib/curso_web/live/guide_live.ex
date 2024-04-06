@@ -31,7 +31,7 @@ defmodule CursoWeb.GuideLive do
 
   def render(assigns) do
     ~H"""
-    <.docs_layout title={@page.title} section={@page.section}>
+    <.docs_layout title={@page.title} section={@page.section} class="">
       <%= {:safe, @page.body} %>
       <.prev_next_links previous_page={@previous_page} next_page={@next_page} />
     </.docs_layout>

@@ -118,7 +118,6 @@ defmodule Pages.MarkdownConverter do
                   |> String.trim()
                   |> String.trim("\"")
                 end)
-                |> dbg
 
               {key, val}
             end
