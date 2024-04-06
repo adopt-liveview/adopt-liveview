@@ -1,0 +1,218 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new messages manually only if they're dynamic
+## messages that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+#
+msgid ""
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:509
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:161
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:152
+#, elixir-autogen, elixir-format
+msgid "Error!"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:173
+#, elixir-autogen, elixir-format
+msgid "Hang in there while we get back on track"
+msgstr ""
+
+#: lib/curso/pages.ex:38
+#, elixir-autogen, elixir-format
+msgid "Instalação"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:168
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:151
+#, elixir-autogen, elixir-format
+msgid "Success!"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:156
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:77
+#: lib/curso_web/components/core_components.ex:131
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr ""
+
+#: lib/curso/pages.ex:42
+#, elixir-autogen, elixir-format
+msgid "Anatomia de uma LiveView"
+msgstr ""
+
+#: lib/curso/pages.ex:128
+#, elixir-autogen, elixir-format
+msgid "Armazenando dados"
+msgstr ""
+
+#: lib/curso/pages.ex:48
+#, elixir-autogen, elixir-format
+msgid "Assigns de uma LiveView"
+msgstr ""
+
+#: lib/curso/pages.ex:59
+#, elixir-autogen, elixir-format
+msgid "Básico de HEEx"
+msgstr ""
+
+#: lib/curso/pages.ex:113
+#, elixir-autogen, elixir-format
+msgid "Componente de formulário"
+msgstr ""
+
+#: lib/curso/pages.ex:93
+#, elixir-autogen, elixir-format
+msgid "Componentes de outros módulos"
+msgstr ""
+
+#: lib/curso/pages.ex:90
+#, elixir-autogen, elixir-format
+msgid "Componentes funcionais"
+msgstr ""
+
+#: lib/curso/pages.ex:41
+#, elixir-autogen, elixir-format
+msgid "Criando sua primeira LiveView"
+msgstr ""
+
+#: lib/curso/pages.ex:51
+#, elixir-autogen, elixir-format
+msgid "Eventos problemáticos"
+msgstr ""
+
+#: lib/curso/pages.ex:57
+#, elixir-autogen, elixir-format
+msgid "HEEx não é HTML"
+msgstr ""
+
+#: lib/curso/pages.ex:40
+#, elixir-autogen, elixir-format
+msgid "Instalando Erlang e Elixir"
+msgstr ""
+
+#: lib/curso/pages.ex:69
+#, elixir-autogen, elixir-format
+msgid "Mais de um evento disparado"
+msgstr ""
+
+#: lib/curso/pages.ex:125
+#, elixir-autogen, elixir-format
+msgid "Meu primeiro projeto LiveView"
+msgstr ""
+
+#: lib/curso/pages.ex:50
+#, elixir-autogen, elixir-format
+msgid "Modificando estado com eventos"
+msgstr ""
+
+#: lib/curso/pages.ex:97
+#, elixir-autogen, elixir-format
+msgid "Múltiplos slots"
+msgstr ""
+
+#: lib/curso/pages.ex:82
+#, elixir-autogen, elixir-format
+msgid "Navegando para a mesma rota"
+msgstr ""
+
+#: lib/curso/pages.ex:76
+#, elixir-autogen, elixir-format
+msgid "Parâmetros de rotas"
+msgstr ""
+
+#: lib/curso/pages.ex:78
+#, elixir-autogen, elixir-format
+msgid "Parâmetros genéricos com query string"
+msgstr ""
+
+#: lib/curso/pages.ex:105
+#, elixir-autogen, elixir-format
+msgid "Renderizando listas com slots"
+msgstr ""
+
+#: lib/curso/pages.ex:60
+#, elixir-autogen, elixir-format
+msgid "Renderização condicional"
+msgstr ""
+
+#: lib/curso/pages.ex:61
+#, elixir-autogen, elixir-format
+msgid "Renderização de listas"
+msgstr ""
+
+#: lib/curso/pages.ex:49
+#, elixir-autogen, elixir-format
+msgid "Seus primeiros erros"
+msgstr ""
+
+#: lib/curso/pages.ex:116
+#, elixir-autogen, elixir-format
+msgid "Simplificando tudo com Ecto"
+msgstr ""
+
+#: lib/curso/pages.ex:101
+#, elixir-autogen, elixir-format
+msgid "Slots com atributos"
+msgstr ""
+
+#: lib/curso/pages.ex:75
+#, elixir-autogen, elixir-format
+msgid "Sua segunda LiveView"
+msgstr ""
+
+#: lib/curso/pages.ex:91
+#, elixir-autogen, elixir-format
+msgid "Validando componentes"
+msgstr ""
+
+#: lib/curso/pages.ex:114
+#, elixir-autogen, elixir-format
+msgid "Validações"
+msgstr ""
+
+#: lib/curso_web/components/layouts/app.html.heex:46
+#, elixir-autogen, elixir-format
+msgid "English"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:724
+#, elixir-autogen, elixir-format
+msgid "Next"
+msgstr ""
+
+#: lib/curso_web/components/layouts/app.html.heex:44
+#, elixir-autogen, elixir-format
+msgid "Portuguese"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:723
+#, elixir-autogen, elixir-format
+msgid "Previous"
+msgstr ""
+
+#: lib/curso_web/components/layouts/app.html.heex:33
+#, elixir-autogen, elixir-format
+msgid "Switch language"
+msgstr ""

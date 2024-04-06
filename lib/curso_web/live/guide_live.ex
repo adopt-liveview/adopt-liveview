@@ -2,17 +2,19 @@ defmodule CursoWeb.GuideLive do
   use CursoWeb, :live_view
   alias Curso.Pages
 
+  on_mount CursoWeb.RestoreLocale
+
   def handle_params(params, uri, socket) do
     id = Map.get(params, "id", "getting-started")
-    language = Map.get(params, "locale", "pt_BR")
+    language = Map.get(params, "locale", "br")
 
-    page = Pages.by_id(id, language) || Pages.by_id(id, "pt_BR")
+    page = Pages.by_id(id, language) || Pages.by_id(id, "br")
 
     previous_page =
-      Pages.by_id(page.previous_page_id, language) || Pages.by_id(page.previous_page_id, "pt_BR")
+      Pages.by_id(page.previous_page_id, language) || Pages.by_id(page.previous_page_id, "br")
 
     next_page =
-      Pages.by_id(page.next_page_id, language) || Pages.by_id(page.next_page_id, "pt_BR")
+      Pages.by_id(page.next_page_id, language) || Pages.by_id(page.next_page_id, "br")
 
     socket =
       socket

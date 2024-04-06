@@ -46,10 +46,10 @@ defmodule Curso.Pages.Post do
       cond do
         String.ends_with?(id, "-en_US") ->
           id = String.replace(id, "-en_US", "")
-          {id, "en_US"}
+          {id, "en"}
 
         true ->
-          {id, "pt_BR"}
+          {id, "br"}
       end
 
     struct!(

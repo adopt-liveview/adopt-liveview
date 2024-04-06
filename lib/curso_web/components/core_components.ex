@@ -720,8 +720,8 @@ defmodule CursoWeb.CoreComponents do
     ~H"""
     <div class={@dir === "next" && "ml-auto text-right"}>
       <dt class="font-display text-sm font-medium text-slate-900 dark:text-white">
-        <span :if={@dir === "previous"}> Anterior </span>
-        <span :if={@dir === "next"}> Próximo </span>
+        <span :if={@dir === "previous"}><%= gettext("Previous") %></span>
+        <span :if={@dir === "next"}><%= gettext("Next") %></span>
       </dt>
       <dd class="mt-1">
         <.link
