@@ -874,6 +874,52 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  @doc """
+  Renders button that dispatchs a "copy_code_to_clipboard".
+
+  ## Examples
+    <.copy_button id="my-id" selector="[id=\"element-id\"]" />
+
+  ## Note:
+
+  Make sure your app.js contains this:
+
+    window.addEventListener("copy_code_to_clipboard", (event) => {
+      if ("clipboard" in navigator) {
+        const text = event.target.innerText;
+        navigator.clipboard.writeText(text);
+      } else {
+        alert("Sorry, your browser does not support clipboard copy.");
+      }
+    });
+  """
+
+  attr :id, :string, required: true, doc: "Unique ID for this component"
+  attr :selector, :string, required: true, doc: "Element to be selected"
+
+  def copy_button(assigns) do
+    assigns = assign_new(assigns, :default_text_id, fn -> "#{assigns.id}-default-text" end)
+    assigns = assign_new(assigns, :copied_text_id, fn -> "#{assigns.id}-copied-text" end)
+
+    ~H"""
+    <.button
+      id={@id}
+      type="button"
+      class="copy-button absolute whitespace-nowrap py-0"
+      style="top: -10px; right: 6px"
+      phx-update="ignore"
+      phx-click={
+        JS.dispatch("copy_code_to_clipboard", to: @selector)
+        |> JS.hide(to: "[id=\"#{@default_text_id}\"]")
+        |> JS.show(to: "[id=\"#{@copied_text_id}\"]")
+      }
+    >
+      <span id={@default_text_id} class="block"><%= gettext("Copy") %></span>
+      <span id={@copied_text_id} class="hidden"><%= gettext("Copied!") %></span>
+    </.button>
+    """
+  end
+
   attr :title, :string, default: nil
   attr :section, :string, default: nil
 

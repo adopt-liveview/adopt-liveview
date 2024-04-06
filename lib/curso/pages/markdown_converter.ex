@@ -1,7 +1,6 @@
 defmodule Pages.MarkdownConverter do
   alias CursoWeb.CoreComponents
   import Phoenix.Component
-  # import CursoWeb.CoreComponents, only: [callout: 1]
 
   def convert(filepath, body, _attrs, opts) do
     convert_body(Path.extname(filepath), body, opts)
@@ -9,6 +8,34 @@ defmodule Pages.MarkdownConverter do
 
   defp convert_body(extname, body, opts) when extname in [".md", ".markdown", ".livemd"] do
     handler = fn
+      {"pre", [], texts, %{done?: true}} = pre, nil ->
+        {pre, nil}
+
+      {"pre", [], texts, meta} = pre, nil ->
+        code_block_id = Ecto.UUID.generate() |> String.replace("-", "")
+
+        attrs =
+          [
+            {"id", code_block_id},
+            {"class", "relative"},
+            {"style", "overflow: visible"},
+            {"phx-update", "ignore"}
+          ]
+
+        copy_button =
+          component_to_ast(&CoreComponents.copy_button/1, %{
+            id: "#{code_block_id}button",
+            selector: "[id=\"#{code_block_id}\"] code"
+          })
+
+        children = [
+          {"pre", [], texts, Map.put(meta, :done?, true)},
+          copy_button
+        ]
+
+        wrapper = {"div", attrs, children, %{}}
+        {wrapper, nil}
+
       {"h" <> x, _inner, texts, meta}, nil when x in ~w(1 2 3 4 5 6) ->
         {{"h#{x}", [{"id", anchor_id(texts)}], texts, meta}, nil}
 
@@ -22,26 +49,11 @@ defmodule Pages.MarkdownConverter do
               |> String.trim()
               |> Code.eval_string([assigns: %{}], __ENV__)
 
-            func =
-              Function.capture(CoreComponents, String.to_atom(component), 1)
-
-            code =
-              Phoenix.LiveView.TagEngine.component(
-                func,
-                Map.to_list(assigns),
-                {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
-              )
-
             html =
-              code
-              |> Phoenix.HTML.Safe.to_iodata()
-              |> to_string()
-              |> Floki.parse_document!()
-              |> Floki.traverse_and_update(fn el -> Tuple.append(el, %{}) end)
-              |> Enum.find(fn
-                {:comment, _, _} -> false
-                _ -> true
-              end)
+              component_to_ast(
+                Function.capture(CoreComponents, String.to_atom(component), 1),
+                assigns
+              )
 
             {html, nil}
 
@@ -70,8 +82,56 @@ defmodule Pages.MarkdownConverter do
           ""
       end
 
-    highlighters = Keyword.get(opts, :highlighters, [])
-    html |> NimblePublisher.highlight(highlighters)
+    highlighters =
+      Keyword.get(opts, :highlighters, [])
+
+    html
+    |> NimblePublisher.highlight(highlighters)
+  end
+
+  defp component_to_ast(component, assigns) do
+    code =
+      Phoenix.LiveView.TagEngine.component(
+        component,
+        Map.to_list(assigns),
+        {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
+      )
+
+    iodata =
+      code
+      |> Phoenix.HTML.Safe.to_iodata()
+
+      # |> Phoenix.HTML.safe_to_string()
+      |> to_string()
+      |> Floki.parse_document!()
+      # |> Floki.traverse_and_update(fn el ->
+      #   Tuple.append(el, %{}) end)
+      |> Floki.traverse_and_update(fn
+        {el, attrs, texts} when is_list(attrs) ->
+          attrs =
+            for {key, val} <- attrs do
+              val =
+                Phoenix.HTML.attributes_escape(x: val)
+                |> Phoenix.HTML.safe_to_string()
+                |> then(fn str ->
+                  String.slice(str, String.length(" x=")..String.length(str))
+                  |> String.trim()
+                  |> String.trim("\"")
+                end)
+                |> dbg
+
+              {key, val}
+            end
+
+          {el, attrs, texts, %{}}
+
+        el ->
+          Tuple.append(el, %{})
+      end)
+      |> Enum.find(fn
+        {:comment, _, _} -> false
+        _ -> true
+      end)
   end
 
   defp anchor_id(items) when is_list(items) do
@@ -106,15 +166,6 @@ defmodule Pages.MarkdownConverter do
 
   def flatten_ast({_tag, _, parts, _meta}) when is_list(parts) do
     Enum.flat_map(parts, &flatten_ast/1)
-  end
-
-  def tip(assigns) do
-    ~H"""
-    <div>
-      Bem vindo ao <%= @title %>
-      <div>b</div>
-    </div>
-    """
   end
 
   defdelegate callout(assigns), to: CursoWeb.CoreComponents
