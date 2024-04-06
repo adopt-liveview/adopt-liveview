@@ -22,9 +22,9 @@ defmodule CursoWeb.Router do
     pipe_through :browser
 
     live "/", GuideLive, :home
-    live "/:language", GuideLive, :home
+    live "/:locale", GuideLive, :home
     live "/guides/:id", GuideLive, :guide
-    live "/guides/:id/:language", GuideLive, :guide
+    live "/guides/:id/:locale", GuideLive, :guide
   end
 
   # Other scopes may use custom stacks.

@@ -4,7 +4,7 @@ defmodule CursoWeb.GuideLive do
 
   def handle_params(params, uri, socket) do
     id = Map.get(params, "id", "getting-started")
-    language = Map.get(params, "language", "pt_BR")
+    language = Map.get(params, "locale", "pt_BR")
 
     page = Pages.by_id(id, language) || Pages.by_id(id, "pt_BR")
 
