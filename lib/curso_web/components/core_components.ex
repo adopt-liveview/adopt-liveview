@@ -600,7 +600,7 @@ defmodule CursoWeb.CoreComponents do
   def navigation(assigns) do
     assigns =
       assign_new(assigns, :pathname, fn -> "/" end)
-      |> assign(:items, Curso.Pages.content_map())
+      |> assign(:items, Curso.Pages.content_map(assigns[:locale] || "en"))
 
     ~H"""
     <nav class={"text-base lg:text-sm #{@class}"}>
@@ -762,14 +762,19 @@ defmodule CursoWeb.CoreComponents do
 
   attr :previous_page, Curso.Pages.Post, default: nil
   attr :next_page, Curso.Pages.Post, default: nil
+  attr :locale, :string, default: "en"
 
   def prev_next_links(assigns) do
     ~H"""
     <div class="not-prose mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
-      <.page_link :if={@previous_page} dir="previous" url={~p"/guides/#{@previous_page.id}"}>
+      <.page_link
+        :if={@previous_page}
+        dir="previous"
+        url={~p"/guides/#{@previous_page.id}/#{@locale}"}
+      >
         <%= @previous_page.title %>
       </.page_link>
-      <.page_link :if={@next_page} dir="next" url={~p"/guides/#{@next_page.id}"}>
+      <.page_link :if={@next_page} dir="next" url={~p"/guides/#{@next_page.id}/#{@locale}"}>
         <%= @next_page.title %>
       </.page_link>
     </div>

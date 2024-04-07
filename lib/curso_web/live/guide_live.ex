@@ -6,20 +6,21 @@ defmodule CursoWeb.GuideLive do
 
   def handle_params(params, uri, socket) do
     id = Map.get(params, "id", "getting-started")
-    language = Map.get(params, "locale", "br")
+    locale = Map.get(params, "locale", "br")
 
-    page = Pages.by_id(id, language) || Pages.by_id(id, "br")
+    page = Pages.by_id(id, locale) || Pages.by_id(id, "br")
 
     previous_page =
-      Pages.by_id(page.previous_page_id, language) || Pages.by_id(page.previous_page_id, "br")
+      Pages.by_id(page.previous_page_id, locale) || Pages.by_id(page.previous_page_id, "br")
 
     next_page =
-      Pages.by_id(page.next_page_id, language) || Pages.by_id(page.next_page_id, "br")
+      Pages.by_id(page.next_page_id, locale) || Pages.by_id(page.next_page_id, "br")
 
     socket =
       socket
       |> assign(
         page: page,
+        locale: locale,
         page_languages: Pages.get_languages_for_post(id),
         previous_page: previous_page,
         next_page: next_page,
@@ -33,7 +34,7 @@ defmodule CursoWeb.GuideLive do
     ~H"""
     <.docs_layout title={@page.title} section={@page.section} class="">
       <%= {:safe, @page.body} %>
-      <.prev_next_links previous_page={@previous_page} next_page={@next_page} />
+      <.prev_next_links previous_page={@previous_page} next_page={@next_page} locale={@locale} />
     </.docs_layout>
     """
   end

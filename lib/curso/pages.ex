@@ -30,91 +30,120 @@ defmodule Curso.Pages do
     Enum.filter(@pages, &String.starts_with?(&1.id, id))
   end
 
-  def content_map do
+  def content_map(locale \\ "br") do
     assigns = %{}
 
     [
       %{
         title: gettext("Instalação"),
         links: [
-          %{title: gettext("Instalando Erlang e Elixir"), href: ~p"/"},
-          %{title: gettext("Criando sua primeira LiveView"), href: ~p"/guides/first-liveview"},
-          %{title: gettext("Anatomia de uma LiveView"), href: ~p"/guides/explain-playground"}
+          %{
+            title: gettext("Instalando Erlang e Elixir"),
+            href: ~p"/guides/getting-started/#{locale}"
+          },
+          %{
+            title: gettext("Criando sua primeira LiveView"),
+            href: ~p"/guides/first-liveview/#{locale}"
+          },
+          %{
+            title: gettext("Anatomia de uma LiveView"),
+            href: ~p"/guides/explain-playground/#{locale}"
+          }
         ]
       },
       %{
         title: "Fundamentos",
         links: [
-          %{title: gettext("Assigns de uma LiveView"), href: ~p"/guides/mount-and-assigns"},
-          %{title: gettext("Seus primeiros erros"), href: ~p"/guides/your-first-mistakes"},
-          %{title: gettext("Modificando estado com eventos"), href: ~p"/guides/events"},
-          %{title: gettext("Eventos problemáticos"), href: ~p"/guides/event-errors"}
+          %{
+            title: gettext("Assigns de uma LiveView"),
+            href: ~p"/guides/mount-and-assigns/#{locale}"
+          },
+          %{
+            title: gettext("Seus primeiros erros"),
+            href: ~p"/guides/your-first-mistakes/#{locale}"
+          },
+          %{title: gettext("Modificando estado com eventos"), href: ~p"/guides/events/#{locale}"},
+          %{title: gettext("Eventos problemáticos"), href: ~p"/guides/event-errors/#{locale}"}
         ]
       },
       %{
         title: "HEEx",
         links: [
-          %{title: gettext("HEEx não é HTML"), href: ~p"/guides/heex-is-not-html"},
-          # %{title: "Atributos", href: ~p"/guides/assign-attributes"},
-          %{title: gettext("Básico de HEEx"), href: ~p"/guides/basics-of-heex"},
-          %{title: gettext("Renderização condicional"), href: ~p"/guides/conditional-rendering"},
-          %{title: gettext("Renderização de listas"), href: ~p"/guides/list-rendering"}
+          %{title: gettext("HEEx não é HTML"), href: ~p"/guides/heex-is-not-html/#{locale}"},
+          %{title: gettext("Básico de HEEx"), href: ~p"/guides/basics-of-heex/#{locale}"},
+          %{
+            title: gettext("Renderização condicional"),
+            href: ~p"/guides/conditional-rendering/#{locale}"
+          },
+          %{title: gettext("Renderização de listas"), href: ~p"/guides/list-rendering/#{locale}"}
         ]
       },
       %{
         title: "Eventos",
         links: [
-          %{title: ~H"<code>`phx-value`</code>", href: ~p"/guides/phx-value"},
-          %{title: ~H"<code>`JS.push`</code>", href: ~p"/guides/js-push"},
-          %{title: gettext("Mais de um evento disparado"), href: ~p"/guides/multiple-pushes"}
+          %{title: ~H"<code>`phx-value`</code>", href: ~p"/guides/phx-value/#{locale}"},
+          %{title: ~H"<code>`JS.push`</code>", href: ~p"/guides/js-push/#{locale}"},
+          %{
+            title: gettext("Mais de um evento disparado"),
+            href: ~p"/guides/multiple-pushes/#{locale}"
+          }
         ]
       },
       %{
         title: "Navegação",
         links: [
-          %{title: gettext("Sua segunda LiveView"), href: ~p"/guides/your-second-liveview"},
-          %{title: gettext("Parâmetros de rotas"), href: ~p"/guides/route-params"},
+          %{
+            title: gettext("Sua segunda LiveView"),
+            href: ~p"/guides/your-second-liveview/#{locale}"
+          },
+          %{title: gettext("Parâmetros de rotas"), href: ~p"/guides/route-params/#{locale}"},
           %{
             title: gettext("Parâmetros genéricos com query string"),
-            href: ~p"/guides/query-string"
+            href: ~p"/guides/query-string/#{locale}"
           },
           %{
             title: gettext("Navegando para a mesma rota"),
-            href: ~p"/guides/navigate-to-the-same-route"
+            href: ~p"/guides/navigate-to-the-same-route/#{locale}"
           }
         ]
       },
       %{
         title: "Componentes",
         links: [
-          %{title: gettext("Componentes funcionais"), href: ~p"/guides/function-component"},
-          %{title: gettext("Validando componentes"), href: ~p"/guides/documenting-components"},
+          %{
+            title: gettext("Componentes funcionais"),
+            href: ~p"/guides/function-component/#{locale}"
+          },
+          %{
+            title: gettext("Validando componentes"),
+            href: ~p"/guides/documenting-components/#{locale}"
+          },
           %{
             title: gettext("Componentes de outros módulos"),
-            href: ~p"/guides/components-from-other-modules"
+            href: ~p"/guides/components-from-other-modules/#{locale}"
           },
           %{
             title: gettext("Múltiplos slots"),
-            href: ~p"/guides/multiple-slots"
+            href: ~p"/guides/multiple-slots/#{locale}"
           },
           %{
             title: gettext("Slots com atributos"),
-            href: ~p"/guides/slots-with-attributes"
+            href: ~p"/guides/slots-with-attributes/#{locale}"
           },
           %{
             title: gettext("Renderizando listas com slots"),
-            href: ~p"/guides/lists-with-slots"
+            href: ~p"/guides/lists-with-slots/#{locale}"
           }
         ]
       },
       %{
         title: "Formulários",
         links: [
-          %{title: gettext("Componente de formulário"), href: ~p"/guides/forms"},
-          %{title: gettext("Validações"), href: ~p"/guides/form-validation"},
+          %{title: gettext("Componente de formulário"), href: ~p"/guides/forms/#{locale}"},
+          %{title: gettext("Validações"), href: ~p"/guides/form-validation/#{locale}"},
           %{
             title: gettext("Simplificando tudo com Ecto"),
-            href: ~p"/guides/simple-forms-with-ecto"
+            href: ~p"/guides/simple-forms-with-ecto/#{locale}"
           }
         ]
       },
@@ -123,9 +152,9 @@ defmodule Curso.Pages do
         links: [
           %{
             title: gettext("Meu primeiro projeto LiveView"),
-            href: ~p"/guides/my-first-liveview-project"
+            href: ~p"/guides/my-first-liveview-project/#{locale}"
           },
-          %{title: gettext("Armazenando dados"), href: ~p"/guides/saving-data"}
+          %{title: gettext("Armazenando dados"), href: ~p"/guides/saving-data/#{locale}"}
         ]
       }
     ]
