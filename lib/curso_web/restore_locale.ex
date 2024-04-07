@@ -1,8 +1,8 @@
 defmodule CursoWeb.RestoreLocale do
-  def on_mount(:default, params, _session, socket) do
-    locale = Map.get(params, "locale", "br") |> dbg
+  def on_mount(:default, params, session, socket) do
+    locale = Map.get(params, "locale", session["preferred_locale"] || "en")
     Gettext.put_locale(CursoWeb.Gettext, locale)
-    {:cont, socket}
+    {:cont, Phoenix.Component.assign(socket, locale: locale)}
   end
 
   # catch-all case

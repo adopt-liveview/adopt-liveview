@@ -1,6 +1,6 @@
 defmodule Pages.MarkdownConverter do
   alias CursoWeb.CoreComponents
-  import Phoenix.Component
+  import Phoenix.Component, warn: false
 
   def convert(filepath, body, _attrs, opts) do
     convert_body(Path.extname(filepath), body, opts)
@@ -8,10 +8,10 @@ defmodule Pages.MarkdownConverter do
 
   defp convert_body(extname, body, opts) when extname in [".md", ".markdown", ".livemd"] do
     handler = fn
-      {"pre", [], texts, %{done?: true}} = pre, nil ->
+      {"pre", [], _texts, %{done?: true}} = pre, nil ->
         {pre, nil}
 
-      {"pre", [], texts, meta} = pre, nil ->
+      {"pre", [], texts, meta}, nil ->
         code_block_id = Ecto.UUID.generate() |> String.replace("-", "")
 
         attrs =
@@ -97,40 +97,35 @@ defmodule Pages.MarkdownConverter do
         {__ENV__.module, __ENV__.function, __ENV__.file, __ENV__.line}
       )
 
-    iodata =
-      code
-      |> Phoenix.HTML.Safe.to_iodata()
+    code
+    |> Phoenix.HTML.Safe.to_iodata()
+    |> to_string()
+    |> Floki.parse_document!()
+    |> Floki.traverse_and_update(fn
+      {el, attrs, texts} when is_list(attrs) ->
+        attrs =
+          for {key, val} <- attrs do
+            val =
+              Phoenix.HTML.attributes_escape(x: val)
+              |> Phoenix.HTML.safe_to_string()
+              |> then(fn str ->
+                String.slice(str, String.length(" x=")..String.length(str))
+                |> String.trim()
+                |> String.trim("\"")
+              end)
 
-      # |> Phoenix.HTML.safe_to_string()
-      |> to_string()
-      |> Floki.parse_document!()
-      # |> Floki.traverse_and_update(fn el ->
-      #   Tuple.append(el, %{}) end)
-      |> Floki.traverse_and_update(fn
-        {el, attrs, texts} when is_list(attrs) ->
-          attrs =
-            for {key, val} <- attrs do
-              val =
-                Phoenix.HTML.attributes_escape(x: val)
-                |> Phoenix.HTML.safe_to_string()
-                |> then(fn str ->
-                  String.slice(str, String.length(" x=")..String.length(str))
-                  |> String.trim()
-                  |> String.trim("\"")
-                end)
+            {key, val}
+          end
 
-              {key, val}
-            end
+        {el, attrs, texts, %{}}
 
-          {el, attrs, texts, %{}}
-
-        el ->
-          Tuple.append(el, %{})
-      end)
-      |> Enum.find(fn
-        {:comment, _, _} -> false
-        _ -> true
-      end)
+      el ->
+        Tuple.append(el, %{})
+    end)
+    |> Enum.find(fn
+      {:comment, _, _} -> false
+      _ -> true
+    end)
   end
 
   defp anchor_id(items) when is_list(items) do

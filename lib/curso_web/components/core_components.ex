@@ -631,6 +631,7 @@ defmodule CursoWeb.CoreComponents do
 
   attr :class, :string, default: nil
   attr :rest, :global
+  slot :inner_block, required: true
 
   def prose(assigns) do
     assigns =
@@ -665,6 +666,7 @@ defmodule CursoWeb.CoreComponents do
   attr :section, :string
   attr :class, :string
   attr :rest, :global, include: ~w(phx-mounted)
+  slot :inner_block, required: true
 
   def docs_layout(assigns) do
     ~H"""
@@ -712,7 +714,7 @@ defmodule CursoWeb.CoreComponents do
 
     ~H"""
     <div class={["my-8 flex rounded-3xl p-6", @styles.container]}>
-      <.icon name={@styles.icon} class={["h-6 w-6 my-1", @styles.title]} />
+      <.icon name={@styles.icon} class={"h-6 w-6 my-1 #{@styles.title}"} />
       <div class="ml-4 flex-auto">
         <p class={["m-0 font-display text-xl", @styles.title]}>
           <%= @title %>

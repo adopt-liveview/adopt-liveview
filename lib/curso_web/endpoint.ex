@@ -51,5 +51,6 @@ defmodule CursoWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug CursoWeb.LocalePlug
   plug CursoWeb.Router
 end
