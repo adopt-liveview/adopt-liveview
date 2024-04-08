@@ -1038,6 +1038,24 @@ defmodule CursoWeb.CoreComponents do
     |> JS.pop_focus()
   end
 
+  def toggle_locale(assigns) do
+    ~H"""
+    <button
+      :for={lang <- ["br", "en"]}
+      :if={@locale != lang}
+      phx-click={JS.navigate(~p"/guides/#{@page.id}/#{lang}")}
+      type="button"
+      aria-label="Toggle locale"
+      class="group rounded-lg bg-white/90 px-2 py-2 shadow-md shadow-black/5 ring-1 ring-black/5 backdrop-blur transition dark:bg-slate-700 dark:ring-inset dark:ring-white/5"
+    >
+      <img
+        src={"/images/flags/#{@locale}.png"}
+        class="h-5 w-5 fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500"
+      />
+    </button>
+    """
+  end
+
   @doc """
   Translates an error message using gettext.
   """
