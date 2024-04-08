@@ -8,11 +8,11 @@ defmodule DarkMode do
       type="button"
       phx-update="ignore"
       phx-hook="DarkThemeToggle"
-      class="flex h-6 w-6 items-center justify-center rounded-lg shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-700 dark:ring-inset dark:ring-white/5"
+      class="flex h-9 w-9 items-center justify-center rounded-lg shadow-md shadow-black/5 ring-1 ring-black/5 backdrop-blur transition dark:bg-slate-700 dark:ring-inset dark:ring-white/5"
     >
       <svg
         id="theme-toggle-dark-icon"
-        class="w-4 h-4 fill-sky-400 text-transparent hidden"
+        class="w-5 h-5 fill-sky-400 text-transparent hidden"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@ defmodule DarkMode do
 
       <svg
         id="theme-toggle-light-icon"
-        class="w-4 h-4 fill-sky-400 text-transparent"
+        class="w-5 h-5 fill-sky-400 text-transparent"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

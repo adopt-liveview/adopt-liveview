@@ -1,5 +1,6 @@
 <header class="sticky top-0 z-50 flex flex-none flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 sm:px-6 lg:px-8 dark:shadow-none dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75">
-  <div class="ml-auto">
+  <div class="ml-auto flex items-center gap-2">
+    <.toggle_locale :if={assigns[:page]} locale={@locale} page={@page} />
     <DarkMode.button />
   </div>
 </header>
@@ -21,37 +22,6 @@
     </div>
     <%= @inner_content %>
     <div>
-      <div
-        :if={assigns[:page_languages]}
-        class="xl:top-[4.75rem] xl:-mr-6 xl:flex-none xl:overflow-y-auto xl:pt-16 xl:pr-6"
-      >
-        <nav aria-labelledby="on-this-page-title2" class="w-56">
-          <h2
-            id="on-this-page-title2"
-            class="font-display text-sm font-medium text-slate-900 dark:text-white"
-          >
-            <%= gettext("Switch language") %>
-          </h2>
-          <ol role="list" class="mt-4 space-y-3 text-sm">
-            <li :for={page <- @page_languages}>
-              <h3>
-                <.link
-                  navigate={~p"/guides/#{page.id}/#{page.language}"}
-                  class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 !text-sky-500"
-                >
-                  <%= case page.language do %>
-                    <% "br" -> %>
-                      <%= gettext("Portuguese") %>
-                    <% "en" -> %>
-                      <%= gettext("English") %>
-                  <% end %>
-                </.link>
-              </h3>
-            </li>
-          </ol>
-        </nav>
-      </div>
-
       <.table_of_contents :if={assigns[:page]} table_of_contents={@page.table_of_contents} />
     </div>
   </div>
