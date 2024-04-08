@@ -4,7 +4,8 @@ author: "Lubien",
 tags: ~w(getting-started),
 section: "CRUD",
 description: "Persistindo dados",
-previous_page_id: "my-first-liveview-project"
+previous_page_id: "my-first-liveview-project",
+next_page_id: "listing-data"
 }
 
 ---
