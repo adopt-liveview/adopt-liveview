@@ -155,8 +155,9 @@ defmodule Curso.Pages do
             href: ~p"/guides/my-first-liveview-project/#{locale}"
           },
           %{title: gettext("Armazenando dados"), href: ~p"/guides/saving-data/#{locale}"},
-          %{title: gettext("Listando produtos"), href: ~p"/guides/listing-data/#{locale}"},
-          %{title: gettext("Mostrando um produto"), href: ~p"/guides/show-data/#{locale}"}
+          %{title: gettext("Listing products"), href: ~p"/guides/listing-data/#{locale}"},
+          %{title: gettext("Mostrando um produto"), href: ~p"/guides/show-data/#{locale}"},
+          %{title: gettext("Deleting a product"), href: ~p"/guides/deleting-data/#{locale}"}
         ]
       }
     ]

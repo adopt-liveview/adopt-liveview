@@ -4,7 +4,8 @@ author: "Lubien",
 tags: ~w(getting-started),
 section: "CRUD",
 description: "Mostrando um item em específico",
-previous_page_id: "listing-data"
+previous_page_id: "listing-data",
+next_page_id: "deleting-data"
 }
 
 ---
