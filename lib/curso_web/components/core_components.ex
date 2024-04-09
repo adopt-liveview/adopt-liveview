@@ -973,7 +973,7 @@ defmodule CursoWeb.CoreComponents do
       <button type="button" phx-click={show_mobile_navigation()}>
         <.icon
           name="hero-bars-3-solid"
-          class="h-5 w-5 flex-none fill-current"
+          class="h-6 w-6 bg-slate-500 flex-none fill-current"
         />
       </button>
     """
@@ -987,7 +987,7 @@ defmodule CursoWeb.CoreComponents do
             <button type="button" phx-click={hide_mobile_navigation()}>
               <.icon
                 name="hero-x-mark-solid"
-                class="h-6 w-6 flex-none fill-current"
+                class="h-6 w-6 bg-slate-500 flex-none fill-current"
               />
             </button>
           </div>
