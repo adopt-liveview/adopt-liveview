@@ -192,47 +192,42 @@ msgstr ""
 msgid "Validações"
 msgstr ""
 
-#: lib/curso_web/components/layouts/app.html.heex:46
-#, elixir-autogen, elixir-format
-msgid "English"
-msgstr ""
-
 #: lib/curso_web/components/core_components.ex:739
 #, elixir-autogen, elixir-format
 msgid "Next"
 msgstr "Próximo"
-
-#: lib/curso_web/components/layouts/app.html.heex:44
-#, elixir-autogen, elixir-format
-msgid "Portuguese"
-msgstr "Português"
 
 #: lib/curso_web/components/core_components.ex:738
 #, elixir-autogen, elixir-format
 msgid "Previous"
 msgstr "Anterior"
 
-#: lib/curso_web/components/layouts/app.html.heex:33
-#, elixir-autogen, elixir-format
-msgid "Switch language"
-msgstr "Trocar idioma"
-
-#: lib/curso_web/components/core_components.ex:938
+#: lib/curso_web/components/core_components.ex:944
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:937
+#: lib/curso_web/components/core_components.ex:940
 #, elixir-autogen, elixir-format
 msgid "Copy"
-msgstr ""
-
-#: lib/curso/pages.ex:158
-#, elixir-autogen, elixir-format
-msgid "Listando produtos"
 msgstr ""
 
 #: lib/curso/pages.ex:159
 #, elixir-autogen, elixir-format
 msgid "Mostrando um produto"
+msgstr ""
+
+#: lib/curso/pages.ex:160
+#, elixir-autogen, elixir-format
+msgid "Deleting a product"
+msgstr ""
+
+#: lib/curso/pages.ex:161
+#, elixir-autogen, elixir-format
+msgid "Editing a product"
+msgstr ""
+
+#: lib/curso/pages.ex:158
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Listing products"
 msgstr ""
