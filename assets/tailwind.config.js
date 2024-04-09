@@ -37,6 +37,8 @@ module.exports = {
           css: {
             pre: {
               whiteSpace: "pre-wrap",
+              paddingTop: "1rem",
+              paddingBottom: "1rem"
             }
           }
         }

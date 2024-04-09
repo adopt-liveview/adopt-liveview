@@ -925,17 +925,24 @@ defmodule CursoWeb.CoreComponents do
     <.button
       id={@id}
       type="button"
-      class="copy-button absolute whitespace-nowrap py-0"
-      style="top: -10px; right: 6px"
+      class="copy-button absolute whitespace-nowrap !py-1 !px-2 -top-4 right-3 !inline-flex items-center !bg-sky-500"
       phx-update="ignore"
       phx-click={
         JS.dispatch("copy_code_to_clipboard", to: @selector)
         |> JS.hide(to: "[id=\"#{@default_text_id}\"]")
         |> JS.show(to: "[id=\"#{@copied_text_id}\"]")
+        |> JS.remove_class("!bg-sky-500", to: "[id=\"#{@id}\"]")
+        |> JS.add_class("!bg-green-500", to: "[id=\"#{@id}\"]")
       }
     >
-      <span id={@default_text_id} class="block"><%= gettext("Copy") %></span>
-      <span id={@copied_text_id} class="hidden"><%= gettext("Copied!") %></span>
+      <span id={@default_text_id} class="block">
+        <.icon name="hero-clipboard-solid" class="h-4 w-4"/>
+        <%= gettext("Copy") %>
+      </span>
+      <span id={@copied_text_id} class="hidden">
+        <.icon name="hero-check-solid" class="h-4 w-4"/>
+        <%= gettext("Copied!") %>
+      </span>
     </.button>
     """
   end
