@@ -5,6 +5,7 @@ tags: ~w(getting-started),
 section: "CRUD",
 description: "Criando uma UX de deletar um elemento",
 previous_page_id: "show-data",
+next_page_id: "editing-data"
 }
 
 ---
