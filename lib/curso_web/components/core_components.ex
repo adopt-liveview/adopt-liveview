@@ -956,6 +956,47 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  def show_mobile_navigation(js \\ %JS{}) do
+    js
+    |> JS.show(to: "#mobile-navigation")
+    |> JS.add_class("overflow-hidden", to: "body")
+  end
+
+  def hide_mobile_navigation(js \\ %JS{}) do
+    js
+    |> JS.hide(to: "#mobile-navigation")
+    |> JS.remove_class("overflow-hidden", to: "body")
+  end
+
+  def toggle_mobile_navigation(assigns) do
+    ~H"""
+      <button type="button" phx-click={show_mobile_navigation()}>
+        <.icon
+          name="hero-bars-3-solid"
+          class="h-5 w-5 flex-none fill-current"
+        />
+      </button>
+    """
+  end
+
+  def mobile_navigation(assigns) do
+    ~H"""
+      <div id="mobile-navigation" class="fixed inset-0 overflow-y-auto z-50 bg-slate-900/50 pr-10 backdrop-blur hidden">
+        <div class="min-h-full w-full max-w-xs bg-white px-4 pb-12 pt-5 sm:px-6 dark:bg-slate-900">
+          <div class="flex items-center mb-2">
+            <button type="button" phx-click={hide_mobile_navigation()}>
+              <.icon
+                name="hero-x-mark-solid"
+                class="h-6 w-6 flex-none fill-current"
+              />
+            </button>
+          </div>
+          <.navigation class="" pathname={assigns[:pathname]} locale={assigns[:locale]} />
+        </div>
+      </div>
+    """
+  end
+
   defp link_class(href, pathname) when href == pathname,
     do:
       "block w-full pl-3.5 font-semibold text-sky-500 before:bg-sky-500 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full"
