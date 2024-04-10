@@ -66,6 +66,7 @@ defmodule Curso.MixProject do
       {:makeup_diff, "~> 0.1.0"},
       {:bandit, "~> 1.2"},
       {:ex_cldr, "~> 2.37"},
+      {:plug_canonical_host, "~> 2.0"},
       {:basic_auth, "~> 2.2"}
     ]
   end

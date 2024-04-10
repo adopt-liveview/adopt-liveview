@@ -13,7 +13,8 @@ kill_signal = 'SIGTERM'
 #   release_command = '/app/bin/migrate'
 
 [env]
-  PHX_HOST = 'liveview-101.fly.dev'
+  PHX_HOST = 'adopt-liveview.lubien.dev'
+  CANONICAL_HOST = 'adopt-liveview.lubien.dev'
   PORT = '8080'
 
 [http_service]

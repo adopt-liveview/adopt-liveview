@@ -52,5 +52,18 @@ defmodule CursoWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug CursoWeb.LocalePlug
+  plug :canonical_host
   plug CursoWeb.Router
+
+  defp canonical_host(conn, _opts) do
+    Application.get_env(:curso, :canonical_host)
+    |> case do
+      host when is_binary(host) ->
+        opts = PlugCanonicalHost.init(canonical_host: host)
+        PlugCanonicalHost.call(conn, opts)
+
+      _ ->
+        conn
+    end
+  end
 end
