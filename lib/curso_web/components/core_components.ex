@@ -597,6 +597,8 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  attr :on_click, Phoenix.LiveView.JS, default: %Phoenix.LiveView.JS{}
+
   def navigation(assigns) do
     assigns =
       assign_new(assigns, :pathname, fn -> "/" end)
@@ -616,7 +618,11 @@ defmodule CursoWeb.CoreComponents do
             >
               <%= for link <- section.links do %>
                 <li class="relative">
-                  <.link patch={link.href} class={link_class(link.href, @pathname)}>
+                  <.link
+                    patch={link.href}
+                    class={link_class(link.href, @pathname)}
+                    phx-click={@on_click}
+                  >
                     <%= link.title %>
                   </.link>
                 </li>
@@ -990,11 +996,16 @@ defmodule CursoWeb.CoreComponents do
     >
       <div class="min-h-full w-full max-w-xs bg-white px-4 pb-12 pt-5 sm:px-6 dark:bg-slate-900">
         <div class="flex items-center mb-2">
-          <button type="button" phx-click={hide_mobile_navigation()}>
+          <button id="mobile-navigation-close" type="button" phx-click={hide_mobile_navigation()}>
             <.icon name="hero-x-mark-solid" class="h-6 w-6 bg-slate-500 flex-none fill-current" />
           </button>
         </div>
-        <.navigation class="" pathname={assigns[:pathname]} locale={assigns[:locale]} />
+        <.navigation
+          class=""
+          pathname={assigns[:pathname]}
+          locale={assigns[:locale]}
+          on_click={JS.dispatch("click", to: "#mobile-navigation-close")}
+        />
       </div>
     </div>
     """
