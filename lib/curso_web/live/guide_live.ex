@@ -33,7 +33,9 @@ defmodule CursoWeb.GuideLive do
   def render(assigns) do
     ~H"""
     <.docs_layout title={@page.title} section={@page.section} class="">
-      <%= {:safe, @page.body} %>
+      <div id={@page.id} phx-mounted={JS.dispatch("scroll_to_top")}>
+        <%= {:safe, @page.body} %>
+      </div>
       <.prev_next_links previous_page={@previous_page} next_page={@next_page} locale={@locale} />
     </.docs_layout>
     """

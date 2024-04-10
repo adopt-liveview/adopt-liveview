@@ -616,7 +616,7 @@ defmodule CursoWeb.CoreComponents do
             >
               <%= for link <- section.links do %>
                 <li class="relative">
-                  <.link navigate={link.href} class={link_class(link.href, @pathname)}>
+                  <.link patch={link.href} class={link_class(link.href, @pathname)}>
                     <%= link.title %>
                   </.link>
                 </li>
@@ -670,12 +670,15 @@ defmodule CursoWeb.CoreComponents do
 
   def docs_layout(assigns) do
     ~H"""
-    <div class={[
-      "min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16",
-      @class
-    ]}>
+    <div
+      id="docs-layout"
+      class={[
+        "min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16",
+        @class
+      ]}
+    >
       <article>
-        <.docs_header title={@title} section={@section} />
+        <.docs_header id="docs-header" title={@title} section={@section} />
         <.prose
           class="opacity-0 transition-all duration-500"
           phx-mounted={JS.remove_class("opacity-0")}
@@ -936,11 +939,11 @@ defmodule CursoWeb.CoreComponents do
       }
     >
       <span id={@default_text_id} class="block">
-        <.icon name="hero-clipboard-solid" class="h-4 w-4"/>
+        <.icon name="hero-clipboard-solid" class="h-4 w-4" />
         <%= gettext("Copy") %>
       </span>
       <span id={@copied_text_id} class="hidden">
-        <.icon name="hero-check-solid" class="h-4 w-4"/>
+        <.icon name="hero-check-solid" class="h-4 w-4" />
         <%= gettext("Copied!") %>
       </span>
     </.button>
@@ -949,10 +952,11 @@ defmodule CursoWeb.CoreComponents do
 
   attr :title, :string, default: nil
   attr :section, :string, default: nil
+  attr :rest, :global, include: ~w(id)
 
   def docs_header(assigns) do
     ~H"""
-    <header class="mb-9 space-y-1">
+    <header class="mb-9 space-y-1" {@rest}>
       <p if={@section} class="font-display text-sm font-medium text-sky-500">
         <%= @section %>
       </p>
@@ -977,30 +981,27 @@ defmodule CursoWeb.CoreComponents do
 
   def toggle_mobile_navigation(assigns) do
     ~H"""
-      <button type="button" phx-click={show_mobile_navigation()}>
-        <.icon
-          name="hero-bars-3-solid"
-          class="h-6 w-6 bg-slate-500 flex-none fill-current"
-        />
-      </button>
+    <button type="button" phx-click={show_mobile_navigation()}>
+      <.icon name="hero-bars-3-solid" class="h-6 w-6 bg-slate-500 flex-none fill-current" />
+    </button>
     """
   end
 
   def mobile_navigation(assigns) do
     ~H"""
-      <div id="mobile-navigation" class="fixed inset-0 overflow-y-auto z-50 bg-slate-900/50 pr-10 backdrop-blur hidden">
-        <div class="min-h-full w-full max-w-xs bg-white px-4 pb-12 pt-5 sm:px-6 dark:bg-slate-900">
-          <div class="flex items-center mb-2">
-            <button type="button" phx-click={hide_mobile_navigation()}>
-              <.icon
-                name="hero-x-mark-solid"
-                class="h-6 w-6 bg-slate-500 flex-none fill-current"
-              />
-            </button>
-          </div>
-          <.navigation class="" pathname={assigns[:pathname]} locale={assigns[:locale]} />
+    <div
+      id="mobile-navigation"
+      class="fixed inset-0 overflow-y-auto z-50 bg-slate-900/50 pr-10 backdrop-blur hidden"
+    >
+      <div class="min-h-full w-full max-w-xs bg-white px-4 pb-12 pt-5 sm:px-6 dark:bg-slate-900">
+        <div class="flex items-center mb-2">
+          <button type="button" phx-click={hide_mobile_navigation()}>
+            <.icon name="hero-x-mark-solid" class="h-6 w-6 bg-slate-500 flex-none fill-current" />
+          </button>
         </div>
+        <.navigation class="" pathname={assigns[:pathname]} locale={assigns[:locale]} />
       </div>
+    </div>
     """
   end
 
