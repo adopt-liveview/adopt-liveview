@@ -3,7 +3,9 @@ title: "Rendering lists with slots",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Components",
-description: "Using slots to facilitate loops"
+description: "Using slots to facilitate loops",
+previous_page_id: "slots-with-attributes",
+next_page_id: "forms"
 }
 
 ---

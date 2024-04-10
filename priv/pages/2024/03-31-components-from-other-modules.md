@@ -3,7 +3,9 @@ title: "Componentes de outros módulos",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Componentes",
-description: "Como reusar componentes em mais de uma LiveView"
+description: "Como reusar componentes em mais de uma LiveView",
+previous_page_id: "documenting-components",
+next_page_id: "multiple-slots"
 }
 
 ---

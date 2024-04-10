@@ -3,7 +3,9 @@ title: "HEEx Basics",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "HEEx",
-description: "Learn how HEEx understands HTML in a different way"
+description: "Learn how HEEx understands HTML in a different way",
+previous_page_id: "heex-is-not-html",
+next_page_id: "conditional-rendering"
 }
 
 ---
@@ -42,7 +44,7 @@ In this file we have 4 HEEx tags to interpolate code. HEEx supports rendering an
 - The third case just uses the string concatenation operator [`<>`](https://hexdocs.pm/elixir/1.12/Kernel.html#%3C%3E/2) whose result is "Chris McCord".
 
 But what about the fourth case? Nothing appears on your screen. The reason is simple: we use the `<% %>` tag, note that there is no `=` after the first `%`. In HEEx this means "execute this code but do not render the result". As it uses the [`IO.puts/2`](https://hexdocs.pm/elixir/1.12/IO.html#puts/2) function, you can see the result in your terminal.
- 
+
 %{
 title: "Then I can add logic to my HEEx!",
 type: :warning,

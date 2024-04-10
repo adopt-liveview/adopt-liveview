@@ -4,7 +4,8 @@ author: "Lubien",
 tags: ~w(getting-started),
 section: "Introdução",
 description: "O que siginifica cada pedaço deste código aqui?",
-previous_page_id: "first-liveview"
+previous_page_id: "first-liveview",
+next_page_id: "mount-and-assigns"
 }
 
 ---

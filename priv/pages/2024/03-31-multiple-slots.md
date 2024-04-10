@@ -3,7 +3,9 @@ title: "Múltiplos slots",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Componentes",
-description: "Um component pode ter mais de um slot"
+description: "Um component pode ter mais de um slot",
+previous_page_id: "components-from-other-modules",
+next_page_id: "slots-with-attributes"
 }
 
 ---

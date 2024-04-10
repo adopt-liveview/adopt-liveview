@@ -3,7 +3,9 @@ title: "JS.push/1",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Events",
-description: "How to pass data with events in an alternative way"
+description: "How to pass data with events in an alternative way",
+previous_page_id: "phx-value",
+next_page_id: "multiple-pushes"
 }
 
 ---

@@ -3,7 +3,9 @@ title: "Sua segunda LiveView",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Navegação",
-description: "Como navegar entre LiveViews"
+description: "Como navegar entre LiveViews",
+previous_page_id: "multiple-pushes",
+next_page_id: "route-params"
 }
 
 ---

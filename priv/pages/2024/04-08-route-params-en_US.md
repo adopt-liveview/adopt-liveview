@@ -3,7 +3,9 @@ title: "Route parameters",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Navigation",
-description: "Receiving data from URL"
+description: "Receiving data from URL",
+previous_page_id: "your-second-liveview",
+next_page_id: "query-string"
 }
 
 ---

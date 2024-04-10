@@ -3,7 +3,9 @@ title: "Generic parameters with query string",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Navigation",
-description: "Receiving data from the URL without knowing what it is"
+description: "Receiving data from the URL without knowing what it is",
+previous_page_id: "route-params",
+next_page_id: "navigate-to-the-same-route"
 }
 
 ---

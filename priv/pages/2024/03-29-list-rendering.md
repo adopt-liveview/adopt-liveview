@@ -3,7 +3,9 @@ title: "Renderização de listas",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "HEEx",
-description: "Vamos por um pouco de escala no HTML"
+description: "Vamos por um pouco de escala no HTML",
+previous_page_id: "conditional-rendering",
+next_page_id: "phx-value"
 }
 
 ---

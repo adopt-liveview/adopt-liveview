@@ -3,7 +3,9 @@ title: "Assigns de uma LiveView",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentos",
-description: "Como funcionam variáveis em LiveView?"
+description: "Como funcionam variáveis em LiveView?",
+previous_page_id: "explain-playground",
+next_page_id: "your-first-mistakes"
 }
 
 ---

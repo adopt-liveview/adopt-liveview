@@ -3,7 +3,9 @@ title: "Validações",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Formulários",
-description: "Usuários erram e muito"
+description: "Usuários erram e muito",
+previous_page_id: "forms",
+next_page_id: "simple-forms-with-ecto"
 }
 
 ---

@@ -3,7 +3,9 @@ title: "Problematic events",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentals",
-description: "What are common mistakes with events?"
+description: "What are common mistakes with events?",
+previous_page_id: "events",
+next_page_id: "heex-is-not-html"
 }
 
 ---

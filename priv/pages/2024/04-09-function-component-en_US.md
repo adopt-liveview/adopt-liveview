@@ -3,7 +3,9 @@ title: "Functional components",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Components",
-description: "Reusing code intelligently"
+description: "Reusing code intelligently",
+previous_page_id: "navigate-to-the-same-route",
+next_page_id: "documenting-components"
 }
 
 ---

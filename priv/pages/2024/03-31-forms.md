@@ -3,7 +3,9 @@ title: "Componente de formulário",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Formulários",
-description: "Entendendo o básico de forms em Phoenix"
+description: "Entendendo o básico de forms em Phoenix",
+previous_page_id: "lists-with-slots",
+next_page_id: "form-validation"
 }
 
 ---

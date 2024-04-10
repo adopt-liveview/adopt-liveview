@@ -3,7 +3,9 @@ title: "List rendering",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "HEEx",
-description: "Let's put some scale in HTML"
+description: "Let's put some scale in HTML",
+previous_page_id: "conditional-rendering",
+next_page_id: "phx-value"
 }
 
 ---

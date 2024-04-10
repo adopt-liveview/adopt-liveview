@@ -3,7 +3,9 @@ title: "Validations",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Forms",
-description: "Users make a lot of mistakes"
+description: "Users make a lot of mistakes",
+previous_page_id: "forms",
+next_page_id: "simple-forms-with-ecto"
 }
 
 ---

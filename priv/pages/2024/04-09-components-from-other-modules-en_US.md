@@ -3,7 +3,9 @@ title: "Components from other modules",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Components",
-description: "How to reuse components in more than one LiveView"
+description: "How to reuse components in more than one LiveView",
+previous_page_id: "documenting-components",
+next_page_id: "multiple-slots"
 }
 
 ---

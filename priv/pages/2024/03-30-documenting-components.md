@@ -3,7 +3,9 @@ title: "Validando componentes",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Componentes",
-description: "Facilitando a manutenção de um projeto para o futuro"
+description: "Facilitando a manutenção de um projeto para o futuro",
+previous_page_id: "function-component",
+next_page_id: "components-from-other-modules"
 }
 
 ---

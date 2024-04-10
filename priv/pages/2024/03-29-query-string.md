@@ -3,7 +3,9 @@ title: "Parâmetros genéricos com query string",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Navegação",
-description: "Recebendo dados do URL sem saber quais são"
+description: "Recebendo dados do URL sem saber quais são",
+previous_page_id: "route-params",
+next_page_id: "navigate-to-the-same-route"
 }
 
 ---

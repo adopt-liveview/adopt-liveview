@@ -3,7 +3,9 @@ title: "Eventos problemáticos",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentos",
-description: "Quais os erros comuns com eventos?"
+description: "Quais os erros comuns com eventos?",
+previous_page_id: "events",
+next_page_id: "heex-is-not-html"
 }
 
 ---

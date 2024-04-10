@@ -3,7 +3,9 @@ title: "Básico de HEEx",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "HEEx",
-description: "Aprenda como HEEx entende HTML de uma forma diferente"
+description: "Aprenda como HEEx entende HTML de uma forma diferente",
+previous_page_id: "heex-is-not-html",
+next_page_id: "conditional-rendering"
 }
 
 ---

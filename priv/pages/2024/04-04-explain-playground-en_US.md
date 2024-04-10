@@ -3,7 +3,9 @@ title: "Anatomy of a LiveView",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Introduction",
-description: "What does each piece of code here mean?"
+description: "What does each piece of code here mean?",
+previous_page_id: "first-liveview",
+next_page_id: "mount-and-assigns"
 }
 
 ---

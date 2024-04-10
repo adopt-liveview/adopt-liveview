@@ -3,7 +3,9 @@ title: "Parâmetros de rotas",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Navegação",
-description: "Recebendo dados do URL"
+description: "Recebendo dados do URL",
+previous_page_id: "your-second-liveview",
+next_page_id: "query-string"
 }
 
 ---

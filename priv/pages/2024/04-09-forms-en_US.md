@@ -3,7 +3,9 @@ title: "Form component",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Forms",
-description: "Understanding the basics of forms in Phoenix"
+description: "Understanding the basics of forms in Phoenix",
+previous_page_id: "lists-with-slots",
+next_page_id: "form-validation"
 }
 
 ---

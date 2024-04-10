@@ -3,7 +3,9 @@ title: "More than one event triggered",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Events",
-description: "How to activate 2+ events in one click?"
+description: "How to activate 2+ events in one click?",
+previous_page_id: "js-push",
+next_page_id: "your-second-liveview"
 }
 
 ---

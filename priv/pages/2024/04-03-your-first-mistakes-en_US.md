@@ -3,7 +3,9 @@ title: "Your first mistakes",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentals",
-description: "Let's learn from mistakes"
+description: "Let's learn from mistakes",
+previous_page_id: "mount-and-assigns",
+next_page_id: "events"
 }
 
 ---

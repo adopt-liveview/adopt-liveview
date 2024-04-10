@@ -3,7 +3,9 @@ title: "Validating components",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Components",
-description: "Making it easier to maintain a project for the future"
+description: "Making it easier to maintain a project for the future",
+previous_page_id: "function-component",
+next_page_id: "components-from-other-modules"
 }
 
 ---
@@ -227,8 +229,8 @@ Generally called `:rest` (but any name will do), we can define using `attr/3` an
 
 - You can use `@doc` to document your component and show examples.
 - Using `attr/3` you can document and enhance your component:
-   - You can set a value as `required`.
-   - You can set a default value if something is not passed using `default`.
-   - You can limit the possible values using `values`.
-   - You can exemplify possible values using `examples`.
-   - You can capture all extra properties with an `attr` of type `:global`.
+  - You can set a value as `required`.
+  - You can set a default value if something is not passed using `default`.
+  - You can limit the possible values using `values`.
+  - You can exemplify possible values using `examples`.
+  - You can capture all extra properties with an `attr` of type `:global`.

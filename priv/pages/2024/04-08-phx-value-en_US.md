@@ -3,7 +3,9 @@ title: "phx-value",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Events",
-description: "How to pass data with events"
+description: "How to pass data with events",
+previous_page_id: "list-rendering",
+next_page_id: "js-push"
 }
 
 ---

@@ -3,7 +3,9 @@ title: "Modifying state with events",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentals",
-description: "How to manage state using events"
+description: "How to manage state using events",
+previous_page_id: "your-first-mistakes",
+next_page_id: "event-errors"
 }
 
 ---

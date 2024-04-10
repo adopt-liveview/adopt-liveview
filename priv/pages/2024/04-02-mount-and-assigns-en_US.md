@@ -3,7 +3,9 @@ title: "LiveView Assignments",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentals",
-description: "How do variables work in LiveView?"
+description: "How do variables work in LiveView?",
+previous_page_id: "explain-playground",
+next_page_id: "your-first-mistakes"
 }
 
 ---

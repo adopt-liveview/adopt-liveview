@@ -3,7 +3,9 @@ title: "Navigating to the same route",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Navigation",
-description: "The same LiveView can have more than one route"
+description: "The same LiveView can have more than one route",
+previous_page_id: "query-string",
+next_page_id: "function-component"
 }
 
 ---

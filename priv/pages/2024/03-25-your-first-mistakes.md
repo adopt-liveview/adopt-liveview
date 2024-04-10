@@ -3,7 +3,9 @@ title: "Seus primeiros erros",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentos",
-description: "Vamos aprender na base do erro"
+description: "Vamos aprender na base do erro",
+previous_page_id: "mount-and-assigns",
+next_page_id: "events"
 }
 
 ---

@@ -3,7 +3,9 @@ title: "Renderização condicional",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "HEEx",
-description: "Renderizar ou não renderizar, eis a questão"
+description: "Renderizar ou não renderizar, eis a questão",
+previous_page_id: "basics-of-heex",
+next_page_id: "list-rendering"
 }
 
 ---

@@ -3,7 +3,9 @@ title: "Mais de um evento disparado",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Eventos",
-description: "Como passar ativar 2+ eventos em um clique?"
+description: "Como passar ativar 2+ eventos em um clique?",
+previous_page_id: "js-push",
+next_page_id: "your-second-liveview"
 }
 
 ---

@@ -3,7 +3,9 @@ title: "Renderizando listas com slots",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Componentes",
-description: "Usando slots para facilitar loops"
+description: "Usando slots para facilitar loops",
+previous_page_id: "slots-with-attributes",
+next_page_id: "forms"
 }
 
 ---

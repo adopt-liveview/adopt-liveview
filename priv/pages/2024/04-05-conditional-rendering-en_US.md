@@ -3,7 +3,9 @@ title: "Conditional rendering",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "HEEx",
-description: "To render or not to render, that is the question"
+description: "To render or not to render, that is the question",
+previous_page_id: "basics-of-heex",
+next_page_id: "list-rendering"
 }
 
 ---

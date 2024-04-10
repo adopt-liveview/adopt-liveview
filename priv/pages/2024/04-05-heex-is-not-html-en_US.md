@@ -3,7 +3,9 @@ title: "HEEx is not HTML",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "HEEx",
-description: "What the heck is HEEx?"
+description: "What the heck is HEEx?",
+previous_page_id: "event-errors",
+next_page_id: "basics-of-heex"
 }
 
 ---

@@ -3,7 +3,9 @@ title: "Slots with attributes",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Components",
-description: "How to customize slots with attributes"
+description: "How to customize slots with attributes",
+previous_page_id: "multiple-slots",
+next_page_id: "lists-with-slots"
 }
 
 ---
