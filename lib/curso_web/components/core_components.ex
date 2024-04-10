@@ -597,6 +597,7 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  attr :class, :string, default: ""
   attr :on_click, Phoenix.LiveView.JS, default: %Phoenix.LiveView.JS{}
 
   def navigation(assigns) do
@@ -814,35 +815,33 @@ defmodule CursoWeb.CoreComponents do
       end)
 
     ~H"""
-    <div class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6">
-      <nav class="w-56">
-        <h2
-          id="on-this-page-title"
-          class="font-display text-sm font-medium text-slate-900 dark:text-white"
-        >
-          <%= @main.title %>
-        </h2>
-        <ol role="list" class="mt-4 space-y-3 text-sm">
-          <li :for={{href, title, items} <- @toc}>
-            <h3>
-              <.link
-                href={href}
-                class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 !text-sky-500"
-              >
+    <nav class="w-56">
+      <h2
+        id="on-this-page-title"
+        class="font-display text-sm font-medium text-slate-900 dark:text-white"
+      >
+        <%= @main.title %>
+      </h2>
+      <ol role="list" class="mt-4 space-y-3 text-sm">
+        <li :for={{href, title, items} <- @toc}>
+          <h3>
+            <.link
+              href={href}
+              class="font-normal text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 !text-sky-500"
+            >
+              <%= title %>
+            </.link>
+          </h3>
+          <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
+            <li :for={{href, title} <- items} class="">
+              <.link href={href} class="hover:text-slate-600 dark:hover:text-slate-300">
                 <%= title %>
               </.link>
-            </h3>
-            <ol role="list" class="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400">
-              <li :for={{href, title} <- items} class="">
-                <.link href={href} class="hover:text-slate-600 dark:hover:text-slate-300">
-                  <%= title %>
-                </.link>
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </nav>
-    </div>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </nav>
     """
   end
 
@@ -1004,7 +1003,6 @@ defmodule CursoWeb.CoreComponents do
           </button>
         </div>
         <.navigation
-          class=""
           pathname={assigns[:pathname]}
           locale={assigns[:locale]}
           on_click={JS.dispatch("click", to: "#mobile-navigation-close")}
