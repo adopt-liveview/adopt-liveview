@@ -24,10 +24,15 @@ defmodule CursoWeb.GuideLive do
         page_languages: Pages.get_languages_for_post(id),
         previous_page: previous_page,
         next_page: next_page,
+        page_title: page_title(page),
         pathname: URI.parse(uri).path
       )
 
     {:noreply, socket}
+  end
+
+  def page_title(page) do
+    "#{page.title} - #{page.section}"
   end
 
   def render(assigns) do
