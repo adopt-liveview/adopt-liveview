@@ -1,18 +1,18 @@
 %{
-title: "Componentes funcionais",
+title: "Functional components",
 author: "Lubien",
 tags: ~w(getting-started),
-section: "Componentes",
-description: "Reutilizando código de maneira inteligente"
+section: "Components",
+description: "Reusing code intelligently"
 }
 
 ---
 
-Reutilizar código é a chave para construir um sistema de fácil manutenção. Em LiveView existe mais de uma maneira de você reutilizar código HEEx. Nesta e nas próximas aulas iremos explorar componentes funcionais para sua views e, passo a passo, entender como funcionam e suas possibilidades.
+Reusing code is the key to building a maintainable system. In LiveView there is more than one way for you to reuse HEEx code. In this and the next classes we will explore functional components for your views and, step by step, understand how they work and their possibilities.
 
-## Entendendo o problema
+## Understanding the problem
 
-Crie e execute um arquivo `duplicated_code.exs`:
+Create and run a `duplicated_code.exs` file:
 
 ```elixir
 Mix.install([
@@ -55,13 +55,13 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Neste exemplo introduzimos a propriedade `scripts` no nosso `LiveviewPlayground.start/1` que aceita uma lista de scripts JavaScripts e adiciona no nosso HTML. Iremos utilizar Tailwind ao invés de escrever CSS diretamente pois hoje em dia o Phoenix já vem com esta biblioteca instalada.
+In this example we introduce the `scripts` property in our `LiveviewPlayground.start/1` which accepts a list of JavaScript scripts and adds them to our HTML. We will use Tailwind instead of writing CSS directly because nowadays Phoenix already comes with this library installed.
 
-Imagine que você está desenvolvendo um projeto grande e os estilos acima são usados para botões. Toda vez que você precisar de um botão novo você teria que copiar e colar uma tonelada de classes. Ainda que fossem uma ou duas classes, se um dia elas mudarem você teria que mudar elas em todos os cantos da sua aplicação.
+Imagine you are developing a large project and the styles above are used for buttons. Every time you need a new button you would have to copy and paste a ton of classes. Even if there were one or two classes, if one day they changed you would have to change them in every corner of your application.
 
-## Criando um componente funcional
+## Creating a functional component
 
-Em aulas anteriores vimos o componente `<.link>` sendo usado para renderizar nossos links. Para criar um componente novo basta você criar uma função com qualquer nome e que receba uma única variável chamada assigns. Crie e execute `first_component.exs`:
+In previous classes we saw the `<.link>` component being used to render our links. To create a new component, simply create a function with any name and that receives a single variable called assigns. Create and run `first_component.exs`:
 
 ```elixir
 Mix.install([
@@ -95,16 +95,16 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Assim como a `render/1`, nós temos outra função que retorna HEEx e recebe um argumento chamado assigns. Para usar um componente definido no arquivo atual basta escrever no seu HEEx `<.nome_do_component></.nome_do_component>`.
+Just like `render/1`, we have another function that returns HEEx and takes an argument called assigns. To use a component defined in the current file, simply write `<.component_name></.component_name>` in your HEEx.
 
 %{
-title: ~H"Por que os componentes tem um <code>.</code> no início?",
+title: ~H"Why do components have a <code>.</code> at the beginning?",
 description: ~H"""
-Escolhemos este exemplo justamente pois existe uma tag HTML <code>`button`</code>. O <code>.</code> no início do componente serve para deixar óbvio que esta tag faz referência a um componente funcional e não a uma tag HTML.
+We chose this example precisely because there is an HTML <code>`button`</code> tag. The <code>.</code> at the beginning of the component serves to make it obvious that this tag refers to a functional component and not an HTML tag.
 """
 } %% .callout
 
-Diferente do nosso primeiro código você pode notar que todos os botões agora mostram o mesmo texto: "Default" apesar de cata `<.button>` possuir um texto diferente! Isso acontece pois no momento somos os criadores do componente novo, devemos ensinar ao HEEx one o conteúdo do bloco interno deve ser renderizado. Crie e execute `component_inner_block.exs`:
+Unlike our first code you can notice that all buttons now show the same text: "Default" despite the fact that `<.button>` has a different text! This happens because at the moment we are the creators of the new component, we must teach HEEx one the content of the internal block to be rendered. Create and run `component_inner_block.exs`:
 
 ```elixir
 Mix.install([
@@ -138,11 +138,12 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-A única modificação aconteceu no nosso `<.button>`. Adicionamos a função [`render_slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#render_slot/2) passando um assign `@inner_block`. O assign em questão é definido automaticamente em componentes e ele é do tipo slot, como é chamado o HTML passados dentro do seu `<.componente>`. A partir de agora qualquer coisa enviada dentro do `<.button>` será renderizado alí.
+The only change happened in our `<.button>`.
+We added the [`render_slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#render_slot/2) function by passing an assign `@inner_block`. The assign in question is automatically defined in components and is of the slot type, as the HTML passed within your `<.componente>` is called. From now on, anything sent within `<.button>` will be rendered there.
 
-## Customizando componentes com atributos
+## Customizing components with attributes
 
-Originalmente cada botão tinha sua própria cor enquanto agora todos tem o mesmo estilo. Podemos customizar nossos botões usando assigns passados. Crie e execute `custom_button_colors.exs`:
+Originally each button had its own color whereas now they all have the same style. We can customize our buttons using passed assigns. Create and run `custom_button_colors.exs`:
 
 ```elixir
 Mix.install([
@@ -176,11 +177,11 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Agora cada utilização do botão possui um assign de `color="..."` e podemos customizar nossos botões de maneira muito mais simples e sem duplicar código.
+Now each use of the button has an assign of `color="..."` and we can customize our buttons in a much simpler way and without duplicating code.
 
-## Resumindo!
+## In short!
 
-- Você pode criar componentes nas suas LiveViews se criar uma função que recebe `assigns` e retorna HEEx.
-- Componentes e tags HTML são diferenciados pela presença de um `.` no início da tag para evitar conflitos.
-- Em um componente você decide onde renderizar o slot filho usando `render_slot(@inner_block)`.
-- Com atributos, seus componentes podem reutilizar código de maneira eficiente.
+- You can create components in your LiveViews if you create a function that receives `assigns` and returns HEEx.
+- HTML components and tags are differentiated by the presence of a `.` at the beginning of the tag to avoid conflicts.
+- In a component you decide where to render the child slot using `render_slot(@inner_block)`.
+- With attributes, your components can reuse code efficiently.
