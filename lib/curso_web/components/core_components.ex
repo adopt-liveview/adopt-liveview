@@ -669,8 +669,6 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
-  attr :title, :string
-  attr :section, :string
   attr :class, :string
   attr :rest, :global, include: ~w(phx-mounted)
   slot :inner_block, required: true
@@ -685,7 +683,6 @@ defmodule CursoWeb.CoreComponents do
       ]}
     >
       <article>
-        <.docs_header id="docs-header" title={@title} section={@section} />
         <%= render_slot(@inner_block) %>
       </article>
     </div>
@@ -953,6 +950,7 @@ defmodule CursoWeb.CoreComponents do
   attr :title, :string, default: nil
   attr :section, :string, default: nil
   attr :rest, :global, include: ~w(id)
+  slot :inner_block
 
   def docs_header(assigns) do
     ~H"""
@@ -963,6 +961,8 @@ defmodule CursoWeb.CoreComponents do
       <h1 if={@title} class="font-display text-3xl tracking-tight text-slate-900 dark:text-white">
         <%= @title %>
       </h1>
+
+      <%= render_slot(@inner_block) %>
     </header>
     """
   end

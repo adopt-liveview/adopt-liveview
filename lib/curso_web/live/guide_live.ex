@@ -37,7 +37,17 @@ defmodule CursoWeb.GuideLive do
 
   def render(assigns) do
     ~H"""
-    <.docs_layout title={@page.title} section={@page.section} class="">
+    <.docs_layout class="">
+      <.docs_header id="docs-header" title={@page.title} section={@page.section}>
+        <p class="text-gray-500">
+          <%= gettext("Read time:") %> <%= @page.read_minutes %> <%= ngettext(
+            "minute",
+            "minutes",
+            @page.read_minutes
+          ) %>
+        </p>
+      </.docs_header>
+
       <div id={@page.id} phx-mounted={JS.dispatch("scroll_to_top")}>
         <.prose
           id={"#{@page.id}-prose"}

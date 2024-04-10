@@ -52,22 +52,22 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:744
+#: lib/curso_web/components/core_components.ex:741
 #, elixir-autogen, elixir-format
 msgid "Next"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:743
+#: lib/curso_web/components/core_components.ex:740
 #, elixir-autogen, elixir-format
 msgid "Previous"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:947
+#: lib/curso_web/components/core_components.ex:944
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:943
+#: lib/curso_web/components/core_components.ex:940
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr ""
@@ -279,12 +279,12 @@ msgid "Show brazilian Pix R$"
 msgstr ""
 
 #: lib/curso_web/components/feedback.ex:51
-#: lib/curso_web/live/guide_live.ex:51
+#: lib/curso_web/live/guide_live.ex:61
 #, elixir-autogen, elixir-format
 msgid "Feedback"
 msgstr ""
 
-#: lib/curso_web/live/guide_live.ex:52
+#: lib/curso_web/live/guide_live.ex:62
 #, elixir-autogen, elixir-format
 msgid "Got any feedback about this page? Let us know!"
 msgstr ""
@@ -303,3 +303,15 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "What's your feedback about this lesson?"
 msgstr ""
+
+#: lib/curso_web/live/guide_live.ex:43
+#, elixir-autogen, elixir-format
+msgid "Read time:"
+msgstr ""
+
+#: lib/curso_web/live/guide_live.ex:43
+#, elixir-autogen, elixir-format
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] ""
+msgstr[1] ""

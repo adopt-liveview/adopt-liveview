@@ -1,4 +1,6 @@
 defmodule Curso.Pages.Post do
+  @words_per_minute 200
+
   @enforce_keys [
     :id,
     :author,
@@ -9,7 +11,8 @@ defmodule Curso.Pages.Post do
     :date,
     :section,
     :table_of_contents,
-    :language
+    :language,
+    :read_minutes
   ]
   defstruct [
     :id,
@@ -23,11 +26,15 @@ defmodule Curso.Pages.Post do
     :table_of_contents,
     :previous_page_id,
     :next_page_id,
-    :language
+    :language,
+    :read_minutes
   ]
 
   def build(filename, attrs, body) do
     {:ok, document} = Floki.parse_document(body)
+
+    word_count = Floki.text(document) |> String.split(" ") |> Enum.count()
+    read_minutes = ceil(word_count / @words_per_minute)
 
     table_of_contents =
       Floki.find(document, "h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]")
@@ -54,7 +61,14 @@ defmodule Curso.Pages.Post do
 
     struct!(
       __MODULE__,
-      [id: id, date: date, body: body, table_of_contents: table_of_contents, language: language] ++
+      [
+        id: id,
+        date: date,
+        body: body,
+        table_of_contents: table_of_contents,
+        language: language,
+        read_minutes: read_minutes
+      ] ++
         Map.to_list(attrs)
     )
   end
