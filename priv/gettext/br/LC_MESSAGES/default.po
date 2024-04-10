@@ -39,35 +39,35 @@ msgstr ""
 #: lib/curso_web/components/core_components.ex:151
 #, elixir-autogen, elixir-format
 msgid "Success!"
-msgstr ""
+msgstr "Sucesso!"
 
 #: lib/curso_web/components/core_components.ex:156
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
-msgstr ""
+msgstr "Não consegui encontrar a internet"
 
 #: lib/curso_web/components/core_components.ex:77
 #: lib/curso_web/components/core_components.ex:131
 #, elixir-autogen, elixir-format
 msgid "close"
-msgstr ""
+msgstr "fechar"
 
-#: lib/curso_web/components/core_components.ex:739
+#: lib/curso_web/components/core_components.ex:744
 #, elixir-autogen, elixir-format
 msgid "Next"
 msgstr "Próximo"
 
-#: lib/curso_web/components/core_components.ex:738
+#: lib/curso_web/components/core_components.ex:743
 #, elixir-autogen, elixir-format
 msgid "Previous"
 msgstr "Anterior"
 
-#: lib/curso_web/components/core_components.ex:944
+#: lib/curso_web/components/core_components.ex:947
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr "Copiado!"
 
-#: lib/curso_web/components/core_components.ex:940
+#: lib/curso_web/components/core_components.ex:943
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr "Copiar"
@@ -241,3 +241,39 @@ msgstr "Sua segunda LiveView"
 #, elixir-autogen, elixir-format
 msgid "Form component"
 msgstr "Componente de formulário"
+
+#: lib/curso_web/components/layouts.ex:15
+#, elixir-autogen, elixir-format
+msgid "...or buy me a coffee"
+msgstr "...ou me pague um café"
+
+#: lib/curso/pages.ex:167
+#, elixir-autogen, elixir-format
+msgid "DRY Form"
+msgstr "Formulário DRY"
+
+#: lib/curso_web/components/layouts.ex:9
+#: lib/curso_web/components/layouts.ex:24
+#, elixir-autogen, elixir-format
+msgid "Donate"
+msgstr "Doar"
+
+#: lib/curso_web/components/layouts.ex:50
+#, elixir-autogen, elixir-format
+msgid "For brazilians: Pix"
+msgstr "Para brasileiros: Pix"
+
+#: lib/curso/pages.ex:168
+#, elixir-autogen, elixir-format
+msgid "Live Component"
+msgstr "Live Component"
+
+#: lib/curso/pages.ex:169
+#, elixir-autogen, elixir-format
+msgid "Modal Form"
+msgstr "Formulário Modal"
+
+#: lib/curso_web/components/layouts.ex:39
+#, elixir-autogen, elixir-format
+msgid "Show brazilian Pix R$"
+msgstr "Mostrar Pix R$"

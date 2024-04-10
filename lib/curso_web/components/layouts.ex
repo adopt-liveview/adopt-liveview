@@ -36,7 +36,7 @@ defmodule CursoWeb.Layouts do
         type="button"
         phx-click={show("#donate-with-pix") |> JS.hide(to: "#donate-with-pix-button")}
       >
-        Show brazilian Pix R$
+        <%= gettext("Show brazilian Pix R$") %>
       </.button>
     </.prose>
     """

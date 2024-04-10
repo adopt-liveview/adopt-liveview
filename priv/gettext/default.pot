@@ -52,22 +52,22 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:739
+#: lib/curso_web/components/core_components.ex:744
 #, elixir-autogen, elixir-format
 msgid "Next"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:738
+#: lib/curso_web/components/core_components.ex:743
 #, elixir-autogen, elixir-format
 msgid "Previous"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:944
+#: lib/curso_web/components/core_components.ex:947
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:940
+#: lib/curso_web/components/core_components.ex:943
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr ""
@@ -240,4 +240,40 @@ msgstr ""
 #: lib/curso/pages.ex:142
 #, elixir-autogen, elixir-format
 msgid "Form component"
+msgstr ""
+
+#: lib/curso_web/components/layouts.ex:15
+#, elixir-autogen, elixir-format
+msgid "...or buy me a coffee"
+msgstr ""
+
+#: lib/curso/pages.ex:167
+#, elixir-autogen, elixir-format
+msgid "DRY Form"
+msgstr ""
+
+#: lib/curso_web/components/layouts.ex:9
+#: lib/curso_web/components/layouts.ex:24
+#, elixir-autogen, elixir-format
+msgid "Donate"
+msgstr ""
+
+#: lib/curso_web/components/layouts.ex:50
+#, elixir-autogen, elixir-format
+msgid "For brazilians: Pix"
+msgstr ""
+
+#: lib/curso/pages.ex:168
+#, elixir-autogen, elixir-format
+msgid "Live Component"
+msgstr ""
+
+#: lib/curso/pages.ex:169
+#, elixir-autogen, elixir-format
+msgid "Modal Form"
+msgstr ""
+
+#: lib/curso_web/components/layouts.ex:39
+#, elixir-autogen, elixir-format
+msgid "Show brazilian Pix R$"
 msgstr ""
