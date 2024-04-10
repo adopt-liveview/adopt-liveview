@@ -62,12 +62,12 @@ msgstr "Próximo"
 msgid "Previous"
 msgstr "Anterior"
 
-#: lib/curso_web/components/core_components.ex:944
+#: lib/curso_web/components/core_components.ex:1160
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr "Copiado!"
 
-#: lib/curso_web/components/core_components.ex:940
+#: lib/curso_web/components/core_components.ex:1156
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr "Copiar"
@@ -85,7 +85,52 @@ msgstr "Editando um produto"
 #: lib/curso/pages.ex:158
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Listing products"
-msgstr "Listando produtos"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Beginner track"
+msgstr "Trilha para Iniciantes"
+
+#: lib/curso_web/live/home_live.html.heex:25
+#, elixir-autogen, elixir-format
+msgid "Deployment track"
+msgstr "Trilha de implantação"
+
+#: lib/curso_web/live/home_live.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Projects track"
+msgstr "Trilha de Projetos"
+
+#: lib/curso_web/live/home_live.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "Start now!"
+msgstr "Comece agora!"
+
+#: lib/curso_web/live/home_live.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "Step-by-step guides to setting up your system and installing the library."
+msgstr "Guias passo a passo para configurar seu sistema e instalar a biblioteca."
+
+#: lib/curso_web/live/home_live.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "We are working on many courses:"
+msgstr "Estamos trabalhando em vários cursos:"
+
+#: lib/curso_web/components/layouts/app.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "Learn how to use Elixir"
+msgstr "Aprenda a usar Elixir"
+
+#: lib/curso_web/components/layouts/app.html.heex:13
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Start learn now!"
+msgstr "Comece a aprender agora!"
+
+#: lib/curso_web/components/core_components.ex:1103
+#, elixir-autogen, elixir-format
+msgid "Under construction"
+msgstr "Em construção"
 
 #: lib/curso/pages.ex:38
 #, elixir-autogen, elixir-format, fuzzy

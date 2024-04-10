@@ -62,12 +62,12 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:944
+#: lib/curso_web/components/core_components.ex:1160
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:940
+#: lib/curso_web/components/core_components.ex:1156
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr ""

@@ -876,7 +876,7 @@ defmodule CursoWeb.CoreComponents do
                   href={~p"/guides/getting-started/#{@locale}"}
                   class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500"
                 >
-                  Get Started
+                  <%= gettext("Start now!") %>
                 </.link_button>
               </div>
             </div>
@@ -1100,7 +1100,7 @@ defmodule CursoWeb.CoreComponents do
           </div>
         </h2>
         <span :if={@under_construction} class="rounded-lg bg-red-500 text-white text-xs px-1.5 py-0.5">
-          Under construction
+          <%= gettext("Under construction") %>
         </span>
         <p class="mt-1 text-sm text-slate-700 dark:text-slate-400">
           <%= @description %>
