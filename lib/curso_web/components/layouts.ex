@@ -13,10 +13,7 @@ defmodule CursoWeb.Layouts do
 
     <.prose class="mt-2">
       <h4><%= gettext("...or buy me a coffee") %></h4>
-      <img
-        src="/images/bmc-button.png"
-        class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
-      />
+      <.buy_me_a_coffee />
     </.prose>
     """
   end
@@ -28,10 +25,7 @@ defmodule CursoWeb.Layouts do
     </.prose>
 
     <.prose class="mt-2">
-      <img
-        src="/images/bmc-button.png"
-        class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
-      />
+      <.buy_me_a_coffee />
     </.prose>
 
     <.prose class="mt-4">
@@ -59,6 +53,17 @@ defmodule CursoWeb.Layouts do
         class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
       />
     </div>
+    """
+  end
+
+  def buy_me_a_coffee(assigns) do
+    ~H"""
+    <.link href="https://www.buymeacoffee.com/lubien" target="_blank">
+      <img
+        src="/images/bmc-button.png"
+        class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
+      />
+    </.link>
     """
   end
 end
