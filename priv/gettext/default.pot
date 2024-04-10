@@ -277,3 +277,29 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Show brazilian Pix R$"
 msgstr ""
+
+#: lib/curso_web/components/feedback.ex:51
+#: lib/curso_web/live/guide_live.ex:51
+#, elixir-autogen, elixir-format
+msgid "Feedback"
+msgstr ""
+
+#: lib/curso_web/live/guide_live.ex:52
+#, elixir-autogen, elixir-format
+msgid "Got any feedback about this page? Let us know!"
+msgstr ""
+
+#: lib/curso_web/components/feedback.ex:65
+#, elixir-autogen, elixir-format
+msgid "Opening GitHub..."
+msgstr ""
+
+#: lib/curso_web/components/feedback.ex:66
+#, elixir-autogen, elixir-format
+msgid "Send to GitHub"
+msgstr ""
+
+#: lib/curso_web/components/feedback.ex:58
+#, elixir-autogen, elixir-format
+msgid "What's your feedback about this lesson?"
+msgstr ""

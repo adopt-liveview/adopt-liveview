@@ -46,6 +46,18 @@ defmodule CursoWeb.GuideLive do
         >
           <%= {:safe, @page.body} %>
         </.prose>
+
+        <.prose class="mt-8">
+          <h2><%= gettext("Feedback") %></h2>
+          <p><%= gettext("Got any feedback about this page? Let us know!") %></p>
+        </.prose>
+
+        <.live_component
+          module={CursoWeb.Feedback}
+          id={"#{@page.id}-feedback"}
+          page={@page}
+          class="mt-2"
+        />
       </div>
       <.prev_next_links previous_page={@previous_page} next_page={@next_page} locale={@locale} />
     </.docs_layout>
