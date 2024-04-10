@@ -35,6 +35,10 @@ window.addEventListener("copy_code_to_clipboard", (event) => {
   }
 });
 
+window.addEventListener("scroll_to_top", (event) => {
+  window.scrollTo(0, 0);
+});
+
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
