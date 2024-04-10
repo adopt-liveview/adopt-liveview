@@ -160,6 +160,14 @@ defmodule Curso.Pages do
           %{title: gettext("Deleting a product"), href: ~p"/guides/deleting-data/#{locale}"},
           %{title: gettext("Editing a product"), href: ~p"/guides/editing-data/#{locale}"}
         ]
+      },
+      %{
+        title: "Form Component",
+        links: [
+          %{title: gettext("DRY Form"), href: ~p"/guides/form-component/#{locale}"},
+          %{title: gettext("Live Component"), href: ~p"/guides/live-component/#{locale}"},
+          %{title: gettext("Modal Form"), href: ~p"/guides/modal-form/#{locale}"}
+        ]
       }
     ]
   end
