@@ -8,6 +8,13 @@
   </div>
 </header>
 
+<.hero
+  :if={assigns[:show_hero]}
+  title={"Start learn now!"}
+  description={"lorem ipsum dolor"}
+  locale={assigns[:locale]}
+/>
+
 <div class="flex w-full flex-col">
   <div
     :if={false}
