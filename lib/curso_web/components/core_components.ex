@@ -994,7 +994,10 @@ defmodule CursoWeb.CoreComponents do
       id="mobile-navigation"
       class="fixed inset-0 overflow-y-auto z-50 bg-slate-900/50 pr-10 backdrop-blur hidden"
     >
-      <div class="min-h-full w-full max-w-xs bg-white px-4 pb-12 pt-5 sm:px-6 dark:bg-slate-900">
+      <div
+        phx-click-away={hide_mobile_navigation()}
+        class="min-h-full w-full max-w-xs bg-white px-4 pb-12 pt-5 sm:px-6 dark:bg-slate-900"
+      >
         <div class="flex items-center mb-2">
           <button id="mobile-navigation-close" type="button" phx-click={hide_mobile_navigation()}>
             <.icon name="hero-x-mark-solid" class="h-6 w-6 bg-slate-500 flex-none fill-current" />
