@@ -34,7 +34,13 @@ defmodule CursoWeb.GuideLive do
     ~H"""
     <.docs_layout title={@page.title} section={@page.section} class="">
       <div id={@page.id} phx-mounted={JS.dispatch("scroll_to_top")}>
-        <%= {:safe, @page.body} %>
+        <.prose
+          id={"#{@page.id}-prose"}
+          class="opacity-0 transition-all duration-500"
+          phx-mounted={JS.remove_class("opacity-0")}
+        >
+          <%= {:safe, @page.body} %>
+        </.prose>
       </div>
       <.prev_next_links previous_page={@previous_page} next_page={@next_page} locale={@locale} />
     </.docs_layout>

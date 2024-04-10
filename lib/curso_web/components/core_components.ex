@@ -679,12 +679,7 @@ defmodule CursoWeb.CoreComponents do
     >
       <article>
         <.docs_header id="docs-header" title={@title} section={@section} />
-        <.prose
-          class="opacity-0 transition-all duration-500"
-          phx-mounted={JS.remove_class("opacity-0")}
-        >
-          <%= render_slot(@inner_block) %>
-        </.prose>
+        <%= render_slot(@inner_block) %>
       </article>
     </div>
     """
