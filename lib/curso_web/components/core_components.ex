@@ -1334,32 +1334,42 @@ defmodule CursoWeb.CoreComponents do
 
   attr :title, :string, required: true
   attr :description, :string, default: nil
-  attr :author, :string, required: true
-  attr :avatar, :string, required: true
-  attr :website, :string, required: true
+  attr :author, :string, default: "Lubien"
+  attr :avatar, :string, default: "https://avatars.githubusercontent.com/u/9121359"
+  attr :website, :string, default: "http://localhost:4000"
   attr :theme, :string, default: "github"
 
-  def metadata_og_generator(assigns) do
-    ~H"""
-      <!-- Open Graph / Facebook -->
-      <meta property="og:title" content={@title} />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={@website} />
-      <meta property="og:description" content={@description} />
-      <meta
-        property="og:image"
-        content={"https://dynamic-og-image-generator.vercel.app//api/generate?title=#{@title}&author=#{@author}&avatar=#{@avatar}&websiteUrl=#{@website}&theme=#{@theme}"}
-      />
+  def metadata_generator(assigns) do
+    assigns =
+      assign_new(assigns, :image_query, fn ->
+        URI.encode_query(%{
+          title: assigns.title,
+          author: assigns.author,
+          avatar: assigns.avatar,
+          websiteUrl: assigns.website,
+          theme: assigns.theme
+        })
+      end)
 
-      <!-- Twitter -->
-      <meta property="twitter:title" content={@title} />
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={@website} />
-      <meta property="twitter:description" content={@description} />
-      <meta
-        property="twitter:image"
-        content={"https://dynamic-og-image-generator.vercel.app//api/generate?title=#{@title}&author=#{@author}&avatar=#{@avatar}&websiteUrl=#{@website}&theme=#{@theme}"}
-      />
+    ~H"""
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={@title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={@website} />
+    <meta property="og:description" content={@description} />
+    <meta
+      property="og:image"
+      content={"https://dynamic-og-image-generator.vercel.app//api/generate?#{@image_query}"}
+    />
+    <!-- Twitter -->
+    <meta property="twitter:title" content={@title} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={@website} />
+    <meta property="twitter:description" content={@description} />
+    <meta
+      property="twitter:image"
+      content={"https://dynamic-og-image-generator.vercel.app//api/generate?#{@image_query}"}
+    />
     """
   end
 
