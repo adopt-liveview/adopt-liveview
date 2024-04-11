@@ -1336,7 +1336,7 @@ defmodule CursoWeb.CoreComponents do
   attr :description, :string, default: nil
   attr :author, :string, default: "Lubien"
   attr :avatar, :string, default: "https://avatars.githubusercontent.com/u/9121359"
-  attr :website, :string, default: "http://localhost:4000"
+  attr :url, :string, default: "http://localhost:4000"
   attr :theme, :string, default: "github"
 
   def metadata_generator(assigns) do
@@ -1346,7 +1346,7 @@ defmodule CursoWeb.CoreComponents do
           title: assigns.title,
           author: assigns.author,
           avatar: assigns.avatar,
-          websiteUrl: assigns.website,
+          websiteUrl: assigns.url,
           theme: assigns.theme
         })
       end)
@@ -1355,7 +1355,7 @@ defmodule CursoWeb.CoreComponents do
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={@title} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={@website} />
+    <meta property="og:url" content={@url} />
     <meta property="og:description" content={@description} />
     <meta
       property="og:image"
@@ -1364,7 +1364,7 @@ defmodule CursoWeb.CoreComponents do
     <!-- Twitter -->
     <meta property="twitter:title" content={@title} />
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={@website} />
+    <meta property="twitter:url" content={@url} />
     <meta property="twitter:description" content={@description} />
     <meta
       property="twitter:image"
