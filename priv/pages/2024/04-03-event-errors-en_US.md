@@ -89,7 +89,7 @@ defmodule PageLive do
     """
   end
 
-  def handle_event("reverse", _params, socket) do
+  def handle_event("reverso", _params, socket) do
     socket = assign(socket, name: String.reverse(socket.assigns.name))
     {:noreply, socket}
   end
@@ -122,9 +122,9 @@ To simplify your debugging, Elixir already shows exactly the message you receive
     priv/examples/event-errors/event_typo.exs:23: PageLive.handle_event("reverse", %{"value" => "Reverse"}, #Phoenix.LiveView.Socket<>)
 ```
 
-Note that it says that your LiveView received "reverse" as its first parameter. Checking your LiveView code we noticed that your callback expected `"reverse"`. This is the problem.
+Note that it says that your LiveView received "reverse" as its first parameter. Checking your LiveView code we noticed that your callback expected `"reverso"`. This is the problem.
 
-## In short!
+## Recap!
 
 - If you forget to do your `handle_event/3` the LiveView will show the error `UndefinedFunctionError`.
 - If you have the callback but do not handle the received case you will see a `FunctionClauseError`.

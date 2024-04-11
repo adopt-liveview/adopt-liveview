@@ -64,7 +64,7 @@ asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 title: "Erlang can be very annoying to install",
 type: :warning,
 description: ~H"""
-Depending on your operating system you may experience different headaches. I recommend taking a quick read <.link navigate="https://github.com/asdf-vm/asdf-erlang#before-asdf-install" target="\_blank">this area</.link> if you pass problems in the next step.
+Depending on your operating system you may experience different headaches. I recommend taking a quick read <.link navigate="https://github.com/asdf-vm/asdf-erlang#before-asdf-install" target="\_blank">this area</.link> if you ever have issues in the next step.
 """
 } %% .callout
 

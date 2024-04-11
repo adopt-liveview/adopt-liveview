@@ -37,19 +37,19 @@ end
 LiveviewPlayground.start()
 ```
 
-In this file we have 4 HEEx tags to interpolate code. HEEx supports rendering any type of code that implements the [`Phoenix.HTML.Safe`](https://hexdocs.pm/phoenix_html/Phoenix.HTML.Safe.html) protocol.
+In this file we have 4 HEEx tags that interpolate code. HEEx supports rendering any type of code that implements the [`Phoenix.HTML.Safe`](https://hexdocs.pm/phoenix_html/Phoenix.HTML.Safe.html) protocol.
 
 - The first case renders the string `"Lubien"`.
 - The second case renders the integer 2.
 - The third case just uses the string concatenation operator [`<>`](https://hexdocs.pm/elixir/1.12/Kernel.html#%3C%3E/2) whose result is "Chris McCord".
 
-But what about the fourth case? Nothing appears on your screen. The reason is simple: we use the `<% %>` tag, note that there is no `=` after the first `%`. In HEEx this means "execute this code but do not render the result". As it uses the [`IO.puts/2`](https://hexdocs.pm/elixir/1.12/IO.html#puts/2) function, you can see the result in your terminal.
+But what about the fourth case? Nothing appears on your screen. The reason is simple: we use the `<% %>` tag, do note that there is no `=` after the first `%`. In HEEx this means "execute this code but do not render the result". As it uses the [`IO.puts/2`](https://hexdocs.pm/elixir/1.12/IO.html#puts/2) function, you can see the result in your terminal.
 
 %{
 title: "Then I can add logic to my HEEx!",
 type: :warning,
 description: ~H"""
-The direct answer is yes, you can, however this means that every time your HEEx is recalculated when an assignment changes, your logic will be executed once again. <.link navigate="https://hexdocs.pm/phoenix_live_view/assigns-eex.html#pitfalls" target="\_blank">The Phoenix team's recommendation</.link> is that you do any logic in assigns to avoid possible performance problems. In the future we will learn other ways to have logic in your HEEx efficiently.
+The direct answer is yes, you can, however this means that your logic will be executed every time your HEEx is recalculated when an assignment changes. <.link navigate="https://hexdocs.pm/phoenix_live_view/assigns-eex.html#pitfalls" target="\_blank">The Phoenix team's recommendation</.link> is that you do any logic in assigns to avoid possible performance problems. In the future we will learn other ways to have logic in your HEEx efficiently.
 """
 } %% .callout
 
@@ -94,9 +94,9 @@ You will notice an "Internal Server Error" and the exception in your terminal:
         (phoenix_live_view 0.18.18) lib/phoenix_live_view/diff.ex:139: Phoenix.LiveView.Diff.render/3
 ```
 
-You will notice an "Internal Server Error" and the exception in your terminal: As mentioned previously, the `Phoenix.HTML.Safe` protocol is necessary for us to render Elixir data. This happens not for reasons of LiveView limitations or security, the reason this protocol exists is because the Phoenix team converts the original Elixir data into a structure called `iodata` which is more efficient in being sent to its user.
+As mentioned previously, the `Phoenix.HTML.Safe` protocol is necessary for us to render Elixir data. This happens not because LiveView is limited, the reason this protocol exists is because the Phoenix team converts the original Elixir data into a structure called `iodata` which is more efficient in being sent to its user.
 
-If you just want to quickly debug data that cannot be rendered by HEEx, the recommendation would be to use inspect:`<h2>Hello <%= inspect(%User{id: 1, name: "Lubien"}) %></h2>`. If you really need to teach HEEx to interpret your struct you can also implement the protocol yourself. Create and run a file called `impl_phoenix_html_safe.exs`:
+If you just want to quickly debug data that cannot be rendered by HEEx, the recommendation would be to use inspect: `<h2>Hello <%= inspect(%User{id: 1, name: "Lubien"}) %></h2>`. If you really need to teach HEEx to interpret your struct you can also implement the protocol yourself. Create and run a file called `impl_phoenix_html_safe.exs`:
 
 ```elixir
 Mix.install([
@@ -126,7 +126,7 @@ end
 LiveviewPlayground.start()
 ```
 
-Using [`defimpl/3`](https://hexdocs.pm/elixir/1.14/Kernel.html#defimpl/3) we were able to define the protocol's `to_iodata/1` callback and convert the user to string (given that HEEx can render).
+Using [`defimpl/3`](https://hexdocs.pm/elixir/1.14/Kernel.html#defimpl/3) we were able to define the protocol's `to_iodata/1` callback and convert the user to string (something that HEEx can render).
 
 It is worth mentioning that if you decide to return any type of HTML here, you are responsible for ensuring that there is no vulnerability such as [XSS](https://owasp.org/www-community/attacks/xss/). Imagine if your user has a name with `<svg onload=alert(1)>` and you didn't escape this data? Therefore, avoid this practice whenever possible.
 
@@ -192,18 +192,18 @@ LiveviewPlayground.start()
 
 There are multiple ways we can add HTML attributes in HEEx for developer convenience. Let's check each of them.
 
-In the first case (Hello World) we add `style="color: red"` which works like any other HTML in the world. In this format it can be said that there is no type of extra processing. In `class={"bg-black"}` when using the keys we are saying that the content inside them comprises an Elixir code. Any Elixir code like `class={calculate_class()}` (assuming the function exists) or `class={"bg-{@my_background}"}` (assuming the assign exists) will be valid!
+In the first case (Hello World) we add `style="color: red"` which works like any other HTML in the world. In this format it can be said that there is no type of extra processing. In `class={"bg-black"}` when using brackets we are saying that the content inside them is Elixir code. Any Elixir code like `class={calculate_class()}` (assuming the function exists) or `class={"bg-{@my_background}"}` (assuming the assign exists) will be valid!
 
 In the second case (Hello Elixir) we just demonstrate once again what was explained in the previous case. In `class={"bg-" <> "red"}` you can see an example of using the `<>` operator to calculate the final class.
 
-In the third example (Hello Phoenix) there is a golden tip: you can pass an array with multiple strings to an attribute and at the end it will be automatically joined and values that are `nil` will be ignored. The reason this technique is powerful is that it makes it easier to work with variables, as we can see `bg_for_hello_phoenix` being used.
+In the third example (Hello Phoenix) there is a golden tip: you can pass a list with multiple strings to an attribute and at the end it will be automatically joined and values that are `nil` will be ignored. The reason this technique is powerful is that it makes it easier to work with variables, as we can see `bg_for_hello_phoenix` being used.
 
-The last case (Hello LiveView) adds one more outside of working with attributes. If you ever need to add attributes dynamically, that is, you don't know exactly which attributes will or will not be included in advance, you can use the syntax of adding an elixir map within the opening HTML tag and HEEx will understand that each key in your map represents an attribute.
+The last case (Hello LiveView) adds one more way of working with attributes. If you ever need to add attributes dynamically, that is, you don't know exactly which attributes will or wont be included in advance, you can use the syntax of adding an elixir map within the opening HTML tag and HEEx will understand that each key in your map represents an attribute.
 
 %{
 title: "Can I use variables in my render function?",
 description: ~H"""
-Yes, there is no problem simply adding variables before your HEEx, especially if you do this just to make the code more readable (imagine you have an absurd amount of classes for example) but you will see warnings saying that the official recommendation is to transform these variables in assigns. In future classes we will learn how to do this in a very simple and readable way.
+Yes, there is no problem simply adding variables before your HEEx, especially if you do this just to make your code more readable (imagine you have an absurd amount of classes for example) but you will see warnings saying that the official recommendation is to transform these variables in assigns. In future lessons we will learn how to do this in a very simple and readable way.
 """
 } %% .callout
 
@@ -211,7 +211,7 @@ Yes, there is no problem simply adding variables before your HEEx, especially if
 
 - Using the `<%= %>` tag renders Elixir code that the `Phoenix.HTML.Safe` protocol accepts.
 - Using the `<% %>` tag just executes Elixir code and does not render anything.
-- You can implement `Phoenix.HTML.Safe` for structs but you should be aware of the security risks this may bring.
+- You can implement `Phoenix.HTML.Safe` for structs but you should be aware of the security risks this might bring.
 - HEEx considers `nil` as something that should not be rendered, this is useful if you want to work with optional variables.
 - In HEEx, HTML attributes with the value around curly braces execute any valid Elixir code to generate the attribute value.
 - In HEEx, you can also pass lists to attributes to simplify mixing strings and variables.

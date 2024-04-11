@@ -50,12 +50,12 @@ end
 LiveviewPlayground.start()
 ```
 
-Let's break down this code. The only assign we have here is called `show_information?` with an initial value of false. The `"toggle"` event sent by input simply reverses the value between `true` and `false`. What's really new here is our `if-else` block.
+Let's break down this code. The only assign we have here is called `show_information?` with an initial value of false. The `"toggle"` event sent by the input simply reverses the value between `true` and `false`. What's really new here is our `if-else` block.
 
 %{
-title: "Question mark in the middle of the code? Can you do that, Arnaldo?",
+title: "Question mark in the middle of the code? Is that even possible?",
 description: ~H"""
-In Elixir the question mark is valid in atoms and variables when added at the end. This is very useful for denoting booleans. Are you saying that <code>`if @show_information?`</code> is not elegant?
+In Elixir the question mark is valid in atoms and variables when added at the end. This is very useful for booleans. isn't <code>`if @show_information?`</code> elegant?
 """
 } %% .callout
 
@@ -63,7 +63,7 @@ Inside a LiveView you can do an `if-else` as follows:
 
 - Add a `<%= if condition do %>`. It is important that you use the tag that contains `=` otherwise HEEx will understand that this should not be rendered!
 - Write any HTML that will be in the case that should be rendered.
-- Add a `<% else %>`. Note that there is no `=` this time. If you add it, the code continues to work but a warning will tell you to remove it.
+- Add an `<% else %>`. Note that there is no `=` this time. If you add it, the code continues to work but a warning will ask to remove it.
 - Write any HTML for the `else` case.
 - Add a `<% end %>`. Again, without `=`.
 
@@ -139,7 +139,7 @@ end
 LiveviewPlayground.start()
 ```
 
-At the moment there is no special attribute for `else` so as a recommendation if you only need `if` it is recommended to use `:if` if you can put it in a parent tag of the things that enter the condition, otherwise use the first example with `if-else` demonstrated here.
+At the moment there is no special attribute for `else` so if you only need `if` it is recommended to use `:if` when you can put it in a parent tag of the things that enter the condition, otherwise use the first example with `if-else` as shown above.
 
 ## Using `case` for complex cases
 
@@ -188,18 +188,18 @@ end
 LiveviewPlayground.start()
 ```
 
-This time our assign became `tab` which can be a string between `"home"`, `"about"` or `"contact"`. Each input contains a `phx-click="show_TAB_NAME"` so our `handle_event/3` will use pattern matching in Elixir to accept any event that starts with `show_` and save the rest of the event name in a variable. Another simple but interesting point in our code is that we use the HTML `disabled` property to prevent the button from being clickable if you are already on the correct tab.
+This time our assign became `tab` which can be a string between `"home"`, `"about"` or `"contact"`. Each input contains a `phx-click="show_TAB_NAME"` so our `handle_event/3` will use pattern matching in Elixir to accept any event that starts with `show_` and save the rest of the event name in a variable. Another simple but interesting bit in our code is that we use the HTML `disabled` property to prevent the button from being clickable if you are already on the correct tab.
 
 %{
 title: "Pattern matching?!",
 description: ~H"""
-In Elixir pattern matching is a common and very powerful technique that, once you learn it, you can't help but want to use it. Since the scope of this course is to talk about LiveView, don't feel like it's necessary for you to stop everything to study more about it. As additional reading, Elixir School talks about this here: <.link navigate="https://elixirschool.com/pt/lessons/basics/functions#pattern-matching-1" target="\_blank">Functions - Pattern Matching</.link>.
+In Elixir pattern matching is a common and very powerful technique that, once you learn it, you can't help but want to use it. Since the scope of this course is to talk about LiveView, don't feel like it's necessary for you to stop everything to study more about it. To learn more about it Elixir School talks about it here: <.link navigate="https://elixirschool.com/en/lessons/basics/functions" target="\_blank">Functions - Pattern Matching</.link>.
 """
 } %% .callout
 
-Now let's talk about what's important for this class: `case`. Just like `if` you need to start the conditional with `<%= case (condition here) of %>`, emphasis on `=` because without it nothing will be rendered. Since our condition passed to `case` was `@tab`, each condition will essentially check `@tab == 'value'`. For each condition we do an `<% 'expected value' -> %>` (without the need for `=`) and end the block with `<% end %>`.
+Now let's talk about what's important for this class: `case`. Just like `if` you need to start the conditional with `<%= case (condition here) of %>`, emphasis on `=` because without it nothing will be rendered. Since our condition passed to `case` was `@tab`, each condition will essentially check `@tab == 'value'`. For each condition we do an `<% "expected value" -> %>` (without the need for `=`) and end the block with `<% end %>`.
 
-It is worth mentioning that in our case we treated all possibilities explicitly. What if we forget a possibility? Create and run a file called `case_missing.exs`:
+It is worth mentioning that in our case we handled all cases. What if we forget a possibility? Create and run a file called `case_missing.exs`:
 
 ```elixir
 Mix.install([
@@ -269,7 +269,7 @@ The message could not be more explicit! Let's analyze each piece:
 To add a default clause simply use the format `<% _ -> %>`. In Elixir the `_` in the context of pattern matching means "anything". We could add default content like `<p>Tab does not exist</p>`.
 
 %{
-title: "What to do when we don't know how to treat all cases?",
+title: "What to do when we don't know how to handle all cases?",
 type: :warning,
 description: ~H"""
 It all depends on the UX you intend to give your user. By using a default clause you fail silently giving the user an experience that your system is incomplete. If you intentionally leave it without a default clause, the system will restart LiveView, which creates discomfort for your user as well, but if you have an APM you will see the exception and can correct it afterwards. In the future we will discuss validations as a solution for these cases.
@@ -278,7 +278,7 @@ It all depends on the UX you intend to give your user. By using a default clause
 
 ## Condition chains with `cond`
 
-In the previous example we used `case` to compare the exact value of the `@tab` variable in each clause. If you need to render something based on a condition that does not revolve around equality, `cond` is perfect for this. Create and run a file called `cond.exs`:
+In the previous example we used `case` to compare the exact value of the `@tab` variable in each clause. If you need to render something based on a condition that does is not about equality, `cond` is perfect for this. Create and run a file called `cond.exs`:
 
 ```elixir
 Mix.install([
@@ -335,13 +335,13 @@ LiveviewPlayground.start()
 
 In the next example we manage the temperature in degrees Celsius increasing/decreasing by 10. The really important part of the code is precisely our conditional. Once again we notice that only the first tag has `=` while the others do not. The first difference between `cond` and `case` is that in `cond` you always start with `cond do` without passing anything different, the conditions are independent and may well use different variables.
 
-Each `cond` clause follows the predicate format (an expression that returns true or false) and the first condition passed ends the flow and renders the corresponding HTML. As the order of checking the clauses is from top to bottom we do not need to do checks like `@temperature_celsius > 30 && @temperature_celsius < 40 ->` because if the condition `@temperature_celsius > 40 ->` did not return true we already know that in the second clause we already have a temperature below 40. Unlike `case`, to add a standard clause we added `true ->` at the end because as `true` is hardcoded and this is the last clause it will always end there.
+Each `cond` clause follows the predicate format (an expression that returns true or false) and the first condition that is true ends the flow and renders its corresponding HTML. As the order of checking the clauses is from top to bottom we do not need to do checks like `@temperature_celsius > 30 && @temperature_celsius < 40 ->` because if the condition `@temperature_celsius > 40 ->` did not return true we already know that in the second clause we already have a temperature below 40. Unlike `case`, to add a standard clause we added `true ->` at the end because as `true` is hardcoded and this is the last clause it will always end there.
 
-## In short!
+## Recap!
 
 - For `if-else` situations you must explicitly use the `<%= if condition do %>` and `<% else %>` blocks.
 - For `if` only situations you can use the `<%= if condition do %>` block format or the special HEEx attribute `:if={condition}` in an HTML tag.
 - For multiple comparisons of a value you can use `<%= case value of %>`.
-- For multiple conditions that don't just involve comparing whether a value is equal you can use `<%= cond do %>`.
-- In all cases, the tag with `=` will always be the first and the others do not need to be. If you add `=` to the other tags, LiveView will generate warnings but everything will work normally.
+- For multiple conditions that don't just involve comparing whether a value is equal to something you can use `<%= cond do %>`.
+- In all cases, the first tag will always need `=` and the others do not need it. If you add `=` to the other tags, LiveView will generate warnings but everything will work normally.
 - If in the first tag you do not add `=` the HTML code will not be rendered.

@@ -196,7 +196,7 @@ No segundo caso (Hello Elixir)apenas demonstramos mais uma vez o que foi explica
 
 No terceiro exemplo (Hello Phoenix) existe uma dica de ouro: você pode passar uma array com multiplas string para um atributo e no final será automaticamente unido e os valores que forem `nil` serão ignorados. O motivo que torna essa técnica poderosa é que facilita trabalhar com variáveis como podemos ver a `bg_for_hello_phoenix` sendo utilizada.
 
-O último caso (Hello LiveView) adiciona mais uma fora de trabalhar com atributos. Se você precisar algum dia adicionar atributos de modo dinâmico, isto é, você não sabe exatamente quais atributos vão entrar ou não de antemão, você pode usar a syntax de adicionar um mapa do elixir dentro da tag de abertura do HTML e o HEEx vai entender que cada chave no seu mapa representa um atributo.
+O último caso (Hello LiveView) adiciona mais uma forma de trabalhar com atributos. Se você precisar algum dia adicionar atributos de modo dinâmico, isto é, você não sabe exatamente quais atributos vão entrar ou não de antemão, você pode usar a syntax de adicionar um mapa do elixir dentro da tag de abertura do HTML e o HEEx vai entender que cada chave no seu mapa representa um atributo.
 
 %{
 title: "Posso usar variáveis na minha render funcion?",
