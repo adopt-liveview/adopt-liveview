@@ -743,7 +743,10 @@ defmodule CursoWeb.CoreComponents do
       <dd class="mt-1">
         <.link
           href={@url}
-          class=" flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+          class="flex items-center gap-x-1 text-base font-semibold text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
+          phx-click={
+            JS.dispatch("plausible", detail: %{name: "navigate_lesson", props: %{direction: @dir}})
+          }
         >
           <.icon
             :if={@dir === "previous"}
