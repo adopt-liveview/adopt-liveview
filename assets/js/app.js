@@ -38,6 +38,9 @@ window.addEventListener("copy_code_to_clipboard", (event) => {
 window.addEventListener("phx:open_new_tab", (event) => {
   window.open(event.detail.url, "_blank").focus();
 });
+window.addEventListener("plausible", (event) => {
+  window.plausible(event.detail.name, { props: event.detail.props });
+});
 
 window.addEventListener("scroll_to_top", (event) => {
   window.scrollTo(0, 0);

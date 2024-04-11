@@ -46,7 +46,7 @@ defmodule PlausibleProxy do
   import Plug.Conn
 
   @default_local_path "/js/plausible_script.js"
-  @default_script_extension "script.js"
+  @default_script_extension "script.pageview-props.js"
   @default_remote_ip_headers ["fly-client-ip", "x-real-ip"]
 
   @impl Plug
@@ -82,8 +82,15 @@ defmodule PlausibleProxy do
          {:ok, payload} <- Jason.decode(body),
          remote_ip_address = determine_ip_address(conn, opts),
          {:ok, resp} <- post_event(conn, payload, remote_ip_address, %{}) do
+      headers =
+        resp.headers
+        |> Enum.filter(fn
+          {"Content-Length", _} -> false
+          _ -> true
+        end)
+
       conn
-      |> prepend_resp_headers(resp.headers)
+      |> prepend_resp_headers(headers)
       |> send_resp(resp.status_code, resp.body)
       |> halt()
     else
@@ -129,7 +136,8 @@ defmodule PlausibleProxy do
       "name" => payload["n"],
       "url" => payload["u"],
       "domain" => payload["d"],
-      "referrer" => payload["r"]
+      "referrer" => payload["r"],
+      "props" => payload["p"]
     }
 
     body =

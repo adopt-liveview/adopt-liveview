@@ -49,7 +49,13 @@ defmodule CursoWeb.GuideLive do
         </p>
       </.docs_header>
 
-      <div id={@page.id} phx-mounted={JS.dispatch("scroll_to_top")}>
+      <div
+        id={@page.id}
+        phx-mounted={
+          JS.dispatch("scroll_to_top")
+          |> JS.dispatch("plausible", detail: %{name: "guide_view", props: %{page_id: @page.id}})
+        }
+      >
         <.prose
           id={"#{@page.id}-prose"}
           class="opacity-0 transition-all duration-500"
