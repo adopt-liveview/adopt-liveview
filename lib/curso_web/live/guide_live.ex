@@ -21,6 +21,7 @@ defmodule CursoWeb.GuideLive do
       |> assign(
         page: page,
         locale: locale,
+        base_url_for_locale: "/guides/#{page.id}/",
         page_languages: Pages.get_languages_for_post(id),
         previous_page: previous_page,
         next_page: next_page,

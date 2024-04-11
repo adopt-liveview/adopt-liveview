@@ -3,17 +3,25 @@
     <.toggle_mobile_navigation />
   </div>
   <div class="ml-auto flex items-center gap-2">
-    <.toggle_locale :if={assigns[:page]} locale={@locale} page={@page} />
+    <.toggle_locale
+      :if={assigns[:base_url_for_locale]}
+      locale={@locale}
+      base_url_for_locale={@base_url_for_locale}
+    />
     <DarkMode.button />
   </div>
 </header>
 
+<.hero
+  :if={assigns[:show_hero]}
+  title={gettext("Learn LiveView now!")}
+  description={
+    gettext("Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge")
+  }
+  locale={assigns[:locale]}
+/>
+
 <div class="flex w-full flex-col">
-  <div
-    :if={false}
-    class="sticky top-0 z-50 flex flex-none flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 sm:px-6 lg:px-8 dark:shadow-none"
-  >
-  </div>
   <div class="relative mx-auto flex w-full max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
     <div class="hidden lg:relative lg:block lg:flex-none">
       <div class="absolute inset-y-0 right-0 w-[50vw] bg-slate-50 dark:hidden" />

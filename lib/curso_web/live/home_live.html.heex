@@ -1,0 +1,32 @@
+<div class="min-w-0 max-w-2xl flex-auto px-4 py-16 lg:max-w-none lg:pl-8 lg:pr-0 xl:px-16">
+  <.prose>
+    <p class="font-display text-sm font-medium text-sky-500">
+      <%= gettext("Start now!") %>
+    </p>
+    <h1>
+      <%= gettext("We are working on many courses") %>
+    </h1>
+  </.prose>
+  <div class="my-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <.quick_link
+      title={gettext("Beginner's track")}
+      icon="hero-chevron-double-right-solid"
+      href={~p"/guides/getting-started/#{@locale}"}
+      description={
+        gettext("Step-by-step guides to learn the fundamentals of LiveView Programming.")
+      }
+    />
+
+    <.quick_link
+      title={gettext("Projects track")}
+      icon="hero-building-office-2-solid"
+      under_construction
+    />
+
+    <.quick_link
+      title={gettext("Deployments track")}
+      icon="hero-globe-alt-solid"
+      under_construction
+    />
+  </div>
+</div>
