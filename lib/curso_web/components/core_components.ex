@@ -855,7 +855,7 @@ defmodule CursoWeb.CoreComponents do
 
   attr :title, :string
   attr :description, :string
-  # attr :image, :string
+  attr :locale, :string
 
   # WIP
   def hero(assigns) do
