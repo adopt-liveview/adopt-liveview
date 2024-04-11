@@ -12,7 +12,8 @@ defmodule Curso.Pages.Post do
     :section,
     :table_of_contents,
     :language,
-    :read_minutes
+    :read_minutes,
+    :modified_at
   ]
   defstruct [
     :id,
@@ -27,7 +28,8 @@ defmodule Curso.Pages.Post do
     :previous_page_id,
     :next_page_id,
     :language,
-    :read_minutes
+    :read_minutes,
+    :modified_at
   ]
 
   def build(filename, attrs, body) do
@@ -59,6 +61,11 @@ defmodule Curso.Pages.Post do
           {id, "br"}
       end
 
+    modified_at =
+      File.stat!(filename).mtime
+      |> :calendar.datetime_to_gregorian_seconds()
+      |> DateTime.from_gregorian_seconds()
+
     struct!(
       __MODULE__,
       [
@@ -67,7 +74,8 @@ defmodule Curso.Pages.Post do
         body: body,
         table_of_contents: table_of_contents,
         language: language,
-        read_minutes: read_minutes
+        read_minutes: read_minutes,
+        modified_at: modified_at
       ] ++
         Map.to_list(attrs)
     )

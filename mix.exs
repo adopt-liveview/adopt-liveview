@@ -67,6 +67,7 @@ defmodule Curso.MixProject do
       {:bandit, "~> 1.2"},
       {:ex_cldr, "~> 2.37"},
       {:plug_canonical_host, "~> 2.0"},
+      {:sitemapper, "~> 0.8"},
       {:basic_auth, "~> 2.2"}
     ]
   end
