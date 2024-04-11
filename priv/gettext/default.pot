@@ -62,12 +62,12 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1160
+#: lib/curso_web/components/core_components.ex:1159
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1156
+#: lib/curso_web/components/core_components.ex:1155
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr ""
@@ -279,12 +279,12 @@ msgid "Show brazilian Pix R$"
 msgstr ""
 
 #: lib/curso_web/components/feedback.ex:51
-#: lib/curso_web/live/guide_live.ex:61
+#: lib/curso_web/live/guide_live.ex:62
 #, elixir-autogen, elixir-format
 msgid "Feedback"
 msgstr ""
 
-#: lib/curso_web/live/guide_live.ex:62
+#: lib/curso_web/live/guide_live.ex:63
 #, elixir-autogen, elixir-format
 msgid "Got any feedback about this page? Let us know!"
 msgstr ""
@@ -304,60 +304,69 @@ msgstr ""
 msgid "What's your feedback about this lesson?"
 msgstr ""
 
-#: lib/curso_web/live/guide_live.ex:43
+#: lib/curso_web/live/guide_live.ex:44
 #, elixir-autogen, elixir-format
 msgid "Read time:"
 msgstr ""
 
-#: lib/curso_web/live/guide_live.ex:43
+#: lib/curso_web/live/guide_live.ex:44
 #, elixir-autogen, elixir-format
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/curso_web/live/home_live.html.heex:12
-#, elixir-autogen, elixir-format
-msgid "Beginner track"
-msgstr ""
-
-#: lib/curso_web/live/home_live.html.heex:25
-#, elixir-autogen, elixir-format
-msgid "Deployment track"
-msgstr ""
-
-#: lib/curso_web/components/layouts/app.html.heex:14
-#, elixir-autogen, elixir-format
-msgid "Learn how to use Elixir"
-msgstr ""
-
-#: lib/curso_web/live/home_live.html.heex:19
+#: lib/curso_web/live/home_live.html.heex:21
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr ""
 
-#: lib/curso_web/components/layouts/app.html.heex:13
-#, elixir-autogen, elixir-format
-msgid "Start learn now!"
-msgstr ""
-
-#: lib/curso_web/components/core_components.ex:879
 #: lib/curso_web/live/home_live.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Start now!"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:15
-#, elixir-autogen, elixir-format
-msgid "Step-by-step guides to setting up your system and installing the library."
-msgstr ""
-
-#: lib/curso_web/components/core_components.ex:1103
+#: lib/curso_web/components/core_components.ex:1102
 #, elixir-autogen, elixir-format
 msgid "Under construction"
 msgstr ""
 
+#: lib/curso_web/live/home_live.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Beginner's track"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:27
+#, elixir-autogen, elixir-format
+msgid "Deployments track"
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:878
+#, elixir-autogen, elixir-format
+msgid "Get started"
+msgstr ""
+
+#: lib/curso_web/components/layouts/app.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "Learn LiveView now!"
+msgstr ""
+
+#: lib/curso_web/components/layouts/app.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:16
+#, elixir-autogen, elixir-format
+msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
+msgstr ""
+
+#: lib/curso_web/components/core_components.ex:1319
+#, elixir-autogen, elixir-format
+msgid "Toggle locale"
+msgstr ""
+
 #: lib/curso_web/live/home_live.html.heex:7
 #, elixir-autogen, elixir-format
-msgid "We are working on many courses:"
+msgid "We are working on many courses"
 msgstr ""

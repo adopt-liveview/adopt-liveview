@@ -857,7 +857,6 @@ defmodule CursoWeb.CoreComponents do
   attr :description, :string
   attr :locale, :string
 
-  # WIP
   def hero(assigns) do
     ~H"""
     <div class="overflow-hidden bg-slate-900 dark:-mb-32 dark:mt-[-4.75rem] dark:pb-32 dark:pt-[4.75rem]">
@@ -876,7 +875,7 @@ defmodule CursoWeb.CoreComponents do
                   href={~p"/guides/getting-started/#{@locale}"}
                   class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500"
                 >
-                  <%= gettext("Start now!") %>
+                  <%= gettext("Get started") %>
                 </.link_button>
               </div>
             </div>
@@ -1315,9 +1314,9 @@ defmodule CursoWeb.CoreComponents do
     <button
       :for={lang <- ["br", "en"]}
       :if={@locale != lang}
-      phx-click={JS.navigate(~p"/guides/#{@page.id}/#{lang}")}
+      phx-click={JS.navigate("#{@base_url_for_locale}#{lang}")}
       type="button"
-      aria-label="Toggle locale"
+      aria-label={gettext("Toggle locale")}
       class="group rounded-lg bg-white/90 px-2 py-2 shadow-md shadow-black/5 ring-1 ring-black/5 backdrop-blur transition dark:bg-slate-700 dark:ring-inset dark:ring-white/5"
     >
       <img

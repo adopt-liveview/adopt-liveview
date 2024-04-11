@@ -4,28 +4,29 @@
       <%= gettext("Start now!") %>
     </p>
     <h1>
-      <%= gettext("We are working on many courses:") %>
+      <%= gettext("We are working on many courses") %>
     </h1>
   </.prose>
   <div class="my-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
-    <.quick_link 
-      title={gettext("Beginner track")} 
-      icon="hero-chevron-double-right-solid" 
-      href={~p"/guides/getting-started/#{@locale}"} 
-      description={gettext("Step-by-step guides to setting up your system and installing the library.")}
+    <.quick_link
+      title={gettext("Beginner's track")}
+      icon="hero-chevron-double-right-solid"
+      href={~p"/guides/getting-started/#{@locale}"}
+      description={
+        gettext("Step-by-step guides to learn the fundamentals of LiveView Programming.")
+      }
     />
 
-    <.quick_link 
-      title={gettext("Projects track")} 
-      icon="hero-building-office-2-solid" 
+    <.quick_link
+      title={gettext("Projects track")}
+      icon="hero-building-office-2-solid"
       under_construction
     />
 
-    <.quick_link 
-      title={gettext("Deployment track")} 
-      icon="hero-globe-alt-solid" 
+    <.quick_link
+      title={gettext("Deployments track")}
+      icon="hero-globe-alt-solid"
       under_construction
     />
   </div>
 </div>
-

@@ -22,7 +22,7 @@ defmodule CursoWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive, :home
-    live "/:locale", GuideLive, :home
+    live "/:locale", HomeLive, :home
     live "/guides/:id", GuideLive, :guide
     live "/guides/:id/:locale", GuideLive, :guide
   end

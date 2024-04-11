@@ -10,8 +10,10 @@ defmodule CursoWeb.HomeLive do
       socket
       |> assign(
         locale: locale,
+        base_url_for_locale: ~p"/",
         show_hero: true
       )
+
     {:noreply, socket}
   end
 end
