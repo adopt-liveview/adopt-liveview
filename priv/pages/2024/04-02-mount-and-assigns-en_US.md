@@ -1,5 +1,5 @@
 %{
-title: "LiveView Assignments",
+title: "LiveView Assigns",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Fundamentals",
@@ -12,9 +12,9 @@ next_page_id: "your-first-mistakes"
 
 ## Storing state
 
-A very important feature of a frontend framework is being able to store the state of the current application. ReactJS uses hooks, VueJS uses composition/options API and so on. In LiveView we call the state of a view `assigns` (in the plural).
+A very important feature of a frontend framework is being able to store the state of the current application. ReactJS uses hooks, VueJS uses composition/options API and so on. In LiveView we call the state of a view `assigns` (plural form).
 
-`assigns` are just a map of the Elixir. You can store in `assigns` everything that you could store in any variable: lists, maps, structs, etc.
+`assigns` are just an Elixir map. You can store in the `assigns` map everything that you could store in any variable: lists, maps, structs, etc.
 
 A great place to write `assigns` when your LiveView is generated is in a `callback` called `mount/3`.
 
@@ -45,21 +45,21 @@ LiveviewPlayground.start()
 
 Start the server as `elixir assigns.exs` and see the result.
 
-If you're feeling desperate right now, don't be. Really 7 new things were added in just 5 new lines of code compared to `hello_liveview.exs` but let's break down these modifications one at a time!
+If you're feeling desperate right now, don't be. I know 7 new things were added in just 5 new lines of code compared to `hello_liveview.exs` but let's break down these modifications one at a time!
 
 ## The `mount/3` callback
 
 The way in which the LiveView framework sends information so that programmers can process the data is through callbacks. These are nothing more than functions that run when something happens. The `mount/3` callback runs when your LiveView is initialized. Its three arguments are, respectively:
 
-- Parameters coming from the URL. Useful for routes like `/users/:id` where `:id` would come in the parameters.
-- Data from the current browsing session (if configured). Useful for authentication systems.
+- Parameters coming from the URL. Useful for routes like `/users/:id` where `:id` would be one of the parameters.
+- Data from the current browsing session (if configured). Useful for authentication.
 - Data from the current connection with the user accessing this LiveView in a data structure called [Phoenix.LiveView.Socket](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Socket.html), better known simply as `socket`.
 
-The first two arguments will be explored in more detail in future guides, for the moment we will just ignore them for the sake of simplicity.
+The first two arguments will be explored in more detail in future guides. Right now we will just ignore them for the sake of simplicity.
 
 ## The %Socket{} data structure
 
-Let's get straight to the point: LiveView state management completely revolves around modifying the state of your socket. The function [`assigns/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#assign/2) receives your `socket` and which assigns you want to add and applies them generating a new socket. Let's try! Update your code as follows:
+Let's get straight to the point: LiveView state management completely revolves around modifying the state of your socket. The function [`assigns/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#assign/2) receives your `socket` and the assigns you want to add and applies them generating a new socket. Let's try! Update your code as follows:
 
 ```elixir
 def mount(_params, _session, socket) do
@@ -75,7 +75,7 @@ Don't forget to turn the server off and on again to see the changes.
 %{
 title: ~H"<code>`dbg/2`</code>",
 description: ~H"""
-The <.link navigate="https://hexdocs.pm/elixir/debugging.html#dbg-2" target="\_blank"><code>`dbg/2`</code></.link> macro is extremely useful for debugging code and we will be using it a lot during classes. In general, it will be used by adding a `pipe` to it like <code>`|> dbg`</code>. It tells you the file, line, function and variables of the thing you are debugging. Super powerful.
+The <.link navigate="https://hexdocs.pm/elixir/debugging.html#dbg-2" target="\_blank"><code>`dbg/2`</code></.link> macro is extremely useful for debugging code and we will be using it a lot during classes. In general, it will be used by adding a `pipe` to it like <code>`|> dbg`</code>. It tells you the file name, line, function and variables of the thing you are debugging. Super powerful.
 """
 } %% .callout
 
@@ -95,11 +95,11 @@ As we can see, assigns are just a map with some data about your LiveView. Explai
 - `flash`: is a map used to send information, success and alert messages to its users. We will use it in the future.
 - `live_action`: when we get into the subject of Router we will see that we can use this data to identify where we are in the application.
 
-Furthermore, we can notice that in the second `dbg` we already have new data, the `name` added.
+Furthermore, we can notice that in the second `dbg` we already have new data, the `name` was added.
 
 ## Rendering `assigns`
 
-Let's look at our render function one more time:
+Let's look at our render function once more:
 
 ```elixir
 def render(assigns) do
@@ -109,9 +109,9 @@ def render(assigns) do
 end
 ```
 
-The way you render assigns in a LiveView is using `<%= %>`. The documentation calls this tags while I personally prefer to call it interpolation. Furthermore, to access the assign called `name` just use the shortcut `@name`.
+The way we render assigns in a LiveView is by using `<%= %>`. The documentation calls these tags while I personally prefer to call it interpolation. Furthermore, to access the assign called `name` just use the shortcut `@name`.
 
-Behind the scenes, if you are in a render function `@name` is exactly the same as `assigns.name`. Remember that I said that the only argument of a render function was necessarily called `assigns`? See what happens if I rename it to any other name:
+Behind the scenes, inside a render function using `@name` is exactly the same as `assigns.name`. Remember that I said that the only argument of a render function was necessarily called `assigns`? See what happens if I rename it to any other name:
 
 ```sh
 $ elixir priv/examples/mount-and-assigns/assigns.exs
@@ -132,7 +132,7 @@ end
 
 Everything works normally.
 
-## Recapitulation
+## Recap!
 
 - The `mount/3` callback runs when your LiveView is initializing.
 - The `socket` data structure contains the state of your LiveView for this user at the moment.

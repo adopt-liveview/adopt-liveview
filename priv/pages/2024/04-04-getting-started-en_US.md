@@ -3,7 +3,8 @@ title: "Installing the setup!",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Introduction",
-description: "Let's learn how to make a LiveView run on your computer"
+description: "Let's learn how to make a LiveView run on your computer",
+next_page_id: "first-liveview"
 }
 
 ---
@@ -53,7 +54,7 @@ v0.10.0-77fd510
 
 ## Installing Erlang
 
-`asdf` works through plugins. You need to install the Erlang plugin to be able to install versions of it:
+`asdf` works through plugins. You need to install the Erlang plugin to be able to install versions of them:
 
 ```
 asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git

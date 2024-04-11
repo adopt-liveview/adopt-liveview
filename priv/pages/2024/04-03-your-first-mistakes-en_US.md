@@ -12,7 +12,7 @@ next_page_id: "events"
 
 ## Preparing for worst-case scenarios
 
-Mistakes happen! Sometimes we type something wrong, sometimes we forget part of the code we already thought about writing. Although frustrating, exceptions in the code are there to help you. In this guide we will learn how to handle some of these exceptions so that when you experience them in real life you are already protected. I chose these errors and decided on them so early in the classes because they are errors that the LiveView beginners that I helped have experienced multiple times.
+Mistakes happen! Sometimes we type something wrong, sometimes we forget part of the code we already thought about writing. Although frustrating, exceptions in the code are there to help you. In this guide we will learn how to handle some of these exceptions so that when you experience them in real life you already know what to do. I chose these errors and decided on them so early in this track because they are errors that LiveView beginners that I helped have experienced multiple times.
 
 ## I forgot to add an `assign`!
 
@@ -40,7 +40,7 @@ end
 LiveviewPlayground.start()
 ```
 
-In your browser you should be seeing an "Internal Server Error" and in your terminal several error lines are appearing:
+In your browser you should be seeing an "Internal Server Error" and in your terminal several error lines should appear:
 
 ```elixir
 08:32:27.589 [error] #PID<0.374.0> running LiveviewPlayground.Endpoint (connection #PID<0.372.0>, stream id 2) terminated
@@ -101,7 +101,7 @@ It indicates that the connection to your user's LiveView was suddenly terminated
 }
 ```
 
-In Elixir a `KeyError` means that at a given moment you had a map and tried to access a key that does not exist in it in the format `mapa.chave_inexistente`. Remembering that in our `render/1` we made `@name` which is the same as `assigns.name` it makes sense that it was a `KeyError`. To make the above error message even clearer, we can simplify it as:
+In Elixir a `KeyError` means that at a given moment you had a map and tried to access a key that does not exist in it such as `my_map.key_that_does_not_exist`. Recall that in our `render/1` we used `@name` which is the same as `assigns.name` it makes sense that it was a `KeyError`. To make the above error message even clearer, we can simplify it as:
 
 ```elixir
 ** (exit) an exception was raised:
@@ -126,7 +126,7 @@ priv/examples/your-first-mistakes/missing_assign.exs:14: anonymous fn/2 in PageL
 (phoenix_live_view 0.18.18) lib/phoenix_live_view/static.ex:135: Phoenix.LiveView.Static.render/3
 ```
 
-A `stack trace` serves to demonstrate the chain of function execution until reaching the exception in your code. Each line has the format `(version_dependency_name) folder/file_name:line: ModuleName.function_name/arity`. Being able to read stack traces will make your day-to-day life as a programmer much simpler. Here's the first tip on how to find out where the code problem is: ignore all lines that are from libraries (those that start as parentheses). With that we are left with:
+A `stack trace` demonstrates the chain of function calls until reaching the exception in your code (call stack). Each line has the format `(version_dependency_name) folder/file_name:line: ModuleName.function_name/arity`. Being able to read stack traces will make your day-to-day life as a programmer much simpler. Here's the first tip on how to find out where issue is: ignore all lines that are from libraries (those that start as parentheses). With that we are left with:
 
 ```elixir
 priv/examples/your-first-mistakes/missing_assign.exs:14: anonymous fn/2 in PageLive.render/1
@@ -189,10 +189,10 @@ To understand this problem we need to briefly talk about immutability. In Elixir
 ```elixir
 person = %{name: "Lubien"}
 Map.put(person, :name, "João")
-dbg(person) # Continua %{name: "Lubien"}
+dbg(person) # Still %{name: "Lubien"}
 ```
 
-This happens because, unlike programming languages with mutable values (such as JavaScript), data in Elixir is immutable. You cannot modify an existing map but you can create a new map with a certain modification.
+This happens because, unlike programming languages with mutable values (such as JavaScript), data in Elixir is immutable. You cannot modify an existing map but you can create a new map with something modified.
 
 ```elixir
 person = %{name: "Lubien"}
@@ -200,7 +200,7 @@ person = Map.put(person, :name, "João")
 dbg(person) # %{name: "João"}
 ```
 
-In this case, we create a second map and assign this value to the `person` identifier. If you modify data, you will probably want to store the modification in the original or in another. Returning to our LiveView, the code with the problem is right here:
+In this case we create a second map and assign its value to the `person` identifier. If you modify data you will probably want to store the modification in the original or in another variable. Returning to our LiveView, the code with the problem is right here:
 
 ```elixir
 assign(socket, name: "Immutable")
