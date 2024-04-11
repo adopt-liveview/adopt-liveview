@@ -1332,6 +1332,37 @@ defmodule CursoWeb.CoreComponents do
     """
   end
 
+  attr :title, :string, required: true
+  attr :description, :string, default: nil
+  attr :author, :string, required: true
+  attr :avatar, :string, required: true
+  attr :website, :string, required: true
+  attr :theme, :string, default: "github"
+
+  def metadata_og_generator(assigns) do
+    ~H"""
+      <!-- Open Graph / Facebook -->
+      <meta property="og:title" content={@title} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={@website} />
+      <meta property="og:description" content={@description} />
+      <meta
+        property="og:image"
+        content={"https://dynamic-og-image-generator.vercel.app//api/generate?title=#{@title}&author=#{@author}&avatar=#{@avatar}&websiteUrl=#{@website}&theme=#{@theme}"}
+      />
+
+      <!-- Twitter -->
+      <meta property="twitter:title" content={@title} />
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={@website} />
+      <meta property="twitter:description" content={@description} />
+      <meta
+        property="twitter:image"
+        content={"https://dynamic-og-image-generator.vercel.app//api/generate?title=#{@title}&author=#{@author}&avatar=#{@avatar}&websiteUrl=#{@website}&theme=#{@theme}"}
+      />
+    """
+  end
+
   @doc """
   Translates an error message using gettext.
   """
