@@ -1148,6 +1148,7 @@ defmodule CursoWeb.CoreComponents do
         |> JS.show(to: "[id=\"#{@copied_text_id}\"]")
         |> JS.remove_class("!bg-sky-500", to: "[id=\"#{@id}\"]")
         |> JS.add_class("!bg-green-500", to: "[id=\"#{@id}\"]")
+        |> JS.dispatch("plausible", detail: %{name: "copy_code", props: %{}})
       }
     >
       <span id={@default_text_id} class="block">

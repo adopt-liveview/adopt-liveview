@@ -34,7 +34,11 @@ defmodule CursoWeb.Layouts do
       <.button
         id="donate-with-pix-button"
         type="button"
-        phx-click={show("#donate-with-pix") |> JS.hide(to: "#donate-with-pix-button")}
+        phx-click={
+          show("#donate-with-pix")
+          |> JS.hide(to: "#donate-with-pix-button")
+          |> JS.dispatch("plausible", detail: %{name: "show_pix", props: %{}})
+        }
       >
         <%= gettext("Show brazilian Pix R$") %>
       </.button>
@@ -58,7 +62,11 @@ defmodule CursoWeb.Layouts do
 
   def buy_me_a_coffee(assigns) do
     ~H"""
-    <.link href="https://www.buymeacoffee.com/lubien" target="_blank">
+    <.link
+      href="https://www.buymeacoffee.com/lubien"
+      target="_blank"
+      phx-click={JS.dispatch("plausible", detail: %{name: "buy_coffee", props: %{}})}
+    >
       <img
         src="/images/bmc-button.png"
         class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
