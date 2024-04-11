@@ -54,6 +54,7 @@ defmodule CursoWeb.Layouts do
       <h4><%= gettext("For brazilians: Pix") %></h4>
       <img
         src="/images/qrcode-pix.png"
+        alt={gettext("Brazilian Pix payment QR Code")}
         class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
       />
     </div>
@@ -66,9 +67,11 @@ defmodule CursoWeb.Layouts do
       href="https://www.buymeacoffee.com/lubien"
       target="_blank"
       phx-click={JS.dispatch("plausible", detail: %{name: "buy_coffee", props: %{}})}
+      aria-label={gettext("Buy me a coffee at buymeacoffee.com/lubien")}
     >
       <img
         src="/images/bmc-button.png"
+        alt={gettext("Buy me a coffee at buymeacoffee.com/lubien")}
         class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
       />
     </.link>

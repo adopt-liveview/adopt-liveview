@@ -1,5 +1,6 @@
 defmodule DarkMode do
   use Phoenix.Component
+  import CursoWeb.Gettext
 
   def button(assigns) do
     ~H"""
@@ -8,6 +9,7 @@ defmodule DarkMode do
       type="button"
       phx-update="ignore"
       phx-hook="DarkThemeToggle"
+      aria-label={gettext("Dark theme toggle")}
       class="flex h-9 w-9 items-center justify-center rounded-lg shadow-md shadow-black/5 ring-1 ring-black/5 backdrop-blur transition dark:bg-slate-700 dark:ring-inset dark:ring-white/5"
     >
       <svg

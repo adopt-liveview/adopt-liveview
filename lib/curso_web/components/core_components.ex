@@ -1325,6 +1325,7 @@ defmodule CursoWeb.CoreComponents do
     >
       <img
         src={"/images/flags/#{@locale}.png"}
+        alt={gettext("Toggle locale")}
         class="h-5 w-5 fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500"
       />
     </button>
