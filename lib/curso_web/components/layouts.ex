@@ -9,12 +9,15 @@ defmodule CursoWeb.Layouts do
       <h2><%= gettext("Donate") %></h2>
     </.prose>
 
-    <.prose class="mt-2"><.brazilian_pix /></.prose>
+    <div class="xl:block flex items-start justify-around">
+      <.prose class="mt-2"><.brazilian_pix /></.prose>
 
-    <.prose class="mt-2">
-      <h4><%= gettext("...or buy me a coffee") %></h4>
-      <.buy_me_a_coffee />
-    </.prose>
+      <.prose class="mt-2">
+        <h4><%= gettext("...or buy me a coffee") %></h4>
+        <.buy_me_a_coffee />
+      </.prose>
+    </div>
+
     """
   end
 
@@ -50,14 +53,14 @@ defmodule CursoWeb.Layouts do
 
   def brazilian_pix(assigns) do
     ~H"""
-    <div id="donate-with-pix" class={@class}>
+    <.prose id="donate-with-pix" class={@class}>
       <h4><%= gettext("For brazilians: Pix") %></h4>
       <img
         src="/images/qrcode-pix.png"
         alt={gettext("Brazilian Pix payment QR Code")}
-        class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
+        class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2 h-52 w-52"
       />
-    </div>
+    </.prose>
     """
   end
 
@@ -72,7 +75,7 @@ defmodule CursoWeb.Layouts do
       <img
         src="/images/bmc-button.png"
         alt={gettext("Buy me a coffee at buymeacoffee.com/lubien")}
-        class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-2"
+        class="fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-4 max-w-52"
       />
     </.link>
     """
