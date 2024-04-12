@@ -62,12 +62,12 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1159
+#: lib/curso_web/components/core_components.ex:1163
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1155
+#: lib/curso_web/components/core_components.ex:1159
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr ""
@@ -258,7 +258,7 @@ msgstr ""
 msgid "Donate"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:50
+#: lib/curso_web/components/layouts.ex:54
 #, elixir-autogen, elixir-format
 msgid "For brazilians: Pix"
 msgstr ""
@@ -273,18 +273,18 @@ msgstr ""
 msgid "Modal Form"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:39
+#: lib/curso_web/components/layouts.ex:43
 #, elixir-autogen, elixir-format
 msgid "Show brazilian Pix R$"
 msgstr ""
 
 #: lib/curso_web/components/feedback.ex:51
-#: lib/curso_web/live/guide_live.ex:62
+#: lib/curso_web/live/guide_live.ex:92
 #, elixir-autogen, elixir-format
 msgid "Feedback"
 msgstr ""
 
-#: lib/curso_web/live/guide_live.ex:63
+#: lib/curso_web/live/guide_live.ex:93
 #, elixir-autogen, elixir-format
 msgid "Got any feedback about this page? Let us know!"
 msgstr ""
@@ -304,12 +304,12 @@ msgstr ""
 msgid "What's your feedback about this lesson?"
 msgstr ""
 
-#: lib/curso_web/live/guide_live.ex:44
+#: lib/curso_web/live/guide_live.ex:68
 #, elixir-autogen, elixir-format
 msgid "Read time:"
 msgstr ""
 
-#: lib/curso_web/live/guide_live.ex:44
+#: lib/curso_web/live/guide_live.ex:68
 #, elixir-autogen, elixir-format
 msgid "minute"
 msgid_plural "minutes"
@@ -326,7 +326,7 @@ msgstr ""
 msgid "Start now!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1102
+#: lib/curso_web/components/core_components.ex:1105
 #, elixir-autogen, elixir-format
 msgid "Under construction"
 msgstr ""
@@ -341,17 +341,19 @@ msgstr ""
 msgid "Deployments track"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:878
+#: lib/curso_web/components/core_components.ex:881
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr ""
 
 #: lib/curso_web/components/layouts/app.html.heex:17
+#: lib/curso_web/live/home_live.ex:16
 #, elixir-autogen, elixir-format
 msgid "Learn LiveView now!"
 msgstr ""
 
 #: lib/curso_web/components/layouts/app.html.heex:19
+#: lib/curso_web/live/home_live.ex:18
 #, elixir-autogen, elixir-format
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
 msgstr ""
@@ -361,7 +363,8 @@ msgstr ""
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1319
+#: lib/curso_web/components/core_components.ex:1323
+#: lib/curso_web/components/core_components.ex:1328
 #, elixir-autogen, elixir-format
 msgid "Toggle locale"
 msgstr ""
@@ -369,4 +372,20 @@ msgstr ""
 #: lib/curso_web/live/home_live.html.heex:7
 #, elixir-autogen, elixir-format
 msgid "We are working on many courses"
+msgstr ""
+
+#: lib/curso_web/components/layouts.ex:57
+#, elixir-autogen, elixir-format
+msgid "Brazilian Pix payment QR Code"
+msgstr ""
+
+#: lib/curso_web/components/layouts.ex:70
+#: lib/curso_web/components/layouts.ex:74
+#, elixir-autogen, elixir-format
+msgid "Buy me a coffee at buymeacoffee.com/lubien"
+msgstr ""
+
+#: lib/curso_web/components/dark_mode.ex:12
+#, elixir-autogen, elixir-format
+msgid "Dark theme toggle"
 msgstr ""
