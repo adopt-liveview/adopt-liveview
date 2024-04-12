@@ -1337,6 +1337,7 @@ defmodule CursoWeb.CoreComponents do
   attr :author, :string, default: "Lubien"
   attr :avatar, :string, default: "https://avatars.githubusercontent.com/u/9121359"
   attr :url, :string, default: "http://localhost:4000"
+  attr :canonical, :string, required: true
   attr :theme, :string, default: "github"
 
   def metadata_generator(assigns) do
@@ -1351,6 +1352,7 @@ defmodule CursoWeb.CoreComponents do
         })
       end)
     ~H"""
+    <link rel="canonical" href={@url}/>
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={@title} />
     <meta property="og:type" content="website" />
