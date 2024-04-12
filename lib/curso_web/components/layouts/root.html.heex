@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang={language_for_locale(assigns[:locale])} class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,6 +7,10 @@
     <.live_title suffix=" · Adopt LiveView">
       <%= assigns[:page_title] || "Adopt LiveView" %>
     </.live_title>
+    <meta
+      name="keywords"
+      content="Phoenix LiveView tutorial, Beginner's guide to Phoenix LiveView, Free LiveView course, LiveView basics, Getting started with LiveView, LiveView for beginners, Phoenix framework tutorial, Elixir LiveView tutorial, Learn LiveView step by step, Interactive web development with LiveView, LiveView fundamentals, Free LiveView resources, LiveView hands-on tutorials, Introduction to Phoenix LiveView, LiveView crash course"
+    />
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer data-domain="adopt-liveview.lubien.dev" src="/js/plausible_script.js">
     </script>
@@ -29,7 +33,13 @@
         document.documentElement.classList.remove('dark')
       }
     </script>
-    <.metadata_generator title={assigns[:page_title]} canonical={CursoWeb.Endpoint.url()} url={assigns[:metadata_url]}/>
+    <.metadata_generator
+      title={assigns[:page_title]}
+      description={assigns[:page_description]}
+      page_breadcumb_list={assigns[:page_breadcumb_list]}
+      canonical={CursoWeb.Endpoint.url()}
+      url={assigns[:metadata_url]}
+    />
   </head>
   <body class="min-h-full bg-white dark:bg-slate-900 [scrollbar-gutter:stable] h-full antialiased font-sans font-display">
     <%= @inner_content %>

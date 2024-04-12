@@ -77,4 +77,7 @@ defmodule CursoWeb.Layouts do
     </.link>
     """
   end
+
+  def language_for_locale(locale), do: locale
+  def language_for_locale(_), do: "en"
 end

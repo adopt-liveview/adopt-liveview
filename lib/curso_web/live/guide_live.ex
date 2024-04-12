@@ -1,7 +1,7 @@
 defmodule CursoWeb.GuideLive do
-  alias CursoWeb.Endpoint
   use CursoWeb, :live_view
   alias Curso.Pages
+  alias CursoWeb.Endpoint
 
   on_mount CursoWeb.RestoreLocale
 
@@ -29,6 +29,26 @@ defmodule CursoWeb.GuideLive do
         previous_page: previous_page,
         next_page: next_page,
         page_title: page_title(page),
+        page_description: page.description,
+        page_breadcumb_list:
+          Jason.encode!(%{
+            "@context" => "https://schema.org",
+            "@type" => "BreadcrumbList",
+            "itemListElement" => [
+              %{
+                "@type" => "ListItem",
+                "position" => 1,
+                "name" => page.section,
+                "item" => Endpoint.url() <> "/#{locale}"
+              },
+              %{
+                "@type" => "ListItem",
+                "name" => page.title,
+                "position" => 2,
+                "item" => metadata_url
+              }
+            ]
+          }),
         pathname: URI.parse(uri).path,
         metadata_url: metadata_url
       )
@@ -37,7 +57,7 @@ defmodule CursoWeb.GuideLive do
   end
 
   def page_title(page) do
-    "#{page.title} - #{page.section}"
+    "#{page.title} · #{page.section}"
   end
 
   def render(assigns) do
