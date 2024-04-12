@@ -1350,7 +1350,6 @@ defmodule CursoWeb.CoreComponents do
           theme: assigns.theme
         })
       end)
-
     ~H"""
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={@title} />
