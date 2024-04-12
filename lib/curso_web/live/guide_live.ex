@@ -1,4 +1,5 @@
 defmodule CursoWeb.GuideLive do
+  alias CursoWeb.Endpoint
   use CursoWeb, :live_view
   alias Curso.Pages
 
@@ -16,6 +17,8 @@ defmodule CursoWeb.GuideLive do
     next_page =
       Pages.by_id(page.next_page_id, locale) || Pages.by_id(page.next_page_id, "br")
 
+    metadata_url = Endpoint.url() <> "/guides/#{page.id}/#{locale}"
+
     socket =
       socket
       |> assign(
@@ -26,7 +29,8 @@ defmodule CursoWeb.GuideLive do
         previous_page: previous_page,
         next_page: next_page,
         page_title: page_title(page),
-        pathname: URI.parse(uri).path
+        pathname: URI.parse(uri).path,
+        metadata_url: metadata_url
       )
 
     {:noreply, socket}
