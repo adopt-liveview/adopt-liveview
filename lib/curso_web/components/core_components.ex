@@ -1334,11 +1334,12 @@ defmodule CursoWeb.CoreComponents do
 
   attr :title, :string, required: true
   attr :description, :string, default: nil
+  attr :page_breadcumb_list, :string, default: nil
   attr :author, :string, default: "Lubien"
   attr :avatar, :string, default: "https://avatars.githubusercontent.com/u/9121359"
   attr :url, :string, default: "http://localhost:4000"
   attr :canonical, :string, required: true
-  attr :theme, :string, default: "github"
+  attr :theme, :string, default: "shadesOfPurple"
 
   def metadata_generator(assigns) do
     assigns =
@@ -1351,8 +1352,9 @@ defmodule CursoWeb.CoreComponents do
           theme: assigns.theme
         })
       end)
+
     ~H"""
-    <link rel="canonical" href={@url}/>
+    <link rel="canonical" href={@url} />
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={@title} />
     <meta property="og:type" content="website" />
@@ -1360,7 +1362,7 @@ defmodule CursoWeb.CoreComponents do
     <meta property="og:description" content={@description} />
     <meta
       property="og:image"
-      content={"https://dynamic-og-image-generator.vercel.app//api/generate?#{@image_query}"}
+      content={"https://dynamic-og-image-generator.vercel.app/api/generate?#{@image_query}"}
     />
     <!-- Twitter -->
     <meta property="twitter:title" content={@title} />
@@ -1369,8 +1371,12 @@ defmodule CursoWeb.CoreComponents do
     <meta property="twitter:description" content={@description} />
     <meta
       property="twitter:image"
-      content={"https://dynamic-og-image-generator.vercel.app//api/generate?#{@image_query}"}
+      content={"https://dynamic-og-image-generator.vercel.app/api/generate?#{@image_query}"}
     />
+
+    <script :if={@page_breadcumb_list} type="application/ld+json">
+      <%= {:safe, @page_breadcumb_list} %>
+    </script>
     """
   end
 
