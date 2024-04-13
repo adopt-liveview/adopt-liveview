@@ -207,7 +207,7 @@ When you run `JS.push("event", value: %{})` you are internally using `JS.push(%J
 
 It's okay if this part is a little confusing at the moment, we will revisit JS Commands in the future. For now, just remember that if you make a custom JS Commands function, always start with `def sua_funcao(js \\ %JS{}, ...rest)` and use the variable `js` in the first argument of `JS. push/3`.
 
-## In short!
+## Recap!
 
 - JS Commands can be chained
 - Using JS Commands you can cause more than one event to be triggered in the same `phx-click` binding.

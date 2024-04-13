@@ -163,7 +163,7 @@ In this example we are creating a module called <code>`CoreComponents`</code> bu
 """
 } %% .callout
 
-## In short!
+## Recap!
 
 - You can use components from other modules using the `<ModuleName.component_name>` syntax.
 - If the component in question is used commonly in the application, consider placing it in your `CoreComponents`.

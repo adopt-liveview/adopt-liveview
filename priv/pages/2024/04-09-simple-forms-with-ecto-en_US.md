@@ -224,7 +224,7 @@ Very similar to `mount/3`, our function also uses changeset to create `Phoenix.H
 - We pass the `product_params` to the changeset so that the new data is validated.
 - We use `Map.put/3` to define in the changeset that we are in validation mode. This is necessary so that our LiveView knows that the changeset has been validated and errors can be rendered.
 
-## In short!
+## Recap!
 
 - Ecto is a library for managing powerful database access.
 - Phoenix projects use Ecto by default not only to work with databases but also to validate data.

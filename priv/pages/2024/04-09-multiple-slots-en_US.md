@@ -126,7 +126,7 @@ Using custom slots is very similar to component syntax except that you must use 
 
 The [`render_slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#render_slot/2) function can understand when there is nothing in the slot. In the OtherPageLive view we did not add anything outside of named slots and even so there were no problems in the code.
 
-## In short!
+## Recap!
 
 - Components can have more than one slot
 - Named slots can be used as `<:name>Content</:name>` and rendered as `<% render_slot(@name) %>`.

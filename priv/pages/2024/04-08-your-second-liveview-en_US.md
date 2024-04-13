@@ -118,7 +118,7 @@ So far, LiveView Playground is unable to check routes using <code>`sigil_p`</cod
 """
 } %% .callout
 
-## In short!
+## Recap!
 
 - Every Phoenix application has a Router.
 - On a Router we can define LiveView routes using the `live/4` macro.

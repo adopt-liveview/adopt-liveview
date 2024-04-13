@@ -252,7 +252,7 @@ I came here especially to give you a spoiler that the answer is no, Phoenix alre
 """
 } %% .callout
 
-## Resu## In short!mindo!
+## Recap!
 
 - LiveView forms use the `phx-submit` binding to trigger a `handle_event/3` with the respective event name.
 - Phoenix prefers to use the format `parent_name[son]` in its `input` to make it easier to manage which form contains which data. This generates maps like `%{"parent_name" => %{"child" => ""}}` in `phx-submit` events.

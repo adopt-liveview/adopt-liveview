@@ -121,7 +121,7 @@ LiveviewPlayground.start()
 
 This time we replace the `"increase"` and `"decrease"` events with a generic event called `"add"` that receives a `phx-value-amount` which is a number. Equivalently, your `handle_event/3` receives `%{"amount" => "+10"}` as a second parameter depending on the button clicked. It is important to note that parameters coming from HTML always come in string format (as HTML attributes are strings) so we must convert the number before doing the sum.
 
-## In short!
+## Recap!
 
 - The `phx-value-*` binding can help generalize an event so that it is reusable.
 - The data you receive in `handle_event/3` is equivalent to the HEEx binding name: `phx-value-test` generates `%{"test" => value}`.

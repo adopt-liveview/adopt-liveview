@@ -131,7 +131,7 @@ Additionally, we changed the way we render the slot to use a `:for={title_slot <
 
 Great! Now your slots can have attributes specifically in them. We managed to solve the original problem: on the home page we would like the slot title to have a different attribute than the other!
 
-## In short!
+## Recap!
 
 - Each slot is actually a map list type assignment.
 - Slots can be given attributes and we can document this using `slot/2` with a `do` block.

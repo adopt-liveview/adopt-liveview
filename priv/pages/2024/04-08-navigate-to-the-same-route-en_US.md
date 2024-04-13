@@ -242,7 +242,7 @@ Early optimization is terrible. If you identify a LiveView that you want to opti
 """
 } %% .callout
 
-## In short!
+## Recap!
 
 - A LiveView can be used on more than one route.
 - We can take advantage of URLs to persist data in cases such as tabs.

@@ -77,7 +77,7 @@ You are on this site under a route <code>/guides/:id</code>, see the URL in your
 """
 } %% .callout
 
-## In short!
+## Recap!
 
 - The `live/4` macro lets you create parameters in the URL using the `:variable_name` format.
 - Any parameter defined in the router becomes a key in the `params` map in your LiveView.

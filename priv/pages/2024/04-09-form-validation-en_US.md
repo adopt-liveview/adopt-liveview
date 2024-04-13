@@ -221,7 +221,7 @@ We swap our own definition of `<.input>` for the automatically generated definit
 
 You may also be wondering: why does the `<.form>` component already come with Phoenix and the `<.input>` component is generated in CoreComponentes? The answer is simpler than it seems. While `<.form>` works more with managing certain form features and does not have styles, CoreComponents components always have styles so it makes sense for them to come with a default style and you can edit it to confirm your need, it's all in your hands .
 
-## In short!
+## Recap!
 
 - `phx-change` is a binding that runs every time the form changes. It triggers a `handle_event/3` similar to that of `phx-submit`.
 - You can use `to_form/3` to add validation errors to your form by passing it in the options.

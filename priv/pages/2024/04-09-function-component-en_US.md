@@ -181,7 +181,7 @@ LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 
 Now each use of the button has an assign of `color="..."` and we can customize our buttons in a much simpler way and without duplicating code.
 
-## In short!
+## Recap!
 
 - You can create components in your LiveViews if you create a function that receives `assigns` and returns HEEx.
 - HTML components and tags are differentiated by the presence of a `.` at the beginning of the tag to avoid conflicts.

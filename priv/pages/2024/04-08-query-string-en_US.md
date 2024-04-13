@@ -39,7 +39,7 @@ LiveviewPlayground.start()
 
 This LiveView reused several things covered in previous classes. The main thing here is the fact that we receive the params variable without specifying any specific param. This way, if the user passes an empty query string, our system will simply leave the assign `admin?` as false.
 
-## In short!
+## Recap!
 
 - The `params` variable receives anything in the query string in key-value format like `?x=10&y=12`.
 - As the `params` variable is a map, we can use the `params["key"]` syntax to access optional values.

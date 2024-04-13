@@ -132,7 +132,7 @@ The component itself isn't much different from what you've seen before. We use a
 
 When a second argument is passed to `render_slot/2`, when using the slot we can use the special attribute `:let={var}` to store the current element in `var`. This way, we managed to simplify a component that works with loops and made our LiveView `render/1` extremely lean.
 
-## In short!
+## Recap!
 
 - You can simplify loops by creating components.
 - Slots can receive loop variables by passing them in the second argument of `render_slot/2` and receiving them in the slot with `:let={var_name}`.

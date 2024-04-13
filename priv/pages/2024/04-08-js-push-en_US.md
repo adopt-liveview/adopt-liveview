@@ -175,7 +175,7 @@ LiveviewPlayground.start()
 
 This tip also works for the previous class with `phx-value-amount`, it's your homework to try out how to do this.
 
-## In short!
+## Recap!
 
 - Using JS Commands we can exchange a combo of the `phx-click` + `phx-value-*` bindings for just one `phx-click` binding containing a `JS.push/2`.
 - `JS.push/2` facilitates the serialization of data that is not strings in value because integers are part of what JSON supports, so in the event trigger the data in integer format is sent.

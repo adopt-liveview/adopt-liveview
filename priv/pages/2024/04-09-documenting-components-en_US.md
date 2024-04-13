@@ -225,7 +225,7 @@ LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 
 Generally called `:rest` (but any name will do), we can define using `attr/3` an attribute of type `:global`. Optionally, we can add its `default` as a map with all the default properties. We can also optionally say which properties will be accepted by our global attribute, in this case, `type="..."` and `style="..."`.
 
-## In short!
+## Recap!
 
 - You can use `@doc` to document your component and show examples.
 - Using `attr/3` you can document and enhance your component:
