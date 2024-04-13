@@ -231,7 +231,59 @@ LiveviewPlayground.start(router: CustomRouter)
 
 O callback `handle_params/3` é muito parecido com o `mount/3` exceto que o segundo argumento contém o URI da página atual e o retorno deve ser `{:noreply, socket}`.
 
-Uma coisa chata no momento é o fato que temos código duplicado entre nosso `mount/3` e `handle_params/3`. Felizmente existe uma solução muito simples para isso. Sempre que uma LiveView é instanciada pelo Phoenix pela primeira vez ela executa o `mount/3` se ele existir e, em seguida, o `handle_params/3` se ele existir. Deste modo podemos remover o `mount/3` completamente. Crie e execute um arquivo chamado `tab_param_patch_refactor.exs`
+Uma coisa chata no momento é o fato que temos código duplicado entre nosso `mount/3` e `handle_params/3`. Felizmente existe uma solução muito simples para isso. Sempre que uma LiveView é instanciada pelo Phoenix pela primeira vez ela executa o `mount/3` se ele existir e, em seguida, o `handle_params/3` se ele existir. Deste modo podemos remover o `mount/3` completamente. Crie e execute um arquivo chamado `tab_param_patch_refactor.exs`:
+
+```elixir
+Mix.install([
+  {:liveview_playground, "~> 0.1.3"}
+])
+
+defmodule CustomRouter do
+  use LiveviewPlaygroundWeb, :router
+
+  pipeline :browser do
+    plug :accepts, ["html"]
+  end
+
+  scope "/" do
+    pipe_through :browser
+
+    live "/", TabLive, :show
+    live "/tab/:tab", TabLive, :show
+  end
+end
+
+defmodule TabLive do
+  use LiveviewPlaygroundWeb, :live_view
+
+  def handle_params(params, _uri, socket) do
+    tab = params["tab"] || "home"
+    socket = assign(socket, tab: tab)
+    {:noreply, socket}
+  end
+
+  def render(assigns) do
+    ~H"""
+    <div>
+      <%= case @tab do %>
+        <% "home" -> %>
+          <p>You're on my personal page!</p>
+        <% "about" -> %>
+          <p>Hi, I'm a LiveView developer!</p>
+        <% "contact" -> %>
+          <p>Mail me to bot [at] company [dot] com</p>
+      <% end %>
+    </div>
+
+    <.link :if={@tab != "home"} patch={~p"/"}>Go to home</.link>
+    <.link :if={@tab != "about"} patch={~p"/tab/about"}>Go to about</.link>
+    <.link :if={@tab != "contact"} patch={~p"/tab/contact"}>Go to contact</.link>
+    """
+  end
+end
+
+LiveviewPlayground.start(router: CustomRouter)
+```
 
 Deste modo conseguimos otimizar a troca entre a mesma LiveView por simplesmente fazer links usarem o atributo `patch` e mudar de `mount/3` para `handle_params/3`.
 

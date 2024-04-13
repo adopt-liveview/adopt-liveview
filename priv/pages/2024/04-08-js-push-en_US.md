@@ -3,14 +3,14 @@ title: "JS.push/1",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Events",
-description: "How to pass data with events in an alternative way",
+description: "How to send data with events in an alternative way",
 previous_page_id: "phx-value",
 next_page_id: "multiple-pushes"
 }
 
 ---
 
-In the previous class we learned how to use the `phx-value-*` binding to pass values into an event. To recap:
+In the previous lesson we learned how to use the `phx-value-*` binding to pass values into an event. To recap:
 
 ```elixir
 Mix.install([
@@ -64,7 +64,7 @@ end
 LiveviewPlayground.start()
 ```
 
-However, we commented on the limitation that the value will be sent strictly as a string. To help us, LiveView also has an alternative called [`JS.push/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.JS.html#push/2) which is part of the so-called JS Commands. Write and run the `js_push.exs` file:
+However, we talked about how values will be sent strictly as a strings. LiveView also has an alternative way to push events called [`JS.push/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.JS.html#push/2) which is part of the so-called JS Commands. Write and run the `js_push.exs` file:
 
 ```elixir
 
@@ -118,9 +118,9 @@ end
 LiveviewPlayground.start()
 ```
 
-We can simplify our LiveView by using `JS.push/2` directly in the `phx-click` binding and defining that we are pushing the `"add"` event and the value will be `%{amount: INTEGER}`. This `phx-click` will be serialized in JSON so that when the button is clicked the value will be as you expect: `amount` as an integer.
+We simplified our LiveView by using `JS.push/2` directly in the `phx-click` binding and defining that we are pushing the `"add"` event and the value will be `%{amount: INTEGER}`. This `phx-click` will be serialized as JSON so that when the button is clicked the `amount` will be an integer as expected.
 
-## Extra Tip: Using Loops to Duplicate Code
+## Extra tip: using loops to prevent duplicated code
 
 We could avoid some code duplication by using a simple `:for`:
 
@@ -173,9 +173,9 @@ end
 LiveviewPlayground.start()
 ```
 
-This tip also works for the previous class with `phx-value-amount`, it's your homework to try out how to do this.
+This tip also works for the previous class with `phx-value-amount`. Take it as a home assignment to try out how to do this with the previous lesson code.
 
 ## Recap!
 
-- Using JS Commands we can exchange a combo of the `phx-click` + `phx-value-*` bindings for just one `phx-click` binding containing a `JS.push/2`.
-- `JS.push/2` facilitates the serialization of data that is not strings in value because integers are part of what JSON supports, so in the event trigger the data in integer format is sent.
+- Using JS Commands we can switch from a combo of `phx-click` + `phx-value-*` bindings for just one `phx-click` binding containing a `JS.push/2`.
+- `JS.push/2` simplifies the serialization of data that is not strings in values because integers are part of what JSON supports so the pushed data will be an integer as expected.

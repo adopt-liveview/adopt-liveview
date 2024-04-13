@@ -3,14 +3,14 @@ title: "phx-value",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Events",
-description: "How to pass data with events",
+description: "How to send data with events",
 previous_page_id: "list-rendering",
 next_page_id: "js-push"
 }
 
 ---
 
-In previous classes we only saw how to trigger events. In the conditional rendering class with `cond` we saw the following code:
+In previous lessons we only saw how to trigger events. Also in the conditional rendering class with `cond` we saw the following code:
 
 ```elixir
 Mix.install([
@@ -65,7 +65,7 @@ end
 LiveviewPlayground.start()
 ```
 
-Our code always increased or decreased the temperature by 10 degrees. What if we wanted options to increase by different amounts? Would we have to have an event for each case? Let's get to know the `phx-value` binding. Create and run the `phx_value.exs` file:
+Our code always increased or decreased the temperature by 10 degrees. What if we wanted options to increase/decrease by different amounts? Would we have to create an event for each case? Let's get to know the `phx-value` binding. Create and run the `phx_value.exs` file:
 
 ```elixir
 Mix.install([
@@ -119,10 +119,10 @@ end
 LiveviewPlayground.start()
 ```
 
-This time we replace the `"increase"` and `"decrease"` events with a generic event called `"add"` that receives a `phx-value-amount` which is a number. Equivalently, your `handle_event/3` receives `%{"amount" => "+10"}` as a second parameter depending on the button clicked. It is important to note that parameters coming from HTML always come in string format (as HTML attributes are strings) so we must convert the number before doing the sum.
+This time we replaced the `"increase"` and `"decrease"` events with a generic event called `"add"` that receives a `phx-value-amount` which is a number. Your `handle_event/3` receives `%{"amount" => "+10"}` as a second parameter depending on the button clicked. It is important to note that parameters coming from HTML always come in string format (as HTML attributes are strings) so we must convert the number before doing the sum.
 
 ## Recap!
 
 - The `phx-value-*` binding can help generalize an event so that it is reusable.
 - The data you receive in `handle_event/3` is equivalent to the HEEx binding name: `phx-value-test` generates `%{"test" => value}`.
-- Values coming from a `phx-value-*` binding are mandatory strings.
+- Values coming from a `phx-value-*` binding are always strings.

@@ -14,7 +14,7 @@ In a dynamic system, it is quite common that in the same route you need to handl
 
 ## Router with parameters
 
-Let's build a simple blog. There we can access `/blog/anything` and read more about it. Create and run a file called `params.exs`:
+Let's build a simple blog. There we can access `/blog/anything` and read these blog posts. Create and run a file called `params.exs`:
 
 ```elixir
 Mix.install([
@@ -68,12 +68,12 @@ end
 LiveviewPlayground.start(router: CustomRouter)
 ```
 
-Here we create a `/blog/:slug` route with a variable in the URL called `:slug`. This ensures that `BlogLive` will receive a map in the first argument of your `mount/3` in the format `%{"slug" => slug}` and you can use this variable to create an assign. You can either use the links added on the home page or try different URLs for `/blog/anything`.
+Here we created a `/blog/:slug` route with a variable in the URL called `:slug`. This ensures that `BlogLive` will receive in its first argument of the `mount/3` callback a map in the format `%{"slug" => slug}` and you can use this variable to create an assign. You can either use the links added on the home page or try different URLs for `/blog/anything`.
 
 %{
-title: "Curiosity",
+title: "Trivia",
 description: ~H"""
-You are on this site under a route <code>/guides/:id</code>, see the URL in your browser.
+You are on this site under a route <code>/guides/:id/:locale</code>. Look at the URL in your browser.
 """
 } %% .callout
 

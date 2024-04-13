@@ -3,14 +3,14 @@ title: "Functional components",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Components",
-description: "Reusing code intelligently",
+description: "Reusing code in a smart way",
 previous_page_id: "navigate-to-the-same-route",
 next_page_id: "documenting-components"
 }
 
 ---
 
-Reusing code is the key to building a maintainable system. In LiveView there is more than one way for you to reuse HEEx code. In this and the next classes we will explore functional components for your views and, step by step, understand how they work and their possibilities.
+Reusing code is the key to building a maintainable system. In LiveView there is more than one way for you to reuse HEEx code. In the following lessons we will explore functional components for your views and, bit by bit, understand how they work and their possibilities.
 
 ## Understanding the problem
 
@@ -57,13 +57,13 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-In this example we introduce the `scripts` property in our `LiveviewPlayground.start/1` which accepts a list of JavaScript scripts and adds them to our HTML. We will use Tailwind instead of writing CSS directly because nowadays Phoenix already comes with this library installed.
+In this example we introduced the `scripts` property in our `LiveviewPlayground.start/1` which accepts a list of JavaScript scripts and adds them to our HTML. We will use Tailwind instead of writing CSS directly because nowadays Phoenix already comes with this library installed by default.
 
-Imagine you are developing a large project and the styles above are used for buttons. Every time you need a new button you would have to copy and paste a ton of classes. Even if there were one or two classes, if one day they changed you would have to change them in every corner of your application.
+Imagine you are developing a large project and the styles above are used for buttons. Every time you need a new button you would have to copy and paste a ton of classes. Even if there were one or two classes whenever we needed to change them you would have to change every corner of your application.
 
 ## Creating a functional component
 
-In previous classes we saw the `<.link>` component being used to render our links. To create a new component, simply create a function with any name and that receives a single variable called assigns. Create and run `first_component.exs`:
+In previous lesson we saw the `<.link>` component being used to render our links. To create a new component, simply create a function with any name that receives a single variable called assigns. Create and run `first_component.exs`:
 
 ```elixir
 Mix.install([
@@ -106,7 +106,7 @@ We chose this example precisely because there is an HTML <code>`button`</code> t
 """
 } %% .callout
 
-Unlike our first code you can notice that all buttons now show the same text: "Default" despite the fact that `<.button>` has a different text! This happens because at the moment we are the creators of the new component, we must teach HEEx one the content of the internal block to be rendered. Create and run `component_inner_block.exs`:
+Unlike our first code you may notice that all buttons now show the same text: "Default" despite the fact that `<.button>` has a different text! This happens because at the moment we are the creators of the new component, we must teach HEEx how the content of the inner block should be rendered. Create and run `component_inner_block.exs`:
 
 ```elixir
 Mix.install([
@@ -140,12 +140,11 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-The only change happened in our `<.button>`.
-We added the [`render_slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#render_slot/2) function by passing an assign `@inner_block`. The assign in question is automatically defined in components and is of the slot type, as the HTML passed within your `<.componente>` is called. From now on, anything sent within `<.button>` will be rendered there.
+The only change that happened in our `<.button>` was that we added the [`render_slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#render_slot/2) function by passing an assign called `@inner_block`. This assign is automatically defined in components and called a `slot` type and contains the HTML inside your `<.component>`. From now on, anything written inside `<.button>` will be rendered there.
 
 ## Customizing components with attributes
 
-Originally each button had its own color whereas now they all have the same style. We can customize our buttons using passed assigns. Create and run `custom_button_colors.exs`:
+Originally each button had its own color whereas now they all have the same style. We can customize our buttons using assigns passes as attribute. Create and run `custom_button_colors.exs`:
 
 ```elixir
 Mix.install([
@@ -179,11 +178,11 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Now each use of the button has an assign of `color="..."` and we can customize our buttons in a much simpler way and without duplicating code.
+Now each use of the button has an assign of `color="..."` and we can customize our buttons in a much simpler way without duplicating code.
 
 ## Recap!
 
 - You can create components in your LiveViews if you create a function that receives `assigns` and returns HEEx.
-- HTML components and tags are differentiated by the presence of a `.` at the beginning of the tag to avoid conflicts.
+- HTML components and tags are separated by the presence of a leading `.` at on its name to avoid conflicts.
 - In a component you decide where to render the child slot using `render_slot(@inner_block)`.
-- With attributes, your components can reuse code efficiently.
+- Your components can reuse code efficiently with attributes.
