@@ -10,11 +10,11 @@ next_page_id: "phx-value"
 
 ---
 
-HEEx templates define multiple ways for you to render multiple elements from a list. Let's study each possibility and when to use each one.
+HEEx templates have many ways for you to render multiple elements from a list. Let's study each possibility and when to use each one of them.
 
 ## Rendering lists with `for` comprehension
 
-Those who already have experience with elixir already know the understanding `for`. It is completely viable within HEEx. Create and run a file called `classic_for.exs`:
+Those who already have experience with Elixir already know `for` list comprehensions. It is completely viable within HEEx. Create and run a file called `classic_for.exs`:
 
 ```elixir
 Mix.install([
@@ -46,7 +46,7 @@ LiveviewPlayground.start()
 We can render any list into an assign using the format `<%= for item <- @items %>`. It is worth mentioning that the `=` in the tag is necessary for the result to be rendered.
 
 %{
-title: ~H"Why doesn't the <code>`food`</code> variable use <code>`@`</code>?",
+title: ~H"Why doesn't the <code>`food`</code> variable begins with <code>`@`</code>?",
 description: ~H"""
 Remember that <code>`@`</code> represents <code>`assigns.`</code>, the variable <code>`@foods`</code> comes precisely from assigns but the variable <code>`food`</code> is locally created by the <code>`for`</code> loop so it would not work using <code>`@`</code>.
 """
@@ -54,12 +54,12 @@ Remember that <code>`@`</code> represents <code>`assigns.`</code>, the variable 
 
 Despite its simplicity, this method of rendering lists has two disadvantages:
 
-1. Every time any assign changes, the loop will be executed again. It doesn't matter if the assign that changed has no relationship with the loop.
-2. The list of elements will be saved in memory in LiveView while LiveView is turned on for that user.
+1. The loop will be executed again every time any assign changes. It doesn't matter if the assign that changed is note related with the loop.
+2. The list of elements will be saved in memory in LiveView while LiveView is alived for that user even if you don't need it.
 
 ## Avoid processing lists within HEEx
 
-Let's say you don't want to render a specific element in the list. We could simply add a filter to our understanding. Create and run a file called `classic_for_filter.exs`:
+Let's say you don't want to render a specific element in the list. We could simply add a filter to our `for` comprehension. Create and run a file called `classic_for_filter.exs`:
 
 ```elixir
 Mix.install([
@@ -88,9 +88,9 @@ end
 LiveviewPlayground.start()
 ```
 
-Just by adding `, food != "banana"` we can remove an unwanted element! However, this introduces another problem in the way we render lists: every time an assignment changes we will filter and render the list again.
+Just by adding `, food != "banana"` we can remove an unwanted element! However, this introduces another problem in the way we render lists: every time an assign changes we will filter and render the list again.
 
-The official recommendation from the Phoenix team is that you avoid doing any type of calculation within your `render/1` as much as possible, processing your assignment beforehand. Create and run a file called `class_for_filter_beforehand.exs`:
+The official recommendation from the Phoenix team is that you avoid doing any type of calculation within your `render/1` as much as possible, process your code before assigning them to your socket. Create and run a file called `class_for_filter_beforehand.exs`:
 
 ```elixir
 Mix.install([
@@ -120,11 +120,11 @@ end
 LiveviewPlayground.start()
 ```
 
-This time our `render/1` benefits from not having to process the filter and also from the fact that there are fewer elements to render!
+This time our `render/1` benefits from not having to process the filter over and over again and also from the fact that there are fewer elements to render!
 
 ## Simplifying list rendering with the special `:for` attribute
 
-Just as the `if` block has the version `:if`, the `for` comprehension has a version in the special HEEx attribute `:for`. Create and run a file called `special_for.exs`:
+Just as the `if` block has the `:if` version, the `for` comprehension has its special HEEx attribute `:for`. Create and run a file called `special_for.exs`:
 
 ```elixir
 Mix.install([
@@ -151,7 +151,7 @@ end
 LiveviewPlayground.start()
 ```
 
-Our code gained a little more readability and simplicity. However, this format has the same disadvantages as the previous method. How can we have list rendering that doesn't consume memory forever and that doesn't re-render when other assigns change?
+Our code gained a little more readability and simplicity. However, this format has the same disadvantages as the previous method. How can we have list rendering that doesn't consume memory forever and that doesn't re-render when assigns change?
 
 ## Efficient rendering with streams
 
@@ -190,26 +190,26 @@ end
 LiveviewPlayground.start()
 ```
 
-We immediately noticed a little more complexity in our code. Let's understand it step-by-step.
+We immediately can spot an increase in complexity in our code. Let's understand it step-by-step.
 
-To define a stream we use the [`stream/4`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#stream/4) function. It receives our socket, the name of the stream as an atom and the initial value. As you can see we had to transform from a simple list of strings to a list of maps. The reason is that, to be able to understand which elements have already been rendered on the page, streams need an `id` in the stream item. Although it is a bit annoying for simple codes, if we were working with a database the `id` would probably already be included.
+To define a stream we use the [`stream/4`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#stream/4) function. It receives our socket, the name of the stream as an atom and the initial value. As you can see we had to transform from a simple list of strings to a list of maps. The reason is that streams need an `id` in the stream item to be able to understand which elements have already been rendered on the page. Although it is a bit annoying for simple things, if we were working with a database the `id` would likely be already included.
 
-The next modification happens in our HEEx code. The parent element of the list to be rendered must have a unique `id` attribute so that LiveView knows who contains the rendered elements and we must add a special `phx-update="stream"` attribute to define which children of this element are part of a stream.
+The next modification happened in our HEEx code. The parent element of the list to be rendered must have a unique `id` attribute so that LiveView knows who contains the rendered elements and we must add a special `phx-update="stream"` attribute to define that children of this element are part of a stream.
 
-Inside our `ul` we kept the special `:for` but this time we read the special assigns `@streams.foods`. Every time a stream is created with `some_name` you generate a special assign `@streams.some_name`. Not only that, our `:for` now reads two variables: a `dom_id` and the `food` itself. The `dom_id` is necessary so that, if necessary, we can update/remove/move elements from our stream efficiently.
+Inside our `ul` we kept the special `:for` but this time we read the special assign `@streams.foods`. Every time a stream is created with `:some_name` you generate a special assign `@streams.some_name`. Not only that, our `:for` now loops elements with two variables inside a tuple: a `dom_id` and the `food` itself. The `dom_id` is necessary so that we can update/remove/move elements from our stream efficiently if necessary.
 
-As you can imagine, streams are much more powerful than simple `:for`. In the future we will talk more about streams in detail.
+As you can imagine, streams are much more powerful than simple `:for` comprehensions. In the future we will talk more about streams in detail.
 
 %{
-title: "Should I always use streams then?",
+title: "Should I always use streams?",
 description: ~H"""
-Don't let the demon of early optimization defeat you. If you're starting something, go simple and use <code>`for`</code> or <code>`:for`</code>. If you are going to work with many items, consider streams. I understand that storing lists in memory may seem wasteful but in reality we are talking about data that in general can be negligible because it is so small in RAM depending on the size of your list.
+Don't let the demon of early optimization defeat you. If you're starting something, go simple and use <code>`for`</code> or <code>`:for`</code>. If you are going to work with many items, consider streams. I understand that storing lists in memory may seem wasteful but in reality we are talking about data that in general can be negligible because it is so small in terms of RAM usage depending on the size of your list.
 """
 } %% .callout
 
-## In short!
+## Recap!
 
 - You can use the `for` block comprehension to render lists easily.
 - HEEx also has a special attribute version `:for` to make your code simpler and more readable.
-- Both `for` and `:for` solutions gain in simplicity but load extra memory on the server and are executed again whenever an assign changes.
-- For efficient rendering of many or infinite data, LiveView has streams as a solution, second only to the fact that it requires a slightly larger initial setup.
+- Both `for` and `:for` solutions win in simplicity but require extra memory on the server and are executed again whenever an assign changes.
+- LiveView has streams as a solution for efficient rendering of many or infinite data second only to the fact that it requires a slightly larger initial setup (unless you're using a database 😉).
