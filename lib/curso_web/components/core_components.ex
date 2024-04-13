@@ -1134,6 +1134,7 @@ defmodule CursoWeb.CoreComponents do
 
   attr :id, :string, required: true, doc: "Unique ID for this component"
   attr :selector, :string, required: true, doc: "Element to be selected"
+  attr :class, :string, default: nil, doc: "Class for the button"
 
   def copy_button(assigns) do
     assigns = assign_new(assigns, :default_text_id, fn -> "#{assigns.id}-default-text" end)
@@ -1143,7 +1144,7 @@ defmodule CursoWeb.CoreComponents do
     <.button
       id={@id}
       type="button"
-      class="copy-button absolute whitespace-nowrap !py-1 !px-2 -top-4 right-3 !inline-flex items-center !bg-sky-500"
+      class={["copy-button absolute whitespace-nowrap !py-1 !px-2 -top-4 right-3 !inline-flex items-center !bg-sky-500", @class]}
       phx-update="ignore"
       phx-click={
         JS.dispatch("copy_code_to_clipboard", to: @selector)
