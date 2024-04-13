@@ -10,7 +10,7 @@ next_page_id: "components-from-other-modules"
 
 ---
 
-Elixir is a language that early on brought incredible documentation tools called ExDoc. Following in the same direction, the Phoenix team has made documenting LiveView components not only simple but also capable of adding superpowers to your LiveView. Create and run `basic_component_doc.exs`:
+Elixir is a language that early on brought incredible documentation tools called ExDoc. The Phoenix team follows the same direction and made documenting LiveView components not only simple but also capable of adding superpowers to your LiveView. Create and run `basic_component_doc.exs`:
 
 ```elixir
 Mix.install([
@@ -53,13 +53,13 @@ LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 
 The first way to document your component is to use ExDoc's `@doc` tag where you briefly explain what the component does and add one or a few examples.
 
-The next new feature is specific to Phoenix. You can use the [`attr/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#attr/3) function to document the component below it. Each use of `attr` defines an attribute to be received. An extra feature of using `attr/3` is that in Phoenix projects [the compiler will validate](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#attr/3-compile-time-validations) that there are no extra, missing or incorrect attributes! By simply documenting your component you already gain extra validation.
+The next new feature is specific to Phoenix. You can use the [`attr/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#attr/3) macro to document the component below its call. Each use of `attr` defines an attribute to be received. An extra feature of using `attr/3` is that in Phoenix projects [the compiler will validate](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#attr/3-compile-time-validations) that there are no extra, missing or incorrect attributes! By simply documenting your component you already gain extra validation.
 
 %{
 title: ~H"Validation of <code>`attr/3`</code> and LiveView Playground",
 type: :warning,
 description: ~H"""
-So far, LiveView Playground is unable to check the validity of components using <code>`attr/3`</code>. In any case, the recommendation is that you continue using them by default because in real Phoenix projects this will be a super power for your code base.
+So far, LiveView Playground is unable to check the validity of components using <code>`attr/3`</code>. Our recommendation is that you continue using them by default because in real Phoenix projects this will be a super power for your codebase.
 """
 } %% .callout
 
@@ -67,7 +67,7 @@ Finally, we also document that our component uses slots using [`slot/2`](https:/
 
 ## Using `attr/3` to generate default values
 
-In our example above we must pass the color attribute. If you've already worked with other style libraries, you'll notice that there is always a default style when you don't choose a specific color. This is useful to have a default color for the system. You can do this by setting via `attr/3` the `default: "blue"`.
+In our example above we always must pass the color attribute. If you've already worked with other component libraries you'll notice that there is always a default style when you don't choose a specific color. It is useful to have a default color for your design system. You can do this by passing a config via `attr/3` as `default: "blue"`.
 
 ```elixir
 Mix.install([
@@ -109,22 +109,22 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-In the example above, we not only removed `color="blue"` from our render function but also added another example in the documentation where we can use the button without passing a `color`. It is worth mentioning that in `attr/3` the `default` and `requred` options are mutually exclusive: either you have a default if it is not passed or you ask whoever uses this component to always pass a value.
+We not only removed `color="blue"` from our `render/1` function but also added another example in the documentation where we can use the button without passing a `color`. It is worth mentioning that in `attr/3` the `default` and `requred` options are mutually exclusive: either you have a default if it is not passed or you ask whoever uses this component to always pass a value.
 
 ## Using `attr/3` to define possible values
 
-The `attr/3` function also contains two other mutually exclusive properties: `examples` and `values`. If you are interested in only certain colors being accepted by your component, use `values` as follows: `attr :color, :string, default: "blue", values: ~w(blue red yellow green)`. If it is in your interest not to limit it to certain values but to provide some examples, simply change `values` to `examples`. It is worth mentioning that this configuration will not prevent the wrong values from being used at run time, it will only help you by providing warnings at compile time.
+The `attr/3` function also contains two other mutually exclusive properties: `examples` and `values`. If you are interested in only certain colors being accepted by your component use `values` as follows: `attr :color, :string, default: "blue", values: ~w(blue red yellow green)`. If it is in your interest not to limit it to certain values but to provide some examples simply change `values` to `examples`. It is worth mentioning that this configuration will not prevent the wrong values from being used at run time it will only help you by providing warnings at compile time.
 
 %{
 title: ~H"What is this <code>`~w(x y z)`</code> there?",
 description: ~H"""
-<.link navigate="https://hexdocs.pm/elixir/1.16.2/Kernel.html#sigil_w/2" target="\_blank"><code>`sigil_w`</code></.link> serves as a simplified way to create string lists. Essentially <code>`["blue", "green"]`</code> can be written as <code>`~w(blue green)`</code>. With this sigil we don't need a comma or quotation marks, just place the values inside the parentheses.
+<.link navigate="https://hexdocs.pm/elixir/1.16.2/Kernel.html#sigil_w/2" target="\_blank"><code>`sigil_w`</code></.link> serves as a simplified way to create string lists. Essentially <code>`["blue", "green"]`</code> can be written as <code>`~w(blue green)`</code>. With this sigil we don't need commas or quotation marks, just place the values inside the parentheses.
 """
 } %% .callout
 
 ## Using `attr/3` to define classes
 
-Our button is currently not very customizable. To be able to receive new classes we need to create a new `attr`. Create and run a file called `class_attr.exs`:
+Our button is currently that customizable. To be able to receive new classes we need to create a new `attr`. Create and run a file called `class_attr.exs`:
 
 ```elixir
 Mix.install([
@@ -171,11 +171,11 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Using a HEEx feature mentioned in a previous class, we converted our `class` attribute to receive a list. As the default value of assign `class` is `nil` it will be ignored. We intentionally placed `@class` as the final element because if there are classes that change the same CSS properties as those of the component, the new class will take precedence.
+Using a HEEx feature mentioned in a previous lesson we converted our `class` attribute to receive a list. As the default value of assign `class` is `nil` it will be ignored. We intentionally placed `@class` as the final element because if there are classes that change the same CSS properties as those of the component the new class could take precedence.
 
 ## Multiple optional properties
 
-As you can see our button currently just works as `type="button"`. If we want to be able to change the type to `"submit"` or `"reset"` we would have to create a new `attr`. This manual process of creating an `attr` gets repetitive very quickly. If you just want to pass on the other attributes coming from using the component, HEEx has a solution. Create and run a file called `global_attrs.exs`:
+As you can see our button currently just works as `type="button"`. If we want to be able to change the type to `"submit"` or `"reset"` we would have to create a new `attr`. This manual process of creating an `attr` gets repetitive very quickly. If you just want to pass on the other attributes coming from using the component HEEx has a solution. Create and run a file called `global_attrs.exs`:
 
 ```elixir
 Mix.install([
@@ -223,7 +223,7 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Generally called `:rest` (but any name will do), we can define using `attr/3` an attribute of type `:global`. Optionally, we can add its `default` as a map with all the default properties. We can also optionally say which properties will be accepted by our global attribute, in this case, `type="..."` and `style="..."`.
+Generally called `:rest` (but any name will do) we can define an attribute of type `:global` using `attr/3`. We could also add its `default` as a map with all the default properties. We could also say which properties will be accepted by our global attribute, in this case, `type="..."` and `style="..."`.
 
 ## Recap!
 

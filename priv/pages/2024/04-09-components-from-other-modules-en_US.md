@@ -10,7 +10,7 @@ next_page_id: "multiple-slots"
 
 ---
 
-When we create a component as a function in a LiveView we gain access to it in our HEEx using `<.function_name>`. However, if you need to use it in another LiveView you need to say the module name too. Create and run `shared_component.exs`:
+When we create a component as a function in a LiveView we gain access to it in our HEEx using `<.function_name>`. However if you need to use it in another LiveView you need to say the module name too. Create and run `shared_component.exs`:
 
 ```elixir
 Mix.install([
@@ -76,7 +76,7 @@ end
 LiveviewPlayground.start(router: CustomRouter, scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-For this example we created a simple Hero component (a component generally used to draw attention) and, to be able to use it in OtherPageLive we had to use the syntax `<IndexLive.hero>OtherPageLive</IndexLive.hero>`.
+For this example we created a simple Hero component (a component generally used to draw attention). To be able to use it in OtherPageLive we had to use the syntax `<IndexLive.hero>OtherPageLive</IndexLive.hero>`.
 
 ## Getting to know CoreComponents
 
@@ -154,17 +154,17 @@ LiveviewPlayground.start(router: CustomRouter, scripts: ["https://cdn.tailwindcs
 
 Now our `hero` component lives in a module dedicated to useful application components. It is worth mentioning that our CoreComponents have a `use LiveviewPlaygroundWeb, :html` call to import several functions such as HEEx support and `sigil_p` for routes.
 
-In each of our LiveViews we manually use `import CoreComponents`. In Elixir when you import a module you get all its functions so we can use `<.hero>` (instead of `<CoreComponents.hero>`) because the `hero/1` function is available in each LiveView at the moment.
+In each of our LiveViews we manually use `import CoreComponents`. In Elixir when you import a module you get all its functions so we can use `<.hero>` instead of `<CoreComponents.hero>` because the `hero/1` function now is available in each LiveView.
 
 %{
 title: "CoreComponents in the real world",
 description: ~H"""
-In this example we are creating a module called <code>`CoreComponents`</code> but in real Phoenix projects it would be called <code>`YourWebApp.CoreComponents`</code> and it would already be automatically generated and imported automatically. We are just doing this manual exercise so you can better understand what advantages this organization has.
+In this example we are creating a module called <code>`CoreComponents`</code> but in real Phoenix projects it would be called <code>`YourWebApp.CoreComponents`</code> and it would already be automatically generated and imported. We are just doing this manual exercise so you can understand better what advantages this architecture has.
 """
 } %% .callout
 
 ## Recap!
 
 - You can use components from other modules using the `<ModuleName.component_name>` syntax.
-- If the component in question is used commonly in the application, consider placing it in your `CoreComponents`.
-- During classes we will manually build and import our `CoreComponents` but in the real world Phoenix already does this for you.
+- If the component in question is used in a lot of places in the application consider placing it in your `CoreComponents`.
+- During classes we will manually build and import our `CoreComponents` but in the real world Phoenix already does that for you.
