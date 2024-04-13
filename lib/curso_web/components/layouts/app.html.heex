@@ -31,14 +31,17 @@
         <.navigation class="" pathname={assigns[:pathname]} locale={assigns[:locale]} />
       </div>
     </div>
-    <%= @inner_content %>
-    <div>
-      <div class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:pr-6 xl:max-w-[224px]">
-        <.table_of_contents :if={assigns[:page]} table_of_contents={@page.table_of_contents} />
+    <article>
+      <%= @inner_content %>
+      <div class="xl:hidden block container mx-auto -mt-6 px-5 pb-5 text-center gap-x-1">
+        <.donate id="mobile-donate" locale={assigns[:locale]} mobile?={true} />
+      </div>
+    </article>
 
-        <div class="mt-4">
-          <.donate locale={assigns[:locale]} />
-        </div>
+    <div class="hidden xl:sticky xl:top-[4.75rem] xl:-mr-6 xl:block xl:h-[calc(100vh-4.75rem)] xl:flex-none xl:overflow-y-auto xl:py-16 xl:max-w-[224px]">
+      <.table_of_contents :if={assigns[:page]} table_of_contents={@page.table_of_contents} />
+      <div class="mt-4">
+        <.donate locale={assigns[:locale]} />
       </div>
     </div>
   </div>
