@@ -122,6 +122,6 @@ defmodule CursoWeb.Layouts do
     """
   end
 
+  def language_for_locale(nil), do: "en"
   def language_for_locale(locale), do: locale
-  def language_for_locale(_), do: "en"
 end

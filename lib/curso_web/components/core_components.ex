@@ -598,6 +598,8 @@ defmodule CursoWeb.CoreComponents do
   end
 
   attr :class, :string, default: ""
+  attr :locale, :string, default: "en"
+  attr :pathname, :string, default: "/"
   attr :on_click, Phoenix.LiveView.JS, default: %Phoenix.LiveView.JS{}
 
   def navigation(assigns) do
@@ -1080,7 +1082,7 @@ defmodule CursoWeb.CoreComponents do
   attr :description, :string, default: nil
   attr :href, :string, required: false, default: nil
   attr :under_construction, :boolean, default: false
-  attr :icon_class, :string, default: nil
+  attr :icon_class, :string, default: ""
 
   def quick_link(assigns) do
     ~H"""
@@ -1091,7 +1093,7 @@ defmodule CursoWeb.CoreComponents do
       >
       </div>
       <div class="relative overflow-hidden rounded-xl p-6">
-        <.icon name={@icon} class={["h-8 w-8 my-1", @icon_class]} />
+        <.icon name={@icon} class={"h-8 w-8 my-1 " <> @icon_class} />
         <h2 class="mt-4 font-display text-base text-slate-900 dark:text-white">
           <.link :if={@href} navigate={@href}>
             <span class="absolute -inset-px rounded-xl"></span>
@@ -1135,7 +1137,7 @@ defmodule CursoWeb.CoreComponents do
 
   attr :id, :string, required: true, doc: "Unique ID for this component"
   attr :selector, :string, required: true, doc: "Element to be selected"
-  attr :class, :string, default: nil, doc: "Class for the button"
+  attr :class, :string, default: "", doc: "Class for the button"
 
   def copy_button(assigns) do
     assigns = assign_new(assigns, :default_text_id, fn -> "#{assigns.id}-default-text" end)
@@ -1145,10 +1147,10 @@ defmodule CursoWeb.CoreComponents do
     <.button
       id={@id}
       type="button"
-      class={[
-        "copy-button absolute whitespace-nowrap !py-1 !px-2 -top-4 right-3 !inline-flex items-center !bg-sky-500",
-        @class
-      ]}
+      class={
+        "copy-button absolute whitespace-nowrap !py-1 !px-2 -top-4 right-3 !inline-flex items-center !bg-sky-500 " <> @class
+
+      }
       phx-update="ignore"
       phx-click={
         JS.dispatch("copy_code_to_clipboard", to: @selector)
