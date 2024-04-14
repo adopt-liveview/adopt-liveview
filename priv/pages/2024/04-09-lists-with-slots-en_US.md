@@ -3,7 +3,7 @@ title: "Rendering lists with slots",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "Components",
-description: "Using slots to facilitate loops",
+description: "Using slots to make loops",
 previous_page_id: "slots-with-attributes",
 next_page_id: "forms"
 }
@@ -57,11 +57,11 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-So far nothing you haven't seen. An assign to define the list of terms, a loop using the special `:for` attribute and each item being rendered. However, due to the previous classes, you notice that you could simplify this code a little more by generating a component to hide all these classes and, at the same time, have greater reusability in your `<dl>`.
+So far nothing you haven't seen. There's an assign to define the list of terms, a loop using the special `:for` attribute and each item is being rendered. However, due to the previous lessons, you might notice that you could simplify this code a little more by generating a component to hide all these classes and, at the same time, have greater reusability in your `<dl>`.
 
 ## Mixing slots and lists
 
-Until then, our slots only rendered a single element. Whether it was a title or a subtitle, there was no loop involved. Let's learn how to combine lists and slots. Create and run a file called `rendering_slot_list.exs`:
+So farour slots only have rendered a single element. Whether it was a title or a subtitle per `<:slot_name>` usage. Let's learn how to combine lists and slots. Create and run a file called `rendering_slot_list.exs`:
 
 ```elixir
 Mix.install([
@@ -126,14 +126,14 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Once again using the idea of `CoreComponents` we create a component called `<.dl>` to make it clear that this is our version of the `<dl>` HTML tag. We also chose the name of our slots to imitate HTML: `<:dt>` (description term) and `<:dd>` (description detail).
+Once again using the idea of `CoreComponents` we created a component called `<.dl>` to make it clear that this is our version of the `<dl>` HTML tag. We also chose the name of our slots to mimick HTML's: `<:dt>` (description term) and `<:dd>` (description detail).
 
-The component itself isn't much different from what you've seen before. We use a loop with `:for` and for each element we use the `render_slot/2` function. The difference is that this time we pass a second argument to this function: the current item in the loop.
+The component itself isn't much different from what you've seen before. We use a loop with `:for`. For each element we use the `render_slot/2` function. The difference is that this time we passed a second argument to that function: the current item in the loop.
 
-When a second argument is passed to `render_slot/2`, when using the slot we can use the special attribute `:let={var}` to store the current element in `var`. This way, we managed to simplify a component that works with loops and made our LiveView `render/1` extremely lean.
+When a second argument is passed to `render_slot/2` we can use the special attribute `:let={var}` at the slot definition to store the current looped element in `var`. That way we managed to simplify a component that works with loops and made our LiveView `render/1` extremely clean.
 
 ## Recap!
 
 - You can simplify loops by creating components.
 - Slots can receive loop variables by passing them in the second argument of `render_slot/2` and receiving them in the slot with `:let={var_name}`.
-- Using slots and components helps to make your LiveViews code leaner.
+- Using slots and components makes LiveViews code cleaner.
