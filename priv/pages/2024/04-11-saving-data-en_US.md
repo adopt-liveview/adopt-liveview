@@ -3,26 +3,26 @@ title: "Saving data with Ecto",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "CRUD",
-description: "Persisting data",
+description: "Persisting data with databases in LiveView projects",
 previous_page_id: "my-first-liveview-project",
 next_page_id: "listing-data"
 }
 
 ---
 
-We will finally start implementing our CRUD (Create-Read-Update-Delete). Currently, our project already has both LiveView and Ecto installed, so we will focus on how to put this into practice. In this class, we will learn how to persist our product in the database.
+We will finally start implementing our CRUD (Create-Read-Update-Delete). Currently our project already has both LiveView and Ecto installed, so we will focus on getting that to work. In this lesson we will learn how to persist our product in the database.
 
 %{
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you went straight into this class it might be confusing because it is a direct continuation of the code from the previous class. If you want to skip the previous class and start straight with this one, you can clone the initial version for this class using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch my-first- liveview-project-done`</code>.
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch my-first- liveview-project-done`</code>.
 """
 } %% .callout
 
 ## Important concepts of Ecto
 
-Before we start new code, we will explore a little bit of what the Phoenix project has already installed for you and, at the same time, talk about the project patterns.
+Before we start new code we will explore a little bit of what the Phoenix project has already installed for you and, at the same time, talk about the project patterns.
 
 ### Introducing `Repo`
 
@@ -36,21 +36,21 @@ defmodule SuperStore.Repo do
 end
 ```
 
-Ecto uses a Design Pattern called Repository to access the database. The rule is simple: if you intend to execute a query, you will use this module. Whenever the database needs to be accessed, you'll see something like `Repo.insert()` or `Repo.one()`.
+Ecto uses a Design Pattern called Repository to access the database. The rule of thumb is simple: if you intend to execute a query you will use this module. Whenever the database needs to be accessed you'll see something like `Repo.insert()` or `Repo.one()`.
 
-Phoenix automatically generated this module `SuperStore.Repo`. The naming convention will always be in the format `YourProject.Repo`. Inside it, the `use Ecto.Repo` sets up the module with functions like `Repo.insert`, and the options passed define the configuration of our Repo. The `otp_app` option contains the name of our Mix project, `:super_store`, and we use `Ecto.Adapters.SQLite3` as the adapter.
+Phoenix automatically generated this module `SuperStore.Repo`. The naming convention will always be in the format `YourProject.Repo`. Inside it the `use Ecto.Repo` line sets up the module with functions like `Repo.insert` and the options passed define the configuration of our Repo. The `otp_app` option contains the name of our Mix project, `:super_store`, and we use `Ecto.Adapters.SQLite3` as the adapter.
 
 ### Migrating the database
 
-To manage database modifications, Ecto uses the design pattern called [schema migrations](https://en.wikipedia.org/wiki/Schema_migration). The logic of migrations is simple: whenever you need to modify the structure of your database, you generate a migration that instructs Ecto what needs to be done.
+To manage database modifications, Ecto uses [schema migrations](https://en.wikipedia.org/wiki/Schema_migration) design pattern. The way migrations work is simple: whenever you need to modify the structure of your database you generate a migration that instructs Ecto what needs to be done.
 
-Let's create your first migration: we want to create the products table. Using your terminal, execute `mix ecto.gen.migration create_products`. The result will be something like:
+Let's create your first migration: we want to create the products table. Using your terminal execute `mix ecto.gen.migration create_products`. The result will be something like:
 
 ```bash
 * creating priv/repo/migrations/20240405213602_create_products.exs
 ```
 
-Don't worry if the name isn't exactly the same. Migrations have a timestamp at the beginning of their name to make it clear the order in which they were created. At this point, your migration should have a code similar to the following:
+Don't worry if the name isn't exactly the same. Migrations have a timestamp at the beginning of their name to make the order they should be executed clear. At this point your migration should have a code similar to the following:
 
 ```elixir
 defmodule SuperStore.Repo.Migrations.CreateProducts do
@@ -62,7 +62,7 @@ defmodule SuperStore.Repo.Migrations.CreateProducts do
 end
 ```
 
-Vamos modificar um pouquinho isso para:
+Lets change it to:
 
 ```elixir
 defmodule SuperStore.Repo.Migrations.CreateProducts do
@@ -77,11 +77,11 @@ defmodule SuperStore.Repo.Migrations.CreateProducts do
 end
 ```
 
-Within our module, we should have a `change/0` method. The responsibility of this method is to specify what changed in your database. The `Ecto.Migration` module that we imported at the top of our migration contains this and other Data Definition Language (DDL) functions prepared for common operations to modify the structure of our database.
+Within our module we should have a `change/0` method. This method is used to specify what changed in your database. The `Ecto.Migration` module that we imported at the top of our migration contains this and other Data Definition Language (DDL) functions prepared for common operations to modify the structure of our database.
 
 Inside `change/0`, we can use [`create/2`](https://hexdocs.pm/ecto_sql/Ecto.Migration.html#create/2) to specify that we are creating something, [`table/2`](https://hexdocs.pm/ecto_sql/Ecto.Migration.html#table/2) to indicate that we are creating a new table called `products`, and [`add/3`](https://hexdocs.pm/ecto_sql/Ecto.Migration.html#add/3) to define the two columns named `name` and `description` within this table.
 
-When your migration is ready, execute `mix ecto.migrate` to run it:
+When your migration is ready and saved execute `mix ecto.migrate` to run it:
 
 ```bash
 $ mix ecto.migrate
@@ -97,7 +97,7 @@ $ mix ecto.migrate
 title: "How to undo a migration?",
 type: :warning,
 description: ~H"""
-If something goes wrong or if you believe your migration was incorrect, you can always execute <code>`mix ecto.rollback`</code>'' to undo the migrations applied the last time you ran <code>`mix ecto.migrate`</code> (even if there were more than one). <br><br>If you're curious about how Ecto knows how to roll back, it's quite simple: if your migration has a <code>`create/2`</code> method with <code>`table/2`</code>, it knows that the reverse of this is to delete a table. That's why we can create a migration with just the <code>`change/0`</code> function instead of <code>`up`</code> and <code>`down`</code> as in other frameworks, although Ecto optionally accepts these callbacks if you have a specific migration for your current database.
+If something goes wrong or if you believe your migration was incorrect you can always execute <code>`mix ecto.rollback`</code> to undo the migrations applied the last time you ran <code>`mix ecto.migrate`</code> (even if there were more than one). <br><br>If you're curious about how Ecto knows how to roll back, it's quite simple: if your migration has a <code>`create/2`</code> method with <code>`table/2`</code> it knows that the reverse of this is to delete a table. That's why we can create a migration with just the <code>`change/0`</code> function instead of <code>`up`</code> and <code>`down`</code> as in other frameworks although Ecto optionally accepts these callbacks if you have a very specific migration for your current database.
 """
 } %% .callout
 
@@ -123,7 +123,7 @@ defmodule SuperStore.Catalog.Product do
 end
 ```
 
-An `embedded_schema` is useful when you don't intend to work with a database. To make this schema work with a database, the modification is very simple! We'll use the macro [`schema/2`](https://hexdocs.pm/ecto/Ecto.Schema.html#schema/2) which takes the table name as the first argument so that when we use our `Repo`, it will know where to read/write the data from/to.
+An `embedded_schema` is useful when you don't intend to work with a database. To make this schema work with a database the only modification needed is very simple! We'll use the macro [`schema/2`](https://hexdocs.pm/ecto/Ecto.Schema.html#schema/2) which takes the table name as the first argument so that when we use our `Repo` it will know where to read/write the data from/to.
 
 ```elixir
 defmodule SuperStore.Catalog.Product do
@@ -143,13 +143,13 @@ defmodule SuperStore.Catalog.Product do
 end
 ```
 
-With just one line of code, our schema is ready for complete CRUD operations!
+With just one line of code our schema is ready for all CRUD operations!
 
 ### The context `Product.Catalog`
 
-Let's go to `lib/super_store/catalog.ex`. In the previous lesson, we only created this module. We will concentrate all CRUD operations of our product system in this Context.
+Let's go to `lib/super_store/catalog.ex`. In the previous lesson we only created this module. We will concentrate all CRUD operations of our product system in this Context.
 
-Everything related to products will be here. Phoenix is heavily inspired by Domain-Driven Design (DDD), where each part of your application focuses on its specific domain.
+Everything related to products will be here. Phoenix is heavily inspired by Domain-Driven Design (DDD) where each part of your application focuses on its specific domain.
 
 Let's add our first one: `create_product/1`:
 
@@ -165,13 +165,13 @@ defmodule SuperStore.Catalog do
 end
 ```
 
-Using `alias` to write a bit less code, we create a function that takes `attrs` and validates them with our `Product.changeset/2`, then attempts to insert into our database. This function has two possible outcomes: `{:ok, %Product{...}` if everything goes well or `{:error, %Ecto.Changeset{...}}` if there is a validation error.
+Use an `alias` to write a bit less code. We created a function that takes `attrs` and validates them with our `Product.changeset/2`, then attempts to insert into our database. This function has two possible outcomes: `{:ok, %Product{...}` if everything goes well or `{:error, %Ecto.Changeset{...}}` if there are validation errors.
 
 ### Testing our module directly from the terminal
 
 We can test everything we've built so far without even starting to work on our LiveView! Since we've constructed a module `SuperStore.Catalog` that doesn't depend on anything related to the web, we can simply start an interactive terminal with our project's mix code and execute the function `create_product/2`.
 
-Sure, I'm ready to help with that. Could you please provide the commands you'd like me to execute, starting with `$`?
+Using your terminal execture the command that follows the `$` prompt:
 
 ```elixir
 $ iex -S mix
@@ -182,7 +182,7 @@ Interactive Elixir (1.16.1) - press Ctrl+C to exit (type h() ENTER for help)
 iex(1)>
 ```
 
-Using `iex -S mix` we enter Interactive Elixir (`iex`) mode containing all the functions of our project. At the beginning of the last line you can see that `iex(1)>` has become your new command prompt. Let's import our context:
+Using `iex -S mix` we entered Interactive Elixir (`iex`) mode containing all the functions of our project. At the beginning of the last line you can see that `iex(1)>` has become your new command prompt. Let's alias our context:
 
 ```elixir
 iex(1)> alias SuperStore.Catalog
@@ -222,11 +222,11 @@ iex(3)> Catalog.create_product(%{ name: "Missing description" })
  >}
 ```
 
-As expected, our changeset handled our validation correctly and did not create anything in the database. Now that we know our Context works as expected, we can return to our LiveView.
+As expected our changeset handled our validation correctly and did not create anything in the database. Now that we know our Context works as expected we can return to our LiveView.
 
 ## Using our Context in our LiveView
 
-At this point, your PageLive should look like this:
+At this point your PageLive should look like this:
 
 ```elixir
 defmodule SuperStoreWeb.PageLive do
@@ -277,11 +277,11 @@ defmodule SuperStoreWeb.PageLive do
 end
 ```
 
-Our `"create_product"` event currently does nothing but generate a log in the terminal: `IO.inspect({"Form submitted!!", product_params})`. Let's improve on that.
+Our `"create_product"` event currently does nothing but generate a log in the terminal: `IO.inspect({"Form submitted!!", product_params})`. Let's fix that.
 
 ### Improving our `"create_product"` event
 
-At the top of your PageLive, create an `alias SuperStore.Catalog`. Modify the `"create_product"` event to:
+At the top of your PageLive create an `alias SuperStore.Catalog`. Modify the `"create_product"` event to:
 
 ```elixir
 def handle_event("create_product", %{"product" => product_params}, socket) do
@@ -302,9 +302,9 @@ def handle_event("create_product", %{"product" => product_params}, socket) do
 end
 ```
 
-As mentioned earlier, our function `Catalog.create_product/2` has two possibilities. Using `case-do`, we can gracefully handle both. If the result is `{:ok, %Product{} = product}`, we add a success message to our socket using [`put_flash/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#put_flash/3).
+Our `Catalog.create_product/2` function has two possibilities. Using `case-do`, we can gracefully handled both. If the result is `{:ok, %Product{} = product}`, we add a success message to our socket using [`put_flash/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#put_flash/3).
 
-If a validation error occurs, we receive the changeset and convert it into a `form` using `to_form/2`. Then, we use `put_flash/3`, this time to inform an error.
+If a validation error occurs we receive the changeset and convert it into a `form` using `to_form/2`. Then, we use `put_flash/3`, this time to inform an error.
 
 ### Final code
 
@@ -372,18 +372,18 @@ defmodule SuperStoreWeb.PageLive do
 end
 ```
 
-If you found it challenging to follow the code in this lesson, you can see the completed code using `git checkout saving-data-done` or by cloning it into another folder using `git clone https://github.com/adopt-liveview/first-crud.git --branch saving-data-done`.
+If you had any issues you can see the final code for this lesson using `git checkout saving-data-done` or by cloning it into another folder using `git clone https://github.com/adopt-liveview/first-crud.git --branch saving-data-done`.
 
-## In short!
+## Recap!
 
 - Ecto uses the Repository design pattern to interact with databases.
-- Whenever we need to use the database, we'll use a function from the `Repo` module.
+- Whenever we need to use the database we'll use a function from the `Repo` module.
 - Ecto uses the schema migrations design pattern to modify the database structure.
-- To create a migration, you need to run `mix ecto.gen.migration migration_name` in the terminal.
-- To apply pending migrations, you should run `mix ecto.migrate` in the terminal.
-- To rollback the last applied migrations, you can run `mix ecto.rollback` in the terminal.
-- A schema with `embedded_schema do` doesn't interact with the database, but `schema "table_name" do` is all you need to instruct Ecto how to interact with this table.
-- In Phoenix projects, we concentrate functions related to a specific domain in a context module, following inspiration from [DDD](https://en.wikipedia.org/wiki/Domain-driven_design).
-- In our current project, we focus our product management domain in the `SuperStore.Catalog` context.
+- To create a migration you need to run `mix ecto.gen.migration migration_name` in the terminal.
+- To apply pending migrations you should run `mix ecto.migrate` in the terminal.
+- To rollback the lastest applied migrations you can run `mix ecto.rollback` in the terminal.
+- A schema with `embedded_schema do` doesn't interact with the database but `schema "table_name" do` is all you need to instruct Ecto how to interact with that table.
+- In Phoenix projects we concentrate functions related to a specific domain in a context module, following inspiration from [DDD](https://en.wikipedia.org/wiki/Domain-driven_design).
+- In our current project we focused our product management domain in the `SuperStore.Catalog` context.
 - You can use `iex -S mix` to enter Interactive Elixir mode and test all functions in your project.
-- Once your context and schema are well-designed, adding functions to your LiveView becomes trivial.
+- When your context and schema are well-designed, adding functions to your LiveView becomes trivial.

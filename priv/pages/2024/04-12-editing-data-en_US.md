@@ -3,7 +3,7 @@ title: "Editing a product",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "CRUD",
-description: "Forms however to edit something existing",
+description: "Editing existing data with LiveView forms",
 previous_page_id: "deleting-data",
 }
 
@@ -15,7 +15,7 @@ To finalize the CRUD we will create a product edit form. Let's see how this can 
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you went straight into this class it might be confusing because it is a direct continuation of the code from the previous class. If you want to skip the previous class and start straight with this one, you can clone the initial version for this class using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch deleting-data- done`</code>.
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch deleting-data- done`</code>.
 """
 } %% .callout
 
@@ -35,11 +35,11 @@ defmodule SuperStore.Catalog do
 end
 ```
 
-Unlike `create_product/1` which only receives the attributes, to update a product we need the original data to be able to apply the changes. Our function `Catalog.update_product/2` receives the original struct and the modifications, applies the changeset and, using the function [`Repo.update/2`](https://hexdocs.pm/ecto/Ecto.Repo.html#c:update/2) returns `{:ok, %Product{}}` or `{: error, %Ecto.Changeset{}}`.
+Unlike `create_product/1` which only receives the attributes, to update a product we need the original data to be able to apply the changes. Our function `Catalog.update_product/2` receives the original struct and the modifications, applies the changeset, and using the function [`Repo.update/2`](https://hexdocs.pm/ecto/Ecto.Repo.html#c:update/2) returns `{:ok, %Product{}}` or `{: error, %Ecto.Changeset{}}`.
 
 ### Testing on `iex`
 
-Using Elixir Interativo we can get the last product with `product = SuperStore.Catalog.list_products() |> List.last` and update it using `SuperStore.Catalog.update_product(product, %{name: "Edited"}) `:
+Using Interactive Elixir we can get the last product with `product = SuperStore.Catalog.list_products() |> List.last` and update it using `SuperStore.Catalog.update_product(product, %{name: "Edited"}) `:
 
 ```elixir
 $ iex -S mix
@@ -80,9 +80,9 @@ iex(3)>
 
 Note that in the second argument we only pass the name. Our changeset necessarily requires a `description` however, as the original product already has a description, this validation passes.
 
-## Building our LiveView
+## Making our LiveView
 
-Let's write the LiveView code step-by-step so that we can see the similarities with ProductLive.Create. In the folder `lib/super_store_web/live/product_live/` create a file `edit.ex`.
+Let's write the LiveView code step-by-step so that we can see the similarities with `ProductLive.Create`. In the folder `lib/super_store_web/live/product_live/` create a file `edit.ex`.
 
 ### Starting
 
@@ -96,6 +96,8 @@ end
 
 The first step is to create the module and `use SuperStoreWeb, :live_view`. We then add two useful aliases for what comes next.
 
+### The `mount/3`
+
 ```elixir
 def mount(%{"id" => id}, _session, socket) do
   product = Catalog.get_product!(id)
@@ -108,13 +110,11 @@ def mount(%{"id" => id}, _session, socket) do
 end
 ```
 
-### The `mount/3`
-
-In our function `mount/3` we receive the `id` of the product as a parameter. Soon we will define this on the router as `live "/products/:id/edit", ProductLive.Edit, :edit` so we can guarantee that there will be this `id`.
+In our `mount/3` function we receive the `id` of the product as a parameter. Soon we will define this on the router as `live "/products/:id/edit", ProductLive.Edit, :edit` so we can guarantee that there will be this `id`.
 
 The next step is to use `product = Catalog.get_product!(id)` to retrieve the product by `id`. It is worth remembering that if there is no product with this `id` a 404 error will be automatically generated as we saw in previous classes.
 
-We define our `form` as a changeset that receives the original product. In the creation form we use `Product.changeset(%Product{})`, that is, the empty product because at that moment there is no product. As we are working with editing, all our changesets will receive the product being edited.
+We define our `form` as a changeset that receives the original product. In the creation form we used `Product.changeset(%Product{})`, that is, the empty product because at that moment there is no product. As we are working with editing, all our changesets will receive the product being edited.
 
 Also note that in assign we pass `product`. We will use this assignment not only in our HEEx but also in other events.
 
@@ -131,7 +131,7 @@ def handle_event("validate_product", %{"product" => product_params}, socket) do
 end
 ```
 
-The validation event is a spit copy of the creation form except that `Product.changeset/2` receives in the first argument, instead of `%Product{}` (the empty product), `socket.assigns.product` which contains the value of the product being edited.
+The validation event is a copy of the creation form except that `Product.changeset/2` receives at the first argument, instead of `%Product{}` (the empty product), `socket.assigns.product` which contains the value of the product being edited.
 
 ### The save event
 
@@ -154,7 +154,7 @@ def handle_event("save_product", %{"product" => product_params}, socket) do
 end
 ```
 
-Once again our event is a spitting copy of the create product event. We renamed the event to `"save_product"` to make sense with the form and changed the main function in `case` to `Catalog.update_product/2` passing `socket.assign.product` once again. We also modified `put_flash/2` to a message that makes more sense.
+Once again our event is a copy of the create product event. We renamed the event to `"save_product"` to make sense with this form and changed the main function in `case` to `Catalog.update_product/2` passing `socket.assign.product` once again. We also modified `put_flash/2` to a message that makes more sense for this case.
 
 ### The `render/1`
 
@@ -186,7 +186,7 @@ def render(assigns) do
 end
 ```
 
-In this part we only modify the texts and the name of the `phx-submit` binding event. There were no functional changes except that the `<.back>` component link now returns to the product view page.
+In this part we only modified the texts and the name of the `phx-submit` binding event. There were no functional changes except that the `<.back>` component link now returns to the product view page.
 
 ### Updating the router
 
@@ -207,7 +207,7 @@ end
 
 ## Adding a link to the form
 
-We have a page, but our users don't know it. Open your `ProductLive.Edit` and update just the `<.header>` component to add this `<:actions>`:
+We have a page, but our users don't know about it. Open your `ProductLive.Show` and update just the `<.header>` component to add this `<:actions>`:
 
 ```elixir
 <.header>
@@ -223,11 +223,11 @@ We have a page, but our users don't know it. Open your `ProductLive.Edit` and up
 
 ## Final code
 
-Finished! Our application has a complete CRUD. There are still some things that can be improved and we will look at this in another section but if you have followed the course so far you already have enough knowledge to get by creating your next CRUD!
+Done! Our application has a complete CRUD. There are still some things that can be improved and we will look at this in another section of this course but if you have followed the course so far you already have enough knowledge to get by creating your next CRUD!
 
-If you had difficulty following the code in this class, you can see the ready-made code for this class using `git checkout editing-data-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first -crud.git --branch editing-data-done`.
+If you had any issues you can see the final code for this lesson using `git checkout editing-data-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first -crud.git --branch editing-data-done`.
 
-## In short!
+## Recap!
 
 - Using `Repo.update/2` we can update a product by passing a changeset.
 - An edit form LiveView can be extremely similar to one for creating data.
