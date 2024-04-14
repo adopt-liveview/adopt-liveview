@@ -213,7 +213,7 @@ end
 
 Ready! Now you just need to test your LiveView and verify that the current flow is working.
 
-If you had any issues you can see the final code for this lesson using `git checkout deleting-data-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first -crud.git --branch deleting-data-done`.
+If you had any issues you can see the final code for this lesson using `git checkout deleting-data-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first-crud.git --branch deleting-data-done`.
 
 ## Recap!
 

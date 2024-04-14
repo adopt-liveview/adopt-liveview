@@ -225,7 +225,7 @@ We have a page, but our users don't know about it. Open your `ProductLive.Show` 
 
 Done! Our application has a complete CRUD. There are still some things that can be improved and we will look at this in another section of this course but if you have followed the course so far you already have enough knowledge to get by creating your next CRUD!
 
-If you had any issues you can see the final code for this lesson using `git checkout editing-data-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first -crud.git --branch editing-data-done`.
+If you had any issues you can see the final code for this lesson using `git checkout editing-data-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first-crud.git --branch editing-data-done`.
 
 ## Recap!
 
