@@ -148,7 +148,7 @@ Open the `router.ex` file located in the `lib/super_store_web` folder. You shoul
 
 From now on you should have the same project as the last lesson working with the only exception that you should see a navigation bar at the top.
 
-If you had issues you can see the final code for this lesson using `git checkout my-first-liveview-project-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first-crud .git --branch my-first-liveview-project-done`.
+If you had any issues you can see the final code for this lesson using `git checkout my-first-liveview-project-done` or cloning it in another folder using `git clone https://github.com/adopt-liveview/first-crud .git --branch my-first-liveview-project-done`.
 
 ## Recap!
 

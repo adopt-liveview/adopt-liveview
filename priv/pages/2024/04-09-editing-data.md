@@ -208,7 +208,7 @@ end
 
 ## Adicionando um link pro formulário
 
-Temos uma página, mas nossos usuários não conhecem ela. Abra sua `ProductLive.Edit` e atualize apenas o componente `<.header>` para adicionar este `<:actions>`:
+Temos uma página, mas nossos usuários não conhecem ela. Abra sua `ProductLive.Show` e atualize apenas o componente `<.header>` para adicionar este `<:actions>`:
 
 ```elixir
 <.header>

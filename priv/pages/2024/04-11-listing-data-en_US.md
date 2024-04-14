@@ -10,7 +10,7 @@ next_page_id: "show-data"
 
 ---
 
-In the previous lesson, we created several products! Let's create a simple page to list saved products.
+In the previous lesson we created some products! Let's create a simple page to list saved products.
 
 %{
 title: "This lesson is a direct continuation of the previous one.",
@@ -22,7 +22,7 @@ If you jumped straight into this lesson, it might be confusing as it's a direct 
 
 ## Back to our Context
 
-Remember that all operations related to modifying our product domain will be concentrated in the `Catalog` context. At this moment, we need a function to list all products. Open `lib/super_store/catalog.ex` and add the `list_products/0` method:
+Remember that all operations related to modifying our product domain will be concentrated in the `Catalog` context. At this moment we need a function to list all products. Open `lib/super_store/catalog.ex` and add the `list_products/0` method:
 
 ```elixir
 defmodule SuperStore.Catalog do
@@ -41,7 +41,7 @@ defmodule SuperStore.Catalog do
 end
 ```
 
-To list rows from our database, we use the function [`Repo.all/2`](https://hexdocs.pm/ecto/Ecto.Repo.html#c:all/2), which takes an Ecto query and returns all rows. Our `Product` module itself is considered a query and, in this case, represents `select * from products`.
+To list rows from our database, we use the function [`Repo.all/2`](https://hexdocs.pm/ecto/Ecto.Repo.html#c:all/2) which takes an Ecto query and returns all rows. Our `Product` module itself is considered a query and, in this case, represents `select * from products`.
 
 ### Testing in `iex`.
 
@@ -75,7 +75,7 @@ As you can see, our function works. We can proceed to apply it in a new LiveView
 
 ## Creating a new LiveView
 
-To list our products, we will create a new LiveView called `SuperStoreWeb.ProductLive.Index`. Phoenix projects like to follow this pattern: `YourAppWeb.NameOfSomethingLive.{Index, Show, New, or Edit}`. Create the folder `lib/super_store_web/live/product_live` and inside it, create a file `index.ex` with the following code:
+To list our products, we will create a new LiveView called `SuperStoreWeb.ProductLive.Index`. Phoenix projects like to follow this pattern: `YourAppWeb.NameOfSomethingLive.{Index, Show, New, or Edit}`. Create the folder `lib/super_store_web/live/product_live` and inside it, create a file named `index.ex` with the following code:
 
 ```elixir
 defmodule SuperStoreWeb.ProductLive.Index do
@@ -100,27 +100,27 @@ end
 
 ### Remember streams?
 
-In the lesson on rendering lists, we discussed streams as an optimized way to render items in HEEx. In that lesson, there was a bit more complexity in the code because we needed to add an `id` to each element. But in this case, since we're working with a database, all elements have an `id`, so we can define a stream of products without any hassle.
+In the lesson on rendering lists we discussed streams as an optimized way to render items in HEEx. In that lesson there was a bit more complexity in the code because we needed to add an `id` to each element. But in this case, since we're working with a database, all elements have an `id`, so we can define a stream of products without any hassle.
 
 ### Using the `<.table>` component
 
-Phoenix projects contain a very powerful component called `<.table>` in their `CoreComponents`. Throughout the CRUD lessons, we'll learn a bit more about it.
+Phoenix projects contain a very powerful component called `<.table>` in their `CoreComponents`. Throughout the CRUD lessons we'll learn more about it.
 
 ```elixir
 <.table id="products" rows={@streams.products}> ... </.table>
 ```
 
-At the moment, all you need to understand is that this component works very well with streams. We pass two assigns to the component: a unique `id` and `rows` receives the stream of `products`.
+At the moment all you need to understand is that this component works very well with streams. We pass two assigns to the component: an unique `id` and `rows` receives the stream of `products`.
 
 ```elixir
 <:col :let={{_id, product}} label="Name"><%= product.name %></:col>
 ```
 
-Inside the component, you can see that we use the `<:col>` slot twice. Each of these slots requires a `label` attribute to define the column name in the table and receives the special attribute `:let` for you to access `{id, element}`. At the moment, we can ignore the `id` and receive the `product` to render the content of that column for each product. If all of this seems very strange to you, you can take a look at our lesson on rendering lists with slots in the component section.
+Inside the component, you can see that we use the `<:col>` slot twice. Each of these slots requires a `label` attribute to define the column name in the table and receives the special attribute `:let` for you to access `{id, element}`. At the moment, we can ignore the `id` and receive the `product` to render the content of that column for each product. If all of this seems very weird to you, you can take a look at our lesson on rendering lists with slots in the component section.
 
 ## Updating our old LiveView
 
-Currently, in the `lib/super_store_web/live` folder, we have the file `page_live.ex`. With this name, the purpose of this LiveView isn't obvious. Move this file to `lib/super_store_web/live/product_live/new.ex` and rename the module to `SuperStoreWeb.ProductLive.New`. Now, not only do we know its purpose from the folder structure, but the module name also follows the Phoenix convention!
+Currently, in the `lib/super_store_web/live` folder, we have the file `page_live.ex`. With this name, the purpose of this LiveView isn't obvious. Move this file to `lib/super_store_web/live/product_live/new.ex` and rename the module to `SuperStoreWeb.ProductLive.New`. Now, not only we know its purpose from the folder structure but also the module name also follows the Phoenix convention!
 
 ## Updating our `router.ex`
 
@@ -137,9 +137,7 @@ end
 
 Note that we also changed the live action from `ProductLive.New` to make it clear that it's a LiveView that creates something.
 
-###
-
-Success! Open your browser and you'll see that on the homepage, all your products are listed. But wait, how do we go to the page to create a product? Your user won't guess the route!
+Success! Open your browser and you'll see that at the homepage all your products are listed. But wait, how do we go to the new product page? Your user won't guess the route!
 
 ### Connecting the pages using links
 
@@ -165,7 +163,7 @@ def render(assigns) do
 end
 ```
 
-We used the `<.header>` component, which also comes from the `CoreComponents`, not only to give a title to our product listing page, but also to use its `<:action>` slot to add a link to our product page.
+We used the `<.header>` component, which also comes from the `CoreComponents`, not only to give a title to our product list page but also to use its `<:action>` slot to add a link to our product page.
 
 Similarly, modify the `render/1` of your `ProductLive.New` to:
 
@@ -201,17 +199,17 @@ In addition to the `<.header>` at the top, we added the `<.back>` component at t
 
 ## Final code
 
-Now your application is not only more organized in terms of folders, but the user will also have a good first navigation experience.
+Now your application is not only more organized in terms of folders but the user will also have a good first navigation experience.
 
 If you found it challenging to follow the code in this lesson, you can see the completed code using `git checkout listing-data-done` or by cloning it into another folder using `git clone https://github.com/adopt-liveview/first-crud.git --branch listing-data-done`.
 
-## In short!
+## Recap!
 
-- Using `Repo.all/2`, we list the result of an Ecto query.
+- Using `Repo.all/2` we can list the result of an Ecto query.
 - The `Product` module can be considered an Ecto query in the format `select * from products`.
 - Phoenix projects like to follow this pattern: `YourAppWeb.NameOfSomethingLive.{Index, Show, New, or Edit}`.
 - To keep your LiveView folders more organized in your project, we use the format `lib/your_app_web/live/your_model/{index.ex, new.ex, edit.ex, show.ex}`, as we'll see in future lessons.
-- When using databases, it's very easy to use streams in LiveView because the elements already come with an `id`.
+- When using databases it's very easy to use streams in LiveView because the elements already come with an `id`.
 - The `<.table>` component is very powerful in simplifying tables with items, as we'll see in the future.
 - In your `router.ex`, prefer Live Actions between `:new`, `:index`, `:edit`, and `:show`, as we'll see in the next lessons.
 - The `<.header>` component is very useful for titling your pages and can also contain an `<:actions>` slot to simplify adding action buttons, as we used to add the create product button.
