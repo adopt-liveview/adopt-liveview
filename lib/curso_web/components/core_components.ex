@@ -1080,6 +1080,7 @@ defmodule CursoWeb.CoreComponents do
   attr :description, :string, default: nil
   attr :href, :string, required: false, default: nil
   attr :under_construction, :boolean, default: false
+  attr :icon_class, :string, default: nil
 
   def quick_link(assigns) do
     ~H"""
@@ -1090,7 +1091,7 @@ defmodule CursoWeb.CoreComponents do
       >
       </div>
       <div class="relative overflow-hidden rounded-xl p-6">
-        <.icon name={@icon} class="h-8 w-8 my-1" />
+        <.icon name={@icon} class={["h-8 w-8 my-1", @icon_class]} />
         <h2 class="mt-4 font-display text-base text-slate-900 dark:text-white">
           <.link :if={@href} navigate={@href}>
             <span class="absolute -inset-px rounded-xl"></span>
@@ -1144,7 +1145,10 @@ defmodule CursoWeb.CoreComponents do
     <.button
       id={@id}
       type="button"
-      class={["copy-button absolute whitespace-nowrap !py-1 !px-2 -top-4 right-3 !inline-flex items-center !bg-sky-500", @class]}
+      class={[
+        "copy-button absolute whitespace-nowrap !py-1 !px-2 -top-4 right-3 !inline-flex items-center !bg-sky-500",
+        @class
+      ]}
       phx-update="ignore"
       phx-click={
         JS.dispatch("copy_code_to_clipboard", to: @selector)

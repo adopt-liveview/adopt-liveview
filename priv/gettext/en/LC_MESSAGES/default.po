@@ -62,12 +62,12 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1163
+#: lib/curso_web/components/core_components.ex:1168
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1159
+#: lib/curso_web/components/core_components.ex:1164
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr ""
@@ -242,7 +242,7 @@ msgstr ""
 msgid "Form component"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:15
+#: lib/curso_web/components/layouts.ex:23
 #, elixir-autogen, elixir-format
 msgid "...or buy me a coffee"
 msgstr ""
@@ -252,13 +252,13 @@ msgstr ""
 msgid "DRY Form"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:9
-#: lib/curso_web/components/layouts.ex:24
+#: lib/curso_web/components/layouts.ex:13
+#: lib/curso_web/components/layouts.ex:33
 #, elixir-autogen, elixir-format
 msgid "Donate"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:54
+#: lib/curso_web/components/layouts.ex:68
 #, elixir-autogen, elixir-format
 msgid "For brazilians: Pix"
 msgstr ""
@@ -273,7 +273,7 @@ msgstr ""
 msgid "Modal Form"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:43
+#: lib/curso_web/components/layouts.ex:55
 #, elixir-autogen, elixir-format
 msgid "Show brazilian Pix R$"
 msgstr ""
@@ -316,27 +316,27 @@ msgid_plural "minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/curso_web/live/home_live.html.heex:21
+#: lib/curso_web/live/home_live.html.heex:35
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:4
+#: lib/curso_web/live/home_live.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Start now!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1105
+#: lib/curso_web/components/core_components.ex:1106
 #, elixir-autogen, elixir-format
 msgid "Under construction"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:12
+#: lib/curso_web/live/home_live.html.heex:18
 #, elixir-autogen, elixir-format
 msgid "Beginner's track"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:27
+#: lib/curso_web/live/home_live.html.heex:42
 #, elixir-autogen, elixir-format
 msgid "Deployments track"
 msgstr ""
@@ -346,41 +346,41 @@ msgstr ""
 msgid "Get started"
 msgstr ""
 
-#: lib/curso_web/components/layouts/app.html.heex:17
+#: lib/curso_web/components/layouts/app.html.heex:30
 #: lib/curso_web/live/home_live.ex:16
 #, elixir-autogen, elixir-format
 msgid "Learn LiveView now!"
 msgstr ""
 
-#: lib/curso_web/components/layouts/app.html.heex:19
+#: lib/curso_web/components/layouts/app.html.heex:32
 #: lib/curso_web/live/home_live.ex:18
 #, elixir-autogen, elixir-format
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:16
+#: lib/curso_web/live/home_live.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1323
 #: lib/curso_web/components/core_components.ex:1328
+#: lib/curso_web/components/core_components.ex:1333
 #, elixir-autogen, elixir-format
 msgid "Toggle locale"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:7
+#: lib/curso_web/live/home_live.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "We are working on many courses"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:57
+#: lib/curso_web/components/layouts.ex:71
 #, elixir-autogen, elixir-format
 msgid "Brazilian Pix payment QR Code"
 msgstr ""
 
-#: lib/curso_web/components/layouts.ex:70
-#: lib/curso_web/components/layouts.ex:74
+#: lib/curso_web/components/layouts.ex:111
+#: lib/curso_web/components/layouts.ex:115
 #, elixir-autogen, elixir-format
 msgid "Buy me a coffee at buymeacoffee.com/lubien"
 msgstr ""
@@ -388,4 +388,22 @@ msgstr ""
 #: lib/curso_web/components/dark_mode.ex:12
 #, elixir-autogen, elixir-format
 msgid "Dark theme toggle"
+msgstr ""
+
+#: lib/curso_web/components/layouts/app.html.heex:4
+#: lib/curso_web/components/layouts/app.html.heex:14
+#: lib/curso_web/live/home_live.html.heex:2
+#, elixir-autogen, elixir-format
+msgid "Adopt LiveView"
+msgstr ""
+
+#: lib/curso_web/components/layouts/app.html.heex:3
+#: lib/curso_web/components/layouts/app.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "Home page"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Testing track"
 msgstr ""
