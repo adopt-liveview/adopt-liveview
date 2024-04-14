@@ -10,17 +10,17 @@ next_page_id: "lists-with-slots"
 
 ---
 
-In our previous class we used the `<.hero>` component twice. Let's say that on the home page we would like the title to be more eye-catching. How to pass attributes to slots?
+In the previous lesson we used the `<.hero>` component twice. Let's say that on the home page we would like the title to be more eye-catching. How to pass attributes to slots?
 
 ## Really understanding what slots are
 
-To understand what we are about to do you first need to understand how slots work internally. You may have already noticed that since we render slots using `@slot_name` variables this means that slots are nothing more than special assigns. Every `@slot_name` is necessarily a list. If you go to your component and use `<%= inspect(@slot_name) %>` you will see something like:
+To understand what we are about to do first you need to understand how slots work internally. You may have already noticed that since we render slots using `@slot_name` assigns this means that slots are nothing more than special assigns. Every `@slot_name` is necessarily a list. If you go to your component and use `<%= inspect(@slot_name) %>` you will see something like:
 
 ```elixir
 [%{inner_block: #Function<2.32079264/2 in IndexLive.render/1>, __slot__: :nome_do_slot}]
 ```
 
-That is, secretly slots are lists of maps that contain a HEEx render function in the `__iner_block__` property and the slot name in the `__slot__` property. That said, nothing prevents you from using the same slot multiple times on the same component.
+Secretly slots are lists of maps that contain a HEEx render function in the `__inner_block__` property and the slot name in the `__slot__` property. That being said nothing prevents you from using the same slot multiple times on the same component.
 
 ```elixir
 <.hero>
@@ -30,16 +30,16 @@ That is, secretly slots are lists of maps that contain a HEEx render function in
 </.hero>
 ```
 
-In the example above, when inspecting the `@title` slot we will see:
+In the example above when inspecting the `@title` slot we will see:
 
 ```elixir
 [%{inner_block: #Function<2.32079264/2 in IndexLive.render/1>, __slot__: :title},
 %{inner_block: #Function<3.32079264/2 in IndexLive.render/1>, __slot__: :title}]
 ```
 
-## Renderizando atributos de slot
+## Rendering attributes with slots
 
-Why did we go through this whole hoop of understanding that slots are map lists in Elixir if our goal is to render slot classes? Simple: if slots are lists, we can do loops, and if each slot is a map, we can get properties from them!
+Why did we go through this whole brainstorming session about understanding that slots are map lists in Elixir if our goal is to render slot classes? Simple: if slots are lists we can do loops and if each slot is a map, we can get properties from them!
 
 ```elixir
 Mix.install([
@@ -125,14 +125,14 @@ end
 LiveviewPlayground.start(router: CustomRouter, scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-Our slot has gained something new in its definition! Using a `do` block we can declare which attributes are pertinent to that specific slot. In this case, just `class`.
+Our slot has gained something new in its definition! Using a `do` block we can declare which attributes are important to that specific slot. In this case, just `class`.
 
-Additionally, we changed the way we render the slot to use a `:for={title_slot <- @title}` loop so that we can look at each use of `<:title>` individually to get its classes. Inside the `class` attribute we use a list to be able to apply the optional attributes that we can extract using `Map.get(title_slot, :class)` (which will be `nil` by default, resulting in no class being applied). Finally, inside our loop we modify the use of `render_slot/2` so that it uses the current loop variable `<%= render_slot(title_slot) %>`.
+Additionally we changed the way we render the slot to use a `:for={title_slot <- @title}` loop so that we can look at each use of `<:title>` individually to get its classes. Inside the `class` attribute we use a list to be able to apply the optional attributes that we can extract using `Map.get(title_slot, :class)` (which will be `nil` by default, resulting in no class being applied). Finally, inside our loop we modify the use of `render_slot/2` so that it uses the current loop variable `<%= render_slot(title_slot) %>`.
 
-Great! Now your slots can have attributes specifically in them. We managed to solve the original problem: on the home page we would like the slot title to have a different attribute than the other!
+Great! Now your slots can have attributes in them. We managed to solve the original problem: on the home page we would like the slot title to have a different attribute than the other page!
 
 ## Recap!
 
-- Each slot is actually a map list type assignment.
+- Each slot is actually a list of map assign.
 - Slots can be given attributes and we can document this using `slot/2` with a `do` block.
-- To access slot attributes we need to loop through `@slot_name`. Then just use `Map.get(loop_item, :attribute_name)`.
+- To access slot attributes we need to loop through `@slot_name` then use `Map.get(loop_item, :attribute_name)`.
