@@ -10,8 +10,8 @@ defmodule CursoWeb.LocalePlug do
     conn = fetch_session(conn, @session_name)
 
     if get_session(conn)[@session_name] == nil do
-      with [accept_language] <- get_req_header(conn, "accept-language") |> dbg,
-           {:ok, matched} = Curso.Cldr.AcceptLanguage.best_match(accept_language) do
+      with [accept_language] <- get_req_header(conn, "accept-language"),
+           {:ok, matched} <- Curso.Cldr.AcceptLanguage.best_match(accept_language) do
         put_session(conn, "preferred_locale", map_language_tag_to_locale(matched))
       else
         _other ->
