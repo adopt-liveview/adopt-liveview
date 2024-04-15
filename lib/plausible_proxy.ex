@@ -45,6 +45,7 @@ defmodule PlausibleProxy do
   require Logger
   import Plug.Conn
 
+  @plausible_base "https://devsnorte-plausible.fly.dev"
   @default_local_path "/js/plausible_script.js"
   @default_script_extension "script.pageview-props.js"
   @default_remote_ip_headers ["fly-client-ip", "x-real-ip"]
@@ -58,7 +59,7 @@ defmodule PlausibleProxy do
     }
   end
 
-  defp script(%{script_extension: ext}), do: "https://plausible.io/js/#{ext}"
+  defp script(%{script_extension: ext}), do: "#{@plausible_base}/js/#{ext}"
 
   @impl Plug
   def call(%{request_path: path} = conn, %{local_path: path} = opts) do
@@ -147,7 +148,7 @@ defmodule PlausibleProxy do
       end
 
     with {:ok, body} <- Jason.encode(body),
-         {:ok, resp} <- HTTPoison.post("https://plausible.io/api/event", body, headers) do
+         {:ok, resp} <- HTTPoison.post("#{@plausible_base}/api/event", body, headers) do
       {:ok, resp}
     else
       {:error, error} ->
