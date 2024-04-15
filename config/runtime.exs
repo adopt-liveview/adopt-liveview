@@ -115,4 +115,10 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+  #
+  config :sentry,
+    dsn: System.get_env("SENTRY_DSN"),
+    environment_name: Mix.env(),
+    enable_source_code_context: true,
+    root_source_code_paths: File.cwd!()
 end

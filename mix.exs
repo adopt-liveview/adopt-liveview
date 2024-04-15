@@ -68,6 +68,8 @@ defmodule Curso.MixProject do
       {:ex_cldr, "~> 2.37"},
       {:plug_canonical_host, "~> 2.0"},
       {:sitemapper, "~> 0.8"},
+      {:sentry, "~> 10.3.0"},
+      {:hackney, "~> 1.8"},
       {:basic_auth, "~> 2.2"}
     ]
   end
