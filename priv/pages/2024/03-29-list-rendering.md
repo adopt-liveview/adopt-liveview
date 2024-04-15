@@ -196,7 +196,7 @@ Para definir uma stream nós usamos a função [`stream/4`](https://hexdocs.pm/p
 
 A próxima modificação acontece no nosso código HEEx. O elemento pai da lista a ser renderizada obrigatoriamente precisa de um atributo `id` único para que o LiveView saiba quem contém os elementos renderizados e devemos adicionar um atributo especial `phx-update="stream"` para definir que os filhos deste elemento são parte de uma stream.
 
-Dentro do nosso `ul` mativemos o `:for` especial porem dessa vez nós lemos o assigns especial `@streams.foods`. Toda vez que uma cria uma stream com `algum_nome` você gera um assign especial `@streams.algum_nome`. Não só isso, nosso `:for` agora lê duas variáveis: um `dom_id` e a `food` em si. O `dom_id` é necessário para que, se houver necessidade, nós possamos atualizar/remover/mover elementos da nossa stream de maneira eficiente.
+Dentro do nosso `ul` mativemos o `:for` especial porem dessa vez nós lemos o assigns especial `@streams.foods`. Toda vez que você cria uma stream com `algum_nome` você gera um assign especial `@streams.algum_nome`. Não só isso, nosso `:for` agora lê duas variáveis: um `dom_id` e a `food` em si. O `dom_id` é necessário para que, se houver necessidade, nós possamos atualizar/remover/mover elementos da nossa stream de maneira eficiente.
 
 Como você deve imaginar, streams são muito mais poderosas que o simples `:for`. No futuro iremos falar mais sobre streams em detalhes.
 

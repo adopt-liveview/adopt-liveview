@@ -41,7 +41,7 @@ Apesar de muitas coisas novas terem aparecido vamos focar numa visão geral. Em 
 - Usamos o bloco `scope "/" do` para representar que as rotas dentro do bloco são renderizadas na raiz do nosso site.
 - `pipe_through :browser` ativa a pipeline chamada `:browser` neste escopo.
 
-Agora o mais importante: como definit uma rota LiveView. Usando o macro [`live/4`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Router.html#live/4) nós definimos que na página inicial (`"/"`) o módulo `PageLive` será renderizado e sua Live Action será `:index`. No momento, você não precisa se preocupar com a Live Action, retomaremos ela no futuro.
+Agora o mais importante: como definir uma rota LiveView. Usando o macro [`live/4`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Router.html#live/4) nós definimos que na página inicial (`"/"`) o módulo `PageLive` será renderizado e sua Live Action será `:index`. No momento, você não precisa se preocupar com a Live Action, retomaremos ela no futuro.
 
 ## Construindo seu primeiro Phoenix.Router
 

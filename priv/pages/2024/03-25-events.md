@@ -86,7 +86,7 @@ Callbacks são simplesmente funções que são executadas quando determinada coi
 
 - O nome do evento que você definiu.
 - Parâmetros do evento (iremos explorar mais em outra aula, no momento estamos apenas ignorando esse argumento).
-- O estado do Socket to usuário atual.
+- O estado do Socket do usuário atual.
 
 Assim como no callback `mount/3` você recebe o `socket` para que você possa modificá-lo como quiser. O retorno esperado da função é `{:noreply, socket}`.
 

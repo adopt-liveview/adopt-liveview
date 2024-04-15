@@ -78,7 +78,7 @@ def handle_params(params, _uri, socket) do
 end
 ```
 
-Bem parecido como fizemos na aula anterior nós apenas verificados no valor de `socket.assigns.live_action` para definir o que fazer. No caso de edição nós precisamos saber sobre o produto que será editado portanto recebemos do `params` o `id` do produto (que vem do URL) e fazemos assign do seu valor. Em caso da action de `:index` podemos apenas definit o assign `product` como `nil`.
+Bem parecido como fizemos na aula anterior nós apenas verificados no valor de `socket.assigns.live_action` para definir o que fazer. No caso de edição nós precisamos saber sobre o produto que será editado portanto recebemos do `params` o `id` do produto (que vem do URL) e fazemos assign do seu valor. Em caso da action de `:index` podemos apenas definir o assign `product` como `nil`.
 
 Se você também lembra da aula anterior, nós podemos simplificar este `case` criando uma nova função!
 

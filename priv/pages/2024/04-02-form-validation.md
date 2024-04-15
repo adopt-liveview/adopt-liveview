@@ -219,7 +219,7 @@ LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com?plugins=forms"])
 
 Trocamos nossa própria definição de `<.input>` pela definição gerada automaticamente. Espero que com o conteúdo até agora você tenha entendido o poder por trás desse componente, ainda que você nunca edite ele.
 
-Você também pode estar se perguntando: por que o componente `<.form>` já vem com o Phoenix e o componente `<.input>` é gerado no CoreComponentes? A resposta é mais simples do que parece. Enquanto `<.form>` trabalha mais com a gerência de certas funcionalidades do formulário e não tem estilos os componentes do CoreComponents sempre tem estilo portanto faz sentido eles virem com um estilo padrão e você pode editar confirme sua necessidade, está tudo em suas mãos.
+Você também pode estar se perguntando: por que o componente `<.form>` já vem com o Phoenix e o componente `<.input>` é gerado no CoreComponentes? A resposta é mais simples do que parece. Enquanto `<.form>` trabalha mais com a gerência de certas funcionalidades do formulário e não tem estilos os componentes do CoreComponents sempre tem estilo portanto faz sentido eles virem com um estilo padrão e você pode editar conforme sua necessidade, está tudo em suas mãos.
 
 ## Resumindo!
 

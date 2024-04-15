@@ -119,7 +119,7 @@ end
 
 A magia começa aqui. Definimos um módulo chamado `Product` para representar o dado no nosso formulário. A primeira coisa que fazemos é `use Ecto.Schema` para que nosso módulo receba a DSL (Linguagem de Domínio Específico) que nos deixa utilizar macros como `embedded_schema` e `field` para definirmos o formato do nosso Product. Pense nesta DSL como um jeito simples de definir um Struct em Elixir.
 
-Além disso importanmos [`Ecto.Changeset`](https://hexdocs.pm/ecto/Ecto.Changeset.html). Changeset é uma estrutura de dados que contém dados sobre modificações em algo. Neste caso, nosso Changeset conterá dados sobre modificações, erros e validações do nosso struct Product. Pense em changesets como uma fase de validaçào.
+Além disso importamos [`Ecto.Changeset`](https://hexdocs.pm/ecto/Ecto.Changeset.html). Changeset é uma estrutura de dados que contém dados sobre modificações em algo. Neste caso, nosso Changeset conterá dados sobre modificações, erros e validações do nosso struct Product. Pense em changesets como uma fase de validaçào.
 
 ### Entendendo um `embedded_schema`
 

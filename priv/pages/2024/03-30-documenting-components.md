@@ -109,7 +109,7 @@ end
 LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com"])
 ```
 
-No exemplo acima não só removemos o `color="blue"` da nossa render function como também adicionamos mais um exemplo na documentação onde podemos usar o botão sem passar um `color`. Vale mencionar que no `attr/3` as opções `default` e `requred` são mutualmente exclusivas: ou você tem um padrão para caso não seja passado ou você pede que quem use este componente sempre passe um valor.
+No exemplo acima não só removemos o `color="blue"` da nossa render function como também adicionamos mais um exemplo na documentação onde podemos usar o botão sem passar um `color`. Vale mencionar que no `attr/3` as opções `default` e `required` são mutualmente exclusivas: ou você tem um padrão para caso não seja passado ou você pede que quem use este componente sempre passe um valor.
 
 ## Usando `attr/3` para definir possíveis valores
 

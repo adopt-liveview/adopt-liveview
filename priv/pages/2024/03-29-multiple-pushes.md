@@ -74,7 +74,7 @@ JS Commands serializam os dados em JSON para armazenar no cliente portanto um da
 %{
 title: ~H"Como <code>`socket.assigns[team_atom]`</code> funciona?",
 description: ~H"""
-Os assigns em LiveView são apenas mapas do elixir no formato chave valor usando atoms. Nesta LiveView os assigns seriam <code>`%{red: 0, blue: 0}`</code>. Em Elixir você ode dinamicamente pegar um dado de um mapa usando a sintaxe <code>`mapa[:atom]`</code> logo <code>`socket.assigns[:red]`</code> funciona tão bem quando <code>`socket.assigns.red`</code>. Se você estiver com dúvidas recomendamos <.link navigate="https://elixirschool.com/pt/lessons/basics/collections#mapas-5" target="\_blank">esta aula curta do Elixir School</.link>.
+Os assigns em LiveView são apenas mapas do elixir no formato chave valor usando atoms. Nesta LiveView os assigns seriam <code>`%{red: 0, blue: 0}`</code>. Em Elixir você pode dinamicamente pegar um dado de um mapa usando a sintaxe <code>`mapa[:atom]`</code> logo <code>`socket.assigns[:red]`</code> funciona tão bem quando <code>`socket.assigns.red`</code>. Se você estiver com dúvidas recomendamos <.link navigate="https://elixirschool.com/pt/lessons/basics/collections#mapas-5" target="\_blank">esta aula curta do Elixir School</.link>.
 """
 } %% .callout
 

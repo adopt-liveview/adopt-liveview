@@ -65,7 +65,7 @@ Dentro de uma LiveView você pode fazer um `if-else` da seguinte maneira:
 - Escreva qualquer HTML que estará no caso que deve ser renderizado.
 - Adicione um `<% else %>`. Note que não há um `=` desta vez. Se você adicionar ele o código continua a funcionar porém um warning lhe avisará para removê-lo.
 - Escreva qualquer HTML para o caso `else`.
-- Adicione um `<% ende %>`. Mais uma vez, sem `=`.
+- Adicione um `<% end %>`. Mais uma vez, sem `=`.
 
 Se você não desejar mostrar um caso de `else` existem dua maneiras de fazer isso. A primeira é simples: apenas remova o `<% else %>` e o conteúdo dele! Crie e execute um arquivo chamado `toggle_without_else.ex`:
 

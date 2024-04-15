@@ -106,7 +106,7 @@ Escolhemos este exemplo justamente pois existe uma tag HTML <code>`button`</code
 """
 } %% .callout
 
-Diferente do nosso primeiro código você pode notar que todos os botões agora mostram o mesmo texto: "Default" apesar de cata `<.button>` possuir um texto diferente! Isso acontece pois no momento somos os criadores do componente novo, devemos ensinar ao HEEx one o conteúdo do bloco interno deve ser renderizado. Crie e execute `component_inner_block.exs`:
+Diferente do nosso primeiro código você pode notar que todos os botões agora mostram o mesmo texto: "Default" apesar de cada `<.button>` possuir um texto diferente! Isso acontece pois no momento somos os criadores do componente novo, devemos ensinar ao HEEx onde o conteúdo do bloco interno deve ser renderizado. Crie e execute `component_inner_block.exs`:
 
 ```elixir
 Mix.install([
