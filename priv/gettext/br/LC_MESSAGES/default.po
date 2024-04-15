@@ -52,22 +52,22 @@ msgstr "Não consegui encontrar a internet"
 msgid "close"
 msgstr "fechar"
 
-#: lib/curso_web/components/core_components.ex:741
+#: lib/curso_web/components/core_components.ex:743
 #, elixir-autogen, elixir-format
 msgid "Next"
 msgstr "Próximo"
 
-#: lib/curso_web/components/core_components.ex:740
+#: lib/curso_web/components/core_components.ex:742
 #, elixir-autogen, elixir-format
 msgid "Previous"
 msgstr "Anterior"
 
-#: lib/curso_web/components/core_components.ex:1168
+#: lib/curso_web/components/core_components.ex:1170
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr "Copiado!"
 
-#: lib/curso_web/components/core_components.ex:1164
+#: lib/curso_web/components/core_components.ex:1166
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr "Copiar"
@@ -326,7 +326,7 @@ msgstr "Trilha de Projetos"
 msgid "Start now!"
 msgstr "Comece agora!"
 
-#: lib/curso_web/components/core_components.ex:1106
+#: lib/curso_web/components/core_components.ex:1108
 #, elixir-autogen, elixir-format
 msgid "Under construction"
 msgstr "Em construção"
@@ -341,18 +341,18 @@ msgstr "Trilha para Iniciantes"
 msgid "Deployments track"
 msgstr "Trilha de implantação"
 
-#: lib/curso_web/components/core_components.ex:881
+#: lib/curso_web/components/core_components.ex:883
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr "Começar"
 
-#: lib/curso_web/components/layouts/app.html.heex:30
+#: lib/curso_web/components/layouts/app.html.heex:46
 #: lib/curso_web/live/home_live.ex:16
 #, elixir-autogen, elixir-format
 msgid "Learn LiveView now!"
 msgstr "Aprenda LiveView agora!"
 
-#: lib/curso_web/components/layouts/app.html.heex:32
+#: lib/curso_web/components/layouts/app.html.heex:48
 #: lib/curso_web/live/home_live.ex:18
 #, elixir-autogen, elixir-format
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
@@ -363,8 +363,8 @@ msgstr "Aprenda como usar Phoenix LiveView sem conhecimento prévio em Elixir ou
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr "Guia passo-a-passo sobre os fundamentos de programar com LiveView"
 
-#: lib/curso_web/components/core_components.ex:1328
-#: lib/curso_web/components/core_components.ex:1333
+#: lib/curso_web/components/core_components.ex:1330
+#: lib/curso_web/components/core_components.ex:1335
 #, elixir-autogen, elixir-format
 msgid "Toggle locale"
 msgstr "Trocar idioma"
@@ -378,12 +378,6 @@ msgstr "Estamos trabalhando em vários cursos"
 #, elixir-autogen, elixir-format
 msgid "Brazilian Pix payment QR Code"
 msgstr "QR Code do Pix"
-
-#: lib/curso_web/components/layouts.ex:111
-#: lib/curso_web/components/layouts.ex:115
-#, elixir-autogen, elixir-format
-msgid "Buy me a coffee at buymeacoffee.com/lubien"
-msgstr "Me pague um café em buymeacoffee.com/lubien"
 
 #: lib/curso_web/components/dark_mode.ex:12
 #, elixir-autogen, elixir-format
@@ -407,3 +401,13 @@ msgstr "Página inicial"
 #, elixir-autogen, elixir-format
 msgid "Testing track"
 msgstr "Trilha de testes"
+
+#: lib/curso_web/components/layouts.ex:109
+#, elixir-autogen, elixir-format
+msgid "Donate via Stripe"
+msgstr "Doar via Stripe"
+
+#: lib/curso_web/components/layouts.ex:112
+#, elixir-autogen, elixir-format
+msgid "Donate with Stripe"
+msgstr "Doar com Stripe"

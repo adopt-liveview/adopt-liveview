@@ -21,7 +21,7 @@ defmodule CursoWeb.Layouts do
 
       <.prose class="mt-2">
         <h4><%= gettext("...or buy me a coffee") %></h4>
-        <.buy_me_a_coffee />
+        <.stripe_button />
       </.prose>
     </div>
     """
@@ -34,7 +34,7 @@ defmodule CursoWeb.Layouts do
     </.prose>
 
     <.prose class="mt-2 text-center">
-      <.buy_me_a_coffee image_class="mx-auto" />
+      <.stripe_button image_class="mx-auto" />
     </.prose>
 
     <.prose class="mt-4">
@@ -100,24 +100,17 @@ defmodule CursoWeb.Layouts do
     """
   end
 
-  attr :image_class, :string, default: nil
-
-  def buy_me_a_coffee(assigns) do
+  def stripe_button(assigns) do
     ~H"""
     <.link
-      href="https://www.buymeacoffee.com/lubien"
+      href="https://donate.stripe.com/28o2aicj8fnr3HaaEE"
       target="_blank"
-      phx-click={JS.dispatch("plausible", detail: %{name: "buy_coffee", props: %{}})}
-      aria-label={gettext("Buy me a coffee at buymeacoffee.com/lubien")}
+      phx-click={JS.dispatch("plausible", detail: %{name: "donate_stripe", props: %{}})}
+      aria-label={gettext("Donate via Stripe")}
     >
-      <img
-        src="/images/bmc-button.png"
-        alt={gettext("Buy me a coffee at buymeacoffee.com/lubien")}
-        class={[
-          "fill-zinc-700 stroke-zinc-500 transition dark:fill-teal-400/10 dark:stroke-teal-500 mt-4 max-w-52",
-          @image_class
-        ]}
-      />
+      <.button class="w-full">
+        <%= gettext("Donate with Stripe") %>
+      </.button>
     </.link>
     """
   end
