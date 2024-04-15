@@ -94,7 +94,7 @@ defmodule CursoWeb.Layouts do
         class="!relative !top-2 !right-0"
       />
       <span class="hidden">
-        <pre><code id="mobile-donate-with-pix-copy-data">00020126580014BR.GOV.BCB.PIX0136a3af0bcb-cac6-4585-8119-58220305adc25204000053039865802BR5906Lubien6005Belem62120508LIveView63047238</code></pre>
+        <pre><code id="mobile-donate-with-pix-copy-data">00020101021126700014br.gov.bcb.pix0136a3af0bcb-cac6-4585-8119-58220305adc20208Liveview5204000053039865802BR5917JOAO DE D F FILHO6005BELEM62070503***63046715</code></pre>
       </span>
     </div>
     """
