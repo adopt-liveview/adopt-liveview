@@ -36,8 +36,14 @@ defmodule Pages.MarkdownConverter do
         wrapper = {"div", attrs, children, %{}}
         {wrapper, nil}
 
-      {"h" <> x, _inner, texts, meta}, nil when x in ~w(1 2 3 4 5 6) ->
-        {{"h#{x}", [{"id", anchor_id(texts)}], texts, meta}, nil}
+      {"h1", _inner, texts, meta}, nil ->
+        {{"h1", [{"id", anchor_id(texts)}], texts, meta}, nil}
+
+      {"h" <> x, _inner, texts, meta}, nil when x in ~w(2 3 4 5 6) ->
+        anchor_link =
+          {"a", [{"href", "#" <> anchor_id(texts)}, {"class", "mdx-header-anchor"}], ["#"], %{}}
+
+        {{"h#{x}", [{"id", anchor_id(texts)}], [anchor_link | texts], meta}, nil}
 
       {_, [], bits, meta} = item, nil ->
         case Map.get(meta, :annotation) do
