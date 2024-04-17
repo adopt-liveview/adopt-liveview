@@ -99,6 +99,6 @@ You must be wondering why in the callback <code>`mount/3`</code> we respond with
 
 ## Recap!
 
-- By adding `phx-click="event_name"` to an element you trigger an event when the it is clicked.
+- By adding `phx-click="event_name"` to an element you trigger an event name `"event_name"` when it is clicked.
 - For each event in your HTML you need an equivalent `handle_event("event_name", _params, socket)` callback.
 - The `mount/3` callback returns `{:ok, socket}` while the `handle_event/3` returns `{:noreply, socket}`.
