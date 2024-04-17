@@ -197,7 +197,7 @@ In Elixir pattern matching is a common and very powerful technique that, once yo
 """
 } %% .callout
 
-Now let's talk about what's important for this class: `case`. Just like `if` you need to start the conditional with `<%= case (condition here) of %>`, emphasis on `=` because without it nothing will be rendered. Since our condition passed to `case` was `@tab`, each condition will essentially check `@tab == 'value'`. For each condition we do an `<% "expected value" -> %>` (without the need for `=`) and end the block with `<% end %>`.
+Now let's talk about what's important for this class: `case`. Just like `if` you need to start the conditional with `<%= case (condition here) do %>`, emphasis on `=` because without it nothing will be rendered. Since our condition passed to `case` was `@tab`, each condition will essentially check `@tab == 'value'`. For each condition we do an `<% "expected value" -> %>` (without the need for `=`) and end the block with `<% end %>`.
 
 It is worth mentioning that in our case we handled all cases. What if we forget a possibility? Create and run a file called `case_missing.exs`:
 
