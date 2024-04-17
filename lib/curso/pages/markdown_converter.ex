@@ -41,7 +41,7 @@ defmodule Pages.MarkdownConverter do
 
       {"h" <> x, _inner, texts, meta}, nil when x in ~w(2 3 4 5 6) ->
         anchor_link =
-          {"a", [{"href", "#" <> anchor_id(texts)}, {"class", "mdx-header-anchor"}], ["#"], %{}}
+          {"a", [{"href", "#" <> anchor_id(texts)}, {"class", "mr-2"}], ["#"], %{}}
 
         {{"h#{x}", [{"id", anchor_id(texts)}], [anchor_link | texts], meta}, nil}
 
