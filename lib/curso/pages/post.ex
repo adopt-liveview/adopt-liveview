@@ -42,7 +42,9 @@ defmodule Curso.Pages.Post do
       Floki.find(document, "h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]")
       |> Enum.map(fn {"h" <> number, _, _} = node ->
         [id] = Floki.attribute(node, "id")
-        {String.to_integer(number), "##{id}", Floki.text(node) |> String.trim()}
+
+        {String.to_integer(number), "##{id}",
+         Floki.text(node) |> String.trim() |> String.trim_leading("#")}
       end)
 
     table_of_contents = [{1, "#", attrs[:title]} | table_of_contents]
