@@ -1427,7 +1427,7 @@ defmodule CursoWeb.CoreComponents do
     ~H"""
     <div
       :if={@progress}
-      class="h-1 bg-green-400 w-full"
+      class="h-1 bg-sky-300 w-full"
       style={"width: " <> Float.to_string(@progress) <> "%"}
     >
     </div>
