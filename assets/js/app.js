@@ -25,7 +25,7 @@ import darkModeHook from "../vendor/dark_mode";
 
 let Hooks = {};
 
-const readingProgress = {
+const readingProgressHook = {
   mounted(){
     window.addEventListener("scroll", () => {
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -38,7 +38,7 @@ const readingProgress = {
 }
 
 Hooks.DarkThemeToggle = darkModeHook;
-Hooks.ReadingProgress = readingProgress;
+Hooks.ReadingProgressHook = readingProgressHook;
 
 window.addEventListener("copy_code_to_clipboard", (event) => {
   if ("clipboard" in navigator) {

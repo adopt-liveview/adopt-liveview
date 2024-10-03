@@ -1431,7 +1431,7 @@ defmodule CursoWeb.CoreComponents do
       :if={@progress}
       class="h-1 bg-sky-300 w-full"
       id="progress-bar"
-      phx-hook="ReadingProgress"
+      phx-hook="ReadingProgressHook"
       style={"width: " <> Integer.to_string(@progress) <> "%"}
     >
     </div>
