@@ -25,13 +25,11 @@ import darkModeHook from "../vendor/dark_mode";
 
 let Hooks = {};
 
-const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 const readingProgress = {
   mounted(){
-
     window.addEventListener("scroll", () => {
-      const scrollTop =
-        document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
       const readingProgress = Math.floor((scrollTop / height) * 100);
 
       this.pushEvent("reading_progress", readingProgress);
