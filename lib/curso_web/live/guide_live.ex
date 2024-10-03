@@ -29,6 +29,7 @@ defmodule CursoWeb.GuideLive do
         previous_page: previous_page,
         next_page: next_page,
         page_title: page_title(page),
+        page_progress: 10,
         page_description: page.description,
         page_breadcumb_list:
           Jason.encode!(%{
