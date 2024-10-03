@@ -1421,14 +1421,18 @@ defmodule CursoWeb.CoreComponents do
   @doc """
   Shows progress bar in the page header.
   """
-  attr :progress, :float, default: nil, doc: "Page reading progress"
+  attr :progress, :integer, default: 0, doc: "Page reading progress"
 
   def progress_bar(assigns) do
+    assigns |> dbg()
+
     ~H"""
     <div
       :if={@progress}
       class="h-1 bg-sky-300 w-full"
-      style={"width: " <> Float.to_string(@progress) <> "%"}
+      id="progress-bar"
+      phx-hook="ReadingProgress"
+      style={"width: " <> Integer.to_string(@progress) <> "%"}
     >
     </div>
     """

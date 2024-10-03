@@ -28,8 +28,8 @@ defmodule CursoWeb.GuideLive do
         page_languages: Pages.get_languages_for_post(id),
         previous_page: previous_page,
         next_page: next_page,
+        page_progress: 0,
         page_title: page_title(page),
-        page_progress: 10,
         page_description: page.description,
         page_breadcumb_list:
           Jason.encode!(%{
@@ -61,6 +61,12 @@ defmodule CursoWeb.GuideLive do
     "#{page.title} · #{page.section}"
   end
 
+  def handle_event("reading_progress", page_progress, socket) do
+    socket = assign(socket, page_progress: page_progress)
+    {:reply, %{}, socket}
+  end
+
+  @spec render(any()) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
     ~H"""
     <.docs_layout class="">
