@@ -104,7 +104,7 @@ The new things here are: the `<.link>` component and the `sigil_p`.
 
 This is the first time in this course that you've seen an HTML tag that starts with `.`. These tags are known as components, we will talk about them in detail in the future.
 
-The important thing about the [`.link`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#link/1) component is that it is specialized in prividing navigation between pages on your Phoenix website. Using the `navigate={...}` attribute, Phoenix can make an optimized transition between two LiveViews whenever possible so always prefer this component instead of using the `<a>` HTML tag.
+The important thing about the [`.link`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#link/1) component is that it is specialized in providing navigation between pages on your Phoenix website. Using the `navigate={...}` attribute, Phoenix can make an optimized transition between two LiveViews whenever possible so always prefer this component instead of using the `<a>` HTML tag.
 
 ## Verified Phoenix Routes
 
