@@ -1424,8 +1424,6 @@ defmodule CursoWeb.CoreComponents do
   attr :progress, :integer, default: 0, doc: "Page reading progress"
 
   def progress_bar(assigns) do
-    assigns |> dbg()
-
     ~H"""
     <div
       :if={@progress}

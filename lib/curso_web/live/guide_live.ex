@@ -66,7 +66,6 @@ defmodule CursoWeb.GuideLive do
     {:reply, %{}, socket}
   end
 
-  @spec render(any()) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
     ~H"""
     <.docs_layout class="">
