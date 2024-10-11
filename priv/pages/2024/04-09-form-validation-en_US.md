@@ -68,7 +68,7 @@ defmodule PageLive do
       end
 
     form = to_form(product_params, as: :product, errors: errors)
-    {:noreply, socket}
+    {:noreply, assign(socket, form: form)}
   end
 
   def handle_event("create_product", %{"product" => product_params}, socket) do
