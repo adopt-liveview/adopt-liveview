@@ -57,7 +57,7 @@ def render(assigns) do
 end
 ```
 
-Por fim, o mínimo para você ter uma LiveView é, pasme, a View. Isto é, uma função que explica qual código HTML será mostrado para seu usuário. Toda LiveView (sem exceção) tem uma função de renderização que recebe exclusivamente um argumento chamado `assigns` (falaremos sobre eles logo mais). Tudo que sua `render function` precisa fazer é retornar um HTML válido usando a [sigil_H/2](https://hexdocs.pm/phoenix_live_view/0.17.0/Phoenix.LiveView.Helpers.html#sigil_H/2).
+Por fim, o mínimo para você ter uma LiveView é, pasme, a View. Isto é, uma função que explica qual código HTML será mostrado para seu usuário. Toda LiveView (sem exceção) tem uma função de renderização que recebe exclusivamente um argumento chamado `assigns` (falaremos sobre eles logo mais). Tudo que sua `render function` precisa fazer é retornar um HTML válido usando a [sigil_H/2](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#sigil_H/2).
 
 %{
 title: ~H"<code>sigil_H/2</code>?",
