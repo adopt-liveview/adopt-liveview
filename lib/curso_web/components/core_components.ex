@@ -868,11 +868,7 @@ defmodule CursoWeb.CoreComponents do
       <div class="py-16 sm:px-2 lg:relative lg:px-0 lg:py-24">
         <div class="mx-auto flex flex-col max-w-2xl items-center gap-x-4 gap-y-12 px-4 lg:max-w-8xl lg:flex-row lg:px-6 xl:gap-x-8 xl:px-8">
           <div class="h-56 w-56">
-            <img
-              src="/images/sticker.png"
-              alt={gettext("Adopt LiveView")}
-              class="h-52 w-52 mx-auto"
-            />
+            <img src="/images/sticker.png" alt={gettext("Adopt LiveView")} class="h-52 w-52 mx-auto" />
           </div>
           <div class="relative z-10 md:text-center lg:text-left col-span-4">
             <div class="relative">
@@ -1420,5 +1416,23 @@ defmodule CursoWeb.CoreComponents do
   """
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
+  end
+
+  @doc """
+  Shows progress bar in the page header.
+  """
+  attr :progress, :integer, default: 0, doc: "Page reading progress"
+
+  def progress_bar(assigns) do
+    ~H"""
+    <div
+      :if={@progress}
+      class="h-1 bg-sky-300 w-full"
+      id="progress-bar"
+      phx-hook="ReadingProgressHook"
+      style={"width: " <> Integer.to_string(@progress) <> "%"}
+    >
+    </div>
+    """
   end
 end

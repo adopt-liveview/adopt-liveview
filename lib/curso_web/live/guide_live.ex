@@ -28,6 +28,7 @@ defmodule CursoWeb.GuideLive do
         page_languages: Pages.get_languages_for_post(id),
         previous_page: previous_page,
         next_page: next_page,
+        page_progress: 0,
         page_title: page_title(page),
         page_description: page.description,
         page_breadcumb_list:
@@ -58,6 +59,11 @@ defmodule CursoWeb.GuideLive do
 
   def page_title(page) do
     "#{page.title} · #{page.section}"
+  end
+
+  def handle_event("reading_progress", page_progress, socket) do
+    socket = assign(socket, page_progress: page_progress)
+    {:reply, %{}, socket}
   end
 
   def render(assigns) do

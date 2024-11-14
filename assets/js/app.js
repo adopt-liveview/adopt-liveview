@@ -24,7 +24,21 @@ import topbar from "../vendor/topbar";
 import darkModeHook from "../vendor/dark_mode";
 
 let Hooks = {};
+
+const readingProgressHook = {
+  mounted(){
+    window.addEventListener("scroll", () => {
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+      const readingProgress = Math.floor((scrollTop / height) * 100);
+
+      this.pushEvent("reading_progress", readingProgress);
+    });
+  },
+}
+
 Hooks.DarkThemeToggle = darkModeHook;
+Hooks.ReadingProgressHook = readingProgressHook;
 
 window.addEventListener("copy_code_to_clipboard", (event) => {
   if ("clipboard" in navigator) {
