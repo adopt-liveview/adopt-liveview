@@ -45,7 +45,7 @@ In Elixir the functions are different depending on the number of arguments. So j
 
 ## The PageLive module
 
-For convenience sake our `LiveviewPlayground` always looks for a `defmodule PageLive do` to use by default. If you forget to write it you will see an error in the system. We will see later that this name doesn't matter that much and can be called anything when we study Phoenix's `Router`.
+For the sake of convenience our `LiveviewPlayground` always looks for a `defmodule PageLive do` to use by default. If you forget to write it you will see an error in the system. We will see later that this name doesn't matter that much and can be called anything when we study Phoenix's `Router`.
 
 The first line of the `use LiveviewPlaygroundWeb, :live_view` module is important and you will see it in all LiveView applications. The `use` macro works behind the scenes as a way to execute code at compile time. Think of it as "by the time this code compiles, things will be added." When we study the `LiveviewPlaygroundWeb` module everything will become clearer but you just need to know now that almost every time you make a LiveView, its module will have something like `use WebProjectName, :live_view`.
 
