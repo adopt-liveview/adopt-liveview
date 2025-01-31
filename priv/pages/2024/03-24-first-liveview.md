@@ -12,13 +12,13 @@ next_page_id: "explain-playground"
 
 ## Um passo de cada vez
 
-O framework Phoenix trás consigo várias ferramentas configuradas para você não ter que se procupar: envio de emails, sistema de presença em tempo real, clusterização etc. Isso é incrível quando você precisa entregar um produto o mais rápido possível porém pode ser amedrontador quando você está só começando.
+O framework Phoenix trás consigo várias ferramentas configuradas para você não ter que se procupar: envio de emails, sistema de presença em tempo real, clusterização, etc. Isso é incrível quando você precisa entregar um produto o mais rápido possível, porém pode ser amedrontador quando você está só começando.
 
-Para facilitar o entendimento, construí uma versão do LiveView bem enxuta chamada [LiveView Playground](https://hexdocs.pm/liveview_playground/0.1.1/readme.html). Iremos utilizar ele no início deste curso e gradualmente adicionaremos mais funcionalidades para você entender como as coisas funcionam no Phoenix e LiveView um pouco mais a cada passo.
+Para facilitar o entendimento, construí uma versão do LiveView bem enxuta chamada [LiveView Playground](https://hexdocs.pm/liveview_playground/0.1.1/readme.html). Iremos utilizá-lo no início deste curso e, gradualmente adicionaremos mais funcionalidades para você entender como as coisas funcionam no Phoenix e LiveView um pouco mais a cada passo.
 
 ## A LiveView mais básica de todas
 
-Para scripts simples o comando `elixir` executa brevemente um arquivo. Vamos criar um arquivo chamado `hello_liveview.exs`.
+Para scripts simples, o comando `elixir` executa brevemente um arquivo. Vamos criar um arquivo chamado `hello_liveview.exs`.
 
 ```elixir
 # conteúdo do arquivo hello_liveview.exs
@@ -53,7 +53,7 @@ Em seguida basta executar no seu terminal `elixir hello_liveview.exs` e o servid
 
 ## Experimente
 
-Tente colocar um pouco de HTML na sua função `render/1`. Para poder ver as modificações você irá precisar desligar o servidor com `Control+c` duas vezes e rodar novamente o projeto.
+Tente colocar um pouco de HTML na sua função `render/1`. Você precisará desligar o servidor com `Control+c` duas vezes e rodar novamente o projeto para visualizar as modificações.
 
 ## Sucesso!
 
