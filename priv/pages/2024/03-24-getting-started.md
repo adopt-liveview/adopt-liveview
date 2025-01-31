@@ -13,17 +13,17 @@ next_page_id: "first-liveview"
 
 O primeiro passo será instalar Elixir e Erlang.
 
-Se você não tem nenhum dos dois instalados a recomendação é que você use a ferramenta `asdf` pois ela vai facilitar tanto instalar agora como gerenciar várias versões das ferramentas no futuro.
+Se você não tem nenhum dos dois instalados, a recomendação é que você use a ferramenta `asdf` pois ela vai facilitar tanto instalar agora, como gerenciar várias versões das ferramentas no futuro.
 
 ## Instalando `asdf`
 
-Usando um terminal basta rodar o comando:
+Usando um terminal, basta rodar o comando:
 
 ```bash
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 ```
 
-Uma vez que o `asdf` tiver sido clonado você precisa adicionar ele ao seu perfil do shell.
+Uma vez que o `asdf` tiver sido clonado, você precisa adicionar ele ao seu perfil do shell.
 
 Se você usa `bash` (provavelmente você usa 😉):
 
@@ -32,7 +32,7 @@ echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
 ```
 
-Se você usa `zshell` o comando seria:
+Se você usa `zshell` utilize o comando:
 
 ```
 echo '. "$HOME/.asdf/asdf.sh"' >> ~/.zshrc
@@ -45,7 +45,7 @@ Navegue até <.link navigate="https://asdf-vm.com/guide/getting-started.html#_3-
 """
 } %% .callout
 
-Após instalar tudo abra um novo terminal e verifique que ele está instalado usando `asdf version`. A versão do seu `asdf` não importa.
+Após concluir toda a instalação, abra um novo terminal e verifique que ele está instalado usando `asdf version`. A versão do seu `asdf` não importa.
 
 ```sh
 $ asdf version
@@ -64,7 +64,7 @@ asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 title: "O erlang pode ser muito chato de instalar",
 type: :warning,
 description: ~H"""
-Dependendo do seu sistema operacional você pode ter dores de cabeça diferentes. Recomendo dar uma breve lida <.link navigate="https://github.com/asdf-vm/asdf-erlang#before-asdf-install" target="\_blank">nesta área</.link> caso você passe problemas no próximo passo.
+Dependendo do seu sistema operacional, você pode ter dores de cabeça diferentes. Recomendo dar uma breve lida <.link navigate="https://github.com/asdf-vm/asdf-erlang#before-asdf-install" target="\_blank">nesta área</.link> caso você passe problemas no próximo passo.
 """
 } %% .callout
 
@@ -77,7 +77,7 @@ asdf global erlang 26.2.2
 
 ## Instalando o Elixir
 
-Diferente do Erlang este deve ser bem mais simples.
+Diferente do Erlang, este deve ser bem mais simples.
 
 ```sh
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
