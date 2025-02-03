@@ -12,11 +12,11 @@ next_page_id: "your-first-mistakes"
 
 ## Armazenando estado
 
-Uma funcionalidade importantíssima de um framework frontend é ser capaz de armazenar o estado da aplicação atual. ReactJS usa hooks, VueJS usa composition/options API e assim vai. Em LiveView chamamos o estado de uma view os `assigns` (no plural mesmo).
+Uma funcionalidade importantíssima de um framework frontend é ser capaz de armazenar o estado da aplicação atual. ReactJS usa hooks, VueJS usa composition/options API, de modo que cada *stack* tem sua forma de gerenciamento de estado. No LiveView, o estado em uma view é denominado `assigns` (no plural mesmo).
 
-`assigns` são apenas um mapa do Elixir. Você pode armazenar em `assigns` tudo que você poderia armazenar em uma variável qualquer: listas, mapas, structs etc.
+`assigns` são apenas um mapa do Elixir. Você pode armazenar em `assigns` qualquer valor que você armazeria em uma variável, podendo ser listas, mapas e structs.
 
-Um excelente lugar para escrever os `assigns` quando sua LiveView é gerada é no `callback` chamado `mount/3`.
+Ao gerar uma LiveView, o `callback` chamado `mount/3` é um excelente lugar para definir os `assigns`.
 
 Vamos criar um arquivo chamado `assigns.exs`:
 
@@ -45,21 +45,21 @@ LiveviewPlayground.start()
 
 Inicie o servidor como `elixir assigns.exs` e veja o resultado.
 
-Se você está se sentindo desesperado nesse momento não fique. Realmente 7 coisas novas foram adicionadas em apenas 5 linhas de código novas se compararmos ao `hello_liveview.exs` mas vamos destrinchar essas modificações uma de cada vez!
+Se você está se sentindo desesperado nesse momento, não fique. Realmente, 7 coisas novas foram adicionadas em apenas 5 novas linhas de código comparadas ao `hello_liveview.exs`. Mas vamos destrinchar essas modificações, uma de cada vez!
 
 ## O callback `mount/3`
 
-A forma com que o framework LiveView envia informações para programadores poderem tratar os dados é através de callbacks. Estes nada mais são que funções que rodam quando algo acontece. O callback `mount/3` executa quando sua LiveView é inicializada. Seus três argumentos são, respectivamente:
+A forma com que o framework LiveView envia informações para programadores poderem tratar os dados é através de *callbacks*. São apenas funções que são executadas quando um evento ocorre. O callback `mount/3` executa quando sua LiveView é inicializada. Seus três argumentos são, respectivamente:
 
 - Parâmetros vindo do URL. Útil para rotas como `/users/:id` onde o `:id` viria nos parâmetros.
 - Dados da sessão de navegação atual (se estiver configurado). Útil para sistemas de autenticação.
 - Dados da conexão atual com o usuário acessando esta LiveView numa estrutura de dados chamada [Phoenix.LiveView.Socket](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Socket.html), mais conhecido apenas como `socket`.
 
-Os dois primeiros argumentos serão explorados em mais detalhes em guias futuros, no momento iremos apenas ignorar eles por questão de simplicidade.
+Os dois primeiros argumentos serão explorados em mais detalhes em guias futuros. Para manter a simplicidade, vamos ignorá-los neste momento.
 
-## A estrutuda de dados %Socket{}
+## A estrutuda de dados `%Socket{}`
 
-Vamos direto ao ponto: gerência de estado LiveView completamente gira em torno de modificar o estado do seu `socket`. A função [`assigns/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#assign/2) recebe o seu `socket` e quais assigns você deseja adicionar e aplica eles gerando um novo socket. Vamos experimentar! Atualize seu código do seguinte modo:
+Indo direto ao ponto: toda o gerenciamento de estado LiveView gira em torno de modificar o estado do seu `socket`. A função [`assigns/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#assign/2) recebe o seu `socket` e quais *assigns* você deseja adicionar e, aplica-os, gerando um novo socket. Vamos experimentar. Atualize seu código do seguinte modo:
 
 ```elixir
 def mount(_params, _session, socket) do
@@ -75,11 +75,11 @@ Não esqueça de desligar e ligar o servidor novamente para ver as modificaçõe
 %{
 title: ~H"<code>`dbg/2`</code>",
 description: ~H"""
-O macro <.link navigate="https://hexdocs.pm/elixir/debugging.html#dbg-2" target="\_blank"><code>`dbg/2`</code></.link> é extremamente útil para fazer debug de código e iremos estar utilizando ele bastante durante as aulas. No geral a utilização será adicionando um `pipe` para ele como <code>`|> dbg`</code>. Ele diz o arquivo, linha, função e variáveis da coisa que você está debugando. Super poderoso.
+O macro <.link navigate="https://hexdocs.pm/elixir/debugging.html#dbg-2" target="\_blank"><code>`dbg/2`</code></.link> é extremamente útil para fazer *debug* de código e iremos utilizá-lo bastante durante as aulas. Para utilizá-lo, adicionaremos um `pipe` seguido da função, dessa forma: <code>`|> dbg`</code>. Ele nos mostra o arquivo, linha, função e variáveis daquilo que você está debugando. Super poderoso.
 """
 } %% .callout
 
-Se você você verificar seu terminal verá informações como estas:
+Informações como estas aparecerão no *log* do seu terminal:
 
 ```elixir
 [priv/examples/mount-and-assigns/assigns.exs:9: PageLive.mount/3]
@@ -89,13 +89,13 @@ socket.assigns #=> %{__changed__: %{}, flash: %{}, live_action: :index}
 socket.assigns #=> %{name: "Lubien", __changed__: %{name: true}, flash: %{}, live_action: :index}
 ```
 
-Como podemos ver, os assigns são apenas um mapa com alguns dados sobre sua LiveView. Explicando cada um:
+Como podemos ver, os *assigns* são apenas um mapa com alguns dados sobre sua LiveView. Explicando cada um, temos:
 
 - `__changed__`: é um mapa que a LiveView automaticamente popula quando algo muda para poder explicar para sua engine de renderização de HTML quais propriedades precisando ser atualizadas para gerar o HTML final de uma forma eficiente.
 - `flash`: é um mapa usado para enviar mensagens de informação, sucesso e alertas para seus usuários. Usaremos ele no futuro.
-- `live_action`: quando entrarmos no assunto de Router veremos que podemos usar esse dado para identificar onde estamos na aplicação.
+- `live_action`: podemos usar esse dado para identificar a rota (onde estamos) na aplicação. Exploraremos esse assunto no tópico sobre Router.
 
-Além disso, podemos notar que no segundo `dbg` já temos um novo dado, o `name` adicionado.
+Além disso, podemos notar que aparece o `name` no *log* do segundo `dbg`. Ele é o item que foi adicionado ao `socket` através da função `assign`, portando agora disponível no mapa do *assigns*.
 
 ## Renderizando `assigns`
 
@@ -109,9 +109,9 @@ def render(assigns) do
 end
 ```
 
-A forma com que você renderiza assigns em uma LiveView é utilizando `<%= %>`. A documentação chama isso de tags enquanto eu particularmente prefiro chamar de interpolação. Além disso, para ter acesso ao assign chamado `name` basta usar o atalho `@name`.
+A forma com que você renderiza *assigns* em uma LiveView é utilizando `<%= %>`. A documentação chama isso de *tags* enquanto eu, particularmente, prefiro chamar de interpolação. Além disso, para ter acesso ao assign chamado `name` basta usar o atalho `@name`.
 
-Por trás dos panos se você estiver numa render function `@name` é exatamente igual a `assigns.name`. Lembra que eu disse que o único argumento de uma render function era obrigatoriamente chamado `assigns`? Veja o que acontece se eu renomer ele para qualquer outro nome:
+Nos bastidores, se você estiver em um `render` *function*, o item `@name` é exatamente igual a `assigns.name`. Lembra que eu disse que o único argumento de uma render function era obrigatoriamente chamado `assigns`? Note o que acontece se eu renomer ele para qualquer outro nome:
 
 ```sh
 $ elixir priv/examples/mount-and-assigns/assigns.exs
@@ -120,7 +120,7 @@ $ elixir priv/examples/mount-and-assigns/assigns.exs
     priv/examples/mount-and-assigns/assigns.exs:16: PageLive.render/1
 ```
 
-Porém se eu mudar minha render function para:
+Porém se eu mudar minha render *function* para:
 
 ```elixir
 def render(assigns) do
