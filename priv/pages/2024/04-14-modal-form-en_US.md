@@ -5,6 +5,7 @@ tags: ~w(getting-started),
 section: "Form Component",
 description: "How to reuse forms in a modal",
 previous_page_id: "live-component",
+next_page_id: "my-first-test",
 }
 
 ---

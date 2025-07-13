@@ -22,7 +22,10 @@
       title={gettext("Testing track")}
       icon="hero-magnifying-glass"
       icon_class="dark:bg-white"
-      under_construction
+      href={~p"/guides/my-first-test/#{@locale}"}
+      description={
+        gettext("Learn how to write effective tests for your Elixir and LiveView applications.")
+      }
     />
 
     <.quick_link
