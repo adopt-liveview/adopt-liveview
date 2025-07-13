@@ -65,10 +65,10 @@ defmodule Curso.MixProject do
       {:makeup_erlang, ">= 0.0.0"},
       {:makeup_diff, "~> 0.1.0"},
       {:bandit, "~> 1.2"},
-      {:ex_cldr, "~> 2.37"},
+      {:ex_cldr, "~> 2.42"},
       {:plug_canonical_host, "~> 2.0"},
       {:sitemapper, "~> 0.8"},
-      {:sentry, "~> 10.3.0"},
+      {:sentry, "~> 11.0.1"},
       {:hackney, "~> 1.8"},
       {:basic_auth, "~> 2.2"}
     ]
