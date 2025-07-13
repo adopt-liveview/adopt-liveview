@@ -62,12 +62,12 @@ msgstr "Próximo"
 msgid "Previous"
 msgstr "Anterior"
 
-#: lib/curso_web/components/core_components.ex:1170
+#: lib/curso_web/components/core_components.ex:1173
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr "Copiado!"
 
-#: lib/curso_web/components/core_components.ex:1166
+#: lib/curso_web/components/core_components.ex:1169
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr "Copiar"
@@ -279,12 +279,12 @@ msgid "Show brazilian Pix R$"
 msgstr "Mostrar Pix R$"
 
 #: lib/curso_web/components/feedback.ex:51
-#: lib/curso_web/live/guide_live.ex:92
+#: lib/curso_web/live/guide_live.ex:98
 #, elixir-autogen, elixir-format
 msgid "Feedback"
 msgstr "Feedback"
 
-#: lib/curso_web/live/guide_live.ex:93
+#: lib/curso_web/live/guide_live.ex:99
 #, elixir-autogen, elixir-format
 msgid "Got any feedback about this page? Let us know!"
 msgstr "Você tem algum feedback sobre esta página? Conte-nos!"
@@ -304,72 +304,72 @@ msgstr "Enviar para o GitHub"
 msgid "What's your feedback about this lesson?"
 msgstr "Qual seu feedback sobre esta aula?"
 
-#: lib/curso_web/live/guide_live.ex:68
+#: lib/curso_web/live/guide_live.ex:74
 #, elixir-autogen, elixir-format
 msgid "Read time:"
 msgstr "Tempo de leitura:"
 
-#: lib/curso_web/live/guide_live.ex:68
+#: lib/curso_web/live/guide_live.ex:74
 #, elixir-autogen, elixir-format
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuto"
 msgstr[1] "minutos"
 
-#: lib/curso_web/live/home_live.html.heex:35
+#: lib/curso_web/live/home_live.html.heex:32
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr "Trilha de Projetos"
 
-#: lib/curso_web/live/home_live.html.heex:10
+#: lib/curso_web/live/home_live.html.heex:4
 #, elixir-autogen, elixir-format
 msgid "Start now!"
 msgstr "Comece agora!"
 
-#: lib/curso_web/components/core_components.ex:1108
+#: lib/curso_web/components/core_components.ex:1111
 #, elixir-autogen, elixir-format
 msgid "Under construction"
 msgstr "Em construção"
 
-#: lib/curso_web/live/home_live.html.heex:18
+#: lib/curso_web/live/home_live.html.heex:12
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Beginner's track"
 msgstr "Trilha para Iniciantes"
 
-#: lib/curso_web/live/home_live.html.heex:42
+#: lib/curso_web/live/home_live.html.heex:39
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Deployments track"
 msgstr "Trilha de implantação"
 
-#: lib/curso_web/components/core_components.ex:883
+#: lib/curso_web/components/core_components.ex:886
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr "Começar"
 
-#: lib/curso_web/components/layouts/app.html.heex:46
+#: lib/curso_web/components/layouts/app.html.heex:47
 #: lib/curso_web/live/home_live.ex:16
 #, elixir-autogen, elixir-format
 msgid "Learn LiveView now!"
 msgstr "Aprenda LiveView agora!"
 
-#: lib/curso_web/components/layouts/app.html.heex:48
+#: lib/curso_web/components/layouts/app.html.heex:49
 #: lib/curso_web/live/home_live.ex:18
 #, elixir-autogen, elixir-format
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
 msgstr "Aprenda como usar Phoenix LiveView sem conhecimento prévio em Elixir ou Phoenix"
 
-#: lib/curso_web/live/home_live.html.heex:23
+#: lib/curso_web/live/home_live.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr "Guia passo-a-passo sobre os fundamentos de programar com LiveView"
 
-#: lib/curso_web/components/core_components.ex:1330
-#: lib/curso_web/components/core_components.ex:1335
+#: lib/curso_web/components/core_components.ex:1333
+#: lib/curso_web/components/core_components.ex:1338
 #, elixir-autogen, elixir-format
 msgid "Toggle locale"
 msgstr "Trocar idioma"
 
-#: lib/curso_web/live/home_live.html.heex:13
+#: lib/curso_web/live/home_live.html.heex:7
 #, elixir-autogen, elixir-format, fuzzy
 msgid "We are working on many courses"
 msgstr "Estamos trabalhando em vários cursos"
@@ -384,23 +384,18 @@ msgstr "QR Code do Pix"
 msgid "Dark theme toggle"
 msgstr "Toggle de modo escuro"
 
-#: lib/curso_web/components/layouts/app.html.heex:4
+#: lib/curso_web/components/core_components.ex:871
+#: lib/curso_web/components/layouts/app.html.heex:5
 #: lib/curso_web/components/layouts/app.html.heex:14
-#: lib/curso_web/live/home_live.html.heex:2
 #, elixir-autogen, elixir-format
 msgid "Adopt LiveView"
 msgstr "Adopt LiveView"
 
-#: lib/curso_web/components/layouts/app.html.heex:3
+#: lib/curso_web/components/layouts/app.html.heex:4
 #: lib/curso_web/components/layouts/app.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "Home page"
 msgstr "Página inicial"
-
-#: lib/curso_web/live/home_live.html.heex:28
-#, elixir-autogen, elixir-format
-msgid "Testing track"
-msgstr "Trilha de testes"
 
 #: lib/curso_web/components/layouts.ex:109
 #, elixir-autogen, elixir-format
@@ -411,3 +406,13 @@ msgstr "Doar via Stripe"
 #, elixir-autogen, elixir-format
 msgid "Donate with Stripe"
 msgstr "Doar com Stripe"
+
+#: lib/curso_web/live/home_live.html.heex:27
+#, elixir-autogen, elixir-format
+msgid "Learn how to write effective tests for your Elixir and LiveView applications."
+msgstr "Aprenda como criar testes eficazes em apps Elixir e LiveView"
+
+#: lib/curso_web/live/home_live.html.heex:22
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Testing track (in progress)"
+msgstr "Trilha de testes (em progresso)"
