@@ -316,7 +316,7 @@ msgid_plural "minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/curso_web/live/home_live.html.heex:32
+#: lib/curso_web/live/home_live.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr ""
@@ -331,12 +331,12 @@ msgstr ""
 msgid "Under construction"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:12
+#: lib/curso_web/live/home_live.html.heex:18
 #, elixir-autogen, elixir-format
 msgid "Beginner's track"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:39
+#: lib/curso_web/live/home_live.html.heex:45
 #, elixir-autogen, elixir-format
 msgid "Deployments track"
 msgstr ""
@@ -358,7 +358,7 @@ msgstr ""
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:17
+#: lib/curso_web/live/home_live.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr ""
@@ -407,12 +407,22 @@ msgstr ""
 msgid "Donate with Stripe"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:27
+#: lib/curso_web/live/home_live.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Learn how to write effective tests for your Elixir and LiveView applications."
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:22
+#: lib/curso_web/live/home_live.html.heex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Testing track (in progress)"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Changelog:"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "July 13th: Added first lesson to test track"
 msgstr ""

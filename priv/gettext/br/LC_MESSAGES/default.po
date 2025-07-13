@@ -316,7 +316,7 @@ msgid_plural "minutes"
 msgstr[0] "minuto"
 msgstr[1] "minutos"
 
-#: lib/curso_web/live/home_live.html.heex:32
+#: lib/curso_web/live/home_live.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr "Trilha de Projetos"
@@ -331,12 +331,12 @@ msgstr "Comece agora!"
 msgid "Under construction"
 msgstr "Em construção"
 
-#: lib/curso_web/live/home_live.html.heex:12
+#: lib/curso_web/live/home_live.html.heex:18
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Beginner's track"
 msgstr "Trilha para Iniciantes"
 
-#: lib/curso_web/live/home_live.html.heex:39
+#: lib/curso_web/live/home_live.html.heex:45
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Deployments track"
 msgstr "Trilha de implantação"
@@ -358,7 +358,7 @@ msgstr "Aprenda LiveView agora!"
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
 msgstr "Aprenda como usar Phoenix LiveView sem conhecimento prévio em Elixir ou Phoenix"
 
-#: lib/curso_web/live/home_live.html.heex:17
+#: lib/curso_web/live/home_live.html.heex:23
 #, elixir-autogen, elixir-format
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr "Guia passo-a-passo sobre os fundamentos de programar com LiveView"
@@ -407,12 +407,22 @@ msgstr "Doar via Stripe"
 msgid "Donate with Stripe"
 msgstr "Doar com Stripe"
 
-#: lib/curso_web/live/home_live.html.heex:27
+#: lib/curso_web/live/home_live.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Learn how to write effective tests for your Elixir and LiveView applications."
 msgstr "Aprenda como criar testes eficazes em apps Elixir e LiveView"
 
-#: lib/curso_web/live/home_live.html.heex:22
+#: lib/curso_web/live/home_live.html.heex:28
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Testing track (in progress)"
 msgstr "Trilha de testes (em progresso)"
+
+#: lib/curso_web/live/home_live.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Changelog:"
+msgstr "Changelog:"
+
+#: lib/curso_web/live/home_live.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "July 13th: Added first lesson to test track"
+msgstr "13 de Julho: Adicionada primeira aula para o test track"
