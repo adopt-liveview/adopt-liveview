@@ -16,7 +16,7 @@ Na aula anterior aprendemos como reutilizar código HEEx usando componentes. Tod
 title: "Esta aula é uma continuação direta da aula anterior",
 type: :warning,
 description: ~H"""
-Se você entrou direto nesta aula talvez seja confuso pois ela é uma continuação direta do código da aula anterior. Caso você queira pular a aula anterior e começar direto nesta você pode clonar a versão inicial para esta aula usando o comando <code>`git clone https://github.com/adopt-liveview/refactoring.git --branch form-component-done`</code>.
+Se você entrou direto nesta aula talvez seja confuso pois ela é uma continuação direta do código da aula anterior. Caso você queira pular a aula anterior e começar direto nesta você pode clonar a versão inicial para esta aula usando o comando <code>`git clone https://github.com/adopt-liveview/refactoring-crud.git --branch form-component-done`</code>.
 """
 } %% .callout
 

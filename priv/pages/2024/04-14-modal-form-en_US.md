@@ -15,7 +15,7 @@ Now that our form is in a Live Component, we can reuse it much more easily. In t
 title: "This lesson is a direct continuation of the previous one.",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/refactoring.git --branch live-component-done`</code>.
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/refactoring-crud.git --branch live-component-done`</code>.
 """
 } %% .callout
 

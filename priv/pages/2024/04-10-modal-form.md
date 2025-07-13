@@ -15,7 +15,7 @@ Agora que nosso formulário está em um Live Component podemos reutilizar ele co
 title: "Esta aula é uma continuação direta da aula anterior",
 type: :warning,
 description: ~H"""
-Se você entrou direto nesta aula talvez seja confuso pois ela é uma continuação direta do código da aula anterior. Caso você queira pular a aula anterior e começar direto nesta você pode clonar a versão inicial para esta aula usando o comando <code>`git clone https://github.com/adopt-liveview/refactoring.git --branch live-component-done`</code>.
+Se você entrou direto nesta aula talvez seja confuso pois ela é uma continuação direta do código da aula anterior. Caso você queira pular a aula anterior e começar direto nesta você pode clonar a versão inicial para esta aula usando o comando <code>`git clone https://github.com/adopt-liveview/refactoring-crud.git --branch live-component-done`</code>.
 """
 } %% .callout
 
