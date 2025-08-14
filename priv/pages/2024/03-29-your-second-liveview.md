@@ -37,7 +37,7 @@ Todo esse tempo em que você estava usando `LiveviewPlayground.start()` o módul
 Apesar de muitas coisas novas terem aparecido vamos focar numa visão geral. Em outro momento iremos ver com detalhes cada pedaço. Simplificando:
 
 - A linha `use LiveviewPlayground, :router` importa funções e macros necessários para criarmos nossas rotas.
-- O bloco `pipeline :browser do` define um conjunto de plugs (entenda eles como configurações no momento) para rotas do tipo `:browser`. Neste cásido só definimos que é uma rota que usa HTML.
+- O bloco `pipeline :browser do` define um conjunto de plugs (entenda eles como configurações no momento) para rotas do tipo `:browser`. Neste caso só definimos que é uma rota que usa HTML.
 - Usamos o bloco `scope "/" do` para representar que as rotas dentro do bloco são renderizadas na raiz do nosso site.
 - `pipe_through :browser` ativa a pipeline chamada `:browser` neste escopo.
 
