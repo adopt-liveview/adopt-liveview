@@ -37,7 +37,7 @@ end
 LiveviewPlayground.start()
 ```
 
-Esta LiveView reutilizou diversas coisas abordadas em aulas anteriores. O principal aqui é o fato de que recebemos a variável params sem especificar nenhum param em específico. Deste modo, se o usuário passar uma query string vazia nosso sistema simplesmente deixará o assign `admin?` como falso.
+Esta LiveView reutilizou diversas coisas abordadas em aulas anteriores. O principal aqui é o fato de que recebemos a variável params sem especificar nenhum param em específico. Deste modo, se o usuário passar uma query string vazia nosso sistema simplesmente deixará o assign `admin?` como falso. Abra `http://localhost:4000/?admin_mode=secret123` para ver a mensagem do painel de administração.
 
 ## Resumindo!
 

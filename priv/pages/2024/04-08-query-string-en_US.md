@@ -37,7 +37,7 @@ end
 LiveviewPlayground.start()
 ```
 
-This LiveView reused several things covered in previous classes. The main thing here is the fact that we received the params argument without specifying any specific param. If the user passes an empty query string, our system will simply leave the assign `admin?` as false.
+This LiveView reused several things covered in previous classes. The main thing here is the fact that we received the params argument without specifying any specific param. If the user passes an empty query string, our system will simply leave the assign `admin?` as false. Open `http://localhost:4000/?admin_mode=secret123` to see the admin panel message.
 
 ## Recap!
 
