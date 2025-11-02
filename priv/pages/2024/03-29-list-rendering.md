@@ -90,7 +90,7 @@ LiveviewPlayground.start()
 
 Apenas adicionando `, food != "banana"` conseguimos remover um elemento indesejado! Porém isso introduz mais um problema a forma de renderizar listas: toda vez que um assign mudar vamos filtrar e renderizar a lista novamente.
 
-A recomendação oficial do time do Phoenix é que você evite ao máximo fazer qualquer tipo de cálculo dentro de sua `render/1`, processe o seu assign de antemão. Crie e execute um arquivo chamado `class_for_filter_beforehand.exs`:
+A recomendação oficial do time do Phoenix é que você evite ao máximo fazer qualquer tipo de cálculo dentro de sua `render/1`, processe o seu assign de antemão. Crie e execute um arquivo chamado `classic_for_filter_beforehand.exs`:
 
 ```elixir
 Mix.install([

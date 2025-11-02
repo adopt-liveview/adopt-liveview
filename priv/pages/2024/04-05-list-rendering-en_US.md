@@ -90,7 +90,7 @@ LiveviewPlayground.start()
 
 Just by adding `, food != "banana"` we can remove an unwanted element! However, this introduces another problem in the way we render lists: every time an assign changes we will filter and render the list again.
 
-The official recommendation from the Phoenix team is that you avoid doing any type of calculation within your `render/1` as much as possible, process your code before assigning them to your socket. Create and run a file called `class_for_filter_beforehand.exs`:
+The official recommendation from the Phoenix team is that you avoid doing any type of calculation within your `render/1` as much as possible, process your code before assigning them to your socket. Create and run a file called `classic_for_filter_beforehand.exs`:
 
 ```elixir
 Mix.install([
