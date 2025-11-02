@@ -190,7 +190,7 @@ LiveviewPlayground.start()
 
 Existem múltiplas maneiras para adicionarmos atributos HTML em HEEx para a conveniência do desenvolvedor. Vamos verificar cada um deles.
 
-No primeiro caso (Hello World) nós adicionamos `style="color: red"` que funciona como qualquer outro HTML no mundo. Neste formato pode-se dizer que não existe nenhum tipo de processamento extra. Já na `class={"bg-black"}` ao usarmos as chaves nós estamos dizendo que o conteúdo dentro delas compreende um código Elixir. Qualquer código Elixir como `class={calculate_class()}` (supondo que a função exista) ou `class={"bg-{@my_background}"}` (supondo que o assign exista) será valido!
+No primeiro caso (Hello World) nós adicionamos `style="color: red"` que funciona como qualquer outro HTML no mundo. Neste formato pode-se dizer que não existe nenhum tipo de processamento extra. Já na `class={"bg-black"}` ao usarmos as chaves nós estamos dizendo que o conteúdo dentro delas compreende um código Elixir. Qualquer código Elixir como `class={calculate_class()}` (supondo que a função exista) ou `class={"bg-#{@my_background}"}` (supondo que o assign exista) será valido!
 
 No segundo caso (Hello Elixir)apenas demonstramos mais uma vez o que foi explicado no caso anterior. Em `class={"bg-" <> "red"}` pode-se notar um exemplo de usar o operador `<>` para calcular a classe final.
 
