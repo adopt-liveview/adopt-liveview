@@ -59,7 +59,7 @@ The first two arguments will be explored in more detail in future guides. Right 
 
 ## The %Socket{} data structure
 
-Let's get straight to the point: LiveView state management completely revolves around modifying the state of your socket. The function [`assigns/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#assign/2) receives your `socket` and the assigns you want to add and applies them generating a new socket. Let's try! Update your code as follows:
+Let's get straight to the point: LiveView state management completely revolves around modifying the state of your socket. The function [`assign/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#assign/2) receives your `socket` and the assigns you want to add and applies them generating a new socket. Let's try! Update your code as follows:
 
 ```elixir
 def mount(_params, _session, socket) do
@@ -136,5 +136,5 @@ Everything works normally.
 
 - The `mount/3` callback runs when your LiveView is initializing.
 - The `socket` data structure contains the state of your LiveView for this user at the moment.
-- We were able to add `assigns` using the `assigns/2` function passing the `socket` and the new values.
-- The `render/1` function has a shortcut for writing assigns using `@assign_name`.
+- We were able to add `assigns` using the `assign/2` function passing the `socket` and the new values.
+- The `render/1` function has a shortcut for writing assigns using `@name`.
