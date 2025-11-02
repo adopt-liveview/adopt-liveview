@@ -470,4 +470,4 @@ Se você sentiu dificuldade de acompanhar o código nesta aula você pode ver o 
 - Você pode usar o callback `update/2` de um Live Component para definir o estado inicial.
 - Você pode usar `assign(socket, assigns)` dentro do `update/2` para salvar no componente todos os assigns passados na chamada `<.live_component x={10} y={20} z={30}>`.
 - Live Components vivem em processos separados da LiveView que o chamou.
-- Quando criar eventos em Live Componentes você pode usar o `phx-target={@myself}` para deixar claro que o evento será tratado por este componente e não a LiveView que o contém.
+- Quando criar eventos em Live Componentes você deve usar o `phx-target={@myself}` para deixar claro que o evento será tratado por este componente e não a LiveView que o contém.
