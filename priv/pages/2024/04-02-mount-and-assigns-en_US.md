@@ -111,7 +111,7 @@ end
 
 The way we render assigns in a LiveView is by using `<%= %>`. The documentation calls these tags while I personally prefer to call it interpolation. Furthermore, to access the assign called `name` just use the shortcut `@name`.
 
-Behind the scenes, inside a render function using `@name` is exactly the same as `assigns.name`. Remember that I said that the only argument of a render function was necessarily called `assigns`? See what happens if I rename it to any other name:
+Behind the scenes, inside a render function using `@name` is exactly the same as `assigns.name`. Remember that I said that the only argument of a render function was necessarily called `assigns`? See what happens if I rename it to any other name such as `def render(variables) do`:
 
 ```sh
 $ elixir priv/examples/mount-and-assigns/assigns.exs
