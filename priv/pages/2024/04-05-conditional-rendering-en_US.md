@@ -341,7 +341,7 @@ Each `cond` clause follows the predicate format (an expression that returns true
 
 - For `if-else` situations you must explicitly use the `<%= if condition do %>` and `<% else %>` blocks.
 - For `if` only situations you can use the `<%= if condition do %>` block format or the special HEEx attribute `:if={condition}` in an HTML tag.
-- For multiple comparisons of a value you can use `<%= case value of %>`.
+- For multiple comparisons of a value you can use `<%= case value do %>`.
 - For multiple conditions that don't just involve comparing whether a value is equal to something you can use `<%= cond do %>`.
 - In all cases, the first tag will always need `=` and the others do not need it. If you add `=` to the other tags, LiveView will generate warnings but everything will work normally.
 - If in the first tag you do not add `=` the HTML code will not be rendered.
