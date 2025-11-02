@@ -122,7 +122,7 @@ LiveviewPlayground.start(router: CustomRouter, scripts: ["https://cdn.tailwindcs
 
 The first modification we made was to add two new `slot` to our component definition. To make things clearer we use the names `:title` and `:subtitle` for the new slots.
 
-Using custom slots is very similar to component syntax except that you must use `:`. When we put text in `<:my_slot >Abc</:my_slot>` the HEEx code inside it will be sent to this named slot as `@my_slot`. Any HTML not within a named slot will be placed in the `@inner_block` slot.
+Using custom slots is very similar to component syntax except that you must use `:`. When we put text in `<:my_slot>Abc</:my_slot>` the HEEx code inside it will be sent to this named slot as `@my_slot`. Any HTML not within a named slot will be placed in the `@inner_block` slot.
 
 The [`render_slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#render_slot/2) function can understand when there is nothing in the slot. In the OtherPageLive view we did not add anything outside of named slots and even so there were no problems in the code.
 
