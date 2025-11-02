@@ -195,7 +195,7 @@ defmodule CoreComponents do
 
   def input(assigns) do
     ~H"""
-    <input type="text" id={@field.id} name={@field.name} {@rest} />
+    <input type={@type} id={@field.id} name={@field.name} {@rest} />
     """
   end
 end
