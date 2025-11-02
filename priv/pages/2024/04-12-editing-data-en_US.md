@@ -215,7 +215,7 @@ We have a page, but our users don't know about it. Open your `ProductLive.Show` 
   Product <%= @product.id %>
   <:subtitle>This is a product record from your database.</:subtitle>
   <:actions>
-    <.link patch={~p"/products/#{@product}/edit"}>
+    <.link navigate={~p"/products/#{@product}/edit"}>
       <.button>Edit event</.button>
     </.link>
   </:actions>
