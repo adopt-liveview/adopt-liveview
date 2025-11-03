@@ -4,7 +4,7 @@ author: "Lubien",
 tags: ~w(getting-started),
 section: "Introduction",
 description: "Let's learn how to make a LiveView run on your computer",
-next_page_id: "first-liveview"
+next_page_id: "v2-first-liveview"
 }
 
 ---
@@ -53,13 +53,17 @@ In both cases we are creating a Phoenix app called "Myapp". We will be using it 
 
 ## Conclusion
 
-At this point you should be able to run the following command:
+At this point you should be able to run the following command to start you server:
 
 ```sh
-$ elixir --version
-Erlang/OTP 26 [erts-14.2.2] [source] [64-bit] [smp:10:10] [ds:10:10:10] [async-threads:1] [jit]
+$ mix phx.server
+[info] Running MyappWeb.Endpoint with Bandit 1.8.0 at 127.0.0.1:4000 (http)
+[info] Access MyappWeb.Endpoint at http://localhost:4000
+[watch] build finished, watching for changes...
+≈ tailwindcss v4.1.7
 
-Elixir 1.16.1 (compiled with Erlang/OTP 26)
+/*! 🌼 daisyUI 5.0.35 */
+Done in 85ms
 ```
 
-Congratulations, you're ready to start tinkering with Phoenix!
+Congratulations, you're ready to start tinkering with Phoenix! Head out to http://localhost:4000 to see your default home page.
