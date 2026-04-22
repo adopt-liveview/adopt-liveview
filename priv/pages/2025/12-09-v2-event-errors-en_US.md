@@ -10,6 +10,14 @@ next_page_id: "v2-heex-is-not-html"
 
 ---
 
+%{
+title: "This guide is a direct continuation of the previous guide",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch events-done`</code>.
+"""
+} %% .callout
+
 ## Learning by making mistakes
 
 A problem that happens a lot with people who are starting out in LiveView is an event that was not handled correctly. Let's learn how to debug this scenario. Comment your handle_event/3 like this:
