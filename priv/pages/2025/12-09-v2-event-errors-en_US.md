@@ -5,7 +5,7 @@ tags: ~w(getting-started),
 section: "Fundamentals",
 description: "What are common mistakes with events?",
 previous_page_id: "v2-events",
-next_page_id: "heex-is-not-html"
+next_page_id: "v2-heex-is-not-html"
 }
 
 ---
