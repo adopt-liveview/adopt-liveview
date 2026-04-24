@@ -10,15 +10,19 @@ next_page_id: "v2-js-push"
 
 ---
 
+%{
+title: "This guide is a direct continuation of the previous guide",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch events-done`</code>.
+"""
+} %% .callout
+
 In previous lessons we only saw how to trigger events. Also in the conditional rendering class with `cond` we saw the following code:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, temperature_celsius: 30)
@@ -28,7 +32,7 @@ defmodule PageLive do
   def render(assigns) do
     ~H"""
     <div>
-      Current temperature: <%= @temperature_celsius %>C
+      Current temperature: {@temperature_celsius}C
     </div>
     <div>
       <%= cond do %>
@@ -56,24 +60,19 @@ defmodule PageLive do
     socket = assign(socket, temperature_celsius: socket.assigns.temperature_celsius + 10)
     {:noreply, socket}
   end
+
   def handle_event("decrease", _params, socket) do
     socket = assign(socket, temperature_celsius: socket.assigns.temperature_celsius - 10)
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
-Our code always increased or decreased the temperature by 10 degrees. What if we wanted options to increase/decrease by different amounts? Would we have to create an event for each case? Let's get to know the `phx-value` binding. Create and run the `phx_value.exs` file:
+Our code always increased or decreased the temperature by 10 degrees. What if we wanted options to increase/decrease by different amounts? Would we have to create an event for each case? Let's get to know the `phx-value` binding. Update your `page_live.ex` like this:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, temperature_celsius: 30)
@@ -83,7 +82,7 @@ defmodule PageLive do
   def render(assigns) do
     ~H"""
     <div>
-      Current temperature: <%= @temperature_celsius %>C
+      Current temperature: {@temperature_celsius}C
     </div>
     <div>
       <%= cond do %>
@@ -115,8 +114,6 @@ defmodule PageLive do
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
 This time we replaced the `"increase"` and `"decrease"` events with a generic event called `"add"` that receives a `phx-value-amount` which is a number. Your `handle_event/3` receives `%{"amount" => "+10"}` as a second parameter depending on the button clicked. It is important to note that parameters coming from HTML always come in string format (as HTML attributes are strings) so we must convert the number before doing the sum.
