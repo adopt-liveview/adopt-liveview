@@ -10,15 +10,19 @@ next_page_id: "v2-your-second-liveview"
 
 ---
 
+%{
+title: "This guide is a direct continuation of the previous guide",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch events-done`</code>.
+"""
+} %% .callout
+
 Imagine that we are building a points system for a competition between two players. Winning awards 3 points to the winner and drawing awards 1 point to both. If we have code like below to award wins, how can we build a third button for a draw match? Do we need a third event?
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, red: 0, blue: 0)
@@ -29,10 +33,10 @@ defmodule PageLive do
     ~H"""
     <dl>
       <dt>Red Points</dt>
-      <dd><%= @red %></dd>
+      <dd>{@red}</dd>
 
       <dt>Blue Points</dt>
-      <dd><%= @blue %></dd>
+      <dd>{@blue}</dd>
     </dl>
 
     <input
@@ -44,7 +48,8 @@ defmodule PageLive do
       type="button"
       value="Blue Wins"
       phx-click={JS.push("add_points", value: %{team: :blue, amount: +3})}
-    />
+    /> 
+    
     ?????????
     """
   end
@@ -56,8 +61,6 @@ defmodule PageLive do
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
 Let's analyze what we have so far. Our LiveView has two integer-valued assigns: `:red` and `:blue`. When we click on the "Red Wins" button we trigger an event called `"add_points"` with value `%{team: :red, amount: +3}`.
@@ -74,21 +77,17 @@ JS Commands serialize data into JSON to store on the client. Data that is compat
 %{
 title: ~H"How does <code>`socket.assigns[team_atom]`</code> work?",
 description: ~H"""
-Assigns in LiveView are just elixir maps using atoms (a key-value structure basically). In this LiveView the assigns would be <code>`%{red: 0, blue: 0}`</code>. In Elixir you can dynamically get data from a map using the <code>`map[:atom]`</code> syntax, so <code>`socket.assigns[:red]`</code> works just as well as <code>`socket.assigns.red`</code> does. If you have any questions, we recommend <.link navigate="https://elixirschool.com/en/lessons/basics/collections#maps-6">this short class from Elixir School</.link>.
+Assigns in LiveView are just elixir maps using atoms (a key-value structure basically). In this LiveView the assigns would be <code>`%{red: 0, blue: 0}`</code>. In Elixir you can dynamically get data from a map using the <code>`map[:atom]`</code> syntax, so <code>`socket.assigns[:red]`</code> works just as well as <code>`socket.assigns.red`</code> does. If you have any questions, we recommend <.link navigate="https://elixirschool.com/en/lessons/basics/collections#maps-6">this short lesson from Elixir School</.link>.
 """
 } %% .callout
 
 ## Chaining JS Commands
 
-Fortunately JS Commands can be combined using the pipe operator. Create and run a file named `multiple_pushes.exs`:
+Fortunately, JS Commands can be combined using the pipe operator. Update your `page_live.ex` like this:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, red: 0, blue: 0)
@@ -99,10 +98,10 @@ defmodule PageLive do
     ~H"""
     <dl>
       <dt>Red Points</dt>
-      <dd><%= @red %></dd>
+      <dd>{@red}</dd>
 
       <dt>Blue Points</dt>
-      <dd><%= @blue %></dd>
+      <dd>{@blue}</dd>
     </dl>
 
     <input
@@ -133,23 +132,17 @@ defmodule PageLive do
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
 The only difference from the original code to this one is that the `phx-click` binding has two `JS.push` chained together. You can add as many more as you deem necessary.
 
 ## Custom JS Commands
 
-Our LiveView seems to be getting full of duplicated code now with these JS.push everywhere. Imagine if one day we were to refactor the shipping format? We would have to manually modify multiple places. Fortunately a LiveView module can use module functions in your HEEx. Create and run `multiple_pushes_refactor.exs`:
+Our LiveView seems to be getting full of duplicated code now with these JS.push everywhere. Imagine if one day we were to refactor the shipping format? We would have to manually modify multiple places. Fortunately a LiveView module can use module functions in your HEEx. Now refactor `page_live.ex` to use a custom JS Commands function:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, red: 0, blue: 0)
@@ -160,10 +153,10 @@ defmodule PageLive do
     ~H"""
     <dl>
       <dt>Red Points</dt>
-      <dd><%= @red %></dd>
+      <dd>{@red}</dd>
 
       <dt>Blue Points</dt>
-      <dd><%= @blue %></dd>
+      <dd>{@blue}</dd>
     </dl>
 
     <input
@@ -195,8 +188,6 @@ defmodule PageLive do
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
 We created a private function called `add_points/3` that takes 3 arguments. At this point you may be wondering what this initial argument called `js` is. To answer this, let's talk about how JS Commands work internally.
