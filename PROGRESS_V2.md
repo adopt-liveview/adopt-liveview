@@ -12,7 +12,7 @@
 - [x] [Conditional rendering](http://localhost:4444/guides/v2-conditional-rendering/en)
 - [x] [List rendering](http://localhost:4444/guides/v2-list-rendering/en)
 - [x] [phx-value](http://localhost:4444/guides/v2-phx-value/en)
-- [ ] [JS.push/1](http://localhost:4444/guides/v2-js-push/en)
+- [x] [JS.push/1](http://localhost:4444/guides/v2-js-push/en)
 - [ ] [More than one event triggered](http://localhost:4444/guides/v2-multiple-pushes/en)
 - [ ] [Your second LiveView](http://localhost:4444/guides/v2-your-second-liveview/en)
 - [ ] [Route parameters](http://localhost:4444/guides/v2-route-params/en)

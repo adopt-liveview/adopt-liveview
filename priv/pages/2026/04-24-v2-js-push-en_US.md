@@ -10,15 +10,19 @@ next_page_id: "v2-multiple-pushes"
 
 ---
 
+%{
+title: "This guide is a direct continuation of the previous guide",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch events-done`</code>.
+"""
+} %% .callout
+
 In the previous lesson we learned how to use the `phx-value-*` binding to pass values into an event. To recap:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, temperature_celsius: 30)
@@ -28,7 +32,7 @@ defmodule PageLive do
   def render(assigns) do
     ~H"""
     <div>
-      Current temperature: <%= @temperature_celsius %>C
+      Current temperature: {@temperature_celsius}C
     </div>
     <div>
       <%= cond do %>
@@ -60,20 +64,13 @@ defmodule PageLive do
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
-However, we talked about how values will be sent strictly as a strings. LiveView also has an alternative way to push events called [`JS.push/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.JS.html#push/2) which is part of the so-called JS Commands. Write and run the `js_push.exs` file:
+However, we talked about how values will be sent strictly as a strings. LiveView also has an alternative way to push events called [`JS.push/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.JS.html#push/2) which is part of the so-called JS Commands. Update your `page_live.ex` to use `JS.push/2`:
 
 ```elixir
-
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, temperature_celsius: 30)
@@ -83,7 +80,7 @@ defmodule PageLive do
   def render(assigns) do
     ~H"""
     <div>
-      Current temperature: <%= @temperature_celsius %>C
+      Current temperature: {@temperature_celsius}C
     </div>
     <div>
       <%= cond do %>
@@ -114,8 +111,6 @@ defmodule PageLive do
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
 We simplified our LiveView by using `JS.push/2` directly in the `phx-click` binding and defining that we are pushing the `"add"` event and the value will be `%{amount: INTEGER}`. This `phx-click` will be serialized as JSON so that when the button is clicked the `amount` will be an integer as expected.
@@ -125,13 +120,8 @@ We simplified our LiveView by using `JS.push/2` directly in the `phx-click` bind
 We could avoid some code duplication by using a simple `:for`:
 
 ```elixir
-
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def mount(_params, _session, socket) do
     socket = assign(socket, temperature_celsius: 30)
@@ -141,7 +131,7 @@ defmodule PageLive do
   def render(assigns) do
     ~H"""
     <div>
-      Current temperature: <%= @temperature_celsius %>C
+      Current temperature: {@temperature_celsius}C
     </div>
     <div>
       <%= cond do %>
@@ -160,7 +150,12 @@ defmodule PageLive do
       <% end %>
     </div>
 
-    <input :for={value <- [5, 10, -5, -10]} type="button" value={"Add #{value}"} phx-click={JS.push("add", value: %{amount: value})} />
+    <input
+      :for={value <- [5, 10, -5, -10]}
+      type="button"
+      value={"Add #{value}"}
+      phx-click={JS.push("add", value: %{amount: value})}
+    />
     """
   end
 
@@ -169,8 +164,6 @@ defmodule PageLive do
     {:noreply, socket}
   end
 end
-
-LiveviewPlayground.start()
 ```
 
 This tip also works for the previous class with `phx-value-amount`. Take it as a home assignment to try out how to do this with the previous lesson code.
