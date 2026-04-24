@@ -208,7 +208,7 @@ Yes, there is no problem simply adding variables before your HEEx, especially if
 
 ## A sidenote for an old syntax
 
-Before interpolations like `{this}` existed the default way for HEEx to render things in HTML was the tag `<%= this %>`. Similar to the `<% %>` tag (which doesnt render), this one comes with a `=`. Nowadays if you use formatters on new projects they will be automatically converted to interpolations unless they fall into very [specific cases](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#sigil_H/2-interpolating-blocks).
+Before interpolations like `{this}` existed the default way for HEEx to render things in HTML was the tag `<%= this %>`. Similar to the `<% %>` tag (which doesnt render), this one comes with a `=`. Nowadays if you use formatters on new projects they will be automatically converted to interpolations unless they fall into very [specific cases](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#sigil_H/2-interpolating-blocks). We will still be using `<%= %>` in the future for control structures though!
 
 ## Recap!
 
@@ -220,3 +220,4 @@ Before interpolations like `{this}` existed the default way for HEEx to render t
 - In HEEx, you can also pass lists to attributes to simplify mixing strings and variables.
 - In HEEx, you can pass a map between braces in the HTML tag so that multiple attributes are added dynamically.
 - Old projects would have the tag interpolation syntax `<%= %>` instead.
+- `<%= %>` Is mostly used for control structures (`if`, `else`...)

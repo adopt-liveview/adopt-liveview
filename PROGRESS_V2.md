@@ -9,7 +9,7 @@
 - [x] [Problematic events](http://localhost:4444/guides/v2-event-errors/en)
 - [x] [HEEx is not HTML](http://localhost:4444/guides/v2-heex-is-not-html/en)
 - [x] [HEEx Basics](http://localhost:4444/guides/v2-basics-of-heex/en)
-- [ ] [Conditional rendering](http://localhost:4444/guides/v2-conditional-rendering/en)
+- [x] [Conditional rendering](http://localhost:4444/guides/v2-conditional-rendering/en)
 - [ ] [List rendering](http://localhost:4444/guides/v2-list-rendering/en)
 - [ ] [phx-value](http://localhost:4444/guides/v2-phx-value/en)
 - [ ] [JS.push/1](http://localhost:4444/guides/v2-js-push/en)
