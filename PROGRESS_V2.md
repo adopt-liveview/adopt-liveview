@@ -18,7 +18,7 @@
 - [x] [Route parameters](http://localhost:4444/guides/v2-route-params/en)
 - [x] [Generic parameters with query string](http://localhost:4444/guides/v2-query-string/en)
 - [x] [Navigating to the same route](http://localhost:4444/guides/v2-navigate-to-the-same-route/en)
-- [ ] [Functional components](http://localhost:4444/guides/v2-function-component/en)
+- [x] [Functional components](http://localhost:4444/guides/v2-function-component/en)
 - [ ] [Validating components](http://localhost:4444/guides/v2-documenting-components/en)
 - [ ] [Components from other modules](http://localhost:4444/guides/v2-components-from-other-modules/en)
 - [ ] [Multiple slots](http://localhost:4444/guides/v2-multiple-slots/en)
