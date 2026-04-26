@@ -10,34 +10,35 @@ next_page_id: "v2-query-string"
 
 ---
 
+%{
+title: "This guide is a direct continuation of the previous guide",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch your-second-liveview-done`</code>.
+"""
+} %% .callout
+
 In a dynamic system, it is quite common that in the same route you need to handle variables coming from the URL, generally known as parameters by many frameworks. Let's explore how to do this with LiveView.
 
 ## Router with parameters
 
-Let's build a simple blog. There we can access `/blog/anything` and read these blog posts. Create and run a file called `params.exs`:
+Let's build a simple blog. There we can access `/blog/anything` and read these blog posts. Add the following `live` route to your `router.ex`:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.3"}
-])
+scope "/", MyappWeb do
+  pipe_through :browser
 
-defmodule CustomRouter do
-  use LiveviewPlaygroundWeb, :router
-
-  pipeline :browser do
-    plug :accepts, ["html"]
-  end
-
-  scope "/" do
-    pipe_through :browser
-
-    live "/", IndexLive, :index
-    live "/blog/:slug", BlogLive, :index
-  end
+  live "/", PageLive, :home
+  live "/other", OtherPageLive, :other
+  live "/blog/:slug", BlogLive, :index
 end
+```
 
-defmodule IndexLive do
-  use LiveviewPlaygroundWeb, :live_view
+Update your `PageLive` to:
+
+```elixir
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def render(assigns) do
     ~H"""
@@ -49,9 +50,13 @@ defmodule IndexLive do
     """
   end
 end
+```
 
-defmodule BlogLive do
-  use LiveviewPlaygroundWeb, :live_view
+Then finally lets add `BlogLive` under `lib/myapp_web/live/blog_live.ex`:
+
+```elixir
+defmodule MyappWeb.BlogLive do
+  use MyappWeb, :live_view
 
   def mount(%{"slug" => slug}, _session, socket) do
     socket = assign(socket, :slug, slug)
@@ -60,12 +65,10 @@ defmodule BlogLive do
 
   def render(assigns) do
     ~H"""
-    <h1>Reading about <%= @slug %></h1>
+    <h1>Reading about {@slug}</h1>
     """
   end
 end
-
-LiveviewPlayground.start(router: CustomRouter)
 ```
 
 Here we created a `/blog/:slug` route with a variable in the URL called `:slug`. This ensures that `BlogLive` will receive in its first argument of the `mount/3` callback a map in the format `%{"slug" => slug}` and you can use this variable to create an assign. You can either use the links added on the home page or try different URLs for `/blog/anything`.
