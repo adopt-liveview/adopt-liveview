@@ -14,7 +14,7 @@
 - [x] [phx-value](http://localhost:4444/guides/v2-phx-value/en)
 - [x] [JS.push/1](http://localhost:4444/guides/v2-js-push/en)
 - [x] [More than one event triggered](http://localhost:4444/guides/v2-multiple-pushes/en)
-- [ ] [Your second LiveView](http://localhost:4444/guides/v2-your-second-liveview/en)
+- [x] [Your second LiveView](http://localhost:4444/guides/v2-your-second-liveview/en)
 - [ ] [Route parameters](http://localhost:4444/guides/v2-route-params/en)
 - [ ] [Generic parameters with query string](http://localhost:4444/guides/v2-query-string/en)
 - [ ] [Navigating to the same route](http://localhost:4444/guides/v2-navigate-to-the-same-route/en)
@@ -36,3 +36,13 @@
 - [ ] [DRY Form](http://localhost:4444/guides/v2-form-component/en)
 - [ ] [Live Component](http://localhost:4444/guides/v2-live-component/en)
 - [ ] [Modal Form](http://localhost:4444/guides/v2-modal-form/en)
+
+
+
+---
+
+
+talk about plugs
+use MyAppWeb, :macro
+explain optimized transitions
+plugs
