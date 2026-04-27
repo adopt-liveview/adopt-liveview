@@ -22,7 +22,7 @@
 - [x] [Validating components](http://localhost:4444/guides/v2-documenting-components/en)
 - [x] [Components from other modules](http://localhost:4444/guides/v2-components-from-other-modules/en)
 - [x] [Multiple slots](http://localhost:4444/guides/v2-multiple-slots/en)
-- [ ] [Slots with attributes](http://localhost:4444/guides/v2-slots-with-attributes/en)
+- [x] [Slots with attributes](http://localhost:4444/guides/v2-slots-with-attributes/en)
 - [ ] [Rendering lists with slots](http://localhost:4444/guides/v2-lists-with-slots/en)
 - [ ] [Form component](http://localhost:4444/guides/v2-forms/en)
 - [ ] [Validations](http://localhost:4444/guides/v2-form-validation/en)
