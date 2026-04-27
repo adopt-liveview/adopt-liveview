@@ -10,6 +10,14 @@ next_page_id: "v2-forms"
 
 ---
 
+%{
+title: "This guide is a direct continuation of the previous guide",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch slots-with-attributes-done`</code>.
+"""
+} %% .callout
+
 Imagine you are building an application that lists boxing terms. Your initial implementation looks a lot like the code below:
 
 ```elixir

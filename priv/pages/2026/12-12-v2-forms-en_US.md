@@ -10,21 +10,25 @@ next_page_id: "v2-form-validation"
 
 ---
 
+%{
+title: "This guide is a direct continuation of the previous guide",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch lists-with-slots-done`</code>.
+"""
+} %% .callout
+
 Forms are important in many Phoenix applications. They are also one of the biggest points of confusion for people starting on LiveView. During the next classes we will learn about forms in a bottom-up way. That means that we will start by implementing some things so we understand what Phoenix is solving with its built-in components.
 
 If you think it's too complicated at first and the framework is too hard don't worry because in the end you'll see that all these things are solved with built-in components because Phoenix is a batteries-included framework.
 
 ## The simplest form of all
 
-When you learn the basics of HTML I bet at some point you had to build a form that had some inputs and could be submitted. Let's start with that goal. Let's create a product creation form. Create and run `first_form.exs`:
+When you learn the basics of HTML I bet at some point you had to build a form that had some inputs and could be submitted. Let's start with that goal. Let's create a product creation form. Update your `page_live.ex` like this:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.5"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   def handle_event("create_product", %{"product" => product_params}, socket) do
     IO.inspect({"Form submitted!!", product_params})
@@ -33,8 +37,8 @@ defmodule PageLive do
 
   def render(assigns) do
     ~H"""
-    <div class="bg-grey-100">
-      <form phx-submit="create_product" class="flex flex-col max-w-96 mx-auto bg-gray-100 p-24">
+    <div>
+      <form phx-submit="create_product" class="flex flex-col max-w-96 mx-auto p-24">
         <h1>Creating a product</h1>
         <input type="text" name="product[name]" placeholder="Name" />
         <input type="text" name="product[description]" placeholder="Description" />
@@ -44,13 +48,7 @@ defmodule PageLive do
     """
   end
 end
-
-LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com?plugins=forms"])
 ```
-
-### Tailwind plugin `forms`
-
-If you look at our `scripts` area in `LiveViewPlayground.start` you should notice that we added `?plugins=forms` to the CDN URL. This plugin just adds some default styles to HTML forms. In real Phoenix projects with Tailwind it is already pre-installed so you don't need to worry. Moving forward we will be using this plugin a lot.
 
 ### HEEx and the `phx-submit` binding
 
@@ -112,15 +110,11 @@ Let's apply them to our code!
 
 Phoenix projects include a new component called [`<.form>`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#form/1). The objective of this component is to generate basic HTML for forms in addition to offering advantages such as protection against [CSRF](https://owasp.org/www-community/attacks/csrf) (when necessary), extra error validation and method spoofing. The preference will always be to use this component instead of the `<form>` tag.
 
-Let's try. Create and run a file called `first_form_component.exs`:
+Let's try. Update your `page_live.ex` to use `<.form>` and wire up the inputs via `Phoenix.HTML.FormField`:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.5"}
-])
-
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   @initial_state %{
     "name" => "",
@@ -139,11 +133,11 @@ defmodule PageLive do
 
   def render(assigns) do
     ~H"""
-    <div class="bg-grey-100">
+    <div>
       <.form
         for={@form}
         phx-submit="create_product"
-        class="flex flex-col max-w-96 mx-auto bg-gray-100 p-24"
+        class="flex flex-col max-w-96 mx-auto p-24"
       >
         <h1>Creating a product</h1>
         <input type="text" id={@form[:name].id} name={@form[:name].name} placeholder="Name" />
@@ -161,8 +155,6 @@ defmodule PageLive do
     """
   end
 end
-
-LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com?plugins=forms"])
 ```
 
 ### Using `to_form/2` to generate forms
@@ -177,32 +169,98 @@ Further below we modified our `input` tags to receive form fields in the format 
 
 Now you must be thinking: "my code has become more verbose, what's the advantage?". The motivation is simpler than it seems: we can componentize our `input` tags!
 
-## The `.input` component
+## The `<.my_input>` component
 
-Because you have structured your data in `Phoenix.HTML.FormField` we can now easily build a component that reads this data and automatically adds necessary properties like `name` and `id`. Create and run a file called `first_form_component.exs`:
+Because you have structured your data in `Phoenix.HTML.FormField` we can now easily build a component that reads this data and automatically adds necessary properties like `name` and `id`. Start by adding a `my_input` component to `my_core_components.ex`:
 
 ```elixir
-Mix.install([
-  {:liveview_playground, "~> 0.1.5"}
-])
+defmodule MyappWeb.MyCoreComponents do
+  use MyappWeb, :verified_routes
+  use Phoenix.Component
 
-defmodule CoreComponents do
-  use LiveviewPlaygroundWeb, :html
+  slot :title do
+    attr :class, :string
+  end
+
+  slot :subtitle
+  slot :inner_block
+
+  def hero(assigns) do
+    ~H"""
+    <div class="bg-gray-800 text-white py-20">
+      <div class="container mx-auto text-center">
+        <h1 :for={title_slot <- @title} class={["text-4xl font-bold", Map.get(title_slot, :class)]}>
+          {render_slot(title_slot)}
+        </h1>
+        <p class="mt-4 text-lg">{render_slot(@subtitle)}</p>
+        {render_slot(@inner_block)}
+      </div>
+    </div>
+    """
+  end
+
+  @doc """
+  Renders a button.
+
+  ## Examples
+
+      <.my_button>Save data</.my_button>
+      <.my_button type="submit" class="text-blue-500">Save data</.my_button>
+      <.my_button type="submit" color="red">Delete account</.my_button>
+  """
+  attr :color, :string, default: "blue", examples: ~w(blue red yellow green)
+  attr :class, :string, default: nil
+  attr :rest, :global, default: %{type: "button"}, include: ~w(type style)
+  slot :inner_block, required: true
+
+  def my_button(assigns) do
+    ~H"""
+    <button
+      class={[
+        "text-white bg-#{@color}-700 hover:bg-#{@color}-800 focus:ring-4 focus:ring-#{@color}-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-#{@color}-600 dark:hover:bg-#{@color}-700 focus:outline-none dark:focus:ring-#{@color}-800",
+        @class
+      ]}
+      {@rest}
+    >
+      {render_slot(@inner_block)}
+    </button>
+    """
+  end
+
+  attr :terms, :list, required: true
+  slot :dt, required: true
+  slot :dd, required: true
+
+  def dl(assigns) do
+    ~H"""
+    <dl class="max-w-xs mx-auto">
+      <div class="grid grid-cols-1 gap-y-2">
+        <div :for={item <- @terms} class="border-b border-gray-300">
+          <dt class="text-lg font-semibold">{render_slot(@dt, item)}</dt>
+          <dd class="text-gray-600">{render_slot(@dd, item)}</dd>
+        </div>
+      </div>
+    </dl>
+    """
+  end
 
   attr :field, Phoenix.HTML.FormField, required: true
   attr :type, :string, default: "text"
   attr :rest, :global, include: ~w(placeholder type)
 
-  def input(assigns) do
+  def my_input(assigns) do
     ~H"""
     <input type={@type} id={@field.id} name={@field.name} {@rest} />
     """
   end
 end
+```
 
-defmodule PageLive do
-  use LiveviewPlaygroundWeb, :live_view
-  import CoreComponents
+Now update your `page_live.ex` to use `<.my_input>`:
+
+```elixir
+defmodule MyappWeb.PageLive do
+  use MyappWeb, :live_view
 
   @initial_state %{
     "name" => "",
@@ -221,15 +279,15 @@ defmodule PageLive do
 
   def render(assigns) do
     ~H"""
-    <div class="bg-grey-100">
+    <div>
       <.form
         for={@form}
         phx-submit="create_product"
-        class="flex flex-col max-w-96 mx-auto bg-gray-100 p-24"
+        class="flex flex-col max-w-96 mx-auto p-24"
       >
         <h1>Creating a product</h1>
-        <.input field={@form[:name]} placeholder="Name" />
-        <.input field={@form[:description]} placeholder="Description" />
+        <.my_input field={@form[:name]} placeholder="Name" />
+        <.my_input field={@form[:description]} placeholder="Description" />
 
         <button type="submit">Send</button>
       </.form>
@@ -237,13 +295,11 @@ defmodule PageLive do
     """
   end
 end
-
-LiveviewPlayground.start(scripts: ["https://cdn.tailwindcss.com?plugins=forms"])
 ```
 
-### Implementing `<.input>`
+### Implementing `<.my_input>`
 
-With barely any code we were able to create a component `<.input field={@form[:name]}>` that automatically uses the necessary properties. Additionally we create an `attr` that sets the `type` to `"text"` by default and a global `attr` to receive any other necessary properties. If in the future we want to modify the styles of all inputs in our system we have a centralized place to do this.
+With barely any code we were able to create a component `<.my_input field={@form[:name]}>` that automatically uses the necessary properties. Additionally we create an `attr` that sets the `type` to `"text"` by default and a global `attr` to receive any other necessary properties. If in the future we want to modify the styles of all inputs in our system we have a centralized place to do this.
 
 %{
 title: "Will I have to create my input components in every Phoenix project I do?",
