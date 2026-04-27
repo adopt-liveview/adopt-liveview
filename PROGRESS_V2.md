@@ -25,7 +25,7 @@
 - [x] [Slots with attributes](http://localhost:4444/guides/v2-slots-with-attributes/en)
 - [x] [Rendering lists with slots](http://localhost:4444/guides/v2-lists-with-slots/en)
 - [x] [Form component](http://localhost:4444/guides/v2-forms/en)
-- [ ] [Validations](http://localhost:4444/guides/v2-form-validation/en)
+- [x] [Validations](http://localhost:4444/guides/v2-form-validation/en)
 - [ ] [Simplifying everything with Ecto](http://localhost:4444/guides/v2-simple-forms-with-ecto/en)
 - [ ] [My first LiveView project](http://localhost:4444/guides/v2-my-first-liveview-project/en)
 - [ ] [Saving data with Ecto](http://localhost:4444/guides/v2-saving-data/en)
