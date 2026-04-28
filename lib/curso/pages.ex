@@ -32,7 +32,24 @@ defmodule Curso.Pages do
 
   def content_map(pathname, locale \\ "br") do
     fundamentals = fundamentals_content_map(locale)
-    fundamentals
+    first_crud = first_crud_content_map(locale)
+
+
+    [
+      fundamentals,
+      first_crud
+    ]
+    |> Enum.find_value(fundamentals, fn content_map ->
+      pathname_in_this_content_map? =
+        content_map
+        |> Stream.flat_map(& &1.links)
+        |> Enum.any?(& &1.href == pathname)
+
+      if pathname_in_this_content_map? do
+        content_map
+      end
+    end)
+
   end
 
   defp fundamentals_content_map(locale) do
@@ -152,6 +169,13 @@ defmodule Curso.Pages do
           }
         ]
       },
+    ]
+  end
+
+  defp first_crud_content_map(locale) do
+    assigns = %{}
+
+    [
       %{
         title: "CRUD",
         links: [
