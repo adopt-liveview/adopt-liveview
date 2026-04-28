@@ -880,7 +880,7 @@ defmodule CursoWeb.CoreComponents do
               </p>
               <div class="mt-8 flex gap-4 md:justify-center lg:justify-start">
                 <.link_button
-                  href={~p"/guides/getting-started/#{@locale}"}
+                  href={~p"/guides/v2-getting-started/#{@locale}"}
                   class="rounded-full bg-sky-300 py-2 px-4 text-sm font-semibold text-slate-900 hover:bg-sky-200 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300/50 active:bg-sky-500"
                 >
                   <%= gettext("Get started") %>
