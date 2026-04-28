@@ -15,7 +15,7 @@
   </.prose>
   <div class="my-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
     <.quick_link
-      title={gettext("Beginner's track")}
+      title={gettext("Fundamentals")}
       icon="hero-chevron-double-right-solid"
       icon_class="dark:bg-white"
       href={~p"/guides/v2-getting-started/#{@locale}"}
@@ -25,16 +25,29 @@
     />
 
     <.quick_link
-      title={gettext("Testing track (in progress)")}
+      title={gettext("Your first CRUD")}
       icon="hero-magnifying-glass"
       icon_class="dark:bg-white"
       href={~p"/guides/my-first-test/#{@locale}"}
-      description={
-        gettext("Learn how to write effective tests for your Elixir and LiveView applications.")
-      }
+      description={gettext("Lets build a queue ticket system!")}
     />
 
     <.quick_link
+      title={gettext("Real time with LiveView")}
+      icon="hero-building-office-2-solid"
+      icon_class="dark:bg-white"
+      under_construction
+    />
+
+    <.quick_link
+      title={gettext("Adding authentication and authorization to projects")}
+      icon="hero-globe-alt-solid"
+      icon_class="dark:bg-white"
+      under_construction
+    />
+
+    <.quick_link
+      :if={false}
       title={gettext("Projects track")}
       icon="hero-building-office-2-solid"
       icon_class="dark:bg-white"
@@ -42,6 +55,7 @@
     />
 
     <.quick_link
+      :if={false}
       title={gettext("Deployments track")}
       icon="hero-globe-alt-solid"
       icon_class="dark:bg-white"
