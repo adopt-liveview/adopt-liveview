@@ -39,7 +39,7 @@ defmodule MyappWeb.PageLive do
     ~H"""
     <div>
       <form phx-submit="create_product" class="flex flex-col max-w-96 mx-auto p-24">
-        <h1>Creating a product</h1>
+        <h1 class="text-blue-500">Creating a product</h1>
         <input type="text" name="product[name]" placeholder="Name" />
         <input type="text" name="product[description]" placeholder="Description" />
         <button type="submit">Send</button>
@@ -285,7 +285,7 @@ defmodule MyappWeb.PageLive do
         phx-submit="create_product"
         class="flex flex-col max-w-96 mx-auto p-24"
       >
-        <h1>Creating a product</h1>
+        <h1 class="text-blue-500">Creating a product</h1>
         <.my_input field={@form[:name]} placeholder="Name" />
         <.my_input field={@form[:description]} placeholder="Description" />
 
