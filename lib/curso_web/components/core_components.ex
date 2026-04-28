@@ -605,7 +605,10 @@ defmodule CursoWeb.CoreComponents do
   def navigation(assigns) do
     assigns =
       assign_new(assigns, :pathname, fn -> "/" end)
-      |> assign(:items, Curso.Pages.content_map(assigns[:locale] || "en"))
+      |> then(fn assigns ->
+        assigns
+        |> assign(:items, Curso.Pages.content_map(assigns.pathname, assigns[:locale] || "en"))
+      end)
 
     ~H"""
     <nav class={"text-base lg:text-sm #{@class}"}>

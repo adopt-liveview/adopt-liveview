@@ -30,7 +30,12 @@ defmodule Curso.Pages do
     Enum.filter(@pages, &String.starts_with?(&1.id, id))
   end
 
-  def content_map(locale \\ "br") do
+  def content_map(pathname, locale \\ "br") do
+    fundamentals = fundamentals_content_map(locale)
+    fundamentals
+  end
+
+  defp fundamentals_content_map(locale) do
     assigns = %{}
 
     [
