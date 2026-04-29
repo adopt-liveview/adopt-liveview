@@ -27,7 +27,8 @@
 - [x] [Form component](http://localhost:4444/guides/v2-forms/en)
 - [x] [Validations](http://localhost:4444/guides/v2-form-validation/en)
 - [x] [Simplifying everything with Ecto](http://localhost:4444/guides/v2-simple-forms-with-ecto/en)
-- [ ] [My first LiveView project](http://localhost:4444/guides/v2-my-first-liveview-project/en)
+- [x] [My first LiveView project](http://localhost:4444/guides/v2-my-first-liveview-project/en)
+- New: cleanup
 - [ ] [Saving data with Ecto](http://localhost:4444/guides/v2-saving-data/en)
 - [ ] [Listing products](http://localhost:4444/guides/v2-listing-data/en)
 - [ ] [Showing a product](http://localhost:4444/guides/v2-show-data/en)
@@ -42,8 +43,11 @@
 ---
 
 
-talk about plugs
 use MyAppWeb, :macro
+
+
+talk about plugs
 explain optimized transitions
 plugs
 how to render exdocs locally
+deadview vs liveview

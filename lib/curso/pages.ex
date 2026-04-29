@@ -183,6 +183,10 @@ defmodule Curso.Pages do
             title: gettext("My first LiveView project"),
             href: ~p"/guides/v2-my-first-liveview-project/#{locale}"
           },
+          %{
+            title: gettext("Cleaning things up"),
+            href: ~p"/guides/v2-cleanup/#{locale}"
+          },
           %{title: gettext("Storing data"), href: ~p"/guides/v2-saving-data/#{locale}"},
           %{title: gettext("Listing products"), href: ~p"/guides/v2-listing-data/#{locale}"},
           %{title: gettext("Showing a product"), href: ~p"/guides/v2-show-data/#{locale}"},
