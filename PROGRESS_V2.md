@@ -29,7 +29,7 @@
 - [x] [Simplifying everything with Ecto](http://localhost:4444/guides/v2-simple-forms-with-ecto/en)
 - [x] [My first LiveView project](http://localhost:4444/guides/v2-my-first-liveview-project/en)
 - New: cleanup
-- [ ] [Saving data with Ecto](http://localhost:4444/guides/v2-saving-data/en)
+- [x] [Saving data with Ecto](http://localhost:4444/guides/v2-saving-data/en)
 - [ ] [Listing products](http://localhost:4444/guides/v2-listing-data/en)
 - [ ] [Showing a product](http://localhost:4444/guides/v2-show-data/en)
 - [ ] [Deleting a product](http://localhost:4444/guides/v2-deleting-data/en)
@@ -51,3 +51,5 @@ explain optimized transitions
 plugs
 how to render exdocs locally
 deadview vs liveview
+explain how forms know what changed and what didnt
+explain why @flash can do more than notification
