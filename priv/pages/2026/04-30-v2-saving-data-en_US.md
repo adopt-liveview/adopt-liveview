@@ -5,10 +5,18 @@ tags: ~w(getting-started),
 section: "CRUD",
 description: "Persisting data with databases in LiveView projects",
 previous_page_id: "v2-cleanup",
-next_page_id: "v2-listing-data"
+next_page_id: "v2-first-context-test"
 }
 
 ---
+
+%{
+title: "This class is a direct continuation of the previous class",
+type: :warning,
+description: ~H"""
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch cleanup-done`</code>.
+"""
+} %% .callout
 
 We will finally start implementing our CRUD (Create-Read-Update-Delete). Currently our project already has both LiveView and Ecto installed, so we will focus on getting that to work. In this lesson we will learn how to persist our ticket in the database.
 

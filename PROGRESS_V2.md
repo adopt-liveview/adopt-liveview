@@ -30,6 +30,7 @@
 - [x] [My first LiveView project](http://localhost:4444/guides/v2-my-first-liveview-project/en)
 - New: cleanup
 - [x] [Saving data with Ecto](http://localhost:4444/guides/v2-saving-data/en)
+- [x] First tests
 - [ ] [Listing products](http://localhost:4444/guides/v2-listing-data/en)
 - [ ] [Showing a product](http://localhost:4444/guides/v2-show-data/en)
 - [ ] [Deleting a product](http://localhost:4444/guides/v2-deleting-data/en)
@@ -45,6 +46,11 @@
 
 use MyAppWeb, :macro
 
+
+explain create_ticket failure when we have one
+explain `setup/2` in `describe` blocks
+
+explain html_response
 
 talk about plugs
 explain optimized transitions

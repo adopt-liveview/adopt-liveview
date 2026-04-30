@@ -188,6 +188,7 @@ defmodule Curso.Pages do
             href: ~p"/guides/v2-cleanup/#{locale}"
           },
           %{title: gettext("Storing data"), href: ~p"/guides/v2-saving-data/#{locale}"},
+          %{title: gettext("First context test"), href: ~p"/guides/v2-first-context-test/#{locale}"},
           %{title: gettext("Listing products"), href: ~p"/guides/v2-listing-data/#{locale}"},
           %{title: gettext("Showing a product"), href: ~p"/guides/v2-show-data/#{locale}"},
           %{title: gettext("Deleting a product"), href: ~p"/guides/v2-deleting-data/#{locale}"},
