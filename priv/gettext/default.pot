@@ -306,7 +306,7 @@ msgid_plural "minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/curso_web/live/home_live.html.heex:51
+#: lib/curso_web/live/home_live.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr ""
@@ -321,7 +321,7 @@ msgstr ""
 msgid "Under construction"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:59
+#: lib/curso_web/live/home_live.html.heex:60
 #, elixir-autogen, elixir-format
 msgid "Deployments track"
 msgstr ""
@@ -343,7 +343,7 @@ msgstr ""
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:23
+#: lib/curso_web/live/home_live.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr ""
@@ -352,11 +352,6 @@ msgstr ""
 #: lib/curso_web/components/core_components.ex:1341
 #, elixir-autogen, elixir-format
 msgid "Toggle locale"
-msgstr ""
-
-#: lib/curso_web/live/home_live.html.heex:7
-#, elixir-autogen, elixir-format
-msgid "We are working on many courses"
 msgstr ""
 
 #: lib/curso_web/components/layouts.ex:71
@@ -397,12 +392,7 @@ msgstr ""
 msgid "Changelog:"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:13
-#, elixir-autogen, elixir-format
-msgid "July 13th: Added first lesson to test track"
-msgstr ""
-
-#: lib/curso_web/live/home_live.html.heex:43
+#: lib/curso_web/live/home_live.html.heex:44
 #, elixir-autogen, elixir-format
 msgid "Adding authentication and authorization to projects"
 msgstr ""
@@ -417,22 +407,37 @@ msgstr ""
 msgid "First context test"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:18
+#: lib/curso_web/live/home_live.html.heex:19
 #, elixir-autogen, elixir-format
 msgid "Fundamentals"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:32
+#: lib/curso_web/live/home_live.html.heex:33
 #, elixir-autogen, elixir-format
 msgid "Lets build a queue ticket system!"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:36
+#: lib/curso_web/live/home_live.html.heex:37
 #, elixir-autogen, elixir-format
 msgid "Real time with LiveView"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:28
+#: lib/curso_web/live/home_live.html.heex:29
 #, elixir-autogen, elixir-format
 msgid "Your first CRUD"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:7
+#, elixir-autogen, elixir-format
+msgid "Coming next: real time with LiveView"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "May 1st: Test track is now part of the CRUD guide"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "May 1st: V2 is live!"
 msgstr ""
