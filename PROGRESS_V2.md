@@ -66,3 +66,6 @@ talk about exunit setup context argument
 explain exunit sandbox
 
 make a better index test
+
+modal
+live component
