@@ -223,7 +223,7 @@ We have a page, but our users don't know about it. Open your `TicketLive.Show` a
     <.button navigate={~p"/"}>
       <.icon name="hero-arrow-left" />
     </.button>
-    <.button variant="primary" navigate={~p"/tickets/#{@ticket}/edit?return_to=show"}>
+    <.button variant="primary" navigate={~p"/tickets/#{@ticket}/edit"}>
       <.icon name="hero-pencil-square" /> Edit ticket
     </.button>
   </:actions>

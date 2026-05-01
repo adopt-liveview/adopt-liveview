@@ -35,7 +35,7 @@
 - [x] [Showing a product](http://localhost:4444/guides/v2-show-data/en)
 - [x] [Deleting a product](http://localhost:4444/guides/v2-deleting-data/en)
 - [x] [Editing a product](http://localhost:4444/guides/v2-editing-data/en)
-- [ ] [DRY Form](http://localhost:4444/guides/v2-form-component/en)
+- [x] [DRY Form](http://localhost:4444/guides/v2-form-component/en)
 - [ ] [Live Component](http://localhost:4444/guides/v2-live-component/en)
 - [ ] [Modal Form](http://localhost:4444/guides/v2-modal-form/en)
 

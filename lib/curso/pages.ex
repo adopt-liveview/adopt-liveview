@@ -192,15 +192,8 @@ defmodule Curso.Pages do
           %{title: gettext("Listing products"), href: ~p"/guides/v2-listing-data/#{locale}"},
           %{title: gettext("Showing a product"), href: ~p"/guides/v2-show-data/#{locale}"},
           %{title: gettext("Deleting a product"), href: ~p"/guides/v2-deleting-data/#{locale}"},
-          %{title: gettext("Editing a product"), href: ~p"/guides/v2-editing-data/#{locale}"}
-        ]
-      },
-      %{
-        title: "Form Component",
-        links: [
+          %{title: gettext("Editing a product"), href: ~p"/guides/v2-editing-data/#{locale}"},
           %{title: gettext("DRY Form"), href: ~p"/guides/v2-form-component/#{locale}"},
-          %{title: gettext("Live Component"), href: ~p"/guides/v2-live-component/#{locale}"},
-          %{title: gettext("Modal Form"), href: ~p"/guides/v2-modal-form/#{locale}"}
         ]
       }
     ]
