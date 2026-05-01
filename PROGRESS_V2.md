@@ -33,7 +33,7 @@
 - [x] First tests
 - [x] [Listing products](http://localhost:4444/guides/v2-listing-data/en)
 - [x] [Showing a product](http://localhost:4444/guides/v2-show-data/en)
-- [ ] [Deleting a product](http://localhost:4444/guides/v2-deleting-data/en)
+- [x] [Deleting a product](http://localhost:4444/guides/v2-deleting-data/en)
 - [ ] [Editing a product](http://localhost:4444/guides/v2-editing-data/en)
 - [ ] [DRY Form](http://localhost:4444/guides/v2-form-component/en)
 - [ ] [Live Component](http://localhost:4444/guides/v2-live-component/en)
