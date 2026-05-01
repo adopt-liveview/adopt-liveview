@@ -31,7 +31,7 @@
 - New: cleanup
 - [x] [Saving data with Ecto](http://localhost:4444/guides/v2-saving-data/en)
 - [x] First tests
-- [ ] [Listing products](http://localhost:4444/guides/v2-listing-data/en)
+- [x] [Listing products](http://localhost:4444/guides/v2-listing-data/en)
 - [ ] [Showing a product](http://localhost:4444/guides/v2-show-data/en)
 - [ ] [Deleting a product](http://localhost:4444/guides/v2-deleting-data/en)
 - [ ] [Editing a product](http://localhost:4444/guides/v2-editing-data/en)
@@ -59,3 +59,10 @@ how to render exdocs locally
 deadview vs liveview
 explain how forms know what changed and what didnt
 explain why @flash can do more than notification
+
+advanced streams
+
+talk about exunit setup context argument
+explain exunit sandbox
+
+make a better index test
