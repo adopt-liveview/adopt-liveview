@@ -14,7 +14,7 @@ next_page_id: "v2-live-component",
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch editing-data-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch editing-data-done`</code>.
 """
 } %% .callout
 
@@ -74,7 +74,7 @@ When we need to add a new field, we would have to add it in both files. When we 
 
 ## Reusing the same LiveView more than once
 
-Its not against the rules to reuse a LiveView in different routes. In fact lets do it now. Rename `LineupWeb.TicketLive.New` to `LineupWeb.TicketLive.Form`, make sure to rename its file to `form.ex` too!
+It's not against the rules to reuse a LiveView in different routes. In fact, let's do it now. Rename `LineupWeb.TicketLive.New` to `LineupWeb.TicketLive.Form`, make sure to rename its file to `form.ex` too!
 
 In your router, edit `/tickets/:new` and `/tickets/:id/edit` to use that same LiveView:
 
@@ -123,7 +123,7 @@ Finished in 0.1 seconds (0.05s async, 0.1s sync)
 15 tests, 2 failures
 ```
 
-Unit tests are a blessing because they can help us make sure our code works as expected. Now that we have failing tests, lets fix that.
+Unit tests are a blessing because they can help us make sure our code works as expected. Now that we have failing tests, let's fix that.
 
 ### Custom title per route
 
@@ -140,7 +140,7 @@ Lets look back at our first failing test:
        test/lineup_web/live/ticket_live_test.exs:55: (test)
 ```
 
-Since the failing assertion is pointed as `assert render(edit_form_live) =~ "Edit Ticket"` it means we simply need to update our HTML title according to the current route. That can be easily done by introducing a variable you didn't new until now called `socket.assigns.live_action`. As our router defined:
+Since the failing assertion is pointed as `assert render(edit_form_live) =~ "Edit Ticket"` it means we simply need to update our HTML title according to the current route. That can be easily done by introducing a variable you didn't know until now called `socket.assigns.live_action`. As our router defined:
 
 ```elixir
 live "/tickets/new", TicketLive.Form, :new
@@ -205,7 +205,7 @@ Finished in 0.1 seconds (0.06s async, 0.1s sync)
 15 tests, 2 failures
 ```
 
-Don't get discouraged! We fixed a issue, now its time to fix the next one.
+Don't get discouraged! We fixed an issue, now it's time to fix the next one.
 
 ### Handling edits
 
@@ -286,7 +286,7 @@ defp save_ticket(socket, :new, ticket_params) do
 end
 ```
 
-We moved more from our `mount/3` into `apply_action/3` and now that method also receive `params` so it can use `id` on `:edit` and ignore them on `:new`. As for `handle_event("save" ...)` we did the same thing passing `socket.assigns.live_action` so create one clause per action. The contents of each `save_ticket/3` now behave exactly like `TicketLive.New` and `TicketLive.Edit` used to behave separately but this time we share everything else that was previously duplicated. Donf forget to delete `LineupWeb.TicketLive.Edit` if you didn't already. Now, `mix test` should be passing for all tests.
+We moved more from our `mount/3` into `apply_action/3` and now that method also receives `params` so it can use `id` on `:edit` and ignore them on `:new`. As for `handle_event("save" ...)` we did the same thing passing `socket.assigns.live_action` so create one clause per action. The contents of each `save_ticket/3` now behave exactly like `TicketLive.New` and `TicketLive.Edit` used to behave separately but this time we share everything else that was previously duplicated. Don't forget to delete `LineupWeb.TicketLive.Edit` if you didn't already. Now, `mix test` should be passing for all tests.
 
 ### Success!
 
@@ -298,4 +298,4 @@ If you had any issues you can see the final code for this lesson using `git chec
 
 - Keeping the code DRY makes it easier to maintain it in the future.
 - When you feel the need to refactor code to make it cleaner, analyze the points of repetition.
-- Tests will be a huge help when in need to refactor stuff without breaking your app. Did you notice we didn't change a single code in our tests during this lesson?
+- Tests will be a huge help when in need to refactor stuff without breaking your app. Did you notice we didn't change a single line of code in our tests during this lesson?

@@ -160,7 +160,7 @@ Open a tab [http://localhost:4000/tickets/1](http://localhost:4000/tickets/1) an
 
 ### Nice error messages in the development environment
 
-It's worth mentioning that on the page with the non-existent ID you should have seen a well-formatted error message with code being displayed and much more information. Phoenix brings this error screen only in the development environment. In ticketion you'll see only a generic "Not found" message because we don't want to leak any information about our code to users.
+It's worth mentioning that on the page with the non-existent ID you should have seen a well-formatted error message with code being displayed and much more information. Phoenix brings this error screen only in the development environment. In production, you'll see only a generic "Not found" message because we don't want to leak any information about our code to users.
 
 If you want to see how the generic message looks without having to deploy, you can open `config/dev.exs`, change `debug_errors: true` to `false`, and restart the server.
 
@@ -187,11 +187,11 @@ Here we introduce a new JS Command: [`JS.navigate/1`](https://hexdocs.pm/phoenix
 
 ### `Phoenix.Param`
 
-You might be surprised that the URL is `~p"/tickets/#{ticket}"` instead of `~p"/tickets/#{ticket.id}"` (do note the `.id`). This is because Phoenix knows how to convert an Ecto schema like `%Ticket{}` to an URL by reading its ID. Just an [internal framework trivia](https://hexdocs.pm/phoenix/Phoenix.Param.html) for you to know.
+You might be surprised that the URL is `~p"/tickets/#{ticket}"` instead of `~p"/tickets/#{ticket.id}"` (do note the `.id`). This is because Phoenix knows how to convert an Ecto schema like `%Ticket{}` to a URL by reading its ID. Just an [internal framework trivia](https://hexdocs.pm/phoenix/Phoenix.Param.html) for you to know.
 
 ## Adding more tests!
 
-We couldn't wrap up this lesson without adding a couple tests. Add to `Lineup.QueueTest` the following case:
+We couldn't wrap up this lesson without adding a couple of tests. Add to `Lineup.QueueTest` the following case:
 
 ```elixir
 test "get_ticket!/1 returns the ticket with given id" do
@@ -214,7 +214,7 @@ describe "Show" do
 end
 ```
 
-Fow now we will only be checking that this page renders correctly and displays its title. Wait a minute, there's something different about this test! Up until now we have been getting from test cases `%{conn: conn}` but this time there's also a `ticket` variable in there? The explanation is quite simple. In our `setup` pipeline we have `:create_ticket` which is defined as:
+For now, we will only be checking that this page renders correctly and displays its title. Wait a minute, there's something different about this test! Up until now we have been getting from test cases `%{conn: conn}` but this time there's also a `ticket` variable in there? The explanation is quite simple. In our `setup` pipeline we have `:create_ticket` which is defined as:
 
 ```elixir
 defp create_ticket(_) do
@@ -224,7 +224,7 @@ defp create_ticket(_) do
 end
 ```
 
-In any setup function you write, if you return a map it will be automatically be merged with your test context. So if you had written `%{ticket: ticket, user_id: 1}` then later in your test cases you'd be able to match `%{conn: conn, ticket: ticket, user_id: user_id}`. In case you are wondering, `conn` comes from a `setup/1` function in `LineupWeb.ConnCase`!
+In any setup function you write, if you return a map it will automatically be merged with your test context. So if you had written `%{ticket: ticket, user_id: 1}` then later in your test cases you'd be able to match `%{conn: conn, ticket: ticket, user_id: user_id}`. In case you are wondering, `conn` comes from a `setup/1` function in `LineupWeb.ConnCase`!
 
 ## Final code
 
@@ -239,7 +239,7 @@ If you had any issues you can see the final code for this lesson using `git chec
 - Bang functions do not use the convenient format of `{:ok, data}` and `{:error, error}`; they simply return the data or raise an exception.
 - Phoenix can automatically handle some Ecto exceptions and convert them into HTTP errors, making our code simpler because we can focus only on the success case.
 - The `<.list>` component is useful for rendering simple key-value structures.
-- In development mode, Phoenix displays beautiful error messages in the browser for exceptions to assist the developer, but in ticketion, the messages are generic (though customizable).
+- In development mode, Phoenix displays beautiful error messages in the browser for exceptions to assist the developer, but in production, the messages are generic (though customizable).
 - The `<.table>` component accepts a `row_click` assign with a function that is executed when a row in the table is clicked.
 - The JS Command `JS.navigate/1` works exactly like the `<.link navigate={...}>` component, except in a programmatic way.
 - Phoenix can automatically convert Ecto schemas into URL parameters by looking at their ID.

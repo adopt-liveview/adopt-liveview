@@ -83,7 +83,7 @@ As you can see, our function works. We can proceed to apply it in a new LiveView
 
 ## Back to our `TicketLive.Index`
 
-To list our tickets, we will use `LineupWeb.TicketLive.Index`. Phoenix projects like to follow this pattern: `YourAppWeb.NameOfSomethingLive.{Index, Show, New, Edit}` (or is it? We will discuss this later). Lets change our `Index` LiveView:
+To list our tickets, we will use `LineupWeb.TicketLive.Index`. Phoenix projects like to follow this pattern: `YourAppWeb.NameOfSomethingLive.{Index, Show, New, Edit}` (or is it? We will discuss this later). Let's change our `Index` LiveView:
 
 ```elixir
 defmodule LineupWeb.TicketLive.Index do
@@ -141,7 +141,7 @@ At the moment all you need to understand is that this component works very well 
 <:col :let={{_id, ticket}} label="Called at">{ticket.called_at || "n/a"}</:col>
 ```
 
-Inside the component, you can see that we use the `<:col>` slot twice. Each of these slots requires a `label` attribute to define the column name in the table and receives the special attribute `:let` for you to access `{id, element}`. At the moment, we can ignore the `id` and receive the `ticket` to render the content of that column for each ticket. If all of this seems very weird to you, you can take a look at our lesson on rendering lists with slots in the component section. Also its worth mentioning that in the "Called at" `<:col>` we used short circuit on `ticket.called_at || "n/a"` to either render the date or to show "n/a" because if `called_at` is `nil` nothing will be rendered as thats how HEEx interprets the `nil` atom.
+Inside the component, you can see that we use the `<:col>` slot twice. Each of these slots requires a `label` attribute to define the column name in the table and receives the special attribute `:let` for you to access `{id, element}`. At the moment, we can ignore the `id` and receive the `ticket` to render the content of that column for each ticket. If all of this seems very weird to you, you can take a look at our lesson on rendering lists with slots in the component section. Also, it's worth mentioning that in the "Called at" `<:col>` we used short circuit on `ticket.called_at || "n/a"` to either render the date or to show "n/a" because if `called_at` is `nil` nothing will be rendered as that's how HEEx interprets the `nil` atom.
 
 Success! Open your browser and you'll see that at the homepage all your tickets are listed. But wait, how do we go to the new ticket page? Your user won't guess the route!
 
@@ -260,15 +260,15 @@ end
 
 The first thing in our module is us using a helper called `LineupWeb.ConnCase` which, just like `LineupWeb.DataCase`, lives inside your repository. The main difference is that `ConnCase` will bring useful functions to handle testing how Phoenix HTTP requests work without actually running the server. Just below that we also `import Phoenix.LiveViewTest` which brings even more test helpers that are specific to LiveViews.
 
-At the very top we created a function called `create_ticket/1` which plainly ignores the first argument. For now you dont need to know much about it but we will talk about it in another lesson. What you need to understand about is that it will ensure that our database will always have at least a single `%Ticket{}` stored. That function is implicitely being used inside our `describe` block by `setup [:create_ticket]` which tells ExUnit to always call it before running each test.
+At the very top we created a function called `create_ticket/1` which plainly ignores the first argument. For now, you don't need to know much about it but we will talk about it in another lesson. What you need to understand about is that it will ensure that our database will always have at least a single `%Ticket{}` stored. That function is implicitely being used inside our `describe` block by `setup [:create_ticket]` which tells ExUnit to always call it before running each test.
 
 Our first test case receives as an argument a map that includes `conn` which is how we will be simulating a request to our Phoenix server. If you don't know about Plug's `conn` its fine, just think of it as a simulated connection.
 
 Our LiveView tests will often use a helper called [`live/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Router.html#live/4). This helper converts a `conn` (which is a simulated plain HTTP request) into a simulated LiveView connection. Its return is a 3-tuple with `:ok`, the simulated LiveView and the HTML rendered at the start. Its worth mentioning that since LiveViews are reactive, we can always get the HTML back by using `render(live)` (assuming we called our LiveView as `live` variable).
 
-In our `"list all tickets"` test we just check that the header text appears. We will improve on that later. As for our `"saves new ticket"` test we nmot only start by rendering `index_live`, we simulate a click on the "New ticket" link then follow the redirection to generate a **new** live called `new_ticket_live` but inside that we submit the form and follow the redirect back to `index_live` again with a flash message appearing with "Ticket created successfully". 
+In our `"list all tickets"` test we just check that the header text appears. We will improve on that later. As for our `"saves new ticket"` test we not only start by rendering `index_live`, we simulate a click on the "New ticket" link then follow the redirection to generate a **new** live called `new_ticket_live` but inside that we submit the form and follow the redirect back to `index_live` again with a flash message appearing with "Ticket created successfully". 
 
-Take your time to get familiar with those functions but don't worry, you can always look for other examples in your codebase or the internet when you find yourself lost on what can you do to test LiveViews. Tip: save this documentation link to have all `LiveViewTest` functions whenever you need to look for something: https://hexdocs.pm/phoenix_live_view/Phoenix.LiveViewTest.html
+Take your time to get familiar with those functions but don't worry, you can always look for other examples in your codebase or the internet when you find yourself lost on what you can do to test LiveViews. Tip: save this documentation link to have all `LiveViewTest` functions whenever you need to look for something: https://hexdocs.pm/phoenix_live_view/Phoenix.LiveViewTest.html
 
 ## Final code
 
