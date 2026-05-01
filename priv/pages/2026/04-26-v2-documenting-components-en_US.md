@@ -14,7 +14,7 @@ next_page_id: "v2-components-from-other-modules"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch function-component-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch function-component-done`</code>.
 """
 } %% .callout
 
@@ -57,11 +57,11 @@ The first way to document your component is to use ExDoc's `@doc` tag where you 
 
 The next features are specific to Phoenix. You can use the [`attr/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#attr/3) macro to document the component below its call. Each use of `attr` defines an attribute to be received. An extra feature of using `attr/3` is that in Phoenix projects [the compiler will validate](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#attr/3-compile-time-validations) that there are no extra, missing or incorrect attributes! By simply documenting your component you already gain extra validation.
 
-Last but no least we also document that our component uses slots using [`slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#slot/2). Similar to `attr/3`, `slot/2` also [validates its components at compile time](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#slot/3-compile-time-validations) and serves to document your code.
+Last but not least, we also document that our component uses slots using [`slot/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#slot/2). Similar to `attr/3`, `slot/2` also [validates its components at compile time](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#slot/3-compile-time-validations) and serves to document your code.
 
 ## Using `attr/3` to generate default values
 
-In our example above we always must pass the color attribute. If you've already worked with other component libraries you'll notice that there is always a default style when you don't choose a specific color. It is always useful to have a default color for your design system. You can do this by passing a config via `attr/3` as `default: "blue"`.
+In our example above we must always pass the color attribute. If you've already worked with other component libraries, you'll notice that there is always a default style when you don't choose a specific color. It is always useful to have a default color for your design system. You can do this by passing a config via `attr/3` as `default: "blue"`.
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -101,18 +101,18 @@ We not only removed `color="blue"` from our `render/1` function but also added a
 
 ## Using `attr/3` to define possible values
 
-The `attr/3` function also contains two other mutually exclusive properties: `examples` and `values`. If you are interested in only certain colors being accepted by your component use `values` as follows: `attr :color, :string, default: "blue", values: ~w(blue red yellow green)`. If it is in your interest not to limit it to certain values but to provide some examples simply change `values` to `examples`. It is worth mentioning that this configuration will not prevent the wrong values from being used at runtime it will only help you by providing warnings at compile time.
+The `attr/3` function also contains two other mutually exclusive properties: `examples` and `values`. If you are interested in only certain colors being accepted by your component, use `values` as follows: `attr :color, :string, default: "blue", values: ~w(blue red yellow green)`. If it is in your interest not to limit it to certain values but to provide some examples, simply change `values` to `examples`. It is worth mentioning that this configuration will not prevent the wrong values from being used at runtime; it will only help you by providing warnings at compile time.
 
 %{
 title: ~H"What is this <code>`~w(x y z)`</code> there?",
 description: ~H"""
-<.link navigate="https://hexdocs.pm/elixir/1.16.2/Kernel.html#sigil_w/2" target="\_blank"><code>`sigil_w`</code></.link> serves as a simplified way to create string lists. Essentially <code>`["blue", "green"]`</code> can be written as <code>`~w(blue green)`</code>. With this sigil we don't need commas or quotation marks, just place the values inside the parentheses.
+<.link navigate="https://hexdocs.pm/elixir/1.16.2/Kernel.html#sigil_w/2" target="\_blank"><code>`sigil_w`</code></.link> serves as a simplified way to create string lists. Essentially <code>`["blue", "green"]`</code> can be written as <code>`~w(blue green)`</code>. With this sigil, we don't need commas or quotation marks, just place the values inside the parentheses.
 """
 } %% .callout
 
 ## Using `attr/3` to define classes
 
-Our button customization is currently limited. To be able to receive new classes we need to create a new `attr`. Update `page_live.ex` to add a `class` attribute:
+Our button customization is currently limited. To be able to receive new classes, we need to create a new `attr`. Update `page_live.ex` to add a `class` attribute:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -153,11 +153,11 @@ defmodule MyappWeb.PageLive do
 end
 ```
 
-Using a HEEx feature mentioned in a previous lesson we converted our `class` attribute to receive a list. As the default value of assign `class` is `nil` it will be ignored. We intentionally placed `@class` as the final element because if there are classes that change the same CSS properties as those of the component the new class could take precedence.
+Using a HEEx feature mentioned in a previous lesson, we converted our `class` attribute to receive a list. As the default value of assign `class` is `nil`, it will be ignored. We intentionally placed `@class` as the final element because if there are classes that change the same CSS properties as those of the component, the new class could take precedence.
 
 ## Multiple optional properties
 
-As you can see our button currently just works as `type="button"`. If we want to be able to change the type to `"submit"` or `"reset"` we would have to create a new `attr`. This manual process of creating an `attr` gets repetitive very quickly. If you just want to pass through all other attributes coming from using the component, HEEx has a solution. Update `page_live.ex` to support global attributes:
+As you can see, our button currently just works as `type="button"`. If we want to be able to change the type to `"submit"` or `"reset"` we would have to create a new `attr`. This manual process of creating an `attr` gets repetitive very quickly. If you just want to pass through all other attributes coming from using the component, HEEx has a solution. Update `page_live.ex` to support global attributes:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -199,7 +199,7 @@ defmodule MyappWeb.PageLive do
 end
 ```
 
-Generally called `:rest` (but any name will do) we can define an attribute of type `:global` using `attr/3`. We can also add its `default` as a map with all the default properties. We can also say which properties will be accepted by our global attribute, in this case, `type="..."` and `style="..."`.
+Generally called `:rest` (but any name will do), we can define an attribute of type `:global` using `attr/3`. We can also add its `default` as a map with all the default properties. We can also say which properties will be accepted by our global attribute, in this case, `type="..."` and `style="..."`.
 
 ## Recap!
 

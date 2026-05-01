@@ -28,7 +28,7 @@ end
 
 ## Understanding `mix`
 
-Mix is the tool that manages and compiles projects in Elixir. Phoenix projects can be started by running `mix phx.server` in the project directory. We call these commands as Mix tasks and the `phx.server` task is defined by the Phoenix framework. Over this course we will learn more tasks that Phoenix create for us to help the day-to-day development workflow.
+Mix is the tool that manages and compiles projects in Elixir. Phoenix projects can be started by running `mix phx.server` in the project directory. We call these commands Mix tasks and the `phx.server` task is defined by the Phoenix framework. Over this course we will learn more tasks that Phoenix creates for us to help the day-to-day development workflow.
 
 If you used Phoenix Express installation method you might not have seen but one of the steps to install a Phoenix project locally was running `mix setup`. This is known as a task `alias` which is just a mix task that runs a list of other tasks. You can check aliases in your `mix.exs` file:
 
@@ -86,7 +86,7 @@ The first line of the module, `use MyappWeb, :live_view`, is important and you w
 %{
 title: ~H"<code>sigil_H/2</code>?",
 description: ~H"""
-In Elixir, <code>sigils</code> are binary functions (take 2 arguments) that are used to transform text into something else. <code>sigil_H/2</code> transforms valid HTML into an optimized data structure to send HTML to your user. <strong class="text-black dark:text-white">Do we need to know how it works?</strong> No! But we will see it in the future only for curiosity sake in advanced topics.
+In Elixir, <code>sigils</code> are binary functions (take 2 arguments) that are used to transform text into something else. <code>sigil_H/2</code> transforms valid HTML into an optimized data structure to send HTML to your user. <strong class="text-black dark:text-white">Do we need to know how it works?</strong> No! But we will see it in the future only for curiosity's sake in advanced topics.
 """
 } %% .callout
 

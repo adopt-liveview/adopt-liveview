@@ -11,7 +11,7 @@ next_page_id: "v2-first-liveview"
 
 ## Phoenix Express
 
-Folks at Phoenix wanted to bake onboarding stupdly simple and created an way of installing Elixir (if you don't have it installed) and generating a Phoenix project with a single command! Using your terminal go to a directory where you want to create your project and run the command:
+Folks at Phoenix wanted to bake onboarding stupidly simple and created a way of installing Elixir (if you don't have it installed) and generating a Phoenix project with a single command! Using your terminal, go to a directory where you want to create your project and run the command:
 
 For macOS/Ubuntu:
 
@@ -53,7 +53,7 @@ In both cases we are creating a Phoenix app called "Myapp". We will be using it 
 
 ## Conclusion
 
-At this point you should be able to run the following command to start you server:
+At this point you should be able to run the following command to start your server:
 
 ```sh
 $ mix phx.server

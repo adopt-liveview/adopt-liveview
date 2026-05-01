@@ -91,7 +91,7 @@ defmodule MyappWeb.PageLive do
 end
 ```
 
-This time the exception is different. When you see `FunctionClauseError` the interpretation you should have is that the function exists but no case of it matched the message sent:
+This time the exception is different. When you see `FunctionClauseError`, the interpretation you should have is that the function exists but no case of it matched the message sent:
 
 ```elixir
 [debug] HANDLE EVENT "reverse" in MyappWeb.PageLive
@@ -118,7 +118,7 @@ To simplify your debugging, Elixir already shows exactly the message you receive
     (myapp 0.1.0) lib/myapp_web/live/page_live.ex:17: MyappWeb.PageLive.handle_event("reverse", %{"value" => "Reverse"}, #Phoenix.LiveView.Socket<id: "phx-GH-hE0FkiPoKpgAJ", endpoint: MyappWeb.Endpoint, view: MyappWeb.PageLive, parent_pid: nil, root_pid: #PID<0.691.0>, router: MyappWeb.Router, assigns: %{name: "Lubien", __changed__: %{}, flash: %{}, live_action: :home}, transport_pid: #PID<0.683.0>, sticky?: false, ...>)
 ```
 
-Look, it says that your LiveView received "reverse" as its first parameter. Checking your LiveView code we noticed that your callback expected `"wrong-reverse"`. This is the problem.
+Look, it says that your LiveView received "reverse" as its first parameter. Checking your LiveView code, we noticed that your callback expected `"wrong-reverse"`. This is the problem.
 
 ## Recap!
 

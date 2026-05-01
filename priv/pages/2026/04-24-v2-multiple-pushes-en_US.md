@@ -70,7 +70,7 @@ Our handle `handle_event/3` receives at the `"add_points"` event a map in the fo
 %{
 title: ~H"In HEEx I wrote <code>`:red`</code> in the <code>`team`</code> property, shouldn't the event receive an atom?",
 description: ~H"""
-JS Commands serialize data into JSON to store on the client. Data that is compatible with Elixir types such as Elixir's Integer and JSON's Integer works normally. Atoms doesn't exist in JSON therefore they are converted into strings.
+JS Commands serialize data into JSON to store on the client. Data that is compatible with Elixir types such as Elixir's Integer and JSON's Integer works normally. Atoms don't exist in JSON therefore they are converted into strings.
 """
 } %% .callout
 

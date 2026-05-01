@@ -16,7 +16,7 @@ The Phoenix framework brings with it several tools configured so you don't have 
 
 ## The most basic LiveView
 
-For convenience sake we will create a folder called `live` inside `lib/myapp_web` so we can store our LiveViews. The command below should do the trick:
+For convenience's sake we will create a folder called `live` inside `lib/myapp_web` so we can store our LiveViews. The command below should do the trick:
 
 ```
 mkdir lib/myapp_web/live
@@ -64,7 +64,7 @@ end
 
 We created a module `MyappWeb.PageLive` to be our first LiveView and we told Phoenix to render it at the root path `/`. As you can see at the very top we used `use MyappWeb, :live_view` to make it a LiveView by installing all the necessary behind the scenes code you don't need to worry about.
 
-You may have noticed but there's a lot of MyappWeb going in there. This is because we are using the `MyappWeb` namespace for our LiveView. In Phoenix projects you will often see that projects called `Project` have a matching `ProjectWeb` module to encapsulate all the web-related code.
+You may have noticed, but there's a lot of MyappWeb going in there. This is because we are using the `MyappWeb` namespace for our LiveView. In Phoenix projects you will often see that projects called `Project` have a matching `ProjectWeb` module to encapsulate all the web-related code.
 
 ## Try it out
 

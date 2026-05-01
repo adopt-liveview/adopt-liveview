@@ -22,7 +22,7 @@ To make your future easier on LiveView, let's learn some simple things about how
 
 ## Elixir rendering
 
-Lets update `page_live.ex` to this:
+Let's update `page_live.ex` to this:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -57,7 +57,7 @@ The direct answer is yes, you can, however this means that your logic will be ex
 
 ## Rendering something that cannot be converted to string
 
-Now lets try this:
+Now let's try this:
 
 ```elixir
 defmodule User do
@@ -143,7 +143,7 @@ It is worth mentioning that if you decide to return any type of HTML here, you a
 
 ## Rendering of `nil`
 
-Lets simplify our code to just this:
+Let's simplify our code to just this:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -197,7 +197,7 @@ In the second case (Hello Elixir) we just demonstrate once again what was explai
 
 In the third example (Hello Phoenix) there is a golden tip: you can pass a list with multiple strings to an attribute and at the end it will be automatically joined and values that are `nil` will be ignored. The reason this technique is powerful is that it makes it easier to work with variables, as we can see `bg_for_hello_phoenix` being used.
 
-The last case (Hello LiveView) adds one more way of working with attributes. If you ever need to add attributes dynamically, that is, you don't know exactly which attributes will or wont be included in advance, you can use the syntax of adding an elixir map within the opening HTML tag and HEEx will understand that each key in your map represents an attribute.
+The last case (Hello LiveView) adds one more way of working with attributes. If you ever need to add attributes dynamically, that is, you don't know exactly which attributes will or won't be included in advance, you can use the syntax of adding an elixir map within the opening HTML tag and HEEx will understand that each key in your map represents an attribute.
 
 %{
 title: "Can I use variables in my render function?",
@@ -208,7 +208,7 @@ Yes, there is no problem simply adding variables before your HEEx, especially if
 
 ## A sidenote for an old syntax
 
-Before interpolations like `{this}` existed the default way for HEEx to render things in HTML was the tag `<%= this %>`. Similar to the `<% %>` tag (which doesnt render), this one comes with a `=`. Nowadays if you use formatters on new projects they will be automatically converted to interpolations unless they fall into very [specific cases](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#sigil_H/2-interpolating-blocks). We will still be using `<%= %>` in the future for control structures though!
+Before interpolations like `{this}` existed the default way for HEEx to render things in HTML was the tag `<%= this %>`. Similar to the `<% %>` tag (which doesn't render), this one comes with a `=`. Nowadays if you use formatters on new projects they will be automatically converted to interpolations unless they fall into very [specific cases](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#sigil_H/2-interpolating-blocks). We will still be using `<%= %>` in the future for control structures though!
 
 ## Recap!
 

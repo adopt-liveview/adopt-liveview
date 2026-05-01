@@ -157,7 +157,7 @@ Remember when we talked about what a `socket` has in the previous guide? They ha
 (stdlib 7.0.1) proc_lib.erl:333: :proc_lib.init_p_do_apply/3
 ```
 
-A `stack trace` demonstrates the chain of function calls until reaching the exception in your code (call stack). Each line has the format `(version_dependency_name) folder/file_name:line: ModuleName.function_name/arity`. Being able to read stack traces will make your day-to-day life as a programmer much simpler. Here's the first tip on how to find out where issue is: ignore all lines that are from libraries (those that start as parentheses and name is not your project). With that we are left with:
+A `stack trace` demonstrates the chain of function calls until reaching the exception in your code (call stack). Each line has the format `(version_dependency_name) folder/file_name:line: ModuleName.function_name/arity`. Being able to read stack traces will make your day-to-day life as a programmer much simpler. Here's the first tip on how to find out where the issue is: ignore all lines that are from libraries (those that start as parentheses and name is not your project). With that we are left with:
 
 ```elixir
 (myapp 0.1.0) lib/myapp_web/live/page_live.ex:12: anonymous fn/2 in MyappWeb.PageLive.render/1

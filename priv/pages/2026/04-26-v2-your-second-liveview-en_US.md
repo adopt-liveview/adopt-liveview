@@ -14,7 +14,7 @@ next_page_id: "v2-route-params"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch events-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch events-done`</code>.
 """
 } %% .callout
 
@@ -75,23 +75,23 @@ end
 
 ### The `use` macro
 
-Phoenix will always add to router modules something like `use MyappWeb, :router`. Behind the scenes it imports router functions like `get/4`, `post/4` and `live/4` so you can define routes.
+Phoenix will always add to router modules something like `use MyappWeb, :router`. Behind the scenes, it imports router functions like `get/4`, `post/4` and `live/4` so you can define routes.
 
 ### Pipelines
 
-Think of pipelines as reusable router settings for multiple route groups. At this point all you need to care about is that `:browser` pipeline works, well, on browsers. They're used inside `scope` blocks like `pipe_through :pipeline_name`.
+Think of pipelines as reusable router settings for multiple route groups. At this point, all you need to care about is that the `:browser` pipeline works, well, on browsers. They're used inside `scope` blocks like `pipe_through :pipeline_name`.
 
 ### Dev routes
 
-Using `if Application.compile_env(:myapp, :dev_routes) do` we can ensure routes are only compiled in develoipment environments and skip prod altogether. This is useful for our fake Mailbox to test mailing without setting SMTP or APIs plus our [Live Dashboard](https://github.com/phoenixframework/phoenix_live_dashboard/) route. Got curious? Open [http://localhost:4000/dev/dashboard](http://localhost:4000/dev/dashboard)
+Using `if Application.compile_env(:myapp, :dev_routes) do` we can ensure routes are only compiled in development environments and skip prod altogether. This is useful for our fake Mailbox to test mailing without setting SMTP or APIs, plus our [Live Dashboard](https://github.com/phoenixframework/phoenix_live_dashboard/) route. Got curious? Open [http://localhost:4000/dev/dashboard](http://localhost:4000/dev/dashboard)
 
 ### Scope block
 
-`scope/4` blocks are often used to group routes that have similar requirements. You'd often see in Phoenix projects a scope for unauthenticated routes, another one for authenticated routes, one or more scopes for API routes. Later on we will be seeing those in more depth.
+`scope/4` blocks are often used to group routes that have similar requirements. You'd often see in Phoenix projects a scope for unauthenticated routes, another one for authenticated routes, and one or more scopes for API routes. Later on, we will be seeing those in more depth.
 
 ## Adding our second LiveView
 
-Using the [`live/4`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Router.html#live/4) macro we define that on the home page (`"/"`) the `PageLive` module will be rendered and its Live Action will be `:index`. Don't need to worry about Live Action, we will go back to it in future lessons.
+Using the [`live/4`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.Router.html#live/4) macro, we define that on the home page (`"/"`) the `PageLive` module will be rendered and its Live Action will be `:index`. Don't need to worry about Live Action; we will go back to it in future lessons.
 
 Edit `router.ex` to add a second route like this:
 
@@ -142,15 +142,15 @@ The new things here are: the `<.link>` component and the `sigil_p`.
 
 ## The `<.link>` component
 
-This is the first time in this course that you've seen an HTML tag that starts with `.`. These tags are known as components, we will talk about them in detail in the future.
+This is the first time in this course that you've seen an HTML tag that starts with `.`. These tags are known as components; we will talk about them in detail in the future.
 
-The important thing about the [`.link`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#link/1) component is that it is specialized in providing navigation between pages on your Phoenix website. Using the `navigate={...}` attribute, Phoenix can make an optimized transition between two LiveViews whenever possible so always prefer this component instead of using the `<a>` HTML tag.
+The important thing about the [`.link`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#link/1) component is that it is specialized in providing navigation between pages on your Phoenix website. Using the `navigate={...}` attribute, Phoenix can make an optimized transition between two LiveViews whenever possible, so always prefer this component instead of using the `<a>` HTML tag.
 
 ## Verified Phoenix Routes
 
-In Phoenix projects whenever you want to write a route you could very well use a string like "/path/to/page". What if this route doesn't exist? We would only know when we click this link and see the issue.
+In Phoenix projects, whenever you want to write a route you could very well use a string like "/path/to/page". What if this route doesn't exist? We would only know when we click this link and see the issue.
 
-To avoid surprises with routes that don't exist Phoenix comes with a feature called Verified Routes in which you use the `sigil_p` in the format `~p"/path/to/page/"` and Phoenix will warn you if there are using routes that doesn't exist.
+To avoid surprises with routes that don't exist, Phoenix comes with a feature called Verified Routes in which you use the `sigil_p` in the format `~p"/path/to/page/"` and Phoenix will warn you if you are using routes that don't exist.
 
 ## Recap!
 
@@ -159,4 +159,4 @@ To avoid surprises with routes that don't exist Phoenix comes with a feature cal
 - On a Router we can define LiveView routes using the `live/4` macro.
 - HTML tags with `.` at the beginning such as `<.link>` indicate that this tag is actually a component.
 - We must use the `<.link navigate={~p"/route"}>` component in our LiveViews to navigate efficiently between routes.
-- Using `sigil_p` we can write routes so that Phoenix will warn us if they doesn't exist so we can detect problems at development time.
+- Using `sigil_p`, we can write routes so that Phoenix will warn us if they don't exist, so we can detect problems at development time.

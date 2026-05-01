@@ -14,7 +14,7 @@ next_page_id: "v2-multiple-slots"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch documenting-components-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch documenting-components-done`</code>.
 """
 } %% .callout
 
@@ -35,7 +35,7 @@ defmodule MyappWeb.OtherPageLive do
 end
 ```
 
-This is not elegant at all. We could, perhaps, `alias` to our HEEx less verbose:
+This is not elegant at all. We could, perhaps, use `alias` to make our HEEx less verbose:
 
 ```elixir
 defmodule MyappWeb.OtherPageLive do
@@ -56,7 +56,7 @@ end
 %{
 title: ~H"<code>alias</code>",
 description: ~H"""
-In Elixir you can use alias to simplify references to nested modules. Instead of writting <code>MyApp.Deep.ModuleName.function</code> you can do <code>alias MyApp.Deep.ModuleName</code> so later you can write <code>ModuleName.function</code> instead.
+In Elixir you can use alias to simplify references to nested modules. Instead of writing <code>MyApp.Deep.ModuleName.function</code> you can do <code>alias MyApp.Deep.ModuleName</code> so later you can write <code>ModuleName.function</code> instead.
 """
 } %% .callout
 
@@ -157,11 +157,11 @@ end
 
 ```
 
-This time we also sneaked in a `<.hero>` component that was used to create pretty titles for each pages. In each of our LiveViews we manually use `import MyappWeb.MyCoreComponents`. Just in case you're wondering we `use Phoenix.Component` so we have access to HEEx related stuff like the `sigil_H`. We also `use MyappWeb, :verified_routes` so we can use `sigil_p` to write routes like `~p"/"` and `~p"/other"` in our `<.hero>` component.
+This time we also sneaked in a `<.hero>` component that was used to create pretty titles for each page. In each of our LiveViews we manually use `import MyappWeb.MyCoreComponents`. Just in case you're wondering we `use Phoenix.Component` so we have access to HEEx related stuff like the `sigil_H`. We also `use MyappWeb, :verified_routes` so we can use `sigil_p` to write routes like `~p"/"` and `~p"/other"` in our `<.hero>` component.
 
 ## Meeting `MyappWeb.ex`
 
-The whole point of `CoreComponents` (and in our case `MyCoreComponents`) is that they're components so important to the whole application that they're imported by default. Lets do it for our module just like Phoenix does for its own. Head out to `lib/myapp_web.ex`.
+The whole point of `CoreComponents` (and in our case `MyCoreComponents`) is that they're components so important to the whole application that they're imported by default. Let's do it for our module just like Phoenix does for its own. Head out to `lib/myapp_web.ex`.
 
 This module is magical. It uses secret incantations known only to the ancient ones as `macros`. Jokes aside, this module uses Elixir mechanism of defining a secret macro called `__using__` so whenever someone `use MyappWeb` they're calling `__using__` behind the scenes. Not that it matters to you though because all you actually need to understand is that `use MyappWeb, :something` will execute whatever it is inside `MyappWeb.something` at compile-time!
 
@@ -174,7 +174,7 @@ This module is magical. It uses secret incantations known only to the ancient on
 * `use MyappWeb, :html` maps to `def html`
 * `use MyappWeb, :verified_routes` maps to `def verified_routes`
 
-As you might already have noticed we do `use MyappWeb, :live_view` in all our LiveViews and inside it it will add `html_helpers/0` code at compile-time. Lets add `MyCoreComponents` to `html_helpers/0`:
+As you might already have noticed we do `use MyappWeb, :live_view` in all our LiveViews and inside it it will add `html_helpers/0` code at compile-time. Let's add `MyCoreComponents` to `html_helpers/0`:
 
 ```elixir
 defp html_helpers do
@@ -198,11 +198,11 @@ defp html_helpers do
 end
 ```
 
-We added `import MyappWeb.MyCoreComponents` just below the actual `import MyappWeb.CoreComponents`. Dont forget to remove `import MyappWeb.MyCoreComponents` from `PageLive` and `OtherPageLive` too.
+We added `import MyappWeb.MyCoreComponents` just below the actual `import MyappWeb.CoreComponents`. Don't forget to remove `import MyappWeb.MyCoreComponents` from `PageLive` and `OtherPageLive` too.
 
 ## Recap!
 
 - You can use components from other modules using the `<MyappWeb.ModuleName.component_name>` syntax.
 - You can use aliases to shorten module function calls like `alias MyappWeb.ModuleName` to use `<ModuleName.component_name>` syntax.
 - If the component in question is used in a lot of places in the application consider placing it in your `CoreComponents`.
-- Behind the scenes `use MyappWeb, :something` just inserts code from `MyappWeb`'s `def somethind() do` into your module so you have access to all tools needed to do your work.
+- Behind the scenes `use MyappWeb, :something` just inserts code from `MyappWeb`'s `def something() do` into your module so you have access to all tools needed to do your work.

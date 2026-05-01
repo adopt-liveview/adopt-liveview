@@ -22,7 +22,7 @@ If you hopped directly into this page it might be confusing because it is a dire
 
 In a modern front-end framework you don't want a view that shows something and is never modified again. We will learn the first way to modify state in LiveView: events.
 
-We're going to build a simple button that reverses the current user's name. Edit `page_live.exs` file with to this:
+We're going to build a simple button that reverses the current user's name. Edit the `page_live.exs` file to this:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -73,7 +73,7 @@ With this small modification we see the first example of reactivity in Phoenix: 
 
 ## How do they work?
 
-Let's talk about [`handle_event/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#c:handle_event/3). This function is a callback that is only necessary if your LiveView has any event. For each event in your HTML code you need a corresponding `def handle_event("your_event", _params, socket)`. The three arguments that this callback receive are, respectively:
+Let's talk about [`handle_event/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#c:handle_event/3). This function is a callback that is only necessary if your LiveView has any event. For each event in your HTML code, you need a corresponding `def handle_event("your_event", _params, socket)`. The three arguments that this callback receives are, respectively:
 
 %{
 title: "Reminder about callbacks!",
@@ -97,6 +97,6 @@ You must be wondering why in the callback <code>`mount/3`</code> we returned <co
 
 ## Recap!
 
-- By adding `phx-click="event_name"` to an element you trigger an event name `"event_name"` when it is clicked.
-- For each event in your HTML you need an equivalent `handle_event("event_name", _params, socket)` callback.
+- By adding `phx-click="event_name"` to an element, you trigger an event named `"event_name"` when it is clicked.
+- For each event in your HTML, you need an equivalent `handle_event("event_name", _params, socket)` callback.
 - The `mount/3` callback returns `{:ok, socket}` while the `handle_event/3` returns `{:noreply, socket}`.

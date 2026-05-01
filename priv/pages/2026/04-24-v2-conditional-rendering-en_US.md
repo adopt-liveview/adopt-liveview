@@ -18,7 +18,7 @@ If you hopped directly into this page it might be confusing because it is a dire
 """
 } %% .callout
 
-Let's learn some ways to render HTML depending on certain conditions. Lets update our PageLive:
+Let's learn some ways to render HTML depending on certain conditions. Let's update our PageLive:
 
 ## Using `if-else` for simple cases
 
@@ -183,7 +183,7 @@ In Elixir pattern matching is a common and very powerful technique that, once yo
 
 Now let's talk about what's important for this lesson: `case`. Just like `if` you need to start the conditional with `<%= case (condition here) do %>`, emphasis on `=` because without it nothing will be rendered. Since our condition under `case` was `@tab`, each condition will essentially check `@tab == 'value'`. For each condition we do an `<% "expected value" -> %>` (without the need for `=` in the interpolation tag) and end the block with `<% end %>`.
 
-It is worth mentioning that in our `case` statement we handled all possible scenarios. What if we forgot a possibility? Lets try this out:
+It is worth mentioning that in our `case` statement we handled all possible scenarios. What if we forgot a possibility? Let's try this out:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -265,7 +265,7 @@ It all depends on the UX you intend to give your user. By using a default clause
 
 ## Condition chains with `cond`
 
-In the previous example we used `case` to compare the exact value of the `@tab` variable in each clause. If you need to render something based on a condition that isn't about equality, `cond` is perfect for this. Lets try this out:
+In the previous example we used `case` to compare the exact value of the `@tab` variable in each clause. If you need to render something based on a condition that isn't about equality, `cond` is perfect for this. Let's try this out:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -325,5 +325,5 @@ Each `cond` clause follows the predicate format (an expression that returns true
 - For `if` without `else` you can use the `<%= if condition do %>` block format or the special HEEx attribute `:if={condition}` in an HTML tag.
 - For multiple comparisons of a value you can use `<%= case value do %>`.
 - For multiple conditions that don't just involve comparing whether a value matches something you can use `<%= cond do %>`.
-- In all cases, the first tag will always need `=` and the others wont. If you add `=` to the other tags LiveView will generate warnings but everything will work normally.
+- In all cases, the first tag will always need `=` and the others won't. If you add `=` to the other tags LiveView will generate warnings but everything will work normally.
 - If in the first tag you do not add `=` the HTML code will not be rendered.

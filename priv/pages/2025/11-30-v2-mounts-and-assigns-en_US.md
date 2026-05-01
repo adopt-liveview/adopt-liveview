@@ -79,7 +79,7 @@ The <.link navigate="https://hexdocs.pm/elixir/debugging.html#dbg-2" target="\_b
 """
 } %% .callout
 
-If you check your terminal you will see information like this:
+If you check your terminal, you will see information like this:
 
 ```elixir
 [(myapp 0.1.0) lib/myapp_web/live/page_live.ex:5: MyappWeb.PageLive.mount/3]
@@ -112,7 +112,7 @@ def render(assigns) do
 end
 ```
 
-The way we render assigns in a LiveView is by using `{something}`. The documentation calls these tags while I personally prefer to call it interpolation. Furthermore, to access the assign called `name` just use the shortcut `@name`. Another way we render assigns in a LiveView is by using `<%= %>` but you should prefer the shortcut `{}` whenever possible. We will see cases where `<%= %>` syntax is needed in the future. Old LiveView projects used `<%= %>` before `{}` was introduced but upgrading LiveView should convert most of them to the new syntax using the formatter.
+The way we render assigns in a LiveView is by using `{something}`. The documentation calls these tags while I personally prefer to call it interpolation. Furthermore, to access the assign called `name`, just use the shortcut `@name`. Another way we render assigns in a LiveView is by using `<%= %>`, but you should prefer the shortcut `{}` whenever possible. We will see cases where `<%= %>` syntax is needed in the future. Old LiveView projects used `<%= %>` before `{}` was introduced, but upgrading LiveView should convert most of them to the new syntax using the formatter.
 
 Behind the scenes, inside a render function using `@name` is exactly the same as `assigns.name`. Remember that I said that the only argument of a render function was necessarily called `assigns`? See what happens if I rename it to any other name such as `def render(variables) do`:
 

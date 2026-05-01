@@ -14,7 +14,7 @@ next_page_id: "v2-documenting-components"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch navigate-to-the-same-route-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch navigate-to-the-same-route-done`</code>.
 """
 } %% .callout
 
@@ -61,11 +61,11 @@ end
 
 We will use Tailwind CSS classes for styling — Phoenix already comes with Tailwind installed by default.
 
-Imagine you are developing a large project and the styles above are used for buttons. Every time you need a new button you would have to copy and paste a ton of classes. Even if there were one or two classes whenever we needed to change them you would have to change every corner of your application.
+Imagine you are developing a large project and the styles above are used for buttons. Every time you need a new button, you would have to copy and paste a ton of classes. Even if there were one or two classes, whenever we needed to change them, you would have to change every corner of your application.
 
 ## Creating a functional component
 
-In previous lesson we saw the `<.link>` component being used to render our links. To create a new component, simply create a function with any name that receives a single variable called assigns. Update your `page_live.ex` to add a `my_button` component:
+In the previous lesson, we saw the `<.link>` component being used to render our links. To create a new component, simply create a function with any name that receives a single variable called assigns. Update your `page_live.ex` to add a `my_button` component:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -98,7 +98,7 @@ Just like `render/1`, we have another function that returns HEEx and takes an ar
 %{
 title: ~H"Why call it <code>.my_button</code> instead of <code>.button</code>?",
 description: ~H"""
-Phoenix projects will come a handful of components that are common to many web apps which includes <code>.button</code> so to prevent conflicts and focus on learning we will be naming this and other components from future lessons as <code>.my_component</code> until we start using the default generated ones.
+Phoenix projects will come with a handful of components that are common to many web apps, which includes <code>.button</code> so to prevent conflicts and focus on learning we will be naming this and other components from future lessons as <code>.my_component</code> until we start using the default generated ones.
 """
 } %% .callout
 
@@ -109,7 +109,7 @@ As you might already know, there is an HTML <code>`button`</code> tag. The <code
 """
 } %% .callout
 
-Unlike our first code example you may have noticed that all buttons now show the same "Default" text despite the fact that each `<.my_button>` has a different text! This happens because at the moment we, as creators of this new component, must teach HEEx how to render the content of its inner block. Update `page_live.ex` to render the inner block:
+Unlike our first code example, you may have noticed that all buttons now show the same "Default" text despite the fact that each `<.my_button>` has a different text! This happens because at the moment we, as creators of this new component, must teach HEEx how to render the content of its inner block. Update `page_live.ex` to render the inner block:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -141,7 +141,7 @@ The only change that happened in our `<.my_button>` was that we added the [`rend
 
 ## Customizing components with attributes
 
-Originally each button had its own color whereas now they all have the same style. We can customize our buttons using assigns passed as attribute. Update `page_live.ex` to support a `color` attribute:
+Originally each button had its own color, whereas now they all have the same style. We can customize our buttons using assigns passed as attributes. Update `page_live.ex` to support a `color` attribute:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -174,6 +174,6 @@ Now each use of the button has an assign of `color="..."` and we can customize o
 ## Recap!
 
 - You can create components in your LiveViews if you create a function that receives `assigns` and returns HEEx.
-- HTML components and tags are separated by the presence of a leading `.` at on its name to avoid conflicts.
+- HTML components and tags are separated by the presence of a leading `.` in its name to avoid conflicts.
 - In a component you decide where to render the children nodes using `render_slot(@inner_block)`.
 - Your components can reuse code efficiently with attributes.
