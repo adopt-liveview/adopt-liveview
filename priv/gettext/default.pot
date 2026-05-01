@@ -52,192 +52,192 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:743
+#: lib/curso_web/components/core_components.ex:746
 #, elixir-autogen, elixir-format
 msgid "Next"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:742
+#: lib/curso_web/components/core_components.ex:745
 #, elixir-autogen, elixir-format
 msgid "Previous"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1173
+#: lib/curso_web/components/core_components.ex:1176
 #, elixir-autogen, elixir-format
 msgid "Copied!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1169
+#: lib/curso_web/components/core_components.ex:1172
 #, elixir-autogen, elixir-format
 msgid "Copy"
 msgstr ""
 
-#: lib/curso/pages.ex:160
+#: lib/curso/pages.ex:194
 #, elixir-autogen, elixir-format
 msgid "Deleting a product"
 msgstr ""
 
-#: lib/curso/pages.ex:161
+#: lib/curso/pages.ex:195
 #, elixir-autogen, elixir-format
 msgid "Editing a product"
 msgstr ""
 
-#: lib/curso/pages.ex:158
+#: lib/curso/pages.ex:192
 #, elixir-autogen, elixir-format
 msgid "Listing products"
 msgstr ""
 
-#: lib/curso/pages.ex:38
+#: lib/curso/pages.ex:60
 #, elixir-autogen, elixir-format
 msgid "Installation"
 msgstr ""
 
-#: lib/curso/pages.ex:49
+#: lib/curso/pages.ex:71
 #, elixir-autogen, elixir-format
 msgid "Anatomy of a LiveView"
 msgstr ""
 
-#: lib/curso/pages.ex:122
+#: lib/curso/pages.ex:144
 #, elixir-autogen, elixir-format
 msgid "Components from other modules"
 msgstr ""
 
-#: lib/curso/pages.ex:75
+#: lib/curso/pages.ex:97
 #, elixir-autogen, elixir-format
 msgid "Conditional rendering"
 msgstr ""
 
-#: lib/curso/pages.ex:82
+#: lib/curso/pages.ex:104
 #, elixir-autogen, elixir-format
 msgid "Events"
 msgstr ""
 
-#: lib/curso/pages.ex:114
+#: lib/curso/pages.ex:136
 #, elixir-autogen, elixir-format
 msgid "Functional components"
 msgstr ""
 
-#: lib/curso/pages.ex:101
+#: lib/curso/pages.ex:123
 #, elixir-autogen, elixir-format
 msgid "Generic parameters with query string"
 msgstr ""
 
-#: lib/curso/pages.ex:73
+#: lib/curso/pages.ex:95
 #, elixir-autogen, elixir-format
 msgid "HEEx Basics"
 msgstr ""
 
-#: lib/curso/pages.ex:72
+#: lib/curso/pages.ex:94
 #, elixir-autogen, elixir-format
 msgid "HEEx is not HTML"
 msgstr ""
 
-#: lib/curso/pages.ex:41
+#: lib/curso/pages.ex:63
 #, elixir-autogen, elixir-format
 msgid "Installing Erlang and Elixir"
 msgstr ""
 
-#: lib/curso/pages.ex:78
+#: lib/curso/pages.ex:100
 #, elixir-autogen, elixir-format
 msgid "List rendering"
 msgstr ""
 
-#: lib/curso/pages.ex:58
+#: lib/curso/pages.ex:80
 #, elixir-autogen, elixir-format
 msgid "LiveView Assignments"
 msgstr ""
 
-#: lib/curso/pages.ex:65
+#: lib/curso/pages.ex:87
 #, elixir-autogen, elixir-format
 msgid "Modifying state with events"
 msgstr ""
 
-#: lib/curso/pages.ex:87
+#: lib/curso/pages.ex:109
 #, elixir-autogen, elixir-format
 msgid "More than one event triggered"
 msgstr ""
 
-#: lib/curso/pages.ex:126
+#: lib/curso/pages.ex:148
 #, elixir-autogen, elixir-format
 msgid "Multiple slots"
 msgstr ""
 
-#: lib/curso/pages.ex:154
+#: lib/curso/pages.ex:183
 #, elixir-autogen, elixir-format
 msgid "My first LiveView project"
 msgstr ""
 
-#: lib/curso/pages.ex:105
+#: lib/curso/pages.ex:127
 #, elixir-autogen, elixir-format
 msgid "Navigating to the same route"
 msgstr ""
 
-#: lib/curso/pages.ex:93
+#: lib/curso/pages.ex:115
 #, elixir-autogen, elixir-format
 msgid "Navigation"
 msgstr ""
 
-#: lib/curso/pages.ex:66
+#: lib/curso/pages.ex:88
 #, elixir-autogen, elixir-format
 msgid "Problematic events"
 msgstr ""
 
-#: lib/curso/pages.ex:134
+#: lib/curso/pages.ex:156
 #, elixir-autogen, elixir-format
 msgid "Rendering lists with slots"
 msgstr ""
 
-#: lib/curso/pages.ex:99
+#: lib/curso/pages.ex:121
 #, elixir-autogen, elixir-format
 msgid "Route parameters"
 msgstr ""
 
-#: lib/curso/pages.ex:159
+#: lib/curso/pages.ex:193
 #, elixir-autogen, elixir-format
 msgid "Showing a product"
 msgstr ""
 
-#: lib/curso/pages.ex:145
+#: lib/curso/pages.ex:167
 #, elixir-autogen, elixir-format
 msgid "Simplifying everything with Ecto"
 msgstr ""
 
-#: lib/curso/pages.ex:130
+#: lib/curso/pages.ex:152
 #, elixir-autogen, elixir-format
 msgid "Slots with attributes"
 msgstr ""
 
-#: lib/curso/pages.ex:157
+#: lib/curso/pages.ex:190
 #, elixir-autogen, elixir-format
 msgid "Storing data"
 msgstr ""
 
-#: lib/curso/pages.ex:118
+#: lib/curso/pages.ex:140
 #, elixir-autogen, elixir-format
 msgid "Validating components"
 msgstr ""
 
-#: lib/curso/pages.ex:143
+#: lib/curso/pages.ex:165
 #, elixir-autogen, elixir-format
 msgid "Validations"
 msgstr ""
 
-#: lib/curso/pages.ex:45
+#: lib/curso/pages.ex:67
 #, elixir-autogen, elixir-format
 msgid "Your first Live View"
 msgstr ""
 
-#: lib/curso/pages.ex:62
+#: lib/curso/pages.ex:84
 #, elixir-autogen, elixir-format
 msgid "Your first mistakes"
 msgstr ""
 
-#: lib/curso/pages.ex:96
+#: lib/curso/pages.ex:118
 #, elixir-autogen, elixir-format
 msgid "Your second LiveView"
 msgstr ""
 
-#: lib/curso/pages.ex:142
+#: lib/curso/pages.ex:164
 #, elixir-autogen, elixir-format
 msgid "Form component"
 msgstr ""
@@ -247,7 +247,7 @@ msgstr ""
 msgid "...or buy me a coffee"
 msgstr ""
 
-#: lib/curso/pages.ex:167
+#: lib/curso/pages.ex:196
 #, elixir-autogen, elixir-format
 msgid "DRY Form"
 msgstr ""
@@ -261,16 +261,6 @@ msgstr ""
 #: lib/curso_web/components/layouts.ex:68
 #, elixir-autogen, elixir-format
 msgid "For brazilians: Pix"
-msgstr ""
-
-#: lib/curso/pages.ex:168
-#, elixir-autogen, elixir-format
-msgid "Live Component"
-msgstr ""
-
-#: lib/curso/pages.ex:169
-#, elixir-autogen, elixir-format
-msgid "Modal Form"
 msgstr ""
 
 #: lib/curso_web/components/layouts.ex:55
@@ -316,7 +306,7 @@ msgid_plural "minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/curso_web/live/home_live.html.heex:38
+#: lib/curso_web/live/home_live.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr ""
@@ -326,22 +316,17 @@ msgstr ""
 msgid "Start now!"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1111
+#: lib/curso_web/components/core_components.ex:1114
 #, elixir-autogen, elixir-format
 msgid "Under construction"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:18
-#, elixir-autogen, elixir-format
-msgid "Beginner's track"
-msgstr ""
-
-#: lib/curso_web/live/home_live.html.heex:45
+#: lib/curso_web/live/home_live.html.heex:59
 #, elixir-autogen, elixir-format
 msgid "Deployments track"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:886
+#: lib/curso_web/components/core_components.ex:889
 #, elixir-autogen, elixir-format
 msgid "Get started"
 msgstr ""
@@ -363,8 +348,8 @@ msgstr ""
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:1333
-#: lib/curso_web/components/core_components.ex:1338
+#: lib/curso_web/components/core_components.ex:1336
+#: lib/curso_web/components/core_components.ex:1341
 #, elixir-autogen, elixir-format
 msgid "Toggle locale"
 msgstr ""
@@ -384,7 +369,7 @@ msgstr ""
 msgid "Dark theme toggle"
 msgstr ""
 
-#: lib/curso_web/components/core_components.ex:871
+#: lib/curso_web/components/core_components.ex:874
 #: lib/curso_web/components/layouts/app.html.heex:5
 #: lib/curso_web/components/layouts/app.html.heex:14
 #, elixir-autogen, elixir-format
@@ -407,16 +392,6 @@ msgstr ""
 msgid "Donate with Stripe"
 msgstr ""
 
-#: lib/curso_web/live/home_live.html.heex:33
-#, elixir-autogen, elixir-format
-msgid "Learn how to write effective tests for your Elixir and LiveView applications."
-msgstr ""
-
-#: lib/curso_web/live/home_live.html.heex:28
-#, elixir-autogen, elixir-format
-msgid "Testing track (in progress)"
-msgstr ""
-
 #: lib/curso_web/live/home_live.html.heex:10
 #, elixir-autogen, elixir-format
 msgid "Changelog:"
@@ -425,4 +400,39 @@ msgstr ""
 #: lib/curso_web/live/home_live.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "July 13th: Added first lesson to test track"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:43
+#, elixir-autogen, elixir-format
+msgid "Adding authentication and authorization to projects"
+msgstr ""
+
+#: lib/curso/pages.ex:187
+#, elixir-autogen, elixir-format
+msgid "Cleaning things up"
+msgstr ""
+
+#: lib/curso/pages.ex:191
+#, elixir-autogen, elixir-format
+msgid "First context test"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:18
+#, elixir-autogen, elixir-format
+msgid "Fundamentals"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:32
+#, elixir-autogen, elixir-format
+msgid "Lets build a queue ticket system!"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:36
+#, elixir-autogen, elixir-format
+msgid "Real time with LiveView"
+msgstr ""
+
+#: lib/curso_web/live/home_live.html.heex:28
+#, elixir-autogen, elixir-format
+msgid "Your first CRUD"
 msgstr ""
