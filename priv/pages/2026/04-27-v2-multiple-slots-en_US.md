@@ -14,7 +14,7 @@ next_page_id: "v2-slots-with-attributes"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch components-from-other-modules-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch components-from-other-modules-done`</code>.
 """
 } %% .callout
 
@@ -142,7 +142,7 @@ defmodule MyappWeb.OtherPageLive do
 end
 ```
 
-The first modification we made was to add two new `slot` to our component definition. To make things clearer we use the names `:title` and `:subtitle` for the new slots.
+The first modification we made was to add two new slots to our component definition. To make things clearer we use the names `:title` and `:subtitle` for the new slots.
 
 Using custom slots is very similar to component syntax except that you must use `:`. When we put text in `<:my_slot>Abc</:my_slot>` the HEEx code inside it will be sent to this named slot as `@my_slot`. Any HTML not within a named slot will be placed in the `@inner_block` slot.
 

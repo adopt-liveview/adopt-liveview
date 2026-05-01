@@ -3,7 +3,7 @@ title: "First context test",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "CRUD",
-description: "Lets use mix test for the first",
+description: "Let's use mix test for the first time",
 previous_page_id: "v2-saving-data",
 next_page_id: "v2-listing-data"
 }
@@ -14,17 +14,17 @@ next_page_id: "v2-listing-data"
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch saving-data-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch saving-data-done`</code>.
 """
 } %% .callout
 
-I might be biased since I like Elixir and Phoenix so much to say this but I can tell you that this is the stack I'm most comfortable writting test for frontend code that I've ever been. And there's a good reason for it: HEEx code is just a as functional as a frontend can get! You pass arguments over assigns and you get a generated HTML code.
+I might be biased since I like Elixir and Phoenix so much to say this but I can tell you that this is the stack I'm most comfortable writing tests for frontend code that I've ever been. And there's a good reason for it: HEEx code is just a as functional as a frontend can get! You pass arguments over assigns and you get a generated HTML code.
 
 Of course right now you must be cursing at me for claiming since there are obvious side effects within HEEx code such as navigation, form update/submit events and even JS calls with JS commands. But give me a few lessons to show you that it will all make sense in the end.
 
 ## Our tools
 
-Elixir ships with a test runner and assertion library called [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html), you don't need to install anything. In fact, we already have some tests built in by Phoenix. Also since we never paid attention to we actually broke it many lessons ago!
+Elixir ships with a test runner and assertion library called [ExUnit](https://hexdocs.pm/ex_unit/ExUnit.html), you don't need to install anything. In fact, we already have some tests built in by Phoenix. Also, since we never paid attention to it, we actually broke it many lessons ago!
 
 Inside your LiveView project run `mix test`:
 
@@ -45,7 +45,7 @@ Finished in 0.04 seconds (0.01s async, 0.03s sync)
 5 tests, 1 failure
 ```
 
-Don't worry if you get some warnings, lets focus on the error. In a vibrant red color you should see that our test rendered a bunch of HTML code but it expected to at least have "Peace of mind from prototype to production" written inside it. To digest what a failing test mean:
+Don't worry if you get some warnings, let's focus on the error. In a vibrant red color you should see that our test rendered a bunch of HTML code but it expected to at least have "Peace of mind from prototype to production" written inside it. To digest what a failing test means:
 
 ```
   1) test [Here's the name of the test case] ([Here's the name of the test module])
@@ -67,7 +67,7 @@ test "GET /", %{conn: conn} do
 end
 ```
 
-As you can see we have tons of new things here to understand. For now lets focus on fixing this test. By starting our Super Store project we can spot that the root page (/) has a "Listing Products" heading. Let's update our test and run `mix test again`.
+As you can see we have tons of new things here to understand. For now lets focus on fixing this test. By starting our Super Store project, we can spot that the root page (/) has a "Listing Products" heading. Let's update our test and run `mix test again`.
 
 ```diff
 test "GET /", %{conn: conn} do
@@ -143,7 +143,7 @@ defmodule Lineup.QueueFixtures do
 end
 ```
 
-Now we can use `mix test` can be done to run that specific test file, you have pass its relative path. Try it:
+Now `mix test` can be used to run that specific test file; you have to pass its relative path. Try it:
 
 ```sh
 $ mix test test/lineup/queue_test.exs
@@ -154,17 +154,17 @@ Finished in 0.04 seconds (0.00s async, 0.04s sync)
 2 tests, 0 failures
 ```
 
-Let's talk about what we just wrote! First of all in elixir we try to have some parity between where code lives and where their respective test case lives. In our case `lib/lineup/queue.ex` has a test file in `test/lineup/queue_test.exs`. Also as you can see we append `_test` to file and module names so `Lineup.Queue` is tested by `Lineup.QueueTest`. Another difference is that for test files we use the `.exs` extension which is common to Elixir scripts whilst `.ex` is used for parts of projects.
+Let's talk about what we just wrote! First of all in Elixir we try to have some parity between where code lives and where their respective test case lives. In our case `lib/lineup/queue.ex` has a test file in `test/lineup/queue_test.exs`. Also as you can see we append `_test` to file and module names so `Lineup.Queue` is tested by `Lineup.QueueTest`. Another difference is that for test files we use the `.exs` extension which is common to Elixir scripts whilst `.ex` is used for parts of projects.
 
-Just like in LiveViews we `use MyappWeb, :live_view` we also have helpers to write tests. In our case since we are working with regular data we `use Lineup.DataCase`. That module is already written inside your project and just like `LineupWeb` it will import and alias useful things for your test case. You can open `test/support/data_case.ex` in case you're curious but unless you need to install something in there its likely you wont need to bother with it at all.
+Just like in LiveViews we `use MyappWeb, :live_view` we also have helpers to write tests. In our case, since we are working with regular data, we `use Lineup.DataCase`. That module is already written inside your project and just like `LineupWeb` it will import and alias useful things for your test case. You can open `test/support/data_case.ex` in case you're curious but unless you need to install something in there it's likely you won't need to bother with it at all.
 
-You might have also noticed that we have `describe "tickets" do ... end` inside our test file. ExUnit's [describe/2](https://hexdocs.pm/ex_unit/ExUnit.Case.html#describe/2) works to group tests together not only in code but also when formatting then. Later on we will see how we can use them to setup common shared code alongside multiple individual test cases inside it. Also its worth mentioning that since we are testing the Linup context module and context modules can have more than one ecto model its useful to have them separate each part of your business logic. 
+You might have also noticed that we have `describe "tickets" do ... end` inside our test file. ExUnit's [describe/2](https://hexdocs.pm/ex_unit/ExUnit.Case.html#describe/2) works to group tests together not only in code but also when formatting them. Later on we will see how we can use them to setup common shared code alongside multiple individual test cases inside it. Also, it's worth mentioning that since we are testing the Lineup context module and context modules can have more than one ecto model, it's useful to have them separate each part of your business logic. 
 
 In our first test case `"create_ticket/1 with valid data creates a ticket"` we just verify in our unit tests what we already built before: passing some attributes to `Queue.create_ticket/2` will generate a new ticket. As for our second test case `"change_ticket/1 returns a ticket changeset"` we ensure that passing a valid ticket will generate an `%Ecto.Changeset{}`.
 
-At the very top of our `change_ticket` test case we use `ticket_fixture/1` to quickly create a simple ticket that we can use in our test code. We imported that just a few lines before in `import Lineup.QueueFixtures` and thats basically what fixtures are meant to do.
+At the very top of our `change_ticket` test case we use `ticket_fixture/1` to quickly create a simple ticket that we can use in our test code. We imported that just a few lines before in `import Lineup.QueueFixtures` and that's basically what fixtures are meant to do.
 
-With both tests set we can ensure that we will know beforehand if we ever break those contracts and we can check that our expected behaviors might have regressed or just changed some how.
+With both tests set we can ensure that we will know beforehand if we ever break those contracts and we can check that our expected behaviors might have regressed or just changed somehow.
 
 ## Recap
 

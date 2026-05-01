@@ -14,7 +14,7 @@ next_page_id: "v2-my-first-liveview-project"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch form-validation-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch form-validation-done`</code>.
 """
 } %% .callout
 
@@ -24,7 +24,7 @@ Now that you understand not only how forms work behind the scenes but also how t
 
 Ecto is a library in Elixir that manages database access. Over time the community noticed that Ecto's validation pattern was quite powerful and abstractions to validate data without even considering the database were emerging. Today we will use one of them.
 
-It's worth mentioning that in new Phoenix projects Ecto comes by default so understanding Ecto will not only help us today to refactor our form into a more manageable code but it will also teach you the fundamentals of Ecto so that you can use this library in future projects.
+It's worth mentioning that in new Phoenix projects Ecto comes by default, so understanding Ecto will not only help us today to refactor our form into more manageable code but it will also teach you the fundamentals of Ecto so that you can use this library in future projects.
 
 ## Refactoring our previous form to Ecto
 
@@ -114,7 +114,7 @@ The magic starts here. We defined a module called `Myapp.Products.Product` to re
 
 The first thing we do inside our module is `use Ecto.Schema` so that our module receives the DSL (Domain Specific Language) that lets us use macros like `embedded_schema` and `field` to define the format of our Product model. Think of this DSL as a simple way to define a Struct in Elixir.
 
-We also imported [`Ecto.Changeset`](https://hexdocs.pm/ecto/Ecto.Changeset.html). Changeset are data structures that contain data about modifications to something. In this case our Changeset will contain data about modifications, errors and validations of our Product struct. Think of changesets as a validation step.
+We also imported [`Ecto.Changeset`](https://hexdocs.pm/ecto/Ecto.Changeset.html). Changesets are data structures that contain data about modifications to something. In this case our Changeset will contain data about modifications, errors and validations of our Product struct. Think of changesets as a validation step.
 
 ### Understanding an `embedded_schema`
 
@@ -147,7 +147,7 @@ defmodule Myapp.Products.Product do
 end
 ```
 
-Ecto.Schema with at least one `changeset/2` function are a given. These functions are under your full control and are used to define how we validate data. In previous lessons validation took place within LiveView but this left our code messy and difficult to reuse. In Phoenix project validations are almost always carried out at the level of an Ecto.Schema in `changeset/2` functions.
+An Ecto.Schema with at least one `changeset/2` function is a given. These functions are under your full control and are used to define how we validate data. In previous lessons validation took place within LiveView but this left our code messy and difficult to reuse. In Phoenix projects, validations are almost always carried out at the level of an Ecto.Schema in `changeset/2` functions.
 
 We receive two arguments: the product and optional parameters (note that if nothing is passed we use the default `%{}`). With these two values in mind we use pipes to transform this value as follows:
 
@@ -222,7 +222,7 @@ Very similar to `mount/3`, our function also uses changeset to create `Phoenix.H
 
 ## Recap!
 
-- Ecto is a powerful library for managing powerfu database access.
+- Ecto is a powerful library for managing powerful database access.
 - Phoenix projects use Ecto by default not only to work with databases but also to validate data.
 - We can use `Ecto.Schema` to easily create a `Struct`. As we are not working with a database (yet) we use `embedded_schema` and `fields` to be able to create data only in memory.
 - We can use `Ecto.Changeset` to easily validate user data going into your struct.

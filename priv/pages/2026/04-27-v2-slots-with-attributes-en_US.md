@@ -14,7 +14,7 @@ next_page_id: "v2-lists-with-slots"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch multiple-slots-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch multiple-slots-done`</code>.
 """
 } %% .callout
 
@@ -157,6 +157,6 @@ Great! Now your slots can have attributes in them. We managed to solve the origi
 
 ## Recap!
 
-- Each slot is actually a list of map assign.
+- Each slot is actually a list of map assigns.
 - Slots can be given attributes and we can document this using `slot/2` with a `do` block.
 - To access slot attributes we need to loop through `@slot_name` then use `Map.get(loop_item, :attribute_name)`.

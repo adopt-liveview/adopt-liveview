@@ -14,13 +14,13 @@ next_page_id: "v2-form-validation"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch lists-with-slots-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch lists-with-slots-done`</code>.
 """
 } %% .callout
 
 Forms are important in many Phoenix applications. They are also one of the biggest points of confusion for people starting on LiveView. During the next classes we will learn about forms in a bottom-up way. That means that we will start by implementing some things so we understand what Phoenix is solving with its built-in components.
 
-If you think it's too complicated at first and the framework is too hard don't worry because in the end you'll see that all these things are solved with built-in components because Phoenix is a batteries-included framework.
+If you think it's too complicated at first and the framework is too hard, don't worry because in the end you'll see that all these things are solved with built-in components because Phoenix is a batteries-included framework.
 
 ## The simplest form of all
 
@@ -64,7 +64,7 @@ When we have a HTML form with inputs `product[name]` and `product[description]` 
 
 In our HEEx code we added to the form `phx-submit="create_product"` so we must handle the event `"create_product"` like `handle_event("create_product", %{"product" => product_params}, socket)`. Note that the `params` were matched using the format explained previously because Phoenix prefers to follow this convention.
 
-Our `handle_event/3` doesn't do anything important it just generates a message in your terminal and nothing more. Congratulations, you've created your first form in Phoenix LiveView!
+Our `handle_event/3` doesn't do anything important, it just generates a message in your terminal and nothing more. Congratulations, you've created your first form in Phoenix LiveView!
 
 ## Getting to know the form component
 
@@ -159,7 +159,7 @@ end
 
 ### Using `to_form/2` to generate forms
 
-At the top of our module we created a [module attribute](https://hexdocs.pm/elixir/module-attributes.html) called `@initial_state` to help making our code more readable and make this state easily accessible in the future. Additionally we introduced a `mount/3` that creates an assign called `form` with the value of the function [`to_form/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#to_form/2) passing our `@initial_state` and as an option `as: :product`. The reason we put this option is so that our form fields follow the `product[name]` format.
+At the top of our module we created a [module attribute](https://hexdocs.pm/elixir/module-attributes.html) called `@initial_state` to help make our code more readable and make this state easily accessible in the future. Additionally we introduced a `mount/3` that creates an assign called `form` with the value of the function [`to_form/2`](https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html#to_form/2) passing our `@initial_state` and as an option `as: :product`. The reason we put this option is so that our form fields follow the `product[name]` format.
 
 ## Rendering our `<.form>`
 
@@ -167,11 +167,11 @@ Looking at the HEEx code we can notice that the first difference is that we stop
 
 Further below we modified our `input` tags to receive form fields in the format `@form[:name]`. Each of these represents a `Phoenix.HTML.FormField` and we use the field's `id` and `name` properties in the attributes with the same names.
 
-Now you must be thinking: "my code has become more verbose, what's the advantage?". The motivation is simpler than it seems: we can componentize our `input` tags!
+Now you must be thinking: "My code has become more verbose, what's the advantage?". The motivation is simpler than it seems: we can componentize our `input` tags!
 
 ## The `<.my_input>` component
 
-Because you have structured your data in `Phoenix.HTML.FormField` we can now easily build a component that reads this data and automatically adds necessary properties like `name` and `id`. Start by adding a `my_input` component to `my_core_components.ex`:
+Because you have structured your data in `Phoenix.HTML.FormField`, we can now easily build a component that reads this data and automatically adds necessary properties like `name` and `id`. Start by adding a `my_input` component to `my_core_components.ex`:
 
 ```elixir
 defmodule MyappWeb.MyCoreComponents do
@@ -304,7 +304,7 @@ With barely any code we were able to create a component `<.my_input field={@form
 %{
 title: "Will I have to create my input components in every Phoenix project I do?",
 description: ~H"""
-I came here especially to give you a spoiler that the answer is no, Phoenix already generates this component for you in an infinitely better way than what I can teach you. Just remember that these lesson are bottom-up, we are teaching you how to do them so that you understand how they work.
+I came here especially to give you a spoiler that the answer is no, Phoenix already generates this component for you in an infinitely better way than what I can teach you. Just remember that these lessons are bottom-up, we are teaching you how to do them so that you understand how they work.
 """
 } %% .callout
 

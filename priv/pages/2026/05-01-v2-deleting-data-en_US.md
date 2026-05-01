@@ -14,7 +14,7 @@ next_page_id: "v2-editing-data"
 title: "This lesson is a direct continuation of the previous one.",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch show-data-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch show-data-done`</code>.
 """
 } %% .callout
 
@@ -46,11 +46,11 @@ defmodule Lineup.Queue do
 end
 ```
 
-The `delete_ticket/1` function takes a struct of type `%Ticket{}` and simply applies the [`Repo.delete/2`](https://hexdocs.pm/ecto/Ecto.Repo.html#c:delete/2) method to it. The result will be `{:ok, %Ticket{}}` which is useful if it is necessary know about the deleted ticket.
+The `delete_ticket/1` function takes a struct of type `%Ticket{}` and simply applies the [`Repo.delete/2`](https://hexdocs.pm/ecto/Ecto.Repo.html#c:delete/2) method to it. The result will be `{:ok, %Ticket{}}` which is useful if it is necessary to know about the deleted ticket.
 
 ### Testing on `iex`
 
-Using the reliable Elixir Interactive mode we can fetch the last ticket with `ticket = Lineup.Queue.list_tickets() |> List.last` and delete it using `Lineup.Queue.delete_ticket(ticket)`:
+Using the reliable Elixir Interactive mode, we can fetch the last ticket with `ticket = Lineup.Queue.list_tickets() |> List.last` and delete it using `Lineup.Queue.delete_ticket(ticket)`:
 
 ```elixir
 $ iex -S mix
@@ -150,7 +150,7 @@ Whenever possible, prefer to use `hide/1` from `CoreComponents`. However, if you
 
 ### Creating the delete event
 
-To be able to test this code we need to create our `handle_event/3`. In your LiveView. Below the `mount/3` function add this callback:
+To be able to test this code we need to create our `handle_event/3`. In your LiveView, below the `mount/3` function, add this callback:
 
 ```elixir
 @impl true
@@ -168,7 +168,7 @@ In this event we only receive the ID, we immediately check in the database if th
 
 In previous lessons we had already seen how to create streams using `stream/4` to render lists in an efficient way. Now we can see the [`stream_delete/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#stream_delete/3) function to delete an item from the stream.
 
-Remembering that streams do not store any data in memory about its items the `stream_delete/3` function receives the name of the stream which is `:tickets` as we defined in our `mount/3` and the `ticket`. Using these two variables, it infers that the HTML ID of the element will be `#tickets-123` and sends a simple payload to the client indicating that LiveView should delete this element from the HTML.
+Remembering that streams do not store any data in memory about their items the `stream_delete/3` function receives the name of the stream which is `:tickets` as we defined in our `mount/3` and the `ticket`. Using these two variables, it infers that the HTML ID of the element will be `#tickets-123` and sends a simple payload to the client indicating that LiveView should delete this element from the HTML.
 
 ### LiveView Code
 
@@ -247,7 +247,7 @@ test "delete_ticket/1 deletes the ticket" do
 end
 ```
 
-In this test case we are now using [`assert_raise/2`](https://hexdocs.pm/ex_unit/1.19.3/ExUnit.Assertions.html#assert_raise/2) to verify that calling `Queue.get_ticket/1` again will properly return `Ecto.NoResultsError` as we expect. As for our `TicketLiveTest` our test is as simple as triggering the button click event. Add this to your `describe "Index" do` section:
+In this test case we are now using [`assert_raise/2`](https://hexdocs.pm/ex_unit/1.19.3/ExUnit.Assertions.html#assert_raise/2) to verify that calling `Queue.get_ticket/1` again will properly return `Ecto.NoResultsError` as we expect. As for our `TicketLiveTest`, our test is as simple as triggering the button click event. Add this to your `describe "Index" do` section:
 
 ```elixir
 test "deletes ticket in listing", %{conn: conn, ticket: ticket} do
@@ -273,4 +273,4 @@ If you had any issues you can see the final code for this lesson using `git chec
 - The `CoreComponents` of Phoenix projects comes with a `hide/1` function that is just `JS.hide/2` but with a beautiful transition.
 - We can use `data-confirm` to confirm with the user before triggering an action like a `phx-click`.
 - The `stream_delete/3` function is a way to delete elements from a stream. This function optimizes sending the minimum amount of data to LiveView so it follows the idea that streams are an efficient way to manage lists in LiveView.
-- `assert_raise/2` can be used to to test that exceptions will be raised by some code.
+- `assert_raise/2` can be used to test that exceptions will be raised by some code.

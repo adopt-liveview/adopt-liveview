@@ -102,7 +102,7 @@ You can also run your app inside IEx (Interactive Elixir) as:
     $ iex -S mix phx.server
 ```
 
-Just like instructions say, run `cd lineup` followed by `mix ecto.create` to create your database.
+Just like the instructions say, run `cd lineup` followed by `mix ecto.create` to create your database.
 
 ## In case of trouble
 
@@ -114,11 +114,11 @@ cd lineup
 mix setup
 ```
 
-With these commands you should have a base Phoenix project. The `mix setup` command not only installs things but also compiles dependencies and setups the database too. 
+With these commands you should have a base Phoenix project. The `mix setup` command not only installs things but also compiles dependencies and sets up the database too. 
 
 ## Recap!
 
 * You can either use Phoenix Express or `mix phx.new` to create new projects.
-* Phoenix will always give you instructions on what to do next after starting a new project so dont skip on that.
+* Phoenix will always give you instructions on what to do next after starting a new project so don't skip on that.
 * `mix ecto.create` will create your database.
 * `mix setup` will prepare everything for you which includes creating your database too.

@@ -14,7 +14,7 @@ next_page_id: "v2-first-context-test"
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch cleanup-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch cleanup-done`</code>.
 """
 } %% .callout
 
@@ -24,7 +24,7 @@ We will finally start implementing our CRUD (Create-Read-Update-Delete). Current
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch cleanup-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch cleanup-done`</code>.
 """
 } %% .callout
 
@@ -70,7 +70,7 @@ defmodule Lineup.Repo.Migrations.CreateTickets do
 end
 ```
 
-Lets change it to:
+Let's change it to:
 
 ```elixir
 defmodule Lineup.Repo.Migrations.CreateTickets do
@@ -187,7 +187,7 @@ Use an `alias` to write a bit less code. We created a function that takes `attrs
 %{
 title: ~H"Why use <code>`Queue.change_ticket/2`</code> if someone could easily use <code>`Ticket.changeset/2`</code>?",
 description: ~H"""
-We use our context module to hide business logic as much as possible from our LiveViews. Right now the function is just doing nothing but routing the arguments to the changeset function but it doesn't mean it will be forever like that. Have we ever need to add some extra business logic to starting a changeset for a Ticket we can focus on improving our <code>`change_ticket/2`</code> instead of breaking the simplicity of <code>`Ticket.changeset/2`</code> function.
+We use our context module to hide business logic as much as possible from our LiveViews. Right now the function is just doing nothing but routing the arguments to the changeset function but it doesn't mean it will be forever like that. If we ever need to add some extra business logic to start a changeset for a Ticket, we can focus on improving our <code>`change_ticket/2`</code> instead of breaking the simplicity of <code>`Ticket.changeset/2`</code> function.
 """
 } %% .callout
 
@@ -195,7 +195,7 @@ We use our context module to hide business logic as much as possible from our Li
 
 We can test everything we've built so far without even starting to work on our LiveView! Since we've constructed a module `Lineup.Queue` that doesn't depend on anything related to the web, we can simply start an interactive terminal with our project's mix code and execute the function `create_ticket/2`.
 
-Using your terminal execture the command that follows the `$` prompt:
+Using your terminal execute the command that follows the `$` prompt:
 
 ```elixir
 $ iex -S mix
@@ -355,7 +355,7 @@ def render(assigns) do
 end
 ```
 
-`<.header>` is a component under `CoreComponents` that can be used to make page header styles consistent across all apps. Bored on how they look? Just edit the component definition and see all headers be updated. As a general advice from someone who worked with LiveView a lot: having components to encapsulate styles not only makes your LiveView render function code more elegant and readable as it also makes things easy to update. If you find yourself repeating code across all your UI, it might be time for a new component to be born. As you can see `<.header>` also has an optional slot called `<:subtitle>`. Feel free to look into that component definition in `lib/lineup_web/components/core_components.ex` if you want to learn more.
+`<.header>` is a component under `CoreComponents` that can be used to make page header styles consistent across all apps. Bored with how they look? Just edit the component definition and see all headers be updated. As a general advice from someone who worked with LiveView a lot: having components to encapsulate styles not only makes your LiveView render function code more elegant and readable but also makes things easy to update. If you find yourself repeating code across all your UI, it might be time for a new component to be born. As you can see `<.header>` also has an optional slot called `<:subtitle>`. Feel free to look into that component definition in `lib/lineup_web/components/core_components.ex` if you want to learn more.
 
 %{
 title: ~H"Did you notice we used <code>@page_title</code> in our HEEx code?",
@@ -415,7 +415,7 @@ end
 ...
 ```
 
-To apply validations we need to create a "validate" event (since we wrote in HEEx that `phx-change="validate"`) and receive the `ticket_params`. For this validation all we need is to access the original `%Ticket{}` (which is empty) from `socket.assigns.ticket` (thats why we assigned it to the socket before), use `Queue.change_ticket/2` again then assign the new form value alongiside `action: :validate` so our form knows that it should show validation errors.
+To apply validations we need to create a "validate" event (since we wrote in HEEx that `phx-change="validate"`) and receive the `ticket_params`. For this validation all we need is to access the original `%Ticket{}` (which is empty) from `socket.assigns.ticket` (that's why we assigned it to the socket before), use `Queue.change_ticket/2` again then assign the new form value alongside `action: :validate` so our form knows that it should show validation errors.
 
 ## Our save event
 
@@ -441,7 +441,7 @@ end
 
 Very similarly to what we just wrote in our `"validate"` event, now we will handle the same `ticket_params` but using `Queue.create_ticket/2` directly (remember, it also uses changesets behind the scenes so any validation error will cause a `{:error, %Ecto.Changeset{}}`),.
 
-In our success scenario we will have `{:ok, ticket}` but we dont need its ID so we just ignore the variable using underscore in the name and we do two things:
+In our success scenario we will have `{:ok, ticket}` but we don't need its ID so we just ignore the variable using underscore in the name and we do two things:
 
 1. We use [`put_flash/3`](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#put_flash/3) to add an information message about our ticket being created which will go into the `@flash` assignment we mentioned before. Think of `@flash` as a way to pass notifications from LiveView to your frontend (even though it can do so much more).
 2. We use [push_navigate/2](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#push_navigate/2) to redirect our users to the home page. Its worth mentioning that `push_navigate/2` uses LiveView internal mechanisms to do optimized redirections when possible (between views in the same scope) by doing WebSocket messages instead of a full browser refresh like regular redirects do.
@@ -457,7 +457,7 @@ If you had any issues you can see the final code for this lesson using `git chec
 - Ecto uses the schema migrations design pattern to modify the database structure.
 - To create a migration you need to run `mix ecto.gen.migration migration_name` in the terminal.
 - To apply pending migrations you should run `mix ecto.migrate` in the terminal.
-- To rollback the lastest applied migrations you can run `mix ecto.rollback` in the terminal.
+- To roll back the latest applied migrations you can run `mix ecto.rollback` in the terminal.
 - A schema with `embedded_schema do` doesn't interact with the database but `schema "table_name" do` is all you need to instruct Ecto how to interact with that table.
 - In Phoenix projects we concentrate functions related to a specific domain in a context module, following inspiration from [DDD](https://en.wikipedia.org/wiki/Domain-driven_design).
 - In our current project we focused our ticket management domain in the `Lineup.Queue` context.

@@ -14,7 +14,7 @@ next_page_id: "v2-forms"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch slots-with-attributes-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch slots-with-attributes-done`</code>.
 """
 } %% .callout
 
@@ -59,7 +59,7 @@ defmodule MyappWeb.PageLive do
 end
 ```
 
-So far nothing you haven't seen. There's an assign to define the list of terms, a loop using the special `:for` attribute and each item is being rendered. However, due to the previous lessons, you might notice that you could simplify this code a little more by generating a component to hide all these classes and, at the same time, have greater reusability in your `<dl>`.
+So far, nothing you haven't seen. There's an assign to define the list of terms, a loop using the special `:for` attribute and each item is being rendered. However, due to the previous lessons, you might notice that you could simplify this code a little more by generating a component to hide all these classes and, at the same time, have greater reusability in your `<dl>`.
 
 ## Mixing slots and lists
 
@@ -175,14 +175,14 @@ defmodule MyappWeb.PageLive do
 end
 ```
 
-Once again using the idea of `MyCoreComponents` we created a component called `<.dl>` to make it clear that this is our version of the `<dl>` HTML tag. We also chose the name of our slots to mimick HTML's: `<:dt>` (description term) and `<:dd>` (description detail).
+Once again using the idea of `MyCoreComponents` we created a component called `<.dl>` to make it clear that this is our version of the `<dl>` HTML tag. We also chose the name of our slots to mimic HTML's: `<:dt>` (description term) and `<:dd>` (description detail).
 
 The component itself isn't much different from what you've seen before. We use a loop with `:for`. For each element we use the `render_slot/2` function. The difference is that this time we passed a second argument to that function: the current item in the loop.
 
-When a second argument is passed to `render_slot/2` we can use the special attribute `:let={var}` at the slot definition to store the current looped element in `var`. That way we managed to simplify a component that works with loops and made our LiveView `render/1` extremely clean.
+When a second argument is passed to `render_slot/2`, we can use the special attribute `:let={var}` at the slot definition to store the current looped element in `var`. That way we managed to simplify a component that works with loops and made our LiveView `render/1` extremely clean.
 
 ## Recap!
 
 - You can simplify loops by creating components.
 - Slots can receive loop variables by passing them in the second argument of `render_slot/2` and receiving them in the slot with `:let={var_name}`.
-- Using slots and components makes LiveViews code cleaner.
+- Using slots and components makes LiveView code cleaner.

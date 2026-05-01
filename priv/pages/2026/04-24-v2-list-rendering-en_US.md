@@ -22,7 +22,7 @@ HEEx templates have many ways for you to render multiple elements from a list. L
 
 ## Rendering lists with `for` comprehension
 
-For those who already have experience with Elixir already know `for` list comprehensions. It is completely viable within HEEx too. Update your `page_live.ex` like this:
+Those who already have experience with Elixir know `for` list comprehensions. It is completely viable within HEEx too. Update your `page_live.ex` like this:
 
 ```elixir
 defmodule MyappWeb.PageLive do
@@ -57,7 +57,7 @@ Remember that <code>`@`</code> represents <code>`assigns.`</code>, the variable 
 Despite its simplicity, this method of rendering lists has two disadvantages:
 
 1. The loop will be executed again every time any assign changes. It doesn't matter if the assign that changed is not related to the loop.
-2. The list of elements will be saved in memory in LiveView while LiveView is alived for that user even if you don't need it.
+2. The list of elements will be saved in memory in LiveView while LiveView is alive for that user even if you don't need it.
 
 ## Avoid processing lists within HEEx
 

@@ -14,7 +14,7 @@ next_page_id: "v2-simple-forms-with-ecto"
 title: "This guide is a direct continuation of the previous guide",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch forms-done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code class="select-all">`git clone https://github.com/adopt-liveview/v2-myapp.git --branch forms-done`</code>.
 """
 } %% .callout
 
@@ -179,7 +179,7 @@ We added the `phx-change="validate_product"` binding to our `<.form>` component 
 
 ### The `<.my_input>` component
 
-For errors to be displayed we need to define how they show appear in our code. Inside our `Phoenix.Form.FormField` the `errors` property contains a list of errors in string format. A `div` with a `:for={msg <- @field.errors}` loop is enough. Since we are using a component both of our fields automatically receive error validation!
+For errors to be displayed we need to define how they should appear in our code. Inside our `Phoenix.Form.FormField` the `errors` property contains a list of errors in string format. A `div` with a `:for={msg <- @field.errors}` loop is enough. Since we are using a component both of our fields automatically receive error validation!
 
 ### The `handle_event("validate_product", %{"product" => product_params}, socket)`
 

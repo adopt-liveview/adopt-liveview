@@ -14,7 +14,7 @@ next_page_id: "v2-form-component"
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch deleting-data- done`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch deleting-data- done`</code>.
 """
 } %% .callout
 
@@ -230,7 +230,7 @@ We have a page, but our users don't know about it. Open your `TicketLive.Show` a
 </.header>
 ```
 
-Also lets update `TicketLive.Index` to show a quick link to edit tickets:
+Also, let's update `TicketLive.Index` to show a quick link to edit tickets:
 
 ```elixir
 <.table
@@ -259,13 +259,13 @@ Also lets update `TicketLive.Index` to show a quick link to edit tickets:
 %{
 title: ~H"What was that 'sr-only' thing?",
 description: ~H"""
-This CSS class is often used to hide elements in an way that its still understood by Screen Readers (SR) so folks can understand there's an actionable item in there unlike just making the Table Row (tr) element clickable as, semantically speaking, `tr` is not meant to be something you'd click in. 
+This CSS class is often used to hide elements in a way that it's still understood by Screen Readers (SR) so folks can understand there's an actionable item in there unlike just making the Table Row (tr) element clickable as, semantically speaking, `tr` is not meant to be something you'd click in. 
 """
 } %% .callout
 
 ## Adding our final tests
 
-As you might have thought, since our edit view is so similar to our new ticket form, indeed these tests will look a like. Starting by `Lineup.QueueTest`:
+As you might have thought, since our edit view is so similar to our new ticket form, indeed these tests will look alike. Starting with `Lineup.QueueTest`:
 
 ```elixir
 test "update_ticket/2 with valid data updates the ticket" do
@@ -284,7 +284,7 @@ This test case is nothing but obvious at this point in our lessons. As for `Line
 @update_attrs %{called_at: "2026-05-01T16:00:00Z"}
 ```
 
-Then lets add to `describe "Index" do`:
+Then, let's add to `describe "Index" do`:
 
 ```elixir
 test "updates ticket in listing", %{conn: conn, ticket: ticket} do
@@ -347,4 +347,4 @@ If you had any issues you can see the final code for this lesson using `git chec
 - Using `Repo.update/2` we can update a ticket by passing a changeset.
 - An edit form LiveView can be extremely similar to one for creating data.
 - You already know how to do a complete CRUD in LiveView 😉.
-- I wonder what can we do about having two LiveViews that have a lot of duplicate code?
+- I wonder what we can do about having two LiveViews that have a lot of duplicate code?

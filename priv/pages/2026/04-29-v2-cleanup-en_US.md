@@ -3,7 +3,7 @@ title: "Cleaning things up",
 author: "Lubien",
 tags: ~w(getting-started),
 section: "CRUD",
-description: "Lets remove some dead code and see what we've got",
+description: "Let's remove some dead code and see what we've got",
 previous_page_id: "v2-my-first-liveview-project",
 next_page_id: "v2-saving-data"
 }
@@ -14,11 +14,11 @@ next_page_id: "v2-saving-data"
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git`</code>.
+If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git`</code>.
 """
 } %% .callout
 
-Before we proceed lets do some house cleaning! Open `lib/lineup_web/router.ex` so we can change our root path from a dead view (just a fancy way of saying Controller Action) to a LiveView.
+Before we proceed, let's do some house cleaning! Open `lib/lineup_web/router.ex` so we can change our root path from a dead view (just a fancy way of saying Controller Action) to a LiveView.
 
 ```elixir
 scope "/", LineupWeb do
@@ -62,7 +62,7 @@ We have new things to talk about here!
 
 ## The `@page_title` assign
 
-This is a special assign that will be used to populate your LiveView's `<title>content</title>` tag. Head to `lib/lineup_web/components/layouts/root.html.heex` and lets change it a little bit!
+This is a special assign that will be used to populate your LiveView's `<title>content</title>` tag. Head to `lib/lineup_web/components/layouts/root.html.heex` and let's change it a little bit!
 
 ```diff
 - <.live_title default="Lineup" suffix=" · Phoenix Framework">
@@ -75,9 +75,9 @@ Now we have a proper suffix for our app. Make sure to add `page_title` to all yo
 
 ## The `Layouts.app` component
 
-New Phoenix projects now come with layout components inside `YouappWeb.Layouts` so you can easily tweak them or add more. As you might expect, `use LineupWeb, :live_view` has aliases for `alias LineupWeb.Layouts` so you can use `<Layouts.app flash={@flash}>`. For now ignore `@flash` assignment, we will look at it very soon.
+New Phoenix projects now come with layout components inside `YouappWeb.Layouts` so you can easily tweak them or add more. As you might expect, `use LineupWeb, :live_view` has aliases for `alias LineupWeb.Layouts` so you can use `<Layouts.app flash={@flash}>`. For now, ignore `@flash` assignment, we will look at it very soon.
 
-Lets tweak our main template! Head out to `lib/lineup_web/components/layouts.ex` and change your `def app(assigns) do` like this:
+Let's tweak our main template! Head out to `lib/lineup_web/components/layouts.ex` and change your `def app(assigns) do` like this:
 
 ```elixir
 def app(assigns) do
@@ -111,11 +111,11 @@ def app(assigns) do
 end
 ```
 
-We just edited the logo to use a text and removed some Phoenix references so our app starts to feel like our own. We didn't remove the theme toggle though because its quite nice to have it for our own users. With tailwind already setup to have theme toggle we can add classes with `dark:class-name` that only work in dark theme.
+We just edited the logo to use a text and removed some Phoenix references so our app starts to feel like our own. We didn't remove the theme toggle though because it's quite nice to have it for our own users. With tailwind already setup to have theme toggle we can add classes with `dark:class-name` that only work in dark theme.
 
 ## Deleting dead code
 
-Since we wont be using those anymore lets remove dead files:
+Since we won't be using those anymore, let's remove dead files:
 
 ```sh
 rm priv/static/images/logo.svg
@@ -137,6 +137,6 @@ end
 ## Recap!
 
 - The `@page_title` assign is a magical assign to update HTML title tag.
-- Dont forget to update you `<.live_title>` in your root template to match your project name when you get started.
+- Don't forget to update your `<.live_title>` in your root template to match your project name when you get started.
 - `YouappWeb.Layouts` is where layouts are going to be created to be used alongside your LiveViews.
 - Delete your dead code. Coworkers will praise you.
