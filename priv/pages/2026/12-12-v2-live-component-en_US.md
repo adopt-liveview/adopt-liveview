@@ -28,11 +28,11 @@ Live Components, on the other hand, bring not only the advantages of functional 
 
 ## Converting our current code to Live Component
 
-Let's start by converting the new product form to a Live Component. Open your `ProductLive.FormComponent` and edit it to:
+Let's start by converting the new ticket form to a Live Component. Open your `TicketLive.FormComponent` and edit it to:
 
 ```elixir
-defmodule SuperStoreWeb.ProductLive.FormComponent do
-  use SuperStoreWeb, :live_component
+defmodule LineupWeb.TicketLive.FormComponent do
+  use LineupWeb, :live_component
 
   def render(assigns) do
     ~H"""
@@ -55,11 +55,11 @@ defmodule SuperStoreWeb.ProductLive.FormComponent do
 end
 ```
 
-There were no major changes here other than removing the `attr` and `slot`, removing the `@rest` assign, and the main change: we changed at the top from `use SuperStoreWeb, :html` to `use SuperStoreWeb, :live_component`. With this, we can now apply the Live Component.
+There were no major changes here other than removing the `attr` and `slot`, removing the `@rest` assign, and the main change: we changed at the top from `use LineupWeb, :html` to `use LineupWeb, :live_component`. With this, we can now apply the Live Component.
 
 ### Using a Live Component
 
-Go to your `ProductLive.New` and edit its HEEx code for the form to:
+Go to your `TicketLive.New` and edit its HEEx code for the form to:
 
 ```elixir
 ~H"""
@@ -68,26 +68,26 @@ Go to your `ProductLive.New` and edit its HEEx code for the form to:
   module={FormComponent}
   id="new-form"
 >
-  <h1>Creating a product</h1>
+  <h1>Creating a ticket</h1>
 </.live_component>
 """
 ```
 
-To use a Live Component, we should use the `<.live_component>` component, passing at least the `module` and `id` as parameters. At the moment, it doesn't do anything. Let's go back to the `ProductLive.FormComponent`.
+To use a Live Component, we should use the `<.live_component>` component, passing at least the `module` and `id` as parameters. At the moment, it doesn't do anything. Let's go back to the `TicketLive.FormComponent`.
 
 ### Initializing the state of the `FormComponent`
 
 At the moment, your creation form page should raise an exception. This happens because we haven't initialized the `@form`. Let's start by learning the new initialization callback for Live Components: `update/2`:
 
 ```elixir
-defmodule SuperStoreWeb.ProductLive.FormComponent do
-  use SuperStoreWeb, :live_component
-  alias SuperStore.Catalog
-  alias SuperStore.Catalog.Product
+defmodule LineupWeb.TicketLive.FormComponent do
+  use LineupWeb, :live_component
+  alias Lineup.Queue
+  alias Lineup.Queue.Ticket
 
   def update(assigns, socket) do
     form =
-      Product.changeset(%Product{})
+      Ticket.changeset(%Ticket{})
       |> to_form()
 
     {:ok,
@@ -109,22 +109,22 @@ The main difference here is that we take the received `assigns` in the callback 
 ```elixir
 # ...
 
-def handle_event("validate", %{"product" => product_params}, socket) do
+def handle_event("validate", %{"ticket" => ticket_params}, socket) do
   form =
-    %Product{}
-    |> Product.changeset(product_params)
+    %Ticket{}
+    |> Ticket.changeset(ticket_params)
     |> Map.put(:action, :validate)
     |> to_form()
 
   {:noreply, assign(socket, form: form)}
 end
 
-def handle_event("save", %{"product" => product_params}, socket) do
-  case Catalog.create_product(product_params) do
-    {:ok, product} ->
+def handle_event("save", %{"ticket" => ticket_params}, socket) do
+  case Queue.create_ticket(ticket_params) do
+    {:ok, ticket} ->
       {:noreply,
        socket
-       |> put_flash(:info, "Product created successfully")
+       |> put_flash(:info, "Ticket created successfully")
        |> push_navigate(to: ~p"/")}
 
     {:error, %Ecto.Changeset{} = changeset} ->
@@ -154,7 +154,7 @@ def render(assigns) do
 end
 ```
 
-As you can see, the entire creation logic is a copy of the original. It's worth mentioning that we added a `|> push_navigate(to: ~p"/products/")` so that when the product is created, the user is redirected to the product list.
+As you can see, the entire creation logic is a copy of the original. It's worth mentioning that we added a `|> push_navigate(to: ~p"/tickets/")` so that when the ticket is created, the user is redirected to the ticket list.
 
 ### `phx-target`
 
@@ -164,41 +164,41 @@ Knowing that a Live Component lives in its own process, you need to make it expl
 
 ## Generalizing the component
 
-At the moment, the Live Component only knows how to create new products. Now, let's see how to generalize it to handle editing.
+At the moment, the Live Component only knows how to create new tickets. Now, let's see how to generalize it to handle editing.
 
 ### Where to change the code?
 
 Lets identify which areas need some changes to make editing work:
 
-1. The `update/2` should know to initialize the form with an empty product or an existing product.
-2. The `handle_event("validate", ...)` should know to initialize the form with an empty product or an existing product.
-3. The `handle_event("save", ...)` should know whether to use `Catalog.create_product/1` or `Catalog.update_product/2`.
+1. The `update/2` should know to initialize the form with an empty ticket or an existing ticket.
+2. The `handle_event("validate", ...)` should know to initialize the form with an empty ticket or an existing ticket.
+3. The `handle_event("save", ...)` should know whether to use `Queue.create_ticket/1` or `Queue.update_ticket/2`.
 
-Here's a suggestion: items 1 and 2 are all about "knowing the product". For new product form we'll use an empty product and for editing product form we'll use the existing product. This can be solved with an assign like `<.live_component module={FormComponent} product={...}>`.
+Here's a suggestion: items 1 and 2 are all about "knowing the ticket". For new ticket form we'll use an empty ticket and for editing ticket form we'll use the existing ticket. This can be solved with an assign like `<.live_component module={FormComponent} ticket={...}>`.
 
 As for the third item it depends on knowing whether it's edition or creation form. We can also solve this with an assign like `<.live_component module={FormComponent} action={:new / :edit}>`. Additionally, we can use the automatic assign `@live_action` that comes from the router. If the page is `:edit`, `@live_action` will be `:edit`. This simplifies things!
 
 ### Updating our LiveViews
 
-In your `ProductLive.New`, update the HEEx code to:
+In your `TicketLive.New`, update the HEEx code to:
 
 ```elixir
 ~H"""
 ...
-<.live_component module={FormComponent} id="new-form" product={%Product{}} action={@live_action}>
-  <h1>Creating a product</h1>
+<.live_component module={FormComponent} id="new-form" ticket={%Ticket{}} action={@live_action}>
+  <h1>Creating a ticket</h1>
 </.live_component>
 ...
 """
 ```
 
-In your `ProductLive.Edit`, update the HEEx code to:
+In your `TicketLive.Edit`, update the HEEx code to:
 
 ```elixir
 ~H"""
 ...
-<.live_component module={FormComponent} id={@product.id} product={@product} action={@live_action}>
-  <h1>Editing a product</h1>
+<.live_component module={FormComponent} id={@ticket.id} ticket={@ticket} action={@live_action}>
+  <h1>Editing a ticket</h1>
 </.live_component>
 ...
 """
@@ -206,12 +206,12 @@ In your `ProductLive.Edit`, update the HEEx code to:
 
 ### Improving the `update/2`
 
-Let's go back to the `FormComponent`. Since we know that the Live Component will always receive a `product` as an assign, we can do:
+Let's go back to the `FormComponent`. Since we know that the Live Component will always receive a `ticket` as an assign, we can do:
 
 ```elixir
-def update(%{product: product} = assigns, socket) do
+def update(%{ticket: ticket} = assigns, socket) do
   form =
-    Product.changeset(product)
+    Ticket.changeset(ticket)
     |> to_form()
 
   {:ok,
@@ -221,15 +221,15 @@ def update(%{product: product} = assigns, socket) do
 end
 ```
 
-Additionally, since the `product` variable is part of the `assigns`, in the future we can use `socket.assigns.product`.
+Additionally, since the `ticket` variable is part of the `assigns`, in the future we can use `socket.assigns.ticket`.
 
 ### Improving the `handle_event("validate", ...)`
 
 ```elixir
-def handle_event("validate", %{"product" => product_params}, socket) do
+def handle_event("validate", %{"ticket" => ticket_params}, socket) do
   form =
-    socket.assigns.product
-    |> Product.changeset(product_params)
+    socket.assigns.ticket
+    |> Ticket.changeset(ticket_params)
     |> Map.put(:action, :validate)
     |> to_form()
 
@@ -237,21 +237,21 @@ def handle_event("validate", %{"product" => product_params}, socket) do
 end
 ```
 
-Instead of directly using `%Product{}`, the only thing that changed here is that we built the `form` using `socket.assigns.product`, which comes from our `<.live_component ... product={...}>`.
+Instead of directly using `%Ticket{}`, the only thing that changed here is that we built the `form` using `socket.assigns.ticket`, which comes from our `<.live_component ... ticket={...}>`.
 
 ### Improving the `handle_event("save", ...)`
 
 At this point, we will use `socket.assigns.action` to determine which action to take:
 
 ```elixir
-def handle_event("save", %{"product" => product_params}, socket) do
+def handle_event("save", %{"ticket" => ticket_params}, socket) do
   case socket.assigns.action do
     :new ->
-      case Catalog.create_product(product_params) do
-        {:ok, product} ->
+      case Queue.create_ticket(ticket_params) do
+        {:ok, ticket} ->
           {:noreply,
            socket
-           |> put_flash(:info, "Product created successfully")
+           |> put_flash(:info, "Ticket created successfully")
            |> push_navigate(to: ~p"/")}
 
         {:error, %Ecto.Changeset{} = changeset} ->
@@ -260,12 +260,12 @@ def handle_event("save", %{"product" => product_params}, socket) do
       end
 
     :edit ->
-      case Catalog.update_product(socket.assigns.product, product_params) do
-        {:ok, product} ->
+      case Queue.update_ticket(socket.assigns.ticket, ticket_params) do
+        {:ok, ticket} ->
           {:noreply,
            socket
-           |> put_flash(:info, "Product updated successfully")
-           |> push_navigate(to: ~p"/products/#{product.id}/edit")}
+           |> put_flash(:info, "Ticket updated successfully")
+           |> push_navigate(to: ~p"/tickets/#{ticket.id}/edit")}
 
         {:error, %Ecto.Changeset{} = changeset} ->
           form = to_form(changeset)
@@ -278,17 +278,17 @@ end
 As you can see, the only new thing here is the outermost `case` that checks the value of `socket.assigns.action`. However, our function has become quite large and with nested `case` statements. We can improve this by creating another function!
 
 ```elixir
-def handle_event("save", %{"product" => product_params}, socket) do
-  save_product(socket, socket.assigns.action, product_params)
+def handle_event("save", %{"ticket" => ticket_params}, socket) do
+  save_ticket(socket, socket.assigns.action, ticket_params)
 end
 
-defp save_product(socket, :edit, product_params) do
-  case Catalog.update_product(socket.assigns.product, product_params) do
-    {:ok, product} ->
+defp save_ticket(socket, :edit, ticket_params) do
+  case Queue.update_ticket(socket.assigns.ticket, ticket_params) do
+    {:ok, ticket} ->
       {:noreply,
        socket
-       |> put_flash(:info, "Product updated successfully")
-       |> push_navigate(to: ~p"/products/#{product.id}/edit")}
+       |> put_flash(:info, "Ticket updated successfully")
+       |> push_navigate(to: ~p"/tickets/#{ticket.id}/edit")}
 
     {:error, %Ecto.Changeset{} = changeset} ->
       form = to_form(changeset)
@@ -296,12 +296,12 @@ defp save_product(socket, :edit, product_params) do
   end
 end
 
-defp save_product(socket, :new, product_params) do
-  case Catalog.create_product(product_params) do
-    {:ok, product} ->
+defp save_ticket(socket, :new, ticket_params) do
+  case Queue.create_ticket(ticket_params) do
+    {:ok, ticket} ->
       {:noreply,
        socket
-       |> put_flash(:info, "Product created successfully")
+       |> put_flash(:info, "Ticket created successfully")
        |> push_navigate(to: ~p"/")}
 
     {:error, %Ecto.Changeset{} = changeset} ->
@@ -311,23 +311,23 @@ defp save_product(socket, :new, product_params) do
 end
 ```
 
-Now our `"save"` event simply forwards values to a new private function called `save_product/3`. This function uses pattern matching to check the second argument if it is `:edit` or `:new` and applies the necessary functions.
+Now our `"save"` event simply forwards values to a new private function called `save_ticket/3`. This function uses pattern matching to check the second argument if it is `:edit` or `:new` and applies the necessary functions.
 
 ## Reviewing the final code
 
-Let's take a look at each part of the code we touched in this lesson to see the final product.
+Let's take a look at each part of the code we touched in this lesson to see the final ticket.
 
-### `ProductLive.FormComponent`
+### `TicketLive.FormComponent`
 
 ```elixir
-defmodule SuperStoreWeb.ProductLive.FormComponent do
-  use SuperStoreWeb, :live_component
-  alias SuperStore.Catalog
-  alias SuperStore.Catalog.Product
+defmodule LineupWeb.TicketLive.FormComponent do
+  use LineupWeb, :live_component
+  alias Lineup.Queue
+  alias Lineup.Queue.Ticket
 
-  def update(%{product: product} = assigns, socket) do
+  def update(%{ticket: ticket} = assigns, socket) do
     form =
-      Product.changeset(product)
+      Ticket.changeset(ticket)
       |> to_form()
 
     {:ok,
@@ -336,27 +336,27 @@ defmodule SuperStoreWeb.ProductLive.FormComponent do
      |> assign(assigns)}
   end
 
-  def handle_event("validate", %{"product" => product_params}, socket) do
+  def handle_event("validate", %{"ticket" => ticket_params}, socket) do
     form =
-      socket.assigns.product
-      |> Product.changeset(product_params)
+      socket.assigns.ticket
+      |> Ticket.changeset(ticket_params)
       |> Map.put(:action, :validate)
       |> to_form()
 
     {:noreply, assign(socket, form: form)}
   end
 
-  def handle_event("save", %{"product" => product_params}, socket) do
-    save_product(socket, socket.assigns.action, product_params)
+  def handle_event("save", %{"ticket" => ticket_params}, socket) do
+    save_ticket(socket, socket.assigns.action, ticket_params)
   end
 
-  defp save_product(socket, :edit, product_params) do
-    case Catalog.update_product(socket.assigns.product, product_params) do
-      {:ok, product} ->
+  defp save_ticket(socket, :edit, ticket_params) do
+    case Queue.update_ticket(socket.assigns.ticket, ticket_params) do
+      {:ok, ticket} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Product updated successfully")
-         |> push_navigate(to: ~p"/products/#{product.id}/edit")}
+         |> put_flash(:info, "Ticket updated successfully")
+         |> push_navigate(to: ~p"/tickets/#{ticket.id}/edit")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         form = to_form(changeset)
@@ -364,12 +364,12 @@ defmodule SuperStoreWeb.ProductLive.FormComponent do
     end
   end
 
-  defp save_product(socket, :new, product_params) do
-    case Catalog.create_product(product_params) do
-      {:ok, product} ->
+  defp save_ticket(socket, :new, ticket_params) do
+    case Queue.create_ticket(ticket_params) do
+      {:ok, ticket} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Product created successfully")
+         |> put_flash(:info, "Ticket created successfully")
          |> push_navigate(to: ~p"/")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -400,57 +400,57 @@ defmodule SuperStoreWeb.ProductLive.FormComponent do
 end
 ```
 
-### `ProductLive.New`
+### `TicketLive.New`
 
 ```elixir
-defmodule SuperStoreWeb.ProductLive.New do
-  use SuperStoreWeb, :live_view
-  import SuperStoreWeb.CoreComponents
-  alias SuperStore.Catalog.Product
-  alias SuperStoreWeb.ProductLive.FormComponent
+defmodule LineupWeb.TicketLive.New do
+  use LineupWeb, :live_view
+  import LineupWeb.CoreComponents
+  alias Lineup.Queue.Ticket
+  alias LineupWeb.TicketLive.FormComponent
 
   def render(assigns) do
     ~H"""
     <.header>
-      New Product
-      <:subtitle>Use this form to create product records in your database.</:subtitle>
+      New Ticket
+      <:subtitle>Use this form to create ticket records in your database.</:subtitle>
     </.header>
 
-    <.live_component module={FormComponent} id="new-form" product={%Product{}} action={@live_action}>
-      <h1>Creating a product</h1>
+    <.live_component module={FormComponent} id="new-form" ticket={%Ticket{}} action={@live_action}>
+      <h1>Creating a ticket</h1>
     </.live_component>
 
-    <.back navigate={~p"/"}>Back to products</.back>
+    <.back navigate={~p"/"}>Back to tickets</.back>
     """
   end
 end
 ```
 
-### `ProductLive.Edit`
+### `TicketLive.Edit`
 
 ```elixir
-defmodule SuperStoreWeb.ProductLive.Edit do
-  use SuperStoreWeb, :live_view
-  alias SuperStore.Catalog
-  alias SuperStoreWeb.ProductLive.FormComponent
+defmodule LineupWeb.TicketLive.Edit do
+  use LineupWeb, :live_view
+  alias Lineup.Queue
+  alias LineupWeb.TicketLive.FormComponent
 
   def mount(%{"id" => id}, _session, socket) do
-    product = Catalog.get_product!(id)
-    {:ok, assign(socket, product: product)}
+    ticket = Queue.get_ticket!(id)
+    {:ok, assign(socket, ticket: ticket)}
   end
 
   def render(assigns) do
     ~H"""
     <.header>
-      Editing Product <%= @product.id %>
-      <:subtitle>Use this form to edit product records in your database.</:subtitle>
+      Editing Ticket <%= @ticket.id %>
+      <:subtitle>Use this form to edit ticket records in your database.</:subtitle>
     </.header>
 
-    <.live_component module={FormComponent} id={@product.id} product={@product} action={@live_action}>
-      <h1>Editing a product</h1>
+    <.live_component module={FormComponent} id={@ticket.id} ticket={@ticket} action={@live_action}>
+      <h1>Editing a ticket</h1>
     </.live_component>
 
-    <.back navigate={~p"/products/#{@product}"}>Back to product</.back>
+    <.back navigate={~p"/tickets/#{@ticket}"}>Back to ticket</.back>
     """
   end
 end
