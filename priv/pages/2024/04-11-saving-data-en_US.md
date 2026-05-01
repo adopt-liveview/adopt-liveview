@@ -16,7 +16,7 @@ We will finally start implementing our CRUD (Create-Read-Update-Delete). Current
 title: "This class is a direct continuation of the previous class",
 type: :warning,
 description: ~H"""
-If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch my-first- liveview-project-done`</code>.
+If you hopped directly into this page it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/first-crud.git --branch my-first-liveview-project-done`</code>.
 """
 } %% .callout
 

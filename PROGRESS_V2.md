@@ -1,0 +1,71 @@
+# V2 Progress
+
+- [x] [Installing the setup with Phoenix Express!](http://localhost:4444/guides/v2-getting-started/en)
+- [x] [Your first Live View](http://localhost:4444/guides/v2-first-liveview/en)
+- [x] [Anatomy of a LiveView](http://localhost:4444/guides/v2-anatomy-of-a-liveview/en)
+- [x] [LiveView Assigns](http://localhost:4444/guides/v2-mounts-and-assigns/en)
+- [x] [Your first mistakes](http://localhost:4444/guides/v2-your-first-mistakes/en)
+- [x] [Modifying state with events](http://localhost:4444/guides/v2-events/en)
+- [x] [Problematic events](http://localhost:4444/guides/v2-event-errors/en)
+- [x] [HEEx is not HTML](http://localhost:4444/guides/v2-heex-is-not-html/en)
+- [x] [HEEx Basics](http://localhost:4444/guides/v2-basics-of-heex/en)
+- [x] [Conditional rendering](http://localhost:4444/guides/v2-conditional-rendering/en)
+- [x] [List rendering](http://localhost:4444/guides/v2-list-rendering/en)
+- [x] [phx-value](http://localhost:4444/guides/v2-phx-value/en)
+- [x] [JS.push/1](http://localhost:4444/guides/v2-js-push/en)
+- [x] [More than one event triggered](http://localhost:4444/guides/v2-multiple-pushes/en)
+- [x] [Your second LiveView](http://localhost:4444/guides/v2-your-second-liveview/en)
+- [x] [Route parameters](http://localhost:4444/guides/v2-route-params/en)
+- [x] [Generic parameters with query string](http://localhost:4444/guides/v2-query-string/en)
+- [x] [Navigating to the same route](http://localhost:4444/guides/v2-navigate-to-the-same-route/en)
+- [x] [Functional components](http://localhost:4444/guides/v2-function-component/en)
+- [x] [Validating components](http://localhost:4444/guides/v2-documenting-components/en)
+- [x] [Components from other modules](http://localhost:4444/guides/v2-components-from-other-modules/en)
+- [x] [Multiple slots](http://localhost:4444/guides/v2-multiple-slots/en)
+- [x] [Slots with attributes](http://localhost:4444/guides/v2-slots-with-attributes/en)
+- [x] [Rendering lists with slots](http://localhost:4444/guides/v2-lists-with-slots/en)
+- [x] [Form component](http://localhost:4444/guides/v2-forms/en)
+- [x] [Validations](http://localhost:4444/guides/v2-form-validation/en)
+- [x] [Simplifying everything with Ecto](http://localhost:4444/guides/v2-simple-forms-with-ecto/en)
+- [x] [My first LiveView project](http://localhost:4444/guides/v2-my-first-liveview-project/en)
+- New: cleanup
+- [x] [Saving data with Ecto](http://localhost:4444/guides/v2-saving-data/en)
+- [x] First tests
+- [x] [Listing products](http://localhost:4444/guides/v2-listing-data/en)
+- [x] [Showing a product](http://localhost:4444/guides/v2-show-data/en)
+- [x] [Deleting a product](http://localhost:4444/guides/v2-deleting-data/en)
+- [x] [Editing a product](http://localhost:4444/guides/v2-editing-data/en)
+- [x] [DRY Form](http://localhost:4444/guides/v2-form-component/en)
+- [ ] [Live Component](http://localhost:4444/guides/v2-live-component/en)
+- [ ] [Modal Form](http://localhost:4444/guides/v2-modal-form/en)
+
+
+
+---
+
+
+use MyAppWeb, :macro
+
+
+explain create_ticket failure when we have one
+explain `setup/2` in `describe` blocks
+
+explain html_response
+
+talk about plugs
+explain optimized transitions
+plugs
+how to render exdocs locally
+deadview vs liveview
+explain how forms know what changed and what didnt
+explain why @flash can do more than notification
+
+advanced streams
+
+talk about exunit setup context argument
+explain exunit sandbox
+
+make a better index test
+
+modal
+live component
