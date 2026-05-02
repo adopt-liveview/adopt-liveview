@@ -19,37 +19,93 @@ defmodule CursoWeb.GuideLive do
 
     metadata_url = Endpoint.url() <> "/guides/#{page.id}/#{locale}"
 
+    page_languages = Pages.get_languages_for_post(id)
+
+    in_language = if locale == "br", do: "pt-BR", else: "en"
+
+    hreflang_links =
+      Enum.map(page_languages, fn p ->
+        hreflang = if p.language == "br", do: "pt-BR", else: "en"
+        og_locale = if p.language == "br", do: "pt_BR", else: "en_US"
+        href = Endpoint.url() <> "/guides/#{p.id}/#{p.language}"
+        %{hreflang: hreflang, og_locale: og_locale, href: href}
+      end)
+
+    x_default_href =
+      case Enum.find(hreflang_links, fn l -> l.hreflang == "en" end) do
+        %{href: href} -> href
+        nil -> hreflang_links |> List.first(%{}) |> Map.get(:href, Endpoint.url())
+      end
+
+    hreflang_links = [
+      %{hreflang: "x-default", og_locale: nil, href: x_default_href} | hreflang_links
+    ]
+
+    breadcrumb_schema =
+      Jason.encode!(%{
+        "@context" => "https://schema.org",
+        "@type" => "BreadcrumbList",
+        "itemListElement" => [
+          %{
+            "@type" => "ListItem",
+            "position" => 1,
+            "name" => page.section,
+            "item" => Endpoint.url() <> "/#{locale}"
+          },
+          %{
+            "@type" => "ListItem",
+            "name" => page.title,
+            "position" => 2,
+            "item" => metadata_url
+          }
+        ]
+      })
+
+    tech_article_schema =
+      Jason.encode!(%{
+        "@context" => "https://schema.org",
+        "@type" => "TechArticle",
+        "headline" => page.title,
+        "description" => page.description,
+        "author" => %{
+          "@type" => "Person",
+          "name" => page.author,
+          "url" => "https://lubien.dev"
+        },
+        "datePublished" => Date.to_iso8601(page.date),
+        "dateModified" => DateTime.to_iso8601(page.modified_at),
+        "articleSection" => page.section,
+        "keywords" => Enum.join(page.tags, ", "),
+        "url" => metadata_url,
+        "inLanguage" => in_language,
+        "timeRequired" => "PT#{page.read_minutes}M",
+        "publisher" => %{
+          "@type" => "Organization",
+          "name" => "Adopt LiveView",
+          "url" => Endpoint.url()
+        }
+      })
+
     socket =
       socket
       |> assign(
         page: page,
         locale: locale,
         base_url_for_locale: "/guides/#{page.id}/",
-        page_languages: Pages.get_languages_for_post(id),
+        page_languages: page_languages,
         previous_page: previous_page,
         next_page: next_page,
         page_progress: 0,
         page_title: page_title(page),
         page_description: page.description,
-        page_breadcumb_list:
-          Jason.encode!(%{
-            "@context" => "https://schema.org",
-            "@type" => "BreadcrumbList",
-            "itemListElement" => [
-              %{
-                "@type" => "ListItem",
-                "position" => 1,
-                "name" => page.section,
-                "item" => Endpoint.url() <> "/#{locale}"
-              },
-              %{
-                "@type" => "ListItem",
-                "name" => page.title,
-                "position" => 2,
-                "item" => metadata_url
-              }
-            ]
-          }),
+        og_type: "article",
+        hreflang_links: hreflang_links,
+        article_published_time: Date.to_iso8601(page.date),
+        article_modified_time: DateTime.to_iso8601(page.modified_at),
+        article_section: page.section,
+        article_tags: page.tags,
+        article_author: page.author,
+        page_jsonld_schemas: [breadcrumb_schema, tech_article_schema],
         pathname: URI.parse(uri).path,
         metadata_url: metadata_url
       )

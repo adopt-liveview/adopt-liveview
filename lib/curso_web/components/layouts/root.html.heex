@@ -4,9 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title suffix=" · Adopt LiveView">
-      <%= assigns[:page_title] || "Adopt LiveView" %>
-    </.live_title>
+    <.live_title suffix=" · Adopt LiveView" phx-no-format><%= assigns[:page_title] || "Adopt LiveView" %></.live_title>
     <meta
       name="keywords"
       content="Phoenix LiveView tutorial, Beginner's guide to Phoenix LiveView, Free LiveView course, LiveView basics, Getting started with LiveView, LiveView for beginners, Phoenix framework tutorial, Elixir LiveView tutorial, Learn LiveView step by step, Interactive web development with LiveView, LiveView fundamentals, Free LiveView resources, LiveView hands-on tutorials, Introduction to Phoenix LiveView, LiveView crash course"
@@ -53,9 +51,17 @@
     <.metadata_generator
       title={assigns[:page_title]}
       description={assigns[:page_description]}
-      page_breadcumb_list={assigns[:page_breadcumb_list]}
       canonical={CursoWeb.Endpoint.url()}
       url={assigns[:metadata_url]}
+      og_type={assigns[:og_type] || "website"}
+      locale={assigns[:locale] || "en"}
+      hreflang_links={assigns[:hreflang_links] || []}
+      article_published_time={assigns[:article_published_time]}
+      article_modified_time={assigns[:article_modified_time]}
+      article_section={assigns[:article_section]}
+      article_tags={assigns[:article_tags] || []}
+      article_author={assigns[:article_author]}
+      page_jsonld_schemas={assigns[:page_jsonld_schemas] || []}
     />
   </head>
   <body class="min-h-full bg-white dark:bg-slate-900 [scrollbar-gutter:stable] h-full antialiased font-sans font-display">

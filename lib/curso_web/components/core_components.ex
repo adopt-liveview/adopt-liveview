@@ -1347,16 +1347,25 @@ defmodule CursoWeb.CoreComponents do
 
   attr :title, :string, required: true
   attr :description, :string, default: nil
-  attr :page_breadcumb_list, :string, default: nil
+  attr :page_jsonld_schemas, :list, default: []
   attr :author, :string, default: "Lubien"
   attr :avatar, :string, default: "https://avatars.githubusercontent.com/u/9121359"
   attr :url, :string, default: "http://localhost:4000"
   attr :canonical, :string, required: true
   attr :theme, :string, default: "shadesOfPurple"
+  attr :og_type, :string, default: "website"
+  attr :locale, :string, default: "en"
+  attr :hreflang_links, :list, default: []
+  attr :article_published_time, :string, default: nil
+  attr :article_modified_time, :string, default: nil
+  attr :article_section, :string, default: nil
+  attr :article_tags, :list, default: []
+  attr :article_author, :string, default: nil
 
   def metadata_generator(assigns) do
     assigns =
-      assign_new(assigns, :image_query, fn ->
+      assigns
+      |> assign_new(:image_query, fn ->
         URI.encode_query(%{
           title: assigns.title,
           author: assigns.author,
@@ -1365,19 +1374,58 @@ defmodule CursoWeb.CoreComponents do
           theme: assigns.theme
         })
       end)
+      |> Map.put(:og_locale, og_locale_for_locale(assigns.locale))
 
     ~H"""
     <link rel="canonical" href={@url} />
+    <meta name="description" content={@description} />
+    <!-- hreflang -->
+    <link :for={link <- @hreflang_links} rel="alternate" hreflang={link.hreflang} href={link.href} />
     <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Adopt LiveView" />
     <meta property="og:title" content={@title} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={@og_type} />
     <meta property="og:url" content={@url} />
     <meta property="og:description" content={@description} />
+    <meta property="og:locale" content={@og_locale} />
+    <meta
+      :for={link <- @hreflang_links}
+      :if={link.og_locale && link.og_locale != @og_locale}
+      property="og:locale:alternate"
+      content={link.og_locale}
+    />
     <meta
       property="og:image"
       content={"https://dynamic-og-image-generator.vercel.app/api/generate?#{@image_query}"}
     />
-    <!-- Twitter -->
+    <!-- Article Open Graph -->
+    <meta
+      :if={@og_type == "article" && @article_published_time}
+      property="article:published_time"
+      content={@article_published_time}
+    />
+    <meta
+      :if={@og_type == "article" && @article_modified_time}
+      property="article:modified_time"
+      content={@article_modified_time}
+    />
+    <meta
+      :if={@og_type == "article" && @article_author}
+      property="article:author"
+      content={@article_author}
+    />
+    <meta
+      :if={@og_type == "article" && @article_section}
+      property="article:section"
+      content={@article_section}
+    />
+    <meta
+      :for={tag <- @article_tags}
+      :if={@og_type == "article"}
+      property="article:tag"
+      content={tag}
+    />
+    <!-- Twitter/X -->
     <meta property="twitter:title" content={@title} />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={@url} />
@@ -1386,12 +1434,15 @@ defmodule CursoWeb.CoreComponents do
       property="twitter:image"
       content={"https://dynamic-og-image-generator.vercel.app/api/generate?#{@image_query}"}
     />
-
-    <script :if={@page_breadcumb_list} type="application/ld+json">
-      <%= {:safe, @page_breadcumb_list} %>
+    <!-- JSON-LD Schemas -->
+    <script :for={schema <- @page_jsonld_schemas} type="application/ld+json">
+      <%= {:safe, schema} %>
     </script>
     """
   end
+
+  defp og_locale_for_locale("br"), do: "pt_BR"
+  defp og_locale_for_locale(_), do: "en_US"
 
   @doc """
   Translates an error message using gettext.
