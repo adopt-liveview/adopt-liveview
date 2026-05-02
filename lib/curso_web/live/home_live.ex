@@ -7,7 +7,7 @@ defmodule CursoWeb.HomeLive do
     locale = Map.get(params, "locale", socket.assigns[:locale] || "en")
 
     base_url = CursoWeb.Endpoint.url()
-    metadata_url = base_url <> "/#{locale}"
+    metadata_url = if Map.has_key?(params, "locale"), do: base_url <> "/#{locale}", else: base_url
 
     hreflang_links = [
       %{hreflang: "x-default", og_locale: nil, href: base_url <> "/en"},
