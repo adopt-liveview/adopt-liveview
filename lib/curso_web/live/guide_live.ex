@@ -23,6 +23,18 @@ defmodule CursoWeb.GuideLive do
 
     in_language = if locale == "br", do: "pt-BR", else: "en"
 
+    published_at_iso = Date.to_iso8601(page.date) <> "T00:00:00Z"
+
+    og_image_url =
+      "https://dynamic-og-image-generator.vercel.app/api/generate?" <>
+        URI.encode_query(%{
+          title: page.title,
+          author: page.author,
+          avatar: "https://avatars.githubusercontent.com/u/9121359",
+          websiteUrl: metadata_url,
+          theme: "shadesOfPurple"
+        })
+
     hreflang_links =
       Enum.map(page_languages, fn p ->
         hreflang = if p.language == "br", do: "pt-BR", else: "en"
@@ -72,13 +84,14 @@ defmodule CursoWeb.GuideLive do
           "name" => page.author,
           "url" => "https://lubien.dev"
         },
-        "datePublished" => Date.to_iso8601(page.date),
+        "datePublished" => published_at_iso,
         "dateModified" => DateTime.to_iso8601(page.modified_at),
         "articleSection" => page.section,
         "keywords" => Enum.join(page.tags, ", "),
         "url" => metadata_url,
         "inLanguage" => in_language,
         "timeRequired" => "PT#{page.read_minutes}M",
+        "image" => og_image_url,
         "publisher" => %{
           "@type" => "Organization",
           "name" => "Adopt LiveView",
@@ -100,7 +113,7 @@ defmodule CursoWeb.GuideLive do
         page_description: page.description,
         og_type: "article",
         hreflang_links: hreflang_links,
-        article_published_time: Date.to_iso8601(page.date),
+        article_published_time: published_at_iso,
         article_modified_time: DateTime.to_iso8601(page.modified_at),
         article_section: page.section,
         article_tags: page.tags,
