@@ -33,23 +33,23 @@ defmodule Curso.Pages do
   def content_map(pathname, locale \\ "br") do
     fundamentals = fundamentals_content_map(locale)
     first_crud = first_crud_content_map(locale)
-
+    real_time = real_time_content_map(locale)
 
     [
       fundamentals,
-      first_crud
+      first_crud,
+      real_time
     ]
     |> Enum.find_value(fundamentals, fn content_map ->
       pathname_in_this_content_map? =
         content_map
         |> Stream.flat_map(& &1.links)
-        |> Enum.any?(& &1.href == pathname)
+        |> Enum.any?(&(&1.href == pathname))
 
       if pathname_in_this_content_map? do
         content_map
       end
     end)
-
   end
 
   defp fundamentals_content_map(locale) do
@@ -168,7 +168,7 @@ defmodule Curso.Pages do
             href: ~p"/guides/v2-simple-forms-with-ecto/#{locale}"
           }
         ]
-      },
+      }
     ]
   end
 
@@ -188,12 +188,28 @@ defmodule Curso.Pages do
             href: ~p"/guides/v2-cleanup/#{locale}"
           },
           %{title: gettext("Storing data"), href: ~p"/guides/v2-saving-data/#{locale}"},
-          %{title: gettext("First context test"), href: ~p"/guides/v2-first-context-test/#{locale}"},
+          %{
+            title: gettext("First context test"),
+            href: ~p"/guides/v2-first-context-test/#{locale}"
+          },
           %{title: gettext("Listing products"), href: ~p"/guides/v2-listing-data/#{locale}"},
           %{title: gettext("Showing a product"), href: ~p"/guides/v2-show-data/#{locale}"},
           %{title: gettext("Deleting a product"), href: ~p"/guides/v2-deleting-data/#{locale}"},
           %{title: gettext("Editing a product"), href: ~p"/guides/v2-editing-data/#{locale}"},
-          %{title: gettext("DRY Form"), href: ~p"/guides/v2-form-component/#{locale}"},
+          %{title: gettext("DRY Form"), href: ~p"/guides/v2-form-component/#{locale}"}
+        ]
+      }
+    ]
+  end
+
+  defp real_time_content_map(locale) do
+    assigns = %{}
+
+    [
+      %{
+        title: "CRUD",
+        links: [
+          %{title: gettext("Your First PubSub"), href: ~p"/guides/v2-pubsub-primer/#{locale}"}
         ]
       }
     ]

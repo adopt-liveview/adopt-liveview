@@ -8,6 +8,23 @@ defmodule Pages.MarkdownConverter do
 
   defp convert_body(extname, body, opts) when extname in [".md", ".markdown", ".livemd"] do
     handler = fn
+      {"img", attrs, _texts, meta} = res, nil ->
+        src =
+          Enum.find_value(attrs, "", fn
+            {"src", src} when is_binary(src) -> src
+            _ -> nil
+          end)
+
+        if String.ends_with?(src, ".mp4") do
+          children = [
+            {"source", [{"src", src}, {"type", "video/mp4"}], [], %{}}
+          ]
+
+          {{"video", [{"controls", "true"}, {"loop", "true"}], children, meta}, nil}
+        else
+          {res, nil}
+        end
+
       {"pre", [], _texts, %{done?: true}} = pre, nil ->
         {pre, nil}
 

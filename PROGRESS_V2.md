@@ -69,3 +69,5 @@ make a better index test
 
 modal
 live component
+
+explain elixir clusters at some point
