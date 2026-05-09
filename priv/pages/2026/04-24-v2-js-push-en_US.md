@@ -166,7 +166,7 @@ defmodule MyappWeb.PageLive do
 end
 ```
 
-This tip also works for the previous class with `phx-value-amount`. Take it as a home assignment to try out how to do this with the previous lesson code.
+This tip also works for the previous lesson with `phx-value-amount`. Take it as a home assignment to try out how to do this with the previous lesson code.
 
 ## Recap!
 

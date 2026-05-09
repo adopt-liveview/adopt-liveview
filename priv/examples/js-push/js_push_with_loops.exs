@@ -1,4 +1,3 @@
-
 Mix.install([
   {:liveview_playground, "~> 0.1.1"}
 ])
@@ -33,7 +32,12 @@ defmodule PageLive do
       <% end %>
     </div>
 
-    <input :for={value <- [5, 10, -5, -10]} type="button" value={"Add #{value}"} phx-click={JS.push("add", value: %{amount: value})} />
+    <input
+      :for={value <- [5, 10, -5, -10]}
+      type="button"
+      value={"Add #{value}"}
+      phx-click={JS.push("add", value: %{amount: value})}
+    />
     """
   end
 

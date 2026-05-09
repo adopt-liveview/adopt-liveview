@@ -1,4 +1,3 @@
-
 Mix.install([
   {:liveview_playground, "~> 0.1.1"}
 ])

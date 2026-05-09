@@ -16,7 +16,7 @@ defmodule PageLive do
       <p :if={@show_information?}>You're an amazing person!</p>
     </div>
 
-    <input type="button" value="Toggle" phx-click="toggle" >
+    <input type="button" value="Toggle" phx-click="toggle" />
     """
   end
 

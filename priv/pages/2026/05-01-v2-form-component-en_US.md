@@ -11,7 +11,7 @@ next_page_id: "v2-live-component",
 ---
 
 %{
-title: "This class is a direct continuation of the previous class",
+title: "This lesson is a direct continuation of the previous lesson",
 type: :warning,
 description: ~H"""
 If you hopped directly into this page, it might be confusing because it is a direct continuation of the code from the previous lesson. If you want to skip the previous lesson and start straight with this one, you can clone the initial version for this lesson using the command <code>`git clone https://github.com/adopt-liveview/lineup.git --branch editing-data-done`</code>.

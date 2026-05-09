@@ -1,10 +1,12 @@
-Mix.install([
-  {:liveview_playground, "~> 0.1.1"}
-], consolidate_protocols: false)
+Mix.install(
+  [
+    {:liveview_playground, "~> 0.1.1"}
+  ],
+  consolidate_protocols: false
+)
 
 defmodule User do
   defstruct id: nil, name: nil
-
 end
 
 defimpl Phoenix.HTML.Safe, for: User do

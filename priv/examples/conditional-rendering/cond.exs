@@ -41,6 +41,7 @@ defmodule PageLive do
     socket = assign(socket, temperature_celsius: socket.assigns.temperature_celsius + 10)
     {:noreply, socket}
   end
+
   def handle_event("decrease", _params, socket) do
     socket = assign(socket, temperature_celsius: socket.assigns.temperature_celsius - 10)
     {:noreply, socket}

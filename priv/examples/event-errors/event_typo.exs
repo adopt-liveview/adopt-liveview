@@ -15,7 +15,7 @@ defmodule PageLive do
     <div>
       Hello <%= @name %>
 
-      <input type="button" value="Reverse" phx-click="reverse" >
+      <input type="button" value="Reverse" phx-click="reverse" />
     </div>
     """
   end

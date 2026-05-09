@@ -18,7 +18,7 @@ defmodule PageLive do
       <% end %>
     </div>
 
-    <input type="button" value="Toggle" phx-click="toggle" >
+    <input type="button" value="Toggle" phx-click="toggle" />
     """
   end
 
