@@ -5,7 +5,7 @@ tags: ~w(realtime),
 section: "Real Time with LiveView",
 description: "How to use PubSub to broadcast ticket creation in real time",
 previous_page_id: "v2-pubsub-primer",
-next_page_id: nil,
+next_page_id: "v2-under-construction",
 }
 
 ---

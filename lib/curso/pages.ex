@@ -207,9 +207,11 @@ defmodule Curso.Pages do
 
     [
       %{
-        title: "CRUD",
+        title: gettext("Real time with LiveView"),
         links: [
-          %{title: gettext("Your First PubSub"), href: ~p"/guides/v2-pubsub-primer/#{locale}"}
+          %{title: gettext("Your First PubSub"), href: ~p"/guides/v2-pubsub-primer/#{locale}"},
+          %{title: gettext("Ticket Creation in Real Time"), href: ~p"/guides/v2-ticket-creation-in-real-time/#{locale}"},
+          %{title: gettext("Under construction"), href: ~p"/guides/v2-under-construction/#{locale}"}
         ]
       }
     ]

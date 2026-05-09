@@ -72,17 +72,17 @@ msgstr "Copiado!"
 msgid "Copy"
 msgstr "Copiar"
 
-#: lib/curso/pages.ex:194
+#: lib/curso/pages.ex:197
 #, elixir-autogen, elixir-format
 msgid "Deleting a product"
 msgstr "Excluindo um produto"
 
-#: lib/curso/pages.ex:195
+#: lib/curso/pages.ex:198
 #, elixir-autogen, elixir-format
 msgid "Editing a product"
 msgstr "Editando um produto"
 
-#: lib/curso/pages.ex:192
+#: lib/curso/pages.ex:195
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Listing products"
 msgstr "Listando produtos"
@@ -192,7 +192,7 @@ msgstr "Renderizando listas com slots"
 msgid "Route parameters"
 msgstr "Parâmetros de rotas"
 
-#: lib/curso/pages.ex:193
+#: lib/curso/pages.ex:196
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Showing a product"
 msgstr "Mostrando um produto"
@@ -247,7 +247,7 @@ msgstr "Componente de formulário"
 msgid "...or buy me a coffee"
 msgstr "...ou me pague um café"
 
-#: lib/curso/pages.ex:196
+#: lib/curso/pages.ex:199
 #, elixir-autogen, elixir-format
 msgid "DRY Form"
 msgstr "Formulário DRY"
@@ -269,12 +269,12 @@ msgid "Show brazilian Pix R$"
 msgstr "Mostrar Pix R$"
 
 #: lib/curso_web/components/feedback.ex:51
-#: lib/curso_web/live/guide_live.ex:98
+#: lib/curso_web/live/guide_live.ex:167
 #, elixir-autogen, elixir-format
 msgid "Feedback"
 msgstr "Feedback"
 
-#: lib/curso_web/live/guide_live.ex:99
+#: lib/curso_web/live/guide_live.ex:168
 #, elixir-autogen, elixir-format
 msgid "Got any feedback about this page? Let us know!"
 msgstr "Você tem algum feedback sobre esta página? Conte-nos!"
@@ -294,19 +294,19 @@ msgstr "Enviar para o GitHub"
 msgid "What's your feedback about this lesson?"
 msgstr "Qual seu feedback sobre esta aula?"
 
-#: lib/curso_web/live/guide_live.ex:74
+#: lib/curso_web/live/guide_live.ex:143
 #, elixir-autogen, elixir-format
 msgid "Read time:"
 msgstr "Tempo de leitura:"
 
-#: lib/curso_web/live/guide_live.ex:74
+#: lib/curso_web/live/guide_live.ex:143
 #, elixir-autogen, elixir-format
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuto"
 msgstr[1] "minutos"
 
-#: lib/curso_web/live/home_live.html.heex:52
+#: lib/curso_web/live/home_live.html.heex:54
 #, elixir-autogen, elixir-format
 msgid "Projects track"
 msgstr "Trilha de Projetos"
@@ -316,12 +316,13 @@ msgstr "Trilha de Projetos"
 msgid "Start now!"
 msgstr "Comece agora!"
 
+#: lib/curso/pages.ex:214
 #: lib/curso_web/components/core_components.ex:1114
 #, elixir-autogen, elixir-format
 msgid "Under construction"
 msgstr "Em construção"
 
-#: lib/curso_web/live/home_live.html.heex:60
+#: lib/curso_web/live/home_live.html.heex:62
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Deployments track"
 msgstr "Trilha de implantação"
@@ -332,18 +333,18 @@ msgid "Get started"
 msgstr "Começar"
 
 #: lib/curso_web/components/layouts/app.html.heex:47
-#: lib/curso_web/live/home_live.ex:16
+#: lib/curso_web/live/home_live.ex:58
 #, elixir-autogen, elixir-format
 msgid "Learn LiveView now!"
 msgstr "Aprenda LiveView agora!"
 
 #: lib/curso_web/components/layouts/app.html.heex:49
-#: lib/curso_web/live/home_live.ex:18
+#: lib/curso_web/live/home_live.ex:60
 #, elixir-autogen, elixir-format
 msgid "Learn how to use Phoenix LiveView with no prior Elixir or Phoenix knowledge"
 msgstr "Aprenda como usar Phoenix LiveView sem conhecimento prévio em Elixir ou Phoenix"
 
-#: lib/curso_web/live/home_live.html.heex:24
+#: lib/curso_web/live/home_live.html.heex:25
 #, elixir-autogen, elixir-format
 msgid "Step-by-step guides to learn the fundamentals of LiveView Programming."
 msgstr "Guia passo-a-passo sobre os fundamentos de programar com LiveView"
@@ -392,7 +393,7 @@ msgstr "Doar com Stripe"
 msgid "Changelog:"
 msgstr "Changelog:"
 
-#: lib/curso_web/live/home_live.html.heex:44
+#: lib/curso_web/live/home_live.html.heex:46
 #, elixir-autogen, elixir-format
 msgid "Adding authentication and authorization to projects"
 msgstr "Adicionando autenticação e autorização aos projetos"
@@ -402,27 +403,28 @@ msgstr "Adicionando autenticação e autorização aos projetos"
 msgid "Cleaning things up"
 msgstr "Limpando a sujeira"
 
-#: lib/curso/pages.ex:191
+#: lib/curso/pages.ex:192
 #, elixir-autogen, elixir-format
 msgid "First context test"
 msgstr "Primeiro teste de contexto"
 
-#: lib/curso_web/live/home_live.html.heex:19
+#: lib/curso_web/live/home_live.html.heex:20
 #, elixir-autogen, elixir-format
 msgid "Fundamentals"
 msgstr "Fundamentos"
 
-#: lib/curso_web/live/home_live.html.heex:33
+#: lib/curso_web/live/home_live.html.heex:34
 #, elixir-autogen, elixir-format
 msgid "Lets build a queue ticket system!"
 msgstr "Vamos criar um sistema de fila de atendimento"
 
-#: lib/curso_web/live/home_live.html.heex:37
+#: lib/curso/pages.ex:210
+#: lib/curso_web/live/home_live.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Real time with LiveView"
 msgstr "Tempo real com LiveView"
 
-#: lib/curso_web/live/home_live.html.heex:29
+#: lib/curso_web/live/home_live.html.heex:30
 #, elixir-autogen, elixir-format
 msgid "Your first CRUD"
 msgstr "Seu primeiro CRUD"
@@ -432,12 +434,32 @@ msgstr "Seu primeiro CRUD"
 msgid "Coming next: real time with LiveView"
 msgstr "Vem ai: apps em tempo real com LiveView"
 
-#: lib/curso_web/live/home_live.html.heex:13
+#: lib/curso_web/live/home_live.html.heex:14
 #, elixir-autogen, elixir-format
 msgid "May 1st: Test track is now part of the CRUD guide"
 msgstr "1º de Maio: a trilha de teste agora faz parte do guia de CRUD"
 
-#: lib/curso_web/live/home_live.html.heex:14
+#: lib/curso_web/live/home_live.html.heex:15
 #, elixir-autogen, elixir-format
 msgid "May 1st: V2 is live!"
 msgstr "1º de Maio: V2 está disponível!"
+
+#: lib/curso_web/live/home_live.html.heex:39
+#, elixir-autogen, elixir-format
+msgid "Incomplete, still adding!"
+msgstr "Incompleto, ainda adicionando!"
+
+#: lib/curso_web/live/home_live.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "May 9th: Added 2 lessons to Real Time with LiveView section"
+msgstr "9º de Maio: Adicionadas 2 aulas à seção de Tempo Real com LiveView"
+
+#: lib/curso/pages.ex:213
+#, elixir-autogen, elixir-format
+msgid "Ticket Creation in Real Time"
+msgstr "Criação de ticket em tempo real"
+
+#: lib/curso/pages.ex:212
+#, elixir-autogen, elixir-format
+msgid "Your First PubSub"
+msgstr "Seu primeiro PubSub"

@@ -10,6 +10,7 @@
       <strong><%= gettext("Changelog:") %></strong>
     </p>
     <ul class="my-4 list-disc pl-6">
+      <li><%= gettext("May 9th: Added 2 lessons to Real Time with LiveView section") %></li>
       <li><%= gettext("May 1st: Test track is now part of the CRUD guide") %></li>
       <li><%= gettext("May 1st: V2 is live!") %></li>
     </ul>
@@ -35,9 +36,10 @@
 
     <.quick_link
       title={gettext("Real time with LiveView")}
+      description={gettext("Incomplete, still adding!")}
       icon="hero-building-office-2-solid"
       icon_class="dark:bg-white"
-      under_construction
+      href={~p"/guides/v2-pubsub-primer/#{@locale}"}
     />
 
     <.quick_link
