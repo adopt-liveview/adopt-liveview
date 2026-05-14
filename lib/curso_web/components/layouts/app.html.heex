@@ -1,5 +1,5 @@
 <div class="sticky top-0 z-50">
-  <header class="flex flex-none flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 sm:px-6 lg:px-8 dark:shadow-none dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75">
+  <header class="max-w-2xl lg:max-w-8xl mx-auto flex flex-none flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 sm:px-6 lg:px-8 dark:shadow-none dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75">
     <div class="relative flex flex-grow basis-0 items-center hidden lg:block">
       <.link aria-label={gettext("Home page")} navigate={~p"/"}>
         <img src="/images/sticker.png" alt={gettext("Adopt LiveView")} class="h-9 w-9 inline" />
@@ -77,3 +77,33 @@
 </div>
 
 <.mobile_navigation pathname={assigns[:pathname]} locale={assigns[:locale]} />
+
+<footer class="mx-auto max-w-2xl lg:max-w-8xl px-4 py-12 sm:px-6 lg:px-8">
+  <.prose class="text-center text-sm leading-6 text-slate-500 dark:text-slate-400">
+      <p>
+        &copy; 2024 Adopt LiveView. <%= gettext("All rights reserved.") %>
+      </p>
+      <p>
+        <%= gettext("Built with") %>
+        <a
+          href="https://www.phoenixframework.org"
+          target="_blank"
+          class="font-semibold text-slate-900 dark:text-white"
+        >
+          Phoenix
+        </a>
+        <%= gettext("and") %>
+        <a
+          href="https://elixir-lang.org"
+          target="_blank"
+          class="font-semibold text-slate-900 dark:text-white"
+        >
+          Elixir
+        </a>
+        .
+      </p>
+      <p>
+        <a href="/about" class="font-semibold text-slate-900 dark:text-white"><%= gettext("About Us") %></a>
+      </p>
+  </.prose>
+</footer>
