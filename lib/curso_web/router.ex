@@ -17,6 +17,8 @@ defmodule CursoWeb.Router do
   scope "/", CursoWeb do
     pipe_through :browser
 
+    live "/about", AboutLive, :about
+
     live "/", HomeLive, :home
     live "/:locale", HomeLive, :home
     live "/guides/:id", GuideLive, :guide
