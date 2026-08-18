@@ -10,6 +10,18 @@ next_page_id: nil,
 
 ---
 
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 1.5rem;">
+  <iframe
+    src="https://www.youtube.com/embed/l8-wBubU30w"
+    title="Setting up View Transitions API in Phoenix LiveView"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+
+Prefer watching? The video version of this guide is right above. Otherwise, read on for the written walkthrough.
+
 The [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API) lets the browser animate DOM changes between two states, giving you smooth cross-fades and shared-element transitions for free. This snippet walks you through wiring it up inside a Phoenix LiveView app so you can trigger transitions both on link navigation and on server-driven page updates.
 
 ## Step 1: Add the `ViewTransitionHook`

@@ -10,6 +10,18 @@ next_page_id: nil,
 
 ---
 
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 1.5rem;">
+  <iframe
+    src="https://www.youtube.com/embed/l8-wBubU30w"
+    title="Configurando a View Transitions API no Phoenix LiveView"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
+
+Prefere assistir? A versão em vídeo deste guia está aí em cima (legendas em português). Caso contrário, siga em frente para o passo a passo escrito.
+
 A [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API) permite que o navegador anime mudanças no DOM entre dois estados, dando a você cross-fades suaves e transições de elementos compartilhados de graça. Este snippet mostra como conectar tudo isso em uma aplicação Phoenix LiveView para que você possa disparar transições tanto em navegação por links quanto em atualizações vindas do servidor.
 
 Siga os passos na ordem. Cada passo é construído em cima do anterior, e ao final do passo 3 todas as peças estarão conectadas.
