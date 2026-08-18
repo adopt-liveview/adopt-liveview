@@ -34,11 +34,13 @@ defmodule Curso.Pages do
     fundamentals = fundamentals_content_map(locale)
     first_crud = first_crud_content_map(locale)
     real_time = real_time_content_map(locale)
+    snippets = snippets_content_map(locale)
 
     [
       fundamentals,
       first_crud,
-      real_time
+      real_time,
+      snippets
     ]
     |> Enum.find_value(fundamentals, fn content_map ->
       pathname_in_this_content_map? =
@@ -212,6 +214,22 @@ defmodule Curso.Pages do
           %{title: gettext("Your First PubSub"), href: ~p"/guides/v2-pubsub-primer/#{locale}"},
           %{title: gettext("Ticket Creation in Real Time"), href: ~p"/guides/v2-ticket-creation-in-real-time/#{locale}"},
           %{title: gettext("Under construction"), href: ~p"/guides/v2-under-construction/#{locale}"}
+        ]
+      }
+    ]
+  end
+
+  defp snippets_content_map(locale) do
+    assigns = %{}
+
+    [
+      %{
+        title: gettext("Snippets"),
+        links: [
+          %{
+            title: gettext("View Transitions API"),
+            href: ~p"/guides/snippet-view-transitions-api/#{locale}"
+          }
         ]
       }
     ]

@@ -10,6 +10,7 @@
       <strong><%= gettext("Changelog:") %></strong>
     </p>
     <ul class="my-4 list-disc pl-6">
+      <li><%= gettext("Aug 18th: New Snippets track kicks off with \"Setting up View Transitions API\"") %></li>
       <li><%= gettext("May 9th: Added 2 lessons to Real Time with LiveView section") %></li>
       <li><%= gettext("May 1st: Test track is now part of the CRUD guide") %></li>
       <li><%= gettext("May 1st: V2 is live!") %></li>
@@ -40,6 +41,14 @@
       icon="hero-building-office-2-solid"
       icon_class="dark:bg-white"
       href={~p"/guides/v2-pubsub-primer/#{@locale}"}
+    />
+
+    <.quick_link
+      title={gettext("Snippets")}
+      description={gettext("Short, copy-pasteable recipes to add features to your LiveView app.")}
+      icon="hero-code-bracket-solid"
+      icon_class="dark:bg-white"
+      href={~p"/guides/snippet-view-transitions-api/#{@locale}"}
     />
 
     <.quick_link
